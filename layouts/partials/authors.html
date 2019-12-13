@@ -1,0 +1,5 @@
+<ul class="taxonomy">
+  {{- range $author, $pages := $.Site.Taxonomies.authors }}{{ with (index $.Site.Data.authors $author) }}
+  <li class="term"><a href="/updates/author/{{ .title }}/">{{ .name }} ({{ $pages | len }})</a></li>
+  {{- end }}{{ end }}
+</ul>

@@ -1,0 +1,33 @@
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <id>{{ $.Site.BaseURL }}</id>
+  {{- range where $.Site.Sections "Section" "updates" }}
+  <title>{{ .Title }}</title>
+  <subtitle>{{ .Description }}</subtitle>
+  {{- end }}
+  <updated>{{ .Date.Format "2006-01-02T15:04:05-07:00" | safeHTML }}</updated>
+  <author>
+    <name>{{ $.Site.Data.partials.publisher.name }}</name>
+  </author>
+  <link rel="self" href="{{ $.Site.RSSLink }}"/>
+  <link rel="alternate" href="{{ $.Site.BaseURL }}"/>
+  <icon>{{ $.Site.BaseURL }}assets/images/template/favicon.png</icon>
+  <logo>{{ $.Site.BaseURL }}assets/images/template/ogp.png</logo>
+  <rights>Copyright © {{ now.Format "2006" }} {{ $.Site.Copyright }}</rights>
+  {{- range .Data.Pages }}
+  <entry>
+    <id>{{ .Permalink }}</id>
+    <title>{{ .Title }}</title>
+    <updated>{{ .Date.Format "2006-01-02T15:04:05-07:00" | safeHTML }}</updated>
+    {{- if isset .Params "authors" }}{{ range .Params.authors }}{{ with (index $.Site.Data.authors .) }}
+    <author>
+      <name>{{ .name }}</name>
+    </author>
+    {{- end }}{{ end }}{{ end }}
+    <content type="html">{{ "<![CDATA[" | safeHTML }}{{ .Content | replaceRE "\n" "" | safeHTML }}{{ "]]>" | safeHTML }}</content>
+    <link rel="alternate" href="{{ .Permalink }}"/>
+    {{- if isset .Params "tags" }}{{ range .Params.tags }}{{ with (index $.Site.Data.tags .) }}
+    <category term="{{ .title }}" label="{{ .name }}"/>
+    {{- end }}{{ end }}{{ end }}
+  </entry>
+  {{- end }}
+</feed>

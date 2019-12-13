@@ -1,0 +1,11 @@
+{{- with $.Site.Data.partials.contact }}
+<aside id="contact-callout" class="outer">
+  <div class="inner row">
+    <div class="col">
+      <h2>{{ partial "heading.html" .heading }}</h2>
+      <p>{{ if isset $.Params "contactdesc" }}{{ $.Params.contactdesc | markdownify }}{{ else }}{{ .description | markdownify }}{{ end }}</p>
+      <p><a href="{{ if isset $.Params "contactlink" }}{{ $.Params.contactlink }}{{ else }}/contact/{{ end }}" class="cta large"><span class="far envelope" aria-hidden="true"></span><strong>{{ if isset $.Params "contactlabel" }}{{ $.Params.contactlabel }}{{ else }}{{ .linklabel }}{{ end }}</strong></a></p>
+    </div>
+  </div>
+</aside>
+{{- end }}

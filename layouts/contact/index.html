@@ -1,0 +1,87 @@
+{{- define "main" }}
+<main>
+  <div id="main-feature" class="outer">
+    <div class="inner row">
+      <div class="col">
+        <header>
+          <hgroup>
+            <h1>{{ partial "heading.html" .Title }}</h1>
+            <h2 aria-level="1">{{ .Params.subtitle }}</h2>
+          </hgroup>
+          <p>{{ .Description }}</p>
+        </header>
+      </div>
+    </div>
+  </div>
+  <div id="main-content">
+    <form name="contact" method="POST" action="/contact/" netlify netlify-honeypot="bot-field">
+      <div class="outer main">
+        <div class="inner row">
+          <div class="col">
+            {{- range .Params.fields }}
+            <p class="field">
+              <label for="input-{{ .name }}">{{ .label }}</label>
+              <span class="req">{{ if eq .required true }}必須{{ end }}</span>
+              <span class="input">
+              {{- if eq .type "multiline" -}}
+              <textarea id="input-{{ .name }}" name="{{ .name }}"{{ if eq .required true }} required{{ end }} placeholder="{{ .placeholder }}"></textarea>
+              {{- else -}}
+              <input id="input-{{ .name }}" type="{{ .type }}" name="{{ .name }}"{{ if eq .required true }} required{{ end }} placeholder="{{ .placeholder }}">
+              {{- end -}}
+              </span>
+            </p>
+            {{- end }}
+            <p hidden>
+              <label>こちらには何も入力しないでください: <input name="bot-field"></label>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="outer submit">
+        <div class="inner row">
+          <div class="col">
+            {{- with .Params.submit }}
+            <p><label><input type="checkbox" name="privacy" required> {{ .privacy | markdownify }}</label></p>
+            <p class="field"><button type="submit"><span class="far paper-plane" aria-hidden="true"></span><strong>{{ .buttonlabel }}</strong></button></p>
+            {{- end }}
+          </div>
+        </div>
+      </div>
+      <div class="outer thanks" hidden tabindex="-1">
+        <div class="inner row">
+          <div class="col">
+            {{- with .Params.thanks }}
+            <header>
+              <hgroup>
+                <h2>{{ partial "heading.html" .heading }}</h2>
+                <h3 aria-level="2">{{ .subheading }}</h3>
+              </hgroup>
+              <span class="fas circle" aria-hidden="true"></span>
+            </header>
+            <p>{{ .description | markdownify }}</p>
+            {{- end }}
+          </div>
+        </div>
+      </div>
+      <div class="outer error" hidden tabindex="-1">
+        <div class="inner row">
+          <div class="col">
+            {{- with .Params.error }}
+            <header>
+              <hgroup>
+                <h2>{{ partial "heading.html" .heading }}</h2>
+                <h3 aria-level="2">{{ .subheading }}</h3>
+              </hgroup>
+              <span class="fas circle" aria-hidden="true"></span>
+            </header>
+            <p>{{ .description | markdownify }}</p>
+            {{- end }}
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</main>
+{{- end }}
+
+{{ define "extra" }}{{ "" }}{{ end }}

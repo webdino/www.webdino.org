@@ -1,0 +1,84 @@
+{{- define "title" }}{{ .Title }} — {{ .Params.headline | replaceRE "<br>" "" }}{{ end }}
+
+{{- define "style" }}home{{ end }}
+
+{{- define "main" }}
+<main>
+  <div id="main-feature" class="outer">
+    <div id="hero-background-wrapper">
+      <div id="hero-background-1" class="hero-background"></div>
+      <div id="hero-background-2" class="hero-background"></div>
+      <div id="hero-background-3" class="hero-background"></div>
+      <div id="hero-background-4" class="hero-background"></div>
+    </div>
+    <div id="hero-text-wrapper" class="inner row">
+      <div id="hero-text-1-large" class="hero-text large"><span>D</span><span>i</span><span>v</span><span>e</span><span>r</span><span>s</span><span>i</span><span>t</span><span>y</span></div>
+      <div id="hero-text-1-small" class="hero-text small"><span>多様性</span></div>
+      <div id="hero-text-2-large" class="hero-text large"><span>I</span><span>n</span><span>t</span><span>e</span><span>r</span><span>n</span><span>a</span><span>t</span><span>i</span><span>o</span><span>n</span><span>a</span><span>l</span><span>i</span><span>z</span><span>a</span><span>t</span><span>i</span><span>o</span><span>n</span></div>
+      <div id="hero-text-2-small" class="hero-text small"><span>国際化</span></div>
+      <div id="hero-text-3-large" class="hero-text large"><span>N</span><span>e</span><span>u</span><span>t</span><span>r</span><span>a</span><span>l</span><span>i</span><span>t</span><span>y</span></div>
+      <div id="hero-text-3-small" class="hero-text small"><span>中立性</span></div>
+      <div id="hero-text-4-large" class="hero-text large"><span>O</span><span>p</span><span>e</span><span>n</span><span>n</span><span>e</span><span>s</span><span>s</span></div>
+      <div id="hero-text-4-small" class="hero-text small"><span>オープン</span></div>
+      <div id="hero-text-last" class="col">
+        <header>
+          <h1>{{ partial "heading.html" .Params.headline }}</h1>
+          <p>{{ partial "heading.html" .Description }}</p>
+        </header>
+      </div>
+    </div>
+  </div>
+  <div id="main-content">
+    {{- with $.Site.Data.partials.updates.news }}
+    <section id="news" class="outer">
+      <div class="inner row">
+        <div class="col">
+          <header>
+            <hgroup>
+              <h2>{{ partial "heading.html" .heading }}</h2>
+              <h3 aria-level="2">{{ .subheading }}</h3>
+            </hgroup>
+            <span class="fas circle" aria-hidden="true"></span>
+          </header>
+          <div class="headlines">
+            {{- range first 3 (where $.Site.Pages "Params.category" "news") }}
+{{ partial "news-post-headline.html" . }}
+            {{- end }}
+          </div>
+          <footer>
+            <p class="cta-outer"><a href="/updates/news/" class="cta"><span class="label">{{ .linklabel }}</span><span class="fas arrow-right" aria-hidden="true"></span></a></p>
+          </footer>
+        </div>
+      </div>
+    </section>
+    {{- end }}
+    {{- with $.Site.Data.partials.updates.blog }}
+    <section id="blog" class="outer">
+      <div class="inner">
+        <div class="row">
+          <header class="col">
+            <hgroup>
+              <h2>{{ partial "heading.html" .heading }}</h2>
+              <h3 aria-level="2">{{ .subheading }}</h3>
+            </hgroup>
+            <span class="fas circle" aria-hidden="true"></span>
+          </header>
+        </div>
+        <div class="row summaries">
+          {{- range first 3 (where $.Site.Pages "Params.category" "blog") }}
+          <div class="col s2">
+{{ partial "blog-post-summary.html" . }}
+          </div>
+          {{- end }}
+        </div>
+        <div class="row">
+          <footer class="col">
+            <p class="cta-outer"><a href="/updates/blog/" class="cta"><span class="label">{{ .linklabel }}</span><span class="fas arrow-right" aria-hidden="true"></span></a></p>
+          </footer>
+        </div>
+      </div>
+    </section>
+    {{- end }}
+  </div>
+</main>
+{{- end }}

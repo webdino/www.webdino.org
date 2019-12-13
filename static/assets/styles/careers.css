@@ -1,0 +1,70 @@
+@media screen {
+  body {
+    background-image: url(/assets/images/careers/main-bg@2x.png);
+  }
+
+  #main-feature .inner {
+    margin: 0 auto 64px;
+  }
+
+  #main-feature header ~ figure {
+    display: flex;
+    justify-content: center;
+  }
+
+  #main-feature header ~ figure figure {
+    margin: 0 16px;
+  }
+
+  #main-feature header ~ figure img {
+    width: 400px;
+    max-width: 100%;
+    height: auto;
+  }
+
+  [itemtype$="JobPosting"] section {
+    display: flex;
+    margin: 16px auto;
+  }
+
+  [itemtype$="JobPosting"] section:not(:last-child) {
+    border-bottom: 1px solid #858585;
+    padding-bottom: 16px;
+  }
+
+  [itemtype$="JobPosting"] header.large {
+    background-image: url(/assets/images/careers/header-bg@2x.png);
+  }
+
+  [itemtype$="JobPosting"] .row {
+    margin: 16px auto;
+    max-width: 800px;
+  }
+
+  [itemtype$="JobPosting"] h3 {
+    flex: none;
+    margin: 8px 0;
+    width: 160px;
+    color: #858585;
+  }
+
+  [itemtype$="JobPosting"] ul {
+    margin: 0;
+    flex: auto;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  #main-feature .inner {
+    margin: 0 auto 32px;
+  }
+
+  #main-feature header ~ figure,
+  [itemtype$="JobPosting"] section {
+    flex-direction: column;
+  }
+
+  #main-feature header ~ figure figure:not(:last-of-type) {
+    margin-bottom: 16px;
+  }
+}

@@ -1,0 +1,14 @@
+<section>
+  <header>
+    <hgroup>
+      <h3>{{ partial "heading.html" .heading }}</h3>
+      <h4 aria-level="3">{{ .subheading }}</h4>
+    </hgroup>
+    <span class="fas circle" aria-hidden="true"></span>
+  </header>
+  <div class="members">
+    {{- range .members }}
+{{ partial "board-member.html" . }}
+    {{- end }}
+  </div>
+</section>

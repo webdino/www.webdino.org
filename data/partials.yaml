@@ -1,0 +1,52 @@
+publisher:
+  address: 〒103-0006 東京都中央区日本橋富沢町 10-13 &WORK NIHONBASHI 3F
+  map:
+    api_key: AIzaSyBFnZMBbbYq0_kIjLp5m4Sds8e1UqW3Q4w
+    place_id: ChIJcex0elKJGGAR_RKOSIb45l4
+  name: 一般社団法人 WebDINO Japan
+contact:
+  description: 事業等に関するお問い合わせ・ご相談は以下リンク先のフォームよりお願いします。
+  heading: お問い合わせ
+  linklabel: お問い合わせ
+social:
+  - identifier: twitter
+    name: Twitter
+    account: WebDINO_jp
+    url: 'https://twitter.com/WebDINO_jp'
+  - identifier: facebook
+    name: Facebook
+    account: WebDINOJP
+    url: 'https://www.facebook.com/WebDINOJP'
+updates:
+  archive:
+    heading: アーカイブ
+  blog:
+    backlinklabel: ブログトップへ戻る
+    heading: ブログ
+    linklabel: ブログ記事をすべて見る
+    subheading: Blog
+  nav:
+    next: 次の記事
+    prev: 前の記事
+  news:
+    backlinklabel: 新着情報トップへ戻る
+    heading: 新着情報
+    linklabel: 新着情報をすべて見る
+    subheading: What’s New
+  share:
+    heading: この記事を共有
+    media:
+      - identifier: facebook
+        name: Facebook
+        url: 'https://www.facebook.com/sharer.php?u={url}'
+      - identifier: twitter
+        name: Twitter
+        url: 'https://twitter.com/intent/tweet?url={url}&text={title}&via=WebDINO_jp'
+      - identifier: hatena-bookmark
+        name: はてなブックマーク
+        url: 'http://b.hatena.ne.jp/append?{url}'
+      - identifier: google-plus
+        name: Google+
+        url: 'https://plus.google.com/share?url={url}&text={title}'
+  tags:
+    heading: タグ

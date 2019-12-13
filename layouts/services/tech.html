@@ -1,0 +1,105 @@
+{{ define "main" }}
+<main>
+  <div id="main-feature" class="outer">
+    <div class="inner row">
+      <div class="col">
+        <header>
+          <hgroup>
+            <h1>{{ partial "heading.html" .Title }}</h1>
+            <h2 aria-level="1">{{ .Params.subtitle }}</h2>
+          </hgroup>
+          <p>{{ .Description }}</p>
+          <nav role="directory">
+            <ul id="field-anchors">
+              {{- range .Params.fields.details }}
+              <li>
+                <a href="#{{ .subheading | urlize }}">
+                  {{ .title }} <strong>{{ .heading }}</strong> <span>{{ .subheading }}</span>
+                  <span class="fas angle-down" aria-hidden="true"></span>
+                </a>
+              </li>
+              {{- end }}
+            </ul>
+            {{- with .Params.solutions }}
+            <footer>
+              <p class="cta-outer"><a href="#tech-solutions" class="cta"><span class="label">{{ .linklabel }}</span><span class="fas arrow-down" aria-hidden="true"></span></a></p>
+            </footer>
+            {{- end }}
+          </nav>
+        </header>
+      </div>
+    </div>
+  </div>
+  <div id="main-content">
+    {{- with .Params.fields }}
+    <section id="fields">
+      <header>
+        <hgroup>
+          <h2>{{ partial "heading.html" .heading }}</h2>
+          <h3 aria-level="2">{{ .subheading }}</h3>
+        </hgroup>
+      </header>
+      {{- range .details }}
+      <section id="{{ .subheading | urlize }}" class="outer field">
+        <div class="inner row">
+          <div class="col s2">
+            <header>
+              <hgroup>
+                <h3>{{ partial "heading.html" .heading }}</h3>
+                <h4 aria-level="3">{{ .subheading }}</h4>
+              </hgroup>
+              <span class="fas circle" aria-hidden="true"></span>
+              <p class="summary">{{ .summary }}</p>
+            </header>
+          </div>
+          <div class="col s4">
+            <div class="description">
+              {{ .description | markdownify }}
+            </div>
+          </div>
+        </div>
+      </section>
+      {{- end }}
+    </section>
+    {{- end }}
+    {{- with .Params.solutions }}
+    <section id="tech-solutions">
+      <div class="inner row">
+        <div class="col">
+          <header>
+            <hgroup>
+              <h2>{{ partial "heading.html" .heading }}</h2>
+              <h3 aria-level="2">{{ .subheading }}</h3>
+            </hgroup>
+            <span class="fas circle" aria-hidden="true"></span>
+            <p>{{ .description }}</p>
+          </header>
+          <ul class="examples">
+            {{- range .examples }}
+            <li style="background-image:url('{{ .icon }}')">{{ .label }}</li>
+            {{- end }}
+          </ul>
+          {{- with .cases }}
+          {{- $heading := .heading }}
+          {{- range .details }}
+          <section class="case">
+            <h3><span class="prefix">{{ $heading }}</span> <span class="heading">{{ partial "heading.html" .heading }}</span></h3>
+            <div class="content">
+              {{- with .image }}
+              <figure>
+                <img src="{{ . }}" alt="">
+              </figure>
+              {{- end }}
+              <div class="description">
+                {{ .description | markdownify }}
+              </div>
+            </div>
+          </section>
+          {{- end }}{{ end }}
+        </div>
+      </div>
+    </section>
+    {{- end }}
+  </div>
+</main>
+{{ end }}

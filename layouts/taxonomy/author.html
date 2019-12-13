@@ -1,0 +1,76 @@
+{{- define "style" }}updates{{ end }}
+
+{{- define "og:title" }}{{ partial "post-title-author.html" . }} | ディノの足あと{{ end }}
+
+{{- define "title" }}{{ partial "post-title-author.html" . }} | ディノの足あと | {{ $.Site.Title }}{{ end }}
+
+{{- define "main" }}
+<main>
+  <div id="main-feature" class="outer">
+    <div class="inner row">
+      <div class="col">
+        <header>
+          <hgroup>
+            {{- range where $.Site.Sections "Section" "updates" }}
+            <a href="{{ .URL }}">
+              <h1>{{ partial "heading.html" .Title }}</h1>
+              <h2 aria-level="1">{{ .Params.subtitle }}</h2>
+            </a>
+            {{- end }}
+          </hgroup>
+        </header>
+      </div>
+    </div>
+  </div>
+  <div id="main-content">
+    <div class="outer">
+      <div class="inner row">
+        <div class="col s4">
+          <section id="news">
+            {{- with (index $.Site.Data.authors (.Title | lower)) }}
+            <header class="profile" itemscope itemtype="http://schema.org/Person">
+              <div class="avatar">
+                <img src="{{ .image }}" alt="" itemprop="image">
+              </div>
+              <h2 itemprop="name" aria-level="3">{{ .name }}</h2>
+              <dl>
+                {{- if .jobTitle }}<dt>タイトル</dt><dd itemprop="jobTitle">{{ .jobTitle }}</li>{{ end }}
+                {{- if .description }}<dt>自己紹介</dt><dd itemprop="description">{{ .description }}</dd>{{ end }}
+                {{- if .twitter }}<dt>Twitter</dt><dd><a href="https://twitter.com/{{ .twitter }}" itemprop="sameAs">@{{ .twitter }}</a></dt>{{ end }}
+                {{- if .facebook }}<dt>Facebook</dt><dd><a href="https://www.facebook.com/{{ .facebook }}" itemprop="sameAs">@{{ .facebook }}</a></dt>{{ end }}
+                {{- if .github }}<dt>GitHub</dt><dd><a href="https://github.com/{{ .github }}" itemprop="sameAs">@{{ .github }}</a></dt>{{ end }}
+              </dl>
+            </header>
+            {{- end }}
+            <div class="headlines">
+              {{- range $.Pages }}
+{{ partial "news-post-headline-year.html" . }}
+              {{- end }}
+            </div>
+          </section>
+        </div>
+        <div class="col s2">
+{{ partial "aside-tags.html" . }}
+{{ partial "aside-authors.html" . }}
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+{{- end }}
+
+{{- define "breadcrumbs" }}
+<nav id="breadcrumbs" class="outer" itemscope itemtype="http://schema.org/BreadcrumbList" aria-label="パンくずリスト">
+  <div class="inner row">
+    <p class="col">
+      {{- range where $.Site.Sections "Section" "updates" }}
+      {{- with .Parent }}
+      <a href="{{ .URL }}">{{ .LinkTitle }}</a>
+      {{- end }}
+      &rsaquo; <span itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a itemprop="item" href="{{ .URL }}"><span itemprop="name">{{ .LinkTitle }}</span></a><meta itemprop="position" content="1"></span>
+      {{- end }}
+      &rsaquo; <span itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a itemprop="item" href="{{ .URL }}"><span itemprop="name">{{ partial "post-title-author.html" . }}</span></a><meta itemprop="position" content="2"></span>
+    </p>
+  </div>
+</nav>
+{{- end }}

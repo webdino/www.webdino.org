@@ -1,0 +1,53 @@
+<footer id="footer" role="contentinfo">
+  <div id="drawer" class="outer">
+    <div class="inner">
+      <section>
+        <div class="row">
+          <div class="col s2">
+            <div class="mobile" role="button" aria-label="メニューを閉じる"><span class="fas times" aria-hidden="true"></span></div>
+            <header>
+              <h1><a href="/">{{ $.Site.Data.partials.publisher.name | safeHTML }}</a></h1>
+            </header>
+          </div>
+          <div class="col s3">
+            <nav class="primary" aria-label="主要ページ">
+              <ul>
+                {{- range $.Site.Menus.primary }}
+                <li{{ if gt (.Children | len) 0 }} class="parent"{{ end }}><a href="{{ .URL }}">{{ .Name }}</a>
+                  {{- if gt (.Children | len) 0 }}
+                  <ul>
+                    {{- range .Children }}
+                    <li><a href="{{ .URL }}">{{ .Name }}</a></li>
+                    {{- end }}
+                  </ul>
+                  {{- end -}}
+                </li>
+                {{- end }}
+                {{- range $.Site.Menus.secondary }}
+                <li><a href="{{ .URL }}">{{ .Name }}</a></li>
+                {{- end }}
+              </ul>
+            </nav>
+          </div>
+          <div class="col s1">
+            <nav class="social" aria-label="ソーシャルメディア">
+              <ul>
+                {{- range $.Site.Data.partials.social }}
+                <li class="{{ .identifier }}"><a href="{{ .url | safeURL }}"><span class="fab {{ .identifier }}" aria-hidden="true"></span> <span>{{ .name }}</span></a></li>
+                {{- end }}
+                <li class="feed"><a href="{{ $.Site.RSSLink | relURL }}"><span class="fas rss" aria-hidden="true"></span> <span>フィード</span></a></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+  <div id="copyright" class="outer">
+    <div class="inner row">
+      <div class="col">
+        <p>Copyright &copy; {{ now.Format "2006" }} {{ $.Site.Copyright }}. All rights reserved. <a href="/privacy/">個人情報保護方針</a></p>
+      </div>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,21 @@
+{{- define "main" }}
+<main>
+  <div id="main-feature" class="outer">
+    <div class="inner row">
+      <div class="col">
+        <header>
+          <h1>{{ partial "heading.html" .Title }}</h1>
+          <p>{{ .Description }}</p>
+        </header>
+      </div>
+    </div>
+  </div>
+  <div id="main-content" class="outer">
+    <div class="inner row">
+      <div class="col">
+        {{- .Content }}
+      </div>
+    </div>
+  </div>
+</main>
+{{- end }}

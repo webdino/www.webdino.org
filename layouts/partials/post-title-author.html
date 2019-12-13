@@ -1,0 +1,1 @@
+{{ with (index $.Site.Data.authors (.Title | lower)) }}{{ .name }} が書いた記事{{ end }}

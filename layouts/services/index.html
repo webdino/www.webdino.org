@@ -1,0 +1,44 @@
+{{- define "main" }}
+<main>
+  <div id="main-feature" class="outer">
+    <div class="inner row">
+      <div class="col">
+        <header>
+          <hgroup>
+            <h1>{{ partial "heading.html" .Title }}</h1>
+            <h2 aria-level="1">{{ .Params.subtitle }}</h2>
+          </hgroup>
+          <p>{{ .Description }}</p>
+        </header>
+      </div>
+    </div>
+  </div>
+  <div id="main-content">
+    <div id="service-highlights">
+    {{- range where $.Site.Sections "Section" "services" }}{{ range .Sections }}
+      <section id="service-{{ .Params.layout }}" class="service highlight outer">
+        <div class="inner row">
+          <div class="col s4">
+            <header>
+              <hgroup>
+                <h2>{{ partial "heading.html" .Title }}</h2>
+                <h3 aria-level="2">{{ .Params.subtitle }}</h3>
+              </hgroup>
+            </header>
+            <p>{{ .Description }}</p>
+            <footer>
+              <p class="cta-outer"><a href="{{ .RelPermalink }}" class="cta"><span class="label">{{ .Params.linklabel }}</span><span class="fas arrow-right" aria-hidden="true"></span></a></p>
+            </footer>
+          </div>
+          <div class="col s2 images">
+            <figure>
+              <img src="{{ .Params.image }}" width="400" height="300" alt="">
+            </figure>
+          </div>
+        </div>
+      </section>
+    {{- end }}{{- end }}
+    </div>
+  </div>
+</main>
+{{- end }}

@@ -1,0 +1,119 @@
+@media screen {
+  form[name="contact"] .main,
+  form[name="contact"] .thanks,
+  form[name="contact"] .error {
+    outline: 0;
+    background-color: #F3F5F8;
+  }
+
+  form[name="contact"] .inner {
+    margin: 48px auto;
+    max-width: 960px;
+  }
+
+  form[name="contact"] p {
+    text-align: center;
+  }
+
+  form[name="contact"] .main .field {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  form[name="contact"] .main label {
+    width: 8em;
+    font-weight: bold;
+    text-align: right;
+  }
+
+  form[name="contact"] .main .req {
+    width: 5em;
+    color: #A51D3C;
+    font-size: 12px;
+    text-align: center;
+  }
+
+  form[name="contact"] .main .input {
+    flex: auto;
+  }
+
+  form[name="contact"] .main input,
+  form[name="contact"] .main textarea {
+    box-sizing: border-box;
+    border: 1px solid #CCC;
+    border-radius: 4px;
+    padding: 8px;
+    width: 100%;
+    font-size: 16px;
+    font-family: inherit;
+    -webkit-appearance: none;
+    transition: all .3s;
+  }
+
+  form[name="contact"] .main input:focus,
+  form[name="contact"] .main textarea:focus {
+    border-color: #A51D3C;
+    box-shadow: none;
+  }
+
+  form[name="contact"] .main textarea {
+    height: 10em;
+    resize: vertical;
+  }
+
+  form[name="contact"] .submit button[type="submit"] {
+    outline: 0;
+    border: 0;
+    border-radius: 8px;
+    padding: 16px 32px;
+    min-width: 240px;
+    color: #FFF;
+    background-color: #353C48;
+    font-family: inherit;
+    font-size: inherit;
+    letter-spacing: 1ex;
+    cursor: pointer;
+    transition: all .3s;
+  }
+
+  form[name="contact"] .submit button::-moz-focus-inner {
+    border: 0;
+  }
+
+  form[name="contact"] .submit button[type="submit"]:hover,
+  form[name="contact"] .submit button[type="submit"]:focus,
+  form[name="contact"] .submit button[type="submit"]:active {
+    background-color: #A51D3C;
+  }
+
+  form[name="contact"] .submit button[type="submit"]:disabled {
+    background-color: #CCC;
+    pointer-events: none;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  form[name="contact"] .inner {
+    margin: 32px auto;
+  }
+
+  form[name="contact"] .main .field {
+    flex-wrap: wrap;
+  }
+
+  form[name="contact"] .main label,
+  form[name="contact"] .main .req {
+    box-sizing: border-box;
+    padding: 0 8px;
+    width: 50%;
+  }
+
+  form[name="contact"] .main label {
+    text-align: left;
+  }
+
+  form[name="contact"] .main .req {
+    text-align: right;
+  }
+}

@@ -1,0 +1,24 @@
+metaDataFormat: yaml
+disableHugoGeneratorInject: true
+hasCJKLanguage: true
+title: WebDINO Japan
+copyright: WebDINO Japan
+baseURL: 'https://www.webdino.org/'
+languageCode: ja
+permalinks:
+  authors: /updates/author/:slug/
+  tags: /updates/tag/:slug/
+taxonomies:
+  author: authors
+  tag: tags
+disableKinds:
+  - taxonomyTerm
+outputs:
+  home:
+    - HTML
+    - RSS
+  section:
+    - HTML
+  taxonomy:
+    - HTML
+rssLimit: 50

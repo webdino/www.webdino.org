@@ -1,0 +1,29 @@
+<nav id="about-nav" class="outer" aria-label="{{ .Title | replaceRE "<br>" "" }} の詳細リンク">
+  <div class="inner row">
+    <header class="col">
+      <hgroup>
+        <h2>{{ partial "heading.html" .Title }}</h2>
+        <h3 aria-level="2">{{ .Params.subtitle }}</h3>
+      </hgroup>
+      <span class="fas circle" aria-hidden="true"></span>
+    </header>
+  </div>
+  <div class="inner row">
+    <div class="col sections">
+      {{- range .Sections }}
+      <section>
+        <header>
+          <hgroup>
+            <h3>{{ .LinkTitle }}</h3>
+            <h4 aria-level="3">{{ .Params.subtitle }}</h4>
+          </hgroup>
+        </header>
+        <p>{{ .Description }}</p>
+        <footer>
+          <p class="cta-outer"><a href="{{ .URL }}" class="cta"><span class="label">{{ $.Params.linklabel }}</span><span class="fas arrow-right" aria-hidden="true"></span></a></p>
+        </footer>
+      </section>
+      {{- end }}
+    </div>
+  </div>
+</nav>

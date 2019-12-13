@@ -1,0 +1,71 @@
+{{- define "main" }}
+<main>
+  <div id="main-feature" class="outer">
+    <div class="inner row">
+      <div class="col">
+        <header>
+          <hgroup>
+            <h1>{{ partial "heading.html" .Title }}</h1>
+            <h2 aria-level="1">{{ .Params.subtitle }}</h2>
+          </hgroup>
+          <p>{{ .Description }}</p>
+        </header>
+      </div>
+    </div>
+  </div>
+  <div id="main-content">
+    {{- with .Params.history }}
+    <section id="history" class="outer">
+      <header class="large">
+        <div class="inner row">
+          <div class="col">
+            <h2>{{ partial "heading.html" .heading }}</h2>
+          </div>
+        </div>
+      </header>
+      <div class="inner row">
+        <div class="col">
+          <dl>
+            {{- range .events }}
+            <dt>{{ .time }}</dt>
+            <dd>{{ .text }}</dd>
+            {{- end }}
+          </dl>
+        </div>
+      </div>
+    </section>
+    {{- end }}
+    {{- with .Params.activities }}
+    <section id="activities" class="outer">
+      <header class="large">
+        <div class="inner row">
+          <div class="col">
+            <h2>{{ partial "heading.html" .heading }}</h2>
+          </div>
+        </div>
+      </header>
+        <div class="inner row">
+          <div id="activity-highlights" class="col">
+            {{- range .timeline }}
+            <section id="act-{{ .id }}">
+              <h3><span class="time"><span class="label">{{ .time }}</span><span class="spacer"></span></span> {{ .title }}</h3>
+              <p>{{ .description }}</p>
+              {{- with .image }}
+              <figure>
+                <img src="{{ . }}" width="400" height="300" alt="">
+              </figure>
+              {{- end }}
+            </section>
+            {{- end }}
+          </div>
+        </div>
+      </div>
+    </section>
+    {{- end }}
+  </div>
+</main>
+{{- end }}
+
+{{- define "sub" }}
+{{ partial "about-nav.html" $.Parent }}
+{{- end }}

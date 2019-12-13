@@ -1,0 +1,5 @@
+<ul class="taxonomy">
+  {{- range $tag, $pages := $.Site.Taxonomies.tags }}{{ with (index $.Site.Data.tags $tag) }}
+  <li class="term"><a href="/updates/tag/{{ .title }}/">{{ .name }} ({{ $pages | len }})</a></li>
+  {{- end }}{{ end }}
+</ul>

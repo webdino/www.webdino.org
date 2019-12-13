@@ -1,0 +1,84 @@
+{{- define "main" }}
+<main>
+  <div id="main-feature" class="outer">
+    <div class="inner row">
+      <div class="col">
+        <header>
+          <hgroup>
+            <h1>{{ partial "heading.html" .Title }}</h1>
+            <h2 aria-level="1">{{ .Params.subtitle }}</h2>
+          </hgroup>
+          <p>{{ .Description }}</p>
+        </header>
+        <figure>
+          {{- range .Params.feature_images }}
+          <img src="{{ .src }}" alt="">
+          {{- end }}
+        </figure>
+      </div>
+    </div>
+  </div>
+  <div id="main-content">
+    {{- with .Params.concept }}
+    <section id="concept" class="outer highlight">
+      <div class="background" style="background-image:url('{{ .src }}')"></div>
+      <div class="inner row">
+        <div class="col">
+          <header>
+            <hgroup>
+              <h2>{{ partial "heading.html" .heading }}</h2>
+              <h3 aria-level="2">{{ .subheading }}</h3>
+            </hgroup>
+            <span class="fas circle" aria-hidden="true"></span>
+          </header>
+          {{ .description | markdownify }}
+        </div>
+      </div>
+    </section>
+    {{- end }}
+    {{- with .Params.friends }}
+    <section id="friends" class="outer highlight">
+      <div class="inner">
+        <div class="row header">
+          <div class="col">
+            <header>
+              <hgroup>
+                <h2>{{ partial "heading.html" .heading }}</h2>
+                <h3 aria-level="2">{{ .subheading }}</h3>
+              </hgroup>
+              <span class="fas circle" aria-hidden="true"></span>
+            </header>
+            {{ .description | markdownify }}
+          </div>
+        </div>
+        <div class="row groups">
+          {{- range .groups }}
+          <section class="col s3">
+            <h3>{{ if .url }}<a href="{{ .url | safeURL }}">{{ end }}{{ .name }}{{ if .url }}</a>{{ end }}</h3>
+            {{ .description | markdownify }}
+          </section>
+          {{- end }}
+        </div>
+      </div>
+    </section>
+    {{- end }}
+    {{- with .Params.space }}
+    <section id="space" class="outer highlight">
+      <div class="inner row">
+        <div class="col s3 image" style="background-image:url('{{ .image }}')"></div>
+        <div class="col s3 text">
+          <header>
+            <hgroup>
+              <h2>{{ partial "heading.html" .heading }}</h2>
+              <h3 aria-level="2">{{ .subheading }}</h3>
+            </hgroup>
+            <span class="fas circle" aria-hidden="true"></span>
+          </header>
+          {{ .description | markdownify }}
+        </div>
+      </div>
+    </section>
+    {{- end }}
+  </div>
+</main>
+{{- end }}

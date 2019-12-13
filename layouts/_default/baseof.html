@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="{{ $.Site.LanguageCode }}">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="description" content="{{ if .Description }}{{ .Description | replaceRE "<br>" "" }}{{ else }}{{ index (split .Content "\n") 0 | plainify | chomp }}{{ end }}">
+    <meta name="viewport" content="width=device-width, user-scalable=false">
+    <meta name="twitter:card" content="{{ if isset .Params "image" }}summary_large_image{{ else }}summary{{ end }}">
+    <meta name="twitter:site" content="@{{ range $.Site.Data.partials.social }}{{ if eq .identifier "twitter" }}{{ .account }}{{ end }}{{ end }}">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:site_name" content="{{ $.Site.Title }}">
+    <meta property="og:url" content="{{ .Permalink }}">
+    <meta property="og:title" content="{{ block "og:title" . }}{{ .Title | replaceRE "<br>" "" }}{{ end }}">
+    <meta property="og:image" content="{{ $.Site.BaseURL }}{{ if isset .Params "image" }}{{ replaceRE "^/" "" .Params.image }}{{ else }}assets/images/template/ogp.png{{ end }}">
+    <meta property="og:description" content="{{ if .Description }}{{ .Description | replaceRE "<br>" "" }}{{ else }}{{ index (split .Content "\n") 0 | plainify | chomp }}{{ end }}">
+    <link rel="alternate" type="application/rss+xml" href="{{ $.Site.RSSLink | relURL }}">
+    <link rel="canonical" hreflang="ja" href="{{ .Permalink }}">
+    <link rel="stylesheet" href="/assets/styles/base.css">
+    <link rel="stylesheet" href="/assets/styles/{{ block "style" . }}{{ .Section }}{{ end }}.css">
+    <link rel="icon" type="image/png" href="/assets/images/template/favicon.png">
+    <link rel="apple-touch-icon" href="/assets/images/template/apple-touch-icon.png">
+    <title>{{ block "title" . }}{{ .Title | replaceRE "<br>" "" }} | {{ $.Site.Title }}{{ end }}</title>
+  </head>
+  <body data-section="{{ if eq .Section "tags" }}updates{{ else }}{{ .Params.type }}{{ end }}" data-page="{{ if eq .Section "tags" }}tags{{ else }}{{ .Params.layout }}{{ end }}">
+{{ partial "header.html" . }}
+{{ block "breadcrumbs" . }}{{ if ne .Section "" }}{{ partial "breadcrumbs.html" . }}{{ end }}{{ end }}
+{{ block "main" . }}{{ end }}
+{{ block "sub" . }}{{ end }}
+{{ block "extra" . }}{{ partial "contact-callout.html" . }}{{ end }}
+{{ partial "footer.html" . }}
+    <script src="https://use.typekit.net/kms6wme.js"></script>
+    <script src="/assets/scripts/main.js"></script>
+  </body>
+</html>

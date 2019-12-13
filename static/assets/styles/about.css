@@ -1,0 +1,558 @@
+@media screen {
+  body {
+    background-image: url(/assets/images/about/main-bg.svg);
+  }
+
+  body:not([data-page="index"]) #main-feature {
+    overflow: visible;
+    background: rgba(255, 255, 255, .7);
+  }
+
+  body:not([data-page="index"]) #main-feature::before {
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    width: 100%;
+    height: 8px;
+    background-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, .1));
+    content: "";
+  }
+
+  #main-feature .inner {
+    overflow: hidden;
+  }
+
+  .member img {
+    border-radius: 50%;
+  }
+
+  .member [itemprop="name"] {
+    font-size: 24px;
+  }
+
+  .member [itemprop="jobTitle"] {
+    display: block;
+    color: #5E697B;
+    line-height: 1.5;
+    text-align: center;
+  }
+
+  .member [itemprop="jobTitle"] em {
+    display: block;
+    font-style: normal;
+  }
+
+  #message img {
+    width: 200px;
+    height: 200px;
+  }
+
+  #message .body p:first-child {
+    margin-top: 0;
+  }
+
+  #message .body p:last-child {
+    margin-bottom: 0;
+  }
+
+  #message header + .row,
+  #leadership header + .inner .row {
+    margin: 48px auto;
+  }
+
+  #leadership h3 {
+    font-size: 24px;
+  }
+
+  #leadership .member img {
+    display: block;
+    margin: 0 auto;
+  }
+
+  header.large {
+    background-image: url(/assets/images/about/header-bg.svg);
+  }
+
+  #about-nav {
+    background-color: #DBE0EA;
+  }
+
+  #about-nav .inner {
+    margin: 32px auto 0;
+  }
+
+  #about-nav .inner:last-child {
+    margin-bottom: 32px;
+  }
+
+  #about-nav h2 {
+    color: inherit;
+  }
+
+  #about-nav .sections {
+    border: 1px solid #353C48;
+    border-radius: 8px;
+    background-color: #FFF;
+  }
+
+  #about-nav .sections section {
+    margin: 32px;
+  }
+
+  #about-nav .sections header,
+  #about-nav .sections footer {
+    flex: none;
+  }
+
+  #about-nav .sections p {
+    flex: auto;
+    margin: 0;
+    text-align: center;
+  }
+
+  #about-nav .sections hgroup * {
+    color: #A51D3C;
+  }
+
+  #concepts section {
+    box-sizing: border-box;
+    margin: 32px 0 32px 16px;
+    border: 1px solid #5E697B;
+    border-radius: 8px;
+  }
+
+  #concepts h2 {
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding-left: 88px;
+    height: 52px;
+    font-size: 28px;
+    letter-spacing: -.05ex;
+  }
+
+  #concepts h2 span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: -4px;
+    left: -12px;
+    margin: 0;
+    width: 88px;
+    height: 88px;
+    font-size: 48px;
+    color: #FFF;
+    opacity: 1;
+  }
+
+  #concepts h2 span::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(to bottom, #5E697B, #353C48);
+    transform: skewX(-12deg);
+    content: "";
+  }
+
+  #concepts h2 strong {
+    position: relative;
+    top: 0;
+    left: 0;
+    z-index: 2;
+  }
+
+  #concepts h3 {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin: 0;
+    padding: 0 32px;
+    height: 32px;
+    color: #A51D3C;
+    background-color: #F6E8EB;
+    opacity: 1;
+    font-size: 20px;
+    text-align: right;
+    letter-spacing: 0;
+  }
+
+  #concepts p {
+    margin: 32px;
+  }
+
+  #history dl {
+    margin: 48px auto;
+    max-width: 800px;
+  }
+
+  #history dt {
+    clear: left;
+    float: left;
+    padding: 16px;
+    width: 160px;
+  }
+
+  #history dd {
+    margin: 0;
+    padding: 16px 16px 16px 192px;
+  }
+
+  #history dd:not(:first-of-type) {
+    border-top: 1px solid #CCC;
+  }
+
+  #activities .inner > section {
+    margin-bottom: 0;
+  }
+
+  #activity-highlights {
+    position: relative;
+    overflow: hidden;
+    padding: 16px 0;
+  }
+
+  #activity-highlights::after {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 8px;
+    background-color: #A51D3C;
+    content: "";
+  }
+
+  #activity-highlights h3 .time {
+    display: flex;
+    position: relative;
+    margin-bottom: 8px;
+    height: 32px;
+    font-size: 24px;
+    line-height: 32px;
+  }
+
+  #activity-highlights h3 .time::before {
+    display: block;
+    position: absolute;
+    overflow: hidden;
+    margin-top: 4px;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    background-color: #A51D3C;
+    content: "";
+  }
+
+  #activity-highlights h3 .time .label {
+    flex: none;
+  }
+
+  #activity-highlights h3 .time .spacer {
+    flex: auto;
+    overflow: hidden;
+    margin-top: 14px;
+    height: 4px;
+    background-color: #A51D3C;
+  }
+
+  #activity-highlights p {
+    margin: 16px 0 0;
+  }
+
+  #activity-highlights figure {
+    margin: 16px auto 0;
+  }
+
+  #activity-highlights img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  #location .inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 32px auto;
+  }
+
+  #location figure {
+    display: block;
+  }
+
+  #location figure iframe {
+    width: 100%;
+    height: 400px;
+  }
+
+  #location .col {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  #location h2 {
+    margin-bottom: 8px;
+  }
+
+  #location h2 span {
+    display: inline;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  #about-nav .sections {
+    display: flex;
+  }
+
+  #about-nav .sections section {
+    display: flex;
+    flex-direction: column;
+    width: 33.33%;
+  }
+
+  #about-nav .sections header {
+    margin-bottom: 16px;
+  }
+
+  #about-nav .sections footer {
+    margin-top: 16px;
+  }
+
+  #about-nav .sections section:not(:last-child) {
+    margin-right: 0;
+    border-right: 1px solid #353C48;
+    padding-right: 32px;
+  }
+
+  #concepts .col {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  #concepts section {
+    margin: 32px;
+    width: calc(50% - 64px);
+  }
+
+  #message header + .row {
+    align-items: center;
+  }
+
+  #leadership .members {
+    display: flex;
+    justify-content: center;
+    margin: 32px 0 0;
+  }
+
+  #leadership .member {
+    width: 232px;
+  }
+}
+
+@media screen and (max-width: 1023px) {
+  #about-nav .sections section:not(:last-child) {
+    margin-bottom: 0;
+    border-bottom: 1px solid #353C48;
+    padding-bottom: 32px;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  #about-nav .sections section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  #about-nav .sections hgroup {
+    width: 172px;
+    text-align: left;
+  }
+
+  #about-nav .sections header,
+  #about-nav .sections footer {
+    flex: none;
+  }
+
+  #about-nav .sections header + p {
+    flex: auto;
+    margin: 0 32px;
+    text-align: left;
+  }
+
+  #about-nav .sections a.cta {
+    margin-top: 0;
+  }
+
+  #leadership .members {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  #leadership .member {
+    margin: 16px 0;
+    width: 328px;
+  }
+
+  #leadership header + .inner .row {
+    display: flex;
+  }
+
+  #leadership .col.s3 {
+    width: 50%;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  #message header + .row .col {
+    margin: 32px 16px;
+  }
+
+  #leadership > div .col {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  #activity-highlights::after {
+    left: calc(50% - 4px);
+  }
+
+  #activity-highlights section {
+    clear: both;
+    margin: 32px 0;
+    width: calc(50% - 32px);
+  }
+
+  #activity-highlights section:nth-of-type(odd) {
+    float: right;
+  }
+
+  #activity-highlights section:nth-of-type(even) {
+    float: left;
+  }
+
+  #activity-highlights section:not(:first-of-type) {
+    margin-top: -80px;
+  }
+
+  #activity-highlights #act-foxkeh,
+  #activity-highlights #act-tomoshibi,
+  #activity-highlights #act-vision {
+    margin-top: -40%;
+  }
+
+  #activity-highlights #act-openwebday {
+    margin-top: 0;
+  }
+
+  #activity-highlights section:nth-of-type(odd) h3 .time {
+    margin-left: -32px;
+    flex-direction: row-reverse;
+  }
+
+  #activity-highlights section:nth-of-type(even) h3 .time {
+    margin-right: -32px;
+  }
+
+  #activity-highlights section:nth-of-type(odd) h3 .time::before {
+    left: -12px;
+  }
+
+  #activity-highlights section:nth-of-type(even) h3 .time::before {
+    right: -12px;
+  }
+
+  #activity-highlights section:nth-of-type(odd) h3 .time .spacer {
+    margin-right: 8px;
+  }
+
+  #activity-highlights section:nth-of-type(even) h3 .time .spacer {
+    margin-left: 8px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  #about-nav .sections footer {
+    margin-top: 16px;
+  }
+
+  #about-nav .sections header + p {
+    display: none;
+  }
+
+  .member {
+    margin: 32px 0 !important;
+    width: 100% !important;
+  }
+
+  #message header + .row,
+  #leadership header + .inner .row {
+    margin: 0;
+  }
+
+  #leadership section {
+    margin: 32px 0;
+  }
+
+  #concepts h2 {
+    padding-left: 60px;
+    font-size: 24px;
+  }
+
+  #concepts h2 span {
+    width: 64px;
+    height: 64px;
+    font-size: 40px;
+  }
+
+  #concepts p {
+    margin: 16px;
+  }
+
+  #history dl {
+    margin: 32px 0;
+  }
+
+  #history dt {
+    float: none;
+    width: auto;
+    margin: 16px 0 0;
+    padding: 0;
+    font-size: 24px;
+  }
+
+  #history dd {
+    margin: 0 0 16px;
+    padding: 0;
+    border-top: 0 !important;
+  }
+
+  #activity-highlights::after {
+    left: 8px;
+  }
+
+  #activity-highlights section {
+    margin: 32px 0 32px 32px;
+  }
+
+  #activity-highlights section h3 .time {
+    margin-left: -16px;
+    flex-direction: row-reverse;
+  }
+
+  #activity-highlights section h3 .time::before {
+    left: -16px;
+  }
+
+  #activity-highlights section h3 .time .spacer {
+    margin-right: 8px;
+  }
+
+  #activity-highlights h3 .time {
+    font-size: 20px;
+  }
+}

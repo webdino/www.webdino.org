@@ -1,0 +1,523 @@
+backend:
+  name: github
+  repo: webdino/www.webdino.org
+  squash_merges: true
+
+publish_mode: editorial_workflow
+
+media_folder: static/assets/uploads
+public_folder: assets/uploads
+
+collections:
+  - name: authors
+    label: 著者
+    create: true
+    folder: data/authors
+    format: yaml
+    extension: yaml
+    fields:
+      - { name: title, label: ハンドルネーム (小文字英数字のみ), widget: string }
+      - { name: name, label: 氏名 (日本語可), widget: string }
+      - { name: jobTitle, label: 肩書, widget: string, required: false }
+      - { name: twitter, label: Twitter ID, widget: string, required: false }
+      - { name: facebook, label: Facebook ID, widget: string, required: false }
+      - { name: github, label: GitHub ID, widget: string, required: false }
+      - { name: image, label: 写真, widget: image, required: false }
+      - { name: description, label: 自己紹介, widget: markdown, required: false }
+    editor:
+        preview: false
+  - name: tags
+    label: タグ
+    create: true
+    folder: data/tags
+    format: yaml
+    extension: yaml
+    fields:
+      - { name: title, label: スラッグ (小文字英数字のみ), widget: string }
+      - { name: name, label: 名前 (日本語可), widget: string }
+      - { name: description, label: 説明, widget: markdown, required: false }
+    editor:
+        preview: false
+  - name: blog
+    label: ブログ
+    label_singular: ブログ記事
+    create: true
+    folder: content/updates/blog
+    filter: { field: "type", value: "post" }
+    slug: "{{year}}{{month}}{{day}}{{hour}}{{minute}}"
+    fields:
+      - { name: type, label: タイプ, widget: hidden, default: post }
+      - { name: layout, label: レイアウト, widget: select, options: ["default", "wide"], default: "default" }
+      - { name: title, label: タイトル, widget: string }
+      - { name: date, label: 公開日, widget: datetime }
+      - { name: category, label: カテゴリ, widget: hidden, default: blog }
+      - { name: tags, label: "タグ (カンマ区切りで複数指定可)", widget: list }
+      - { name: authors, label: 著者 (カンマ区切りで複数指定可), widget: list }
+      - { name: image, label: カバー画像, widget: image, required: false }
+      - { name: body, label: 本文, widget: markdown }
+    editor:
+        preview: true
+  - name: news
+    label: 新着情報
+    label_singular: 新着情報記事
+    create: true
+    folder: content/updates/news
+    filter: { field: "type", value: "post" }
+    slug: "{{year}}{{month}}{{day}}{{hour}}{{minute}}"
+    fields:
+      - { name: type, label: タイプ, widget: hidden, default: post }
+      - { name: layout, label: レイアウト, widget: select, options: ["default", "wide"], default: "default" }
+      - { name: title, label: タイトル, widget: string }
+      - { name: date, label: 公開日, widget: datetime }
+      - { name: category, label: カテゴリ, widget: hidden, default: news }
+      - { name: tags, label: "タグ (カンマ区切りで複数指定可)", widget: list }
+      - { name: image, label: カバー画像, widget: image, required: false }
+      - { name: body, label: 本文, widget: markdown }
+    editor:
+        preview: true
+  - name: pages
+    label: 固定ページ
+    files:
+      - name: home
+        label: / ホーム
+        file: content/_index.md
+        fields:
+          - { name: title, label: ページタイトル, widget: string }
+          - { name: linktitle, label: リンクタイトル, widget: string }
+          - { name: subtitle, label: サブタイトル, widget: string }
+          - { name: description, label: 説明文, widget: text }
+          - { name: contactdesc, label: 問い合わせ説明文 (上書き), widget: string, required: false }
+      - name: about
+        label: /about/ 組織概要
+        file: content/about/_index.md
+        fields:
+          - { name: type, label: タイプ, widget: hidden, default: about }
+          - { name: layout, label: レイアウト, widget: hidden, default: index }
+          - { name: menu, label: メニュー, widget: object, fields: [
+              { name: primary, label: メイン, widget: object, fields: [
+                { name: identifier, label: ID, widget: hidden, default: about },
+              ]},
+            ]}
+          - { name: weight, label: ウェイト, widget: hidden, default: 1 }
+          - { name: title, label: ページタイトル, widget: string }
+          - { name: linktitle, label: リンクタイトル, widget: string }
+          - { name: subtitle, label: サブタイトル, widget: string }
+          - { name: description, label: 説明文, widget: text }
+          - { name: concepts, label: コンセプト, widget: list, fields: [
+              { name: heading, label: 見出し, widget: string },
+              { name: subheading, label: サブ見出し, widget: string },
+              { name: description, label: 説明文, widget: text },
+            ]}
+          - { name: linklabel, label: リンクラベル, widget: string }
+          - { name: contactdesc, label: 問い合わせ説明文 (上書き), widget: string, required: false }
+      - name: leadership
+        label: /about/leadership/ 役員
+        file: content/about/leadership/_index.md
+        fields:
+          - { name: type, label: タイプ, widget: hidden, default: about }
+          - { name: layout, label: レイアウト, widget: hidden, default: leadership }
+          - { name: menu, label: メニュー, widget: object, fields: [
+              { name: primary, label: メイン, widget: object, fields: [
+                { name: parent, label: 親, widget: hidden, default: about },
+              ]},
+            ]}
+          - { name: weight, label: ウェイト, widget: hidden, default: 1 }
+          - { name: title, label: ページタイトル, widget: string }
+          - { name: linktitle, label: リンクタイトル, widget: string }
+          - { name: subtitle, label: サブタイトル, widget: string }
+          - { name: description, label: 説明文, widget: text }
+          - { name: message, label: メッセージ, widget: object, fields: [
+              { name: heading, label: 見出し, widget: string },
+              { name: text, label: テキスト, widget: markdown },
+            ]}
+          - { name: leadership, label: 役員, widget: object, fields: [
+              { name: heading, label: 見出し, widget: string },
+              { name: roles, label: 役職, widget: list, fields: [
+                { name: heading, label: 見出し, widget: string },
+                { name: subheading, label: サブ見出し, widget: string },
+                { name: members, label: メンバー, widget: list, fields: [
+                  { name: name, label: 名前, widget: string },
+                  { name: title, label: 肩書き, widget: string, required: false },
+                  { name: image, label: 画像, widget: image },
+                ]},
+              ]}
+            ]}
+          - { name: contactdesc, label: 問い合わせ説明文 (上書き), widget: string, required: false }
+      - name: history
+        label: /about/history/ 沿革
+        file: content/about/history/_index.md
+        fields:
+          - { name: type, label: タイプ, widget: hidden, default: about }
+          - { name: layout, label: レイアウト, widget: hidden, default: history }
+          - { name: menu, label: メニュー, widget: object, fields: [
+              { name: primary, label: メイン, widget: object, fields: [
+                { name: parent, label: 親, widget: hidden, default: about },
+              ]},
+            ]}
+          - { name: weight, label: ウェイト, widget: hidden, default: 2 }
+          - { name: title, label: ページタイトル, widget: string }
+          - { name: linktitle, label: リンクタイトル, widget: string }
+          - { name: subtitle, label: サブタイトル, widget: string }
+          - { name: description, label: 説明文, widget: text }
+          - { name: history, label: 沿革, widget: object, fields: [
+              { name: heading, label: 見出し, widget: string },
+              { name: events, label: できごと, widget: list, fields: [
+                { name: time, label: 時期, widget: string },
+                { name: text, label: 内容, widget: text },
+              ]},
+            ]}
+          - { name: activities, label: 活動, widget: object, fields: [
+              { name: heading, label: 見出し, widget: string },
+              { name: timeline, label: タイムライン, widget: list, fields: [
+                { name: time, label: 時期, widget: string },
+                { name: title, label: タイトル, widget: string },
+                { name: description, label: 説明文, widget: text },
+                { name: image, label: 画像, widget: image },
+                { name: id, label: ID, widget: string },
+              ]},
+            ]}
+          - { name: contactdesc, label: 問い合わせ説明文 (上書き), widget: string, required: false }
+      - name: location
+        label: /about/location/ アクセス
+        file: content/about/location/_index.md
+        fields:
+          - { name: type, label: タイプ, widget: hidden, default: about }
+          - { name: layout, label: レイアウト, widget: hidden, default: location }
+          - { name: menu, label: メニュー, widget: object, fields: [
+              { name: primary, label: メイン, widget: object, fields: [
+                { name: parent, label: 親, widget: hidden, default: about },
+              ]},
+            ]}
+          - { name: weight, label: ウェイト, widget: hidden, default: 3 }
+          - { name: title, label: ページタイトル, widget: string }
+          - { name: linktitle, label: リンクタイトル, widget: string }
+          - { name: subtitle, label: サブタイトル, widget: string }
+          - { name: description, label: 説明文, widget: text }
+          - { name: nearby, label: 最寄り駅, widget: markdown }
+          - { name: contactdesc, label: 問い合わせ説明文 (上書き), widget: string, required: false }
+      - name: services
+        label: /services/ 事業概要
+        file: content/services/_index.md
+        fields:
+          - { name: type, label: タイプ, widget: hidden, default: services }
+          - { name: layout, label: レイアウト, widget: hidden, default: index }
+          - { name: menu, label: メニュー, widget: object, fields: [
+              { name: primary, label: メイン, widget: object, fields: [
+                { name: identifier, label: ID, widget: hidden, default: services },
+              ]},
+            ]}
+          - { name: weight, label: ウェイト, widget: hidden, default: 2 }
+          - { name: title, label: ページタイトル, widget: string }
+          - { name: linktitle, label: リンクタイトル, widget: string }
+          - { name: subtitle, label: サブタイトル, widget: string }
+          - { name: description, label: 説明文, widget: text }
+          - { name: contactdesc, label: 問い合わせ説明文 (上書き), widget: string, required: false }
+      - name: tech
+        label: /services/tech/ 技術開発・コンサルティング
+        file: content/services/tech/_index.md
+        fields:
+          - { name: type, label: タイプ, widget: hidden, default: services }
+          - { name: layout, label: レイアウト, widget: hidden, default: tech }
+          - { name: menu, label: メニュー, widget: object, fields: [
+              { name: primary, label: メイン, widget: object, fields: [
+                { name: parent, label: 親, widget: hidden, default: services },
+              ]},
+            ]}
+          - { name: weight, label: ウェイト, widget: hidden, default: 1 }
+          - { name: title, label: ページタイトル, widget: string }
+          - { name: linktitle, label: リンクタイトル, widget: string }
+          - { name: subtitle, label: サブタイトル, widget: string }
+          - { name: description, label: 説明文, widget: text }
+          - { name: linklabel, label: リンクラベル, widget: string }
+          - { name: image, label: 画像, widget: image }
+          - { name: fields, label: 専門分野, widget: object, fields: [
+              { name: heading, label: 見出し, widget: string },
+              { name: subheading, label: サブ見出し, widget: string },
+              { name: details, label: 詳細, widget: list, fields: [
+                { name: heading, label: 見出し, widget: string },
+                { name: subheading, label: サブ見出し, widget: string },
+                { name: summary, label: 要約, widget: text },
+                { name: description, label: 説明文, widget: markdown },
+              ]},
+            ]}
+          - { name: solutions, label: 相談例, widget: object, fields: [
+              { name: heading, label: 見出し, widget: string },
+              { name: subheading, label: サブ見出し, widget: string },
+              { name: examples, label: 例, widget: list, fields: [
+                { name: label, label: 見出し, widget: string },
+                { name: icon, label: アイコン, widget: image },
+              ]},
+              { name: cases, label: 事例, widget: object, fields: [
+                { name: heading, label: 見出し, widget: string },
+                { name: details, label: 詳細, widget: list, fields: [
+                  { name: heading, label: 見出し, widget: string },
+                  { name: description, label: 説明文, widget: markdown },
+                  { name: image, label: 画像, widget: image },
+                ]},
+              ]},
+            ]}
+          - { name: contactdesc, label: 問い合わせ説明文 (上書き), widget: string, required: false }
+      - name: human
+        label: /services/human/ 人材育成・イベントのプロデュース
+        file: content/services/human/_index.md
+        fields:
+          - { name: type, label: タイプ, widget: hidden, default: services }
+          - { name: layout, label: レイアウト, widget: hidden, default: human }
+          - { name: menu, label: メニュー, widget: object, fields: [
+              { name: primary, label: メイン, widget: object, fields: [
+                { name: parent, label: 親, widget: hidden, default: services },
+              ]},
+            ]}
+          - { name: weight, label: ウェイト, widget: number, default: 2 }
+          - { name: title, label: ページタイトル, widget: string }
+          - { name: linktitle, label: リンクタイトル, widget: string }
+          - { name: subtitle, label: サブタイトル, widget: string }
+          - { name: description, label: 説明文, widget: markdown }
+          - { name: linklabel, label: リンクラベル, widget: string }
+          - { name: image, label: 画像, widget: image }
+          - { name: solutions, label: 事例, widget: object, fields: [
+              { name: heading, label: 見出し, widget: string },
+              { name: subheading, label: サブ見出し, widget: string },
+              { name: examples, label: 一覧, widget: list, fields: [
+                { name: heading, label: 見出し, widget: string },
+                { name: description, label: 説明文, widget: markdown },
+                { name: image, label: 画像, widget: image },
+              ]},
+            ]}
+          - { name: concepts, label: コンセプト, widget: list, fields: [
+              { name: heading, label: 見出し, widget: string },
+              { name: subheading, label: サブ見出し, widget: string },
+              { name: description, label: 説明文, widget: markdown },
+              { name: id, label: ID, widget: string },
+            ]}
+          - { name: contactdesc, label: 問い合わせ説明文 (上書き), widget: string, required: false }
+      - name: community
+        label: /community/ コミュニティ支援
+        file: content/community/_index.md
+        fields:
+          - { name: type, label: タイプ, widget: hidden, default: community }
+          - { name: layout, label: レイアウト, widget: hidden, default: index }
+          - { name: menu, label: メニュー, widget: object, fields: [
+              { name: primary, label: メイン, widget: object, fields: [
+                { name: identifier, label: ID, widget: hidden, default: community },
+              ]},
+            ]}
+          - { name: weight, label: ウェイト, widget: hidden, default: 3 }
+          - { name: title, label: ページタイトル, widget: string }
+          - { name: linktitle, label: リンクタイトル, widget: string }
+          - { name: subtitle, label: サブタイトル, widget: string }
+          - { name: description, label: 説明文, widget: text }
+          - { name: feature_images, label: 主要画像, widget: list, fields: [
+              { name: src, label: ソース, widget: image },
+            ]}
+          - { name: concept, label: コンセプト, widget: object, fields: [
+              { name: heading, label: 見出し, widget: string },
+              { name: subheading, label: サブ見出し, widget: string },
+              { name: description, label: 説明文, widget: markdown },
+            ]}
+          - { name: friends, label: 連携コミュニティ, widget: object, fields: [
+              { name: heading, label: 見出し, widget: string },
+              { name: subheading, label: サブ見出し, widget: string },
+              { name: description, label: 説明文, widget: text },
+              { name: groups, label: グループ, widget: list, fields: [
+                { name: name, label: 名称, widget: string },
+                { name: url, label: URL, widget: string, required: false },
+                { name: description, label: 説明文, widget: markdown },
+              ]}
+            ]}
+          - { name: space, label: コミュニティスペース, widget: object, fields: [
+              { name: heading, label: 見出し, widget: string },
+              { name: subheading, label: サブ見出し, widget: string },
+              { name: description, label: 説明文, widget: markdown },
+              { name: image, label: 画像, widget: image },
+            ]}
+          - { name: contactdesc, label: 問い合わせ説明文 (上書き), widget: string, required: false }
+      - name: contact
+        label: /contact/ お問い合わせ
+        file: content/contact/_index.md
+        fields:
+          - { name: type, label: タイプ, widget: hidden, default: contact }
+          - { name: layout, label: レイアウト, widget: hidden, default: index }
+          - { name: menu, label: メニュー, widget: object, fields: [
+              { name: secondary, label: secondary, widget: object, fields: [
+                { name: identifier, label: ID, widget: hidden, default: contact },
+              ]},
+            ]}
+          - { name: weight, label: ウェイト, widget: hidden, default: 5 }
+          - { name: title, label: ページタイトル, widget: string }
+          - { name: linktitle, label: リンクタイトル, widget: string }
+          - { name: subtitle, label: サブタイトル, widget: string }
+          - { name: description, label: 説明文, widget: text }
+          - { name: fields, label: フィールド, widget: list, fields: [
+              { name: name, label: 名称, widget: string },
+              { name: label, label: ラベル, widget: string },
+              { name: placeholder, label: プレースホルダー, widget: string },
+              { name: type, label: タイプ, widget: string },
+              { name: required, label: 必須, widget: boolean },
+            ]}
+          - { name: submit, label: 送信, widget: object, fields: [
+              { name: privacy, label: 個人情報保護方針, widget: markdown },
+              { name: buttonlabel, label: ボタンラベル, widget: string },
+            ]}
+          - { name: thanks, label: 送信完了メッセージ, widget: object, fields: [
+              { name: heading, label: 見出し, widget: string },
+              { name: subheading, label: サブ見出し, widget: string },
+              { name: description, label: 説明文, widget: markdown },
+            ]}
+          - { name: error, label: 送信エラーメッセージ, widget: object, fields: [
+              { name: heading, label: 見出し, widget: string },
+              { name: subheading, label: サブ見出し, widget: string },
+              { name: description, label: 説明文, widget: markdown },
+            ]}
+      - name: updates
+        label: /updates/ ディノの足あと
+        file: content/updates/_index.md
+        fields:
+          - { name: type, label: タイプ, widget: hidden, default: updates }
+          - { name: layout, label: レイアウト, widget: hidden, default: index }
+          - { name: menu, label: メニュー, widget: object, fields: [
+              { name: primary, label: primary, widget: object, fields: [
+                { name: identifier, label: ID, widget: hidden, default: updates },
+              ]},
+            ]}
+          - { name: weight, label: ウェイト, widget: hidden, default: 4 }
+          - { name: title, label: ページタイトル, widget: string }
+          - { name: linktitle, label: リンクタイトル, widget: string }
+          - { name: subtitle, label: サブタイトル, widget: string }
+          - { name: description, label: 説明文, widget: text }
+          - { name: contactdesc, label: 問い合わせ説明文 (上書き), widget: string, required: false }
+      - name: blog
+        label: /updates/blog/ ブログ
+        file: content/updates/blog/_index.md
+        fields:
+          - { name: type, label: タイプ, widget: hidden, default: updates }
+          - { name: layout, label: レイアウト, widget: hidden, default: blog }
+          - { name: title, label: ページタイトル, widget: string }
+          - { name: linktitle, label: リンクタイトル, widget: string }
+          - { name: subtitle, label: サブタイトル, widget: string }
+          - { name: description, label: 説明文, widget: text }
+          - { name: contactdesc, label: 問い合わせ説明文 (上書き), widget: string, required: false }
+      - name: news
+        label: /updates/news/ 新着情報
+        file: content/updates/news/_index.md
+        fields:
+          - { name: type, label: タイプ, widget: hidden, default: updates }
+          - { name: layout, label: レイアウト, widget: hidden, default: news }
+          - { name: title, label: ページタイトル, widget: string }
+          - { name: linktitle, label: リンクタイトル, widget: string }
+          - { name: subtitle, label: サブタイトル, widget: string }
+          - { name: description, label: 説明文, widget: text }
+          - { name: contactdesc, label: 問い合わせ説明文 (上書き), widget: string, required: false }
+      - name: careers
+        label: /careers/ 採用情報
+        file: content/careers/_index.md
+        fields:
+          - { name: type, label: タイプ, widget: hidden, default: careers }
+          - { name: layout, label: レイアウト, widget: hidden, default: index }
+          - { name: menu, label: メニュー, widget: object, fields: [
+              { name: secondary, label: secondary, widget: object, fields: [
+                { name: identifier, label: ID, widget: hidden, default: careers },
+              ]},
+            ]}
+          - { name: weight, label: ウェイト, widget: hidden, default: 1 }
+          - { name: title, label: ページタイトル, widget: string }
+          - { name: linktitle, label: リンクタイトル, widget: string }
+          - { name: subtitle, label: サブタイトル, widget: string }
+          - { name: description, label: 説明文, widget: markdown }
+          - { name: images, label: 画像, widget: list, fields: [
+              { name: src, label: ソース, widget: image },
+              { name: caption, label: キャプション, widget: string },
+            ]}
+          - { name: requirements, label: 要件, widget: object, fields: [
+              { name: experience, label: 必須要件, widget: string },
+              { name: skills, label: 歓迎条件, widget: string },
+            ]}
+          - { name: positions, label: ポジション, widget: list, fields: [
+              { name: title, label: タイトル, widget: string },
+              { name: experienceRequirements, label: 必須要件, widget: markdown },
+              { name: skills, label: 歓迎条件, widget: markdown },
+            ]}
+          - { name: contactdesc, label: 問い合わせ説明文 (上書き), widget: string, required: false }
+          - { name: contactlink, label: 問い合わせリンク先 (上書き), widget: string, required: false }
+          - { name: contactlabel, label: 問い合わせリンクラベル (上書き), widget: string, required: false }
+      - name: privacy
+        label: /privacy/ 個人情報保護方針
+        file: content/privacy/_index.md
+        fields:
+          - { name: title, label: ページタイトル, widget: string }
+          - { name: linktitle, label: リンクタイトル, widget: string }
+          - { name: subtitle, label: サブタイトル, widget: string }
+          - { name: description, label: 説明文, widget: markdown }
+          - { name: date, label: 公開日, widget: date }
+          - { name: lastmod, label: 更新日, widget: date, required: false }
+          - { name: publisher, label: 発行者, widget: object, fields: [
+              { name: name, label: 名前, widget: string },
+              { name: person, label: 担当者, widget: object, fields: [
+                { name: role, label: 役職, widget: string },
+                { name: name, label: 名前, widget: string },
+              ]},
+              { name: contact, label: 問い合わせ先, widget: object, fields: [
+                { name: title, label: タイトル, widget: string },
+                { name: email, label: メールアドレス, widget: string },
+              ]},
+            ]}
+          - { name: body, label: 本文, widget: markdown }
+          - { name: contactdesc, label: 問い合わせ説明文 (上書き), widget: string, required: false }
+      - name: partials
+        label: その他複数箇所で使用するコンテンツ
+        file: data/partials.yaml
+        format: yaml
+        fields:
+          - { name: publisher, label: 公開者, widget: object, fields: [
+              { name: name, label: 名前, widget: string },
+              { name: address, label: 住所, widget: string },
+              { name: map, label: Google マップ, widget: object, fields: [
+                { name: place_id, label: ロケーション ID, widget: string },
+                { name: api_key, label: API キー, widget: string },
+              ]}
+            ]}
+          - { name: contact, label: お問い合わせ, widget: object, fields: [
+              { name: heading, label: 見出し, widget: string },
+              { name: description, label: 説明文, widget: text },
+              { name: linklabel, label: リンクラベル, widget: string },
+            ]}
+          - { name: social, label: ソーシャルメディア, widget: list, fields: [
+              { name: name, label: ラベル, widget: string },
+              { name: identifier, label: ID, widget: string },
+              { name: account, label: アカウント名, widget: string },
+              { name: url, label: URL, widget: string },
+            ]}
+          - { name: updates, label: ディノの足あと, widget: object, fields: [
+              { name: blog, label: ブログ, widget: object, fields: [
+                { name: heading, label: 見出し, widget: string },
+                { name: subheading, label: サブ見出し, widget: string },
+                { name: linklabel, label: リンクラベル, widget: string },
+                { name: backlinklabel, label: 戻るリンクラベル, widget: string },
+              ]},
+              { name: news, label: 新着情報, widget: object, fields: [
+                { name: heading, label: 見出し, widget: string },
+                { name: subheading, label: サブ見出し, widget: string },
+                { name: linklabel, label: リンクラベル, widget: string },
+                { name: backlinklabel, label: 戻るリンクラベル, widget: string },
+              ]},
+              { name: tags, label: タグ, widget: object, fields: [
+                { name: heading, label: 見出し, widget: string },
+              ]},
+              { name: archive, label: アーカイブ, widget: object, fields: [
+                { name: heading, label: 見出し, widget: string },
+              ]},
+              { name: share, label: ソーシャル共有, widget: object, fields: [
+                { name: heading, label: 見出し, widget: string },
+                { name: media, label: メディア, widget: list, fields: [
+                  { name: name, label: ラベル, widget: string },
+                  { name: identifier, label: ID, widget: string },
+                  { name: url, label: URL, widget: string },
+                ]}
+              ]},
+              { name: nav, label: ナビゲーション, widget: object, fields: [
+                { name: prev, label: 前, widget: string },
+                { name: next, label: 後, widget: string },
+              ]},
+            ]}
+    editor:
+        preview: true

@@ -1,0 +1,18 @@
+@media screen {
+  #main-content .col {
+    margin: 32px 16px;
+  }
+
+  #main-content h2 {
+    font-size: 24px;
+    text-align: left;
+    color: inherit;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  #main-content .col {
+    margin: 32px auto 64px;
+    max-width: 928px;
+  }
+}

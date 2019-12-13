@@ -1,0 +1,35 @@
+{{- define "main" }}
+<main>
+  <div id="main-feature" class="outer">
+    <div class="inner row">
+      <div class="col">
+        <header>
+          <hgroup>
+            <h1>{{ partial "heading.html" .Title }}</h1>
+            <h2 aria-level="1">{{ .Params.subtitle }}</h2>
+          </hgroup>
+          <p>{{ .Description }}</p>
+        </header>
+      </div>
+    </div>
+  </div>
+  <div id="main-content">
+    <section id="location" class="outer">
+      <figure>
+        <iframe src="https://www.google.com/maps/embed/v1/place?q=place_id:{{ $.Site.Data.partials.publisher.map.place_id }}&amp;key={{ $.Site.Data.partials.publisher.map.api_key }}"></iframe>
+      </figure>
+      <div class="inner row">
+        <div class="col">
+          <h2>{{ $.Site.Data.partials.publisher.name | safeHTML }}</h2>
+          <address>{{ $.Site.Data.partials.publisher.address }}</address>
+          {{ .Params.nearby | markdownify }}
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+{{- end }}
+
+{{- define "sub" }}
+{{ partial "about-nav.html" $.Parent }}
+{{- end }}

@@ -1,0 +1,54 @@
+{{- define "main" }}
+<main>
+  <div id="main-feature" class="outer">
+    <div class="inner row">
+      <div class="col">
+        <header>
+          <hgroup>
+            <h1>{{ partial "heading.html" .Title }}</h1>
+            <h2 aria-level="1">{{ .Params.subtitle }}</h2>
+          </hgroup>
+          <p>{{ .Description | markdownify }}</p>
+        </header>
+        <figure>
+          {{- range .Params.images }}
+          <figure>
+            <img src="{{ .src }}" alt="">
+            <figcaption>{{ .caption }}</figcaption>
+          </figure>
+          {{- end }}
+        </figure>
+      </div>
+    </div>
+  </div>
+  <div id="main-content">
+    {{- range .Params.positions }}
+    <section class="outer" itemscope itemtype="http://schema.org/JobPosting">
+      <header class="large">
+        <div class="inner row">
+          <div class="col">
+            <h2 itemprop="title">{{ partial "heading.html" .title }}</h2>
+          </div>
+        </div>
+      </header>
+      <div class="inner row">
+        <div class="col">
+          <section>
+            <h3>{{ $.Params.requirements.experience }}</h3>
+            <div itemprop="experienceRequirements">
+              {{ .experienceRequirements | markdownify }}
+            </div>
+          </section>
+          <section>
+            <h3>{{ $.Params.requirements.skills }}</h3>
+            <div itemprop="skills">
+              {{ .skills | markdownify }}
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+    {{- end }}
+  </div>
+</main>
+{{- end }}

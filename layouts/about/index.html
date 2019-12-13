@@ -1,0 +1,38 @@
+{{- define "main" }}
+<main>
+  <div id="main-feature" class="outer">
+    <div class="inner row">
+      <div class="col">
+        <header>
+          <hgroup>
+            <h1>{{ partial "heading.html" .Title }}</h1>
+            <h2 aria-level="1">{{ .Params.subtitle }}</h2>
+          </hgroup>
+          <p>{{ .Description }}</p>
+        </header>
+      </div>
+    </div>
+  </div>
+  <div id="main-content" class="outer">
+    <div id="concepts" class="inner row">
+      <div class="col">
+        {{- range .Params.concepts }}
+        <section>
+          <header>
+            <hgroup>
+              <h2><span><strong>{{ substr .subheading 0 1 }}</strong></span>{{ substr .subheading 1 }}</h2>
+              <h3 aria-level="2">{{ .heading }}</h3>
+            </hgroup>
+          </header>
+          <p>{{ .description }}</p>
+        </section>
+        {{- end }}
+      </div>
+    </div>
+  </div>
+</main>
+{{- end }}
+
+{{- define "sub" }}
+{{ partial "about-nav.html" . }}
+{{- end }}

@@ -1,0 +1,182 @@
+@media screen {
+  body {
+    background-image: url(/assets/images/community/main-bg.svg);
+  }
+
+  #main-feature .inner {
+    margin: 0 auto 64px;
+  }
+
+  #main-feature figure {
+    display: flex;
+  }
+
+  #main-feature figure img {
+    position: relative;
+    margin: 0;
+    border: 6px solid #FFF;
+    width: 320px;
+    height: 240px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, .2);
+  }
+
+  #main-feature figure img:nth-child(1) {
+    z-index: 3;
+    transform: rotate(10deg);
+  }
+
+  #main-feature figure img:nth-child(2) {
+    z-index: 2;
+    transform: rotate(3deg);
+  }
+
+  #main-feature figure img:nth-child(3) {
+    z-index: 1;
+    transform: rotate(-7deg);
+  }
+
+  #concept {
+    position: relative;
+    overflow: hidden;
+    background-color: #F3F5F8;
+  }
+
+  #concept .background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    opacity: .1;
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    filter: grayscale(50%);
+  }
+
+  #friends section {
+    padding: 32px 0;
+  }
+
+  #friends .groups {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 16px 0 -16px;
+  }
+
+  #friends .groups section {
+    margin-top: 16px;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+    border: 1px solid #CCC;
+    border-radius: 8px;
+    padding: 24px;
+  }
+
+  #friends section h3 {
+    margin-bottom: 16px;
+    text-align: left;
+  }
+
+  #space {
+    background-color: #F3F5F8;
+  }
+
+  #space .image {
+    background-position: center;
+    background-size: cover;
+  }
+
+  #space .text {
+    box-sizing: border-box;
+    padding: 16px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  #main-feature figure {
+    margin: 0 auto;
+    width: 928px;
+  }
+
+  #main-feature figure img:nth-child(1) {
+    margin: 0 0 0 20px;
+  }
+
+  #main-feature figure img:nth-child(2) {
+    margin: 20px 0 0 -40px;
+  }
+
+  #main-feature figure img:nth-child(3) {
+    margin: 0 0 0 -64px;
+  }
+
+  #concept .inner {
+    margin: 120px auto;
+    max-width: 800px;
+  }
+
+  #friends .row.header {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+}
+
+@media screen and (max-width: 1023px) {
+  #concept .inner {
+    margin: 48px auto;
+  }
+
+  #space .image {
+    min-height: 320px;
+  }
+
+  #space .text {
+    margin-top: 48px;
+    padding: 0;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  #main-feature figure img:nth-child(1) {
+    margin: 0 0 0 24px;
+  }
+
+  #main-feature figure img:nth-child(2) {
+    margin: 160px 0 0 -200px;
+  }
+
+  #main-feature figure img:nth-child(3) {
+    margin: 0 0 0 -160px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  #main-feature figure {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #main-feature figure img {
+    width: 240px;
+    height: 180px;
+  }
+  #main-feature figure img:nth-child(2) {
+    margin: -16px 0 0 32px;
+  }
+
+  #main-feature figure img:nth-child(3) {
+    margin: -32px 0 0 -32px;
+  }
+
+  #space .inner {
+    margin-top: 0;
+  }
+
+  #space .image {
+    margin: 0;
+    width: 100%;
+  }
+}

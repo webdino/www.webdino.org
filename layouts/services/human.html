@@ -1,0 +1,68 @@
+{{- define "main" }}
+<main>
+  <div id="main-feature" class="outer">
+    <div class="inner row">
+      <div class="col">
+        <header>
+          <hgroup>
+            <h1>{{ partial "heading.html" .Title }}</h1>
+            <h2 aria-level="1">{{ .Params.subtitle }}</h2>
+          </hgroup>
+          <p>{{ .Description }}</p>
+        </header>
+      </div>
+    </div>
+  </div>
+  <div id="main-content">
+    {{- with .Params.solutions }}
+    <section id="human-solutions" class="outer">
+      <div class="inner row">
+        <div class="col">
+          <header>
+            <hgroup>
+              <h2>{{ partial "heading.html" .heading }}</h2>
+              <h3 aria-level="2">{{ .subheading }}</h3>
+            </hgroup>
+            <span class="fas circle" aria-hidden="true"></span>
+          </header>
+        </div>
+      </div>
+      <div class="inner row tiles">
+        {{- range .examples }}
+        <div class="col s2">
+          <section>
+            <figure>
+              <img src="{{ .image }}" alt="">
+            </figure>
+            <div>
+              <h3>{{ partial "heading.html" .heading }}</h3>
+              <p>{{ .description | markdownify }}</p>
+            </div>
+          </section>
+        </div>
+        {{- end }}
+      </div>
+    </section>
+    {{- end }}
+    {{- range .Params.concepts }}
+    <section id="{{ .id }}" class="outer highlight">
+      <div class="inner row">
+        <div class="col s2">
+          <header>
+            <hgroup>
+              <h2>{{ partial "heading.html" .heading }}</h2>
+              <h3 aria-level="2">{{ .subheading }}</h3>
+            </hgroup>
+          </header>
+        </div>
+        <div class="col s4">
+          <div class="description">
+            {{ .description | markdownify }}
+          </div>
+        </div>
+      </div>
+    </section>
+    {{- end }}
+  </div>
+</main>
+{{- end }}

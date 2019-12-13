@@ -1,0 +1,7 @@
+<article class="news headline simple" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    <h3 itemprop="headline"><a href="{{ .URL }}" itemprop="url">{{ .Title }}</a></h3>
+    <time datetime="{{ .Date.Format "2006-01-02T15:04:05-07:00" }}" itemprop="datePublished">{{ .Date.Format "1 月 2 日" }}</time>
+  </header>
+  <meta itemprop="mainEntityOfPage" content="{{ .Permalink }}">
+</article>
