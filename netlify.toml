@@ -30,3 +30,8 @@ HUGO_STATICDIR0 = "static-preview"
 # Hugo - command: https://gohugo.io/commands/hugo/
 # Hugo - config: https://gohugo.io/getting-started/configuration/
 # Hugo - static files: https://gohugo.io/content-management/static-files/
+
+[[redirects]]
+  from = "/*"
+  to = "/error/"
+  status = 404

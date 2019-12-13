@@ -1,0 +1,19 @@
+{{- define "main" }}
+<main>
+  <div id="main-feature" class="outer">
+    <div class="inner row">
+      <div class="col">
+        <header>
+          <hgroup>
+            <h1>{{ partial "heading.html" .Title }}</h1>
+            <h2 aria-level="1">{{ .Params.subtitle }}</h2>
+          </hgroup>
+          <p>{{ .Description }}</p>
+        </header>
+      </div>
+    </div>
+  </div>
+</main>
+{{- end }}
+
+{{ define "extra" }}{{ "" }}{{ end }}

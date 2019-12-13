@@ -463,6 +463,13 @@ collections:
             ]}
           - { name: body, label: 本文, widget: markdown }
           - { name: contactdesc, label: 問い合わせ説明文 (上書き), widget: string, required: false }
+      - name: error
+        label: /error/ Page Not Found
+        file: content/error/_index.md
+        fields:
+          - { name: title, label: ページタイトル, widget: string }
+          - { name: subtitle, label: サブタイトル, widget: string }
+          - { name: description, label: 説明文, widget: markdown }
       - name: partials
         label: その他複数箇所で使用するコンテンツ
         file: data/partials.yaml
