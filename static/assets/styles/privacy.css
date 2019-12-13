@@ -8,6 +8,10 @@
     text-align: left;
     color: inherit;
   }
+
+  #main-content h3 {
+    font-size: 20px;
+  }
 }
 
 @media screen and (min-width: 768px) {
