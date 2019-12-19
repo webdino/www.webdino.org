@@ -52,14 +52,16 @@ friends:
   heading: 連携コミュニティ
   subheading: Our Friends
 space:
-  image: /assets/images/community/space.jpg
   description: >-
-    連携している各コミュニティがミーティングやミートアップイベントなどを実施できるよう、[WebDINO Japan のオフィス](/about/location/) はコミュニティスペースとして利用頂いています。
-
-    毎月一度土曜日に開催している MDN 翻訳コミュニティ月例ミートアップなど、コミュニティスペースを利用したイベントの予定は [Mozilla Japan の Doorkeeper](https://mozilla.doorkeeper.jp/) など各コミュニティからの案内をご覧ください。
-
-    コミュニティスペースの利用を希望される方は WebDINO Japan 社員に直接または [お問い合わせフォーム](/contact/) にてご相談ください。
+    連携している各コミュニティがミーティングやミートアップイベントなどを実施できるよう、[WebDINO Japan
+    のオフィス](/about/location/) をコミュニティスペースとして利用頂いています。 毎月一度土曜日に開催している MDN
+    翻訳コミュニティ月例ミートアップなど、コミュニティスペースを利用したイベントの予定は [Mozilla Japan の
+    Doorkeeper](https://mozilla.doorkeeper.jp/)
+    など各コミュニティからの案内をご覧ください。コミュニティスペースはスペース中央にデスクを置いて座る形で 10 名前後までに適する広さで、時間は平日 6
+    時以降または土日でスタッフのアテンドが可能な場合にご利用頂いています。利用を希望される方は WebDINO Japan 社員に直接または
+    [お問い合わせフォーム](/contact/) にてご相談ください。
   heading: コミュニティスペース
+  image: /assets/images/community/space.jpg
   subheading: Community Space
 ---
 
