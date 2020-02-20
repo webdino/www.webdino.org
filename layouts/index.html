@@ -32,7 +32,7 @@
     {{- with $.Site.Data.partials.promo }}
     <section id="promo" class="outer">
       <div class="inner">
-        <div class="row">
+        <div class="row header">
           <header class="col">
             <hgroup>
               <h2>{{ partial "heading.html" .heading }}</h2>
@@ -41,7 +41,7 @@
             <span class="fas circle" aria-hidden="true"></span>
           </header>
         </div>
-        <div class="row summaries">
+        <div class="row grid">
           {{- range .links }}
           <div class="col s2">
             <a href="{{ .url }}">
@@ -88,7 +88,7 @@
             <span class="fas circle" aria-hidden="true"></span>
           </header>
         </div>
-        <div class="row summaries">
+        <div class="row grid">
           {{- range first 3 (where $.Site.Pages "Params.category" "blog") }}
           <div class="col s2">
 {{ partial "blog-post-summary.html" . }}

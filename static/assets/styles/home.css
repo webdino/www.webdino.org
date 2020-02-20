@@ -499,14 +499,6 @@
     max-width: 800px;
   }
 
-  #blog .row {
-    margin: 32px 0;
-  }
-
-  #blog .row.summaries {
-    justify-content: center;
-  }
-
   article.news.headline header {
     flex-direction: row-reverse;
   }

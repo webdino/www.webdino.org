@@ -749,7 +749,7 @@
     background-color: #F4F0F7;
   }
 
-  #promo header {
+  #promo .row.header {
     position: absolute;
     left: -99999px;
   }
@@ -758,11 +758,8 @@
     display: block;
     overflow: hidden;
     box-sizing: border-box;
-    margin: 32px auto;
     border: 1px solid #CCC;
     border-radius: 8px;
-    width: 100%;
-    max-width: 400px;
     background-color: #FFF;
   }
 
@@ -915,6 +912,10 @@
   .row.reverse {
     flex-direction: row-reverse;
   }
+
+  .row.grid {
+    margin: 32px auto;
+  }
 }
 
 @media screen and (max-width: 1023px) {
@@ -962,13 +963,18 @@
     width: 148px;
   }
 
-  #blog .row {
+  .row.grid {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
   }
 
-  #blog .col.s2 {
-    margin: 16px;
+  .row.grid {
+    margin: 16px 0;
+  }
+
+  .row.grid .col.s2 {
+    margin: 16px auto;
     width: 328px;
   }
 }
@@ -1154,7 +1160,7 @@
     float: none !important;
   }
 
-  #promo a {
+  .row.grid .col.s2 {
     margin: 16px auto;
   }
 
