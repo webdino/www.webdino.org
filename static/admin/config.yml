@@ -526,5 +526,14 @@ collections:
                 { name: next, label: 後, widget: string },
               ]},
             ]}
+          - { name: promo, label: おすすめコンテンツ, widget: object, fields: [
+              { name: heading, label: 見出し, widget: string },
+              { name: subheading, label: サブ見出し, widget: string },
+              { name: links, label: リンク, widget: list, fields: [
+                { name: title, label: ラベル, widget: string },
+                { name: url, label: URL, widget: string },
+                { name: image, label: 画像, widget: image },
+              ]}
+            ]}
     editor:
         preview: true

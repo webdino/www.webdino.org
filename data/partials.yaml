@@ -50,3 +50,16 @@ updates:
         url: 'https://plus.google.com/share?url={url}&text={title}'
   tags:
     heading: タグ
+promo:
+  heading: おすすめコンテンツ
+  subheading: Featured Content
+  links:
+    - title: Web×IoT メイカーズチャレンジ
+      url: 'https://webiotmakers.github.io/'
+      image: /assets/uploads/home-promo-webiotmakers.jpg
+    - title: Web VideoMark
+      url: 'https://vm.webdino.org/'
+      image: /assets/uploads/home-promo-videomark.jpg
+    - title: Gecko Embedded
+      url:  'https://github.com/webdino/gecko-embedded/wiki'
+      image: /assets/uploads/home-promo-gecko.jpg

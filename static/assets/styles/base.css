@@ -745,6 +745,40 @@
     height: auto;
   }
 
+  #promo {
+    background-color: #F4F0F7;
+  }
+
+  #promo header {
+    position: absolute;
+    left: -99999px;
+  }
+
+  #promo a {
+    display: block;
+    overflow: hidden;
+    box-sizing: border-box;
+    margin: 32px auto;
+    border: 1px solid #CCC;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 400px;
+    background-color: #FFF;
+  }
+
+  #promo a:hover,
+  #promo a:focus,
+  #promo a:active {
+    outline: 0;
+    border-color: #A51D3C;
+  }
+
+  #promo img {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
   #contact-callout {
     color: #FFF;
     background-image: linear-gradient(to bottom, #5E697B, #353C48);
@@ -1118,6 +1152,10 @@
 
   #drawer nav.primary > ul > li {
     float: none !important;
+  }
+
+  #promo a {
+    margin: 16px auto;
   }
 
   .cta.large {
