@@ -55,7 +55,7 @@ promo:
   subheading: Featured Content
   links:
     - title: Web×IoT メイカーズチャレンジ
-      description: 総務省「IoT 機器等の電波利用システムの適正利用のための ICT 人材育成」事業
+      description: 総務省「IoT 機器等の電波利用システムの適正利用のための ICT 人材育成」事業 (2019 年度)
       url: 'https://webiotmakers.github.io/'
       image: /assets/uploads/home-promo-webiotmakers.jpg
     - title: Web VideoMark
@@ -63,6 +63,6 @@ promo:
       url: 'https://vm.webdino.org/'
       image: /assets/uploads/home-promo-videomark.jpg
     - title: Gecko Embedded
-      description: ブラウザエンジンを組込製品で利用するため移植と最適化を行うプロジェクト
+      description: ブラウザーエンジンを組み込み製品で利用するため移植と最適化を行うプロジェクト
       url:  'https://github.com/webdino/gecko-embedded/wiki'
       image: /assets/uploads/home-promo-gecko.jpg
