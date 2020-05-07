@@ -5,14 +5,14 @@ command = "hugo"
 [context.production]
 
 [context.production.environment]
-HUGO_VERSION = "0.40.3"
+HUGO_VERSION = "0.70.0"
 HUGO_ENV = "production"
 
 [context.deploy-preview]
 command = "hugo --buildFuture"
 
 [context.deploy-preview.environment]
-HUGO_VERSION = "0.40.3"
+HUGO_VERSION = "0.70.0"
 HUGO_ENV = "production"
 # include additional static files for preview site
 HUGO_STATICDIR0 = "static-preview"
@@ -21,7 +21,7 @@ HUGO_STATICDIR0 = "static-preview"
 command = "hugo --buildFuture"
 
 [context.branch-deploy.environment]
-HUGO_VERSION = "0.40.3"
+HUGO_VERSION = "0.70.0"
 HUGO_ENV = "production"
 # include additional static files for preview site
 HUGO_STATICDIR0 = "static-preview"
