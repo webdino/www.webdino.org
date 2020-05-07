@@ -14,8 +14,6 @@ command = "hugo --buildFuture"
 [context.deploy-preview.environment]
 HUGO_VERSION = "0.70.0"
 HUGO_ENV = "production"
-# include additional static files for preview site
-HUGO_STATICDIR0 = "static-preview"
 
 [context.branch-deploy]
 command = "hugo --buildFuture"
@@ -23,8 +21,6 @@ command = "hugo --buildFuture"
 [context.branch-deploy.environment]
 HUGO_VERSION = "0.70.0"
 HUGO_ENV = "production"
-# include additional static files for preview site
-HUGO_STATICDIR0 = "static-preview"
 
 # references:
 # Hugo - command: https://gohugo.io/commands/hugo/
