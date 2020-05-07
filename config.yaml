@@ -22,3 +22,7 @@ outputs:
   taxonomy:
     - HTML
 rssLimit: 50
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
