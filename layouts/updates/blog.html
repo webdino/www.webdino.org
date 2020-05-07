@@ -6,7 +6,7 @@
         <header>
           <hgroup>
             {{- with .Parent }}
-            <a href="{{ .URL }}">
+            <a href="{{ .RelPermalink }}">
               <h1>{{ partial "heading.html" .Title }}</h1>
               <h2 aria-level="1">{{ .Params.subtitle }}</h2>
             </a>
@@ -30,7 +30,7 @@
               <span class="fas circle" aria-hidden="true"></span>
             </header>
             <div class="tiles">
-              {{- range where $.Site.Pages "Params.category" "blog" }}
+              {{- range where $.Site.RegularPages "Params.category" "blog" }}
 {{ partial "blog-post-summary.html" . }}
               {{- end }}
             </div>

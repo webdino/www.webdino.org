@@ -1,8 +1,8 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>{{ $.Site.BaseURL }}</id>
   {{- range where $.Site.Sections "Section" "updates" }}
-  <title>{{ .Title }}</title>
-  <subtitle>{{ .Description }}</subtitle>
+  <title>{{ .Title | plainify }}</title>
+  <subtitle>{{ .Description | plainify }}</subtitle>
   {{- end }}
   <updated>{{ .Date.Format "2006-01-02T15:04:05-07:00" | safeHTML }}</updated>
   <author>
@@ -13,10 +13,10 @@
   <icon>{{ $.Site.BaseURL }}assets/images/template/favicon.png</icon>
   <logo>{{ $.Site.BaseURL }}assets/images/template/ogp.png</logo>
   <rights>Copyright © {{ now.Format "2006" }} {{ $.Site.Copyright }}</rights>
-  {{- range .Data.Pages }}
+  {{- range $.Site.RegularPages }}
   <entry>
     <id>{{ .Permalink }}</id>
-    <title>{{ .Title }}</title>
+    <title>{{ .Title | plainify }}</title>
     <updated>{{ .Date.Format "2006-01-02T15:04:05-07:00" | safeHTML }}</updated>
     {{- if isset .Params "authors" }}{{ range .Params.authors }}{{ with (index $.Site.Data.authors .) }}
     <author>

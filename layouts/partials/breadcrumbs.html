@@ -8,13 +8,13 @@
 
 {{- define "breadcrumbnav" -}}
   {{- if .p1.IsHome }}
-    <a href="{{ .p1.URL }}">{{ .p1.LinkTitle }}</a>
+    <a href="{{ .p1.RelPermalink }}">{{ .p1.LinkTitle }}</a>
   {{- else }}
     {{- if .p1.Parent }}
       {{- template "breadcrumbnav" (dict "p1" .p1.Parent "p2" .p2 )  }}
     {{- else }}
       {{- template "breadcrumbnav" (dict "p1" .p1.Site.Home "p2" .p2 )  }}
     {{- end }}
-    &rsaquo; <span itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a itemprop="item" href="{{ .p1.URL }}"><span itemprop="name">{{ .p1.LinkTitle }}</span></a><meta itemprop="position" content="{{ findRE "/" (substr .p1.URL 1) | len }}"></span>
+    &rsaquo; <span itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a itemprop="item" href="{{ .p1.RelPermalink }}"><span itemprop="name">{{ .p1.LinkTitle }}</span></a><meta itemprop="position" content="{{ findRE "/" (substr .p1.RelPermalink 1) | len }}"></span>
   {{- end }}
 {{- end -}}

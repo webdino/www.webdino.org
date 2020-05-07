@@ -6,7 +6,7 @@
         <header>
           <hgroup>
             {{- with .Parent.Parent }}
-            <a href="{{ .URL }}">
+            <a href="{{ .RelPermalink }}">
               <h1>{{ partial "heading.html" .Title }}</h1>
               <h2 aria-level="1">{{ .Params.subtitle }}</h2>
             </a>

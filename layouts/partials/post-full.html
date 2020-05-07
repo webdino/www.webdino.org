@@ -39,8 +39,8 @@
 <footer>
   <nav>
     <ul>
-      <li class="prev">{{ with .PrevInSection }}<span class="fas angle-left" aria-hidden="true"></span><span>{{ $.Site.Data.partials.updates.nav.prev }}</span><a href="{{ .URL }}">{{ .Title }}</a>{{ end }}</li>
-      <li class="next">{{ with .NextInSection }}<span class="fas angle-right" aria-hidden="true"></span><span>{{ $.Site.Data.partials.updates.nav.next }}</span><a href="{{ .URL }}">{{ .Title }}</a>{{ end }}</li>
+      <li class="prev">{{ with .PrevInSection }}<span class="fas angle-left" aria-hidden="true"></span><span>{{ $.Site.Data.partials.updates.nav.prev }}</span><a href="{{ .RelPermalink }}">{{ .Title }}</a>{{ end }}</li>
+      <li class="next">{{ with .NextInSection }}<span class="fas angle-right" aria-hidden="true"></span><span>{{ $.Site.Data.partials.updates.nav.next }}</span><a href="{{ .RelPermalink }}">{{ .Title }}</a>{{ end }}</li>
     </ul>
     <p class="cta-outer"><a href="/updates/{{ .Params.category }}/" class="cta"><span class="label">{{ (index $.Site.Data.partials.updates .Params.category).backlinklabel }}</span></a></p>
   </nav>

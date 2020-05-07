@@ -25,7 +25,7 @@
             <span class="fas circle" aria-hidden="true"></span>
           </header>
           <div class="tiles">
-            {{- range first 5 (where $.Site.Pages "Params.category" "blog") }}
+            {{- range first 5 (where $.Site.RegularPages "Params.category" "blog") }}
 {{ partial "blog-post-summary.html" . }}
             {{- end }}
           </div>
@@ -46,7 +46,7 @@
             <span class="fas circle" aria-hidden="true"></span>
           </header>
           <div class="headlines">
-            {{- range first 5 (where $.Site.Pages "Params.category" "news") }}
+            {{- range first 5 (where $.Site.RegularPages "Params.category" "news") }}
 {{ partial "news-post-headline.html" . }}
             {{- end }}
           </div>

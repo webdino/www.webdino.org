@@ -20,7 +20,7 @@
         </header>
         <p>{{ .Description }}</p>
         <footer>
-          <p class="cta-outer"><a href="{{ .URL }}" class="cta"><span class="label">{{ $.Params.linklabel }}</span><span class="fas arrow-right" aria-hidden="true"></span></a></p>
+          <p class="cta-outer"><a href="{{ .RelPermalink }}" class="cta"><span class="label">{{ $.Params.linklabel }}</span><span class="fas arrow-right" aria-hidden="true"></span></a></p>
         </footer>
       </section>
       {{- end }}

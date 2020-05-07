@@ -1,5 +1,5 @@
 <article class="blog summary box" itemscope itemtype="http://schema.org/BlogPosting">
-  <a href="{{ .URL }}" itemprop="url">
+  <a href="{{ .RelPermalink }}" itemprop="url">
     <figure>
       <img src="{{- if isset .Params "image" }}{{ .Params.image }}{{ else }}/assets/images/updates/placeholder.png{{- end }}" alt="" itemprop="image">
     </figure>

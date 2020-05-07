@@ -69,7 +69,7 @@
             <span class="fas circle" aria-hidden="true"></span>
           </header>
           <div class="headlines">
-            {{- range first 3 (where $.Site.Pages "Params.category" "news") }}
+            {{- range first 3 (where $.Site.RegularPages "Params.category" "news") }}
 {{ partial "news-post-headline.html" . }}
             {{- end }}
           </div>
@@ -93,7 +93,7 @@
           </header>
         </div>
         <div class="row grid">
-          {{- range first 3 (where $.Site.Pages "Params.category" "blog") }}
+          {{- range first 3 (where $.Site.RegularPages "Params.category" "blog") }}
           <div class="col s2">
 {{ partial "blog-post-summary.html" . }}
           </div>

@@ -12,7 +12,7 @@
         <header>
           <hgroup>
             {{- range where $.Site.Sections "Section" "updates" }}
-            <a href="{{ .URL }}">
+            <a href="{{ .RelPermalink }}">
               <h1>{{ partial "heading.html" .Title }}</h1>
               <h2 aria-level="1">{{ .Params.subtitle }}</h2>
             </a>
@@ -65,11 +65,11 @@
     <p class="col">
       {{- range where $.Site.Sections "Section" "updates" }}
       {{- with .Parent }}
-      <a href="{{ .URL }}">{{ .LinkTitle }}</a>
+      <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
       {{- end }}
-      &rsaquo; <span itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a itemprop="item" href="{{ .URL }}"><span itemprop="name">{{ .LinkTitle }}</span></a><meta itemprop="position" content="1"></span>
+      &rsaquo; <span itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a itemprop="item" href="{{ .RelPermalink }}"><span itemprop="name">{{ .LinkTitle }}</span></a><meta itemprop="position" content="1"></span>
       {{- end }}
-      &rsaquo; <span itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a itemprop="item" href="{{ .URL }}"><span itemprop="name">{{ partial "post-title-author.html" . }}</span></a><meta itemprop="position" content="2"></span>
+      &rsaquo; <span itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a itemprop="item" href="{{ .RelPermalink }}"><span itemprop="name">{{ partial "post-title-author.html" . }}</span></a><meta itemprop="position" content="2"></span>
     </p>
   </div>
 </nav>
