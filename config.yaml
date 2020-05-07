@@ -24,5 +24,7 @@ outputs:
 rssLimit: 50
 markup:
   goldmark:
+    extensions:
+      typographer: true
     renderer:
       unsafe: true
