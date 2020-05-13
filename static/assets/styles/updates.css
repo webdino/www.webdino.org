@@ -175,10 +175,6 @@
     background-size: 60%;
   }
 
-  article.post .share .google-plus {
-    color: #DE4D3B;
-  }
-
   main footer nav ul {
     display: flex;
     justify-content: space-between;

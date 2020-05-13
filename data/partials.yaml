@@ -45,9 +45,6 @@ updates:
       - identifier: hatena-bookmark
         name: はてなブックマーク
         url: 'http://b.hatena.ne.jp/append?{url}'
-      - identifier: google-plus
-        name: Google+
-        url: 'https://plus.google.com/share?url={url}&text={title}'
   tags:
     heading: タグ
 promo:
