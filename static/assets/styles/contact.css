@@ -30,7 +30,7 @@
   form[name="contact"] .main .req {
     width: 5em;
     color: #A51D3C;
-    font-size: 12px;
+    font-size: .75rem;
     text-align: center;
   }
 
@@ -45,7 +45,7 @@
     border-radius: 4px;
     padding: 8px;
     width: 100%;
-    font-size: 16px;
+    font-size: 1rem;
     font-family: inherit;
     -webkit-appearance: none;
     transition: all .3s;

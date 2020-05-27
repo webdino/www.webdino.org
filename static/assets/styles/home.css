@@ -440,7 +440,7 @@
   }
 
   .hero-text.large {
-    font-size: 96px;
+    font-size: 6rem;
   }
 }
 
@@ -472,18 +472,18 @@
   }
 
   .hero-text.large {
-    font-size: 72px;
+    font-size: 4.5rem;
   }
 }
 
 @media screen and (min-width: 768px) {
   #main-feature header p em {
-    font-size: 20px;
+    font-size: 1.25rem;
     display: inline-block;
   }
 
   .hero-text.small {
-    font-size: 48px;
+    font-size: 3rem;
   }
 
   #main-content {
@@ -518,11 +518,11 @@
   }
 
   .hero-text.large {
-    font-size: 32px;
+    font-size: 2rem;
   }
 
   .hero-text.small {
-    font-size: 24px;
+    font-size: 1.5rem;
   }
 
   #news .inner,

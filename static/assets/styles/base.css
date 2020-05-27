@@ -22,22 +22,11 @@
        url("/assets/fonts/fa-brands-400.woff?v=5.1") format("woff");
 }
 
-@media screen {
-  html {
-    font-size: 16px;
-  }
-
+@media screen, print {
   body {
     margin: 0;
-    color: #353C48;
-    background-color: #FFF;
-    background-position: center 80px;
-    background-repeat: no-repeat;
-    background-size: 1080px 280px;
     font-family: "Noto Sans CJK JP", "source-han-sans-japanese", Calibri, Ubuntu, Roboto, sans-serif;
     line-height: 1.75;
-    scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch;
   }
 
   main {
@@ -46,10 +35,6 @@
 
   header.large {
     padding: 64px 0;
-    background-color: #F3F5F8;
-    background-position: bottom center;
-    background-repeat: no-repeat;
-    background-size: contain;
     text-align: center;
   }
 
@@ -82,20 +67,20 @@
   hgroup [aria-level] {
     margin: 8px 0 0;
     opacity: .5;
-    font-size: 16px;
+    font-size: 1rem;
     font-weight: normal;
     text-transform: uppercase;
     letter-spacing: .5ex;
   }
 
   hgroup [aria-level="3"] {
-    font-size: 14px;
+    font-size: .875rem;
   }
 
   hgroup + .fas.circle {
     display: block;
     margin: 16px 0;
-    font-size: 12px;
+    font-size: .75rem;
     text-align: center;
   }
 
@@ -119,7 +104,7 @@
   }
 
   figcaption {
-    font-size: 14px;
+    font-size: .875rem;
   }
 
   figure > :not(:first-child) {
@@ -138,17 +123,6 @@
   a {
     text-decoration: none;
     transition: all .3s;
-  }
-
-  a:link,
-  a:visited {
-    color: #BE1B51;
-  }
-
-  a:hover,
-  a:focus,
-  a:active {
-    color: #A51D3C;
   }
 
   .far,
@@ -235,6 +209,89 @@
 
   .fab.twitter::before {
     content: "\F099";
+  }
+
+  article.box header {
+    position: relative;
+    margin-top: 16px;
+    padding-top: 48px;
+  }
+
+  article.box figure + header {
+    margin-top: 0;
+  }
+
+  article.box time {
+    position: absolute;
+    top: 8px;
+    right: 0;
+    color: #858585;
+  }
+
+  article.box [itemprop="author"] {
+    position: absolute;
+    top: -16px;
+    left: 0;
+  }
+
+  article.box [itemprop="author"] {
+    position: absolute;
+    top: -16px;
+    left: 0;
+  }
+
+  article.box [itemprop="author"] .avatar {
+    display: inline-block;
+    overflow: hidden;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    vertical-align: bottom;
+  }
+
+  article.box [itemprop="author"] [itemprop="name"] {
+    display: inline-block;
+    margin: 8px;
+    line-height: 100%;
+  }
+
+  article img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+@media screen {
+  html {
+    font-size: 16px;
+  }
+
+  body {
+    color: #353C48;
+    background-color: #FFF;
+    background-position: center 80px;
+    background-repeat: no-repeat;
+    background-size: 1080px 280px;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  header.large {
+    background-color: #F3F5F8;
+    background-position: bottom center;
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+
+  a:link,
+  a:visited {
+    color: #BE1B51;
+  }
+
+  a:hover,
+  a:focus,
+  a:active {
+    color: #A51D3C;
   }
 
   .outer {
@@ -374,7 +431,7 @@
     position: relative;
     margin: 0;
     padding: 0;
-    font-size: 16px;
+    font-size: 1rem;
     line-height: 1;
   }
 
@@ -436,7 +493,7 @@
   #breadcrumbs .col {
     overflow: hidden;
     margin: 16px;
-    font-size: 14px;
+    font-size: .875rem;
     text-overflow: ellipsis;
     white-space: nowrap;
   }
@@ -493,7 +550,7 @@
     display: block;
     margin-bottom: 8px;
     width: 240px;
-    font-size: 16px;
+    font-size: 1rem;
     text-align: left;
   }
 
@@ -515,7 +572,7 @@
   }
 
   #footer nav {
-    font-size: 14px;
+    font-size: .875rem;
   }
 
   #footer nav.primary,
@@ -585,7 +642,7 @@
   #footer #copyright {
     color: #FFF;
     background-color: #A51D3C;
-    font-size: 14px;
+    font-size: .875rem;
     text-align: center;
   }
 
@@ -622,7 +679,7 @@
     flex: none;
     margin: 2px 0;
     color: #858585;
-    font-size: 14px;
+    font-size: .875rem;
   }
 
   article.summary {
@@ -670,7 +727,7 @@
   article.summary time {
     display: block;
     color: #858585;
-    font-size: 14px;
+    font-size: .875rem;
     text-align: right;
   }
 
@@ -686,7 +743,7 @@
   article.summary .more {
     float: right;
     color: #858585;
-    font-size: 12px;
+    font-size: .75rem;
     line-height: 28px;
   }
 
@@ -696,49 +753,9 @@
     color: #A51D3C;
   }
 
-  article.box header {
-    position: relative;
-    margin-top: 16px;
-    padding-top: 48px;
-  }
-
-  article.box figure + header {
-    margin-top: 0;
-  }
-
-  article.box time {
-    position: absolute;
-    top: 8px;
-    right: 0;
-    color: #858585;
-  }
-
-  article.box [itemprop="author"] {
-    position: absolute;
-    top: -16px;
-    left: 0;
-  }
-
   article.box [itemprop="author"] .avatar {
-    display: inline-block;
-    overflow: hidden;
-    border-radius: 50%;
     border: 2px solid #FFF;
-    width: 48px;
-    height: 48px;
     box-shadow: 0 0 2px #333;
-    vertical-align: bottom;
-  }
-
-  article.box [itemprop="author"] [itemprop="name"] {
-    display: inline-block;
-    margin: 8px;
-    line-height: 100%;
-  }
-
-  article img {
-    max-width: 100%;
-    height: auto;
   }
 
   #promo {
@@ -776,7 +793,7 @@
   #promo p {
     margin: 8px 16px 0;
     text-align: center;
-    font-size: 14px;
+    font-size: .875rem;
   }
 
   #contact-callout {
@@ -984,15 +1001,15 @@
 
 @media screen and (min-width: 768px) {
   h1 {
-    font-size: 40px;
+    font-size: 2.5rem;
   }
 
   h2 {
-    font-size: 32px;
+    font-size: 2rem;
   }
 
   h3 {
-    font-size: 24px;
+    font-size: 1.5rem;
   }
 
   .mobile {
@@ -1023,15 +1040,15 @@
   }
 
   h1 {
-    font-size: 32px;
+    font-size: 2rem;
   }
 
   h2 {
-    font-size: 28px;
+    font-size: 1.75rem;
   }
 
   h3 {
-    font-size: 24px;
+    font-size: 1.5rem;
   }
 
   img {
@@ -1061,7 +1078,7 @@
     left: 0;
     width: 56px;
     height: 56px;
-    font-size: 24px;
+    font-size: 1.5rem;
   }
 
   .mobile[role="button"] * {
@@ -1142,7 +1159,7 @@
 
   #drawer nav {
     margin: 32px 0 !important;
-    font-size: 16px;
+    font-size: 1rem;
   }
 
   #drawer nav ul {
@@ -1169,5 +1186,42 @@
 
   .cta.large {
     min-width: 0;
+  }
+}
+
+@media print {
+  html {
+    font-size: 12px;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+  }
+
+  h2 {
+    font-size: 2rem;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+  }
+
+  a {
+    color: inherit;
+  }
+
+  #header,
+  #breadcrumbs,
+  #footer,
+  main article footer,
+  main article ~ footer,
+  #contact-callout,
+  .cta-outer {
+    display: none;
+  }
+
+  #main-feature {
+    margin: 0 0 40px;
+    text-align: center;
   }
 }

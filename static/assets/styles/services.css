@@ -206,19 +206,19 @@
     width: 100%;
     color: #FFF;
     opacity: 1;
-    font-size: 24px;
+    font-size: 1.5rem;
     letter-spacing: 0;
   }
 
   #field-anchors strong {
-    font-size: 24px;
+    font-size: 1.5rem;
     line-height: 1;
     font-weight: normal;
   }
 
   #field-anchors span {
     margin: 4px 0;
-    font-size: 14px;
+    font-size: .875rem;
     text-transform: uppercase;
     letter-spacing: .5ex;
     opacity: .5;
@@ -266,7 +266,7 @@
   }
 
   #fields .field .summary {
-    font-size: 18px;
+    font-size: 1.125rem;
     font-weight: bold;
     text-align: center;
     letter-spacing: -.05ex;
@@ -314,7 +314,7 @@
     padding: 2px 8px;
     color: #FFF;
     background-color: #353C48;
-    font-size: 14px;
+    font-size: .875rem;
     font-weight: normal;
     vertical-align: 2px;
   }
@@ -463,7 +463,7 @@
   }
 
   #fields .field h3 {
-    font-size: 32px;
+    font-size: 2rem;
   }
 }
 

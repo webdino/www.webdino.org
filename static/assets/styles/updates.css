@@ -1,3 +1,38 @@
+@media screen, print {
+  article.post h1 {
+    font-size: 2rem;
+    text-align: left;
+    letter-spacing: -.05ex;
+  }
+
+  article.post [itemprop="keywords"] {
+    justify-content: flex-start;
+  }
+
+  .taxonomy {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 16px 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .taxonomy .term {
+    margin: 0;
+    padding: 0;
+  }
+
+  .taxonomy .term a {
+    display: inline-block;
+    margin: 4px;
+    border-radius: 4px;
+    padding: 8px;
+    font-size: .875rem;
+    line-height: 100%;
+  }
+}
+
 @media screen {
   body {
     background-color: #F3F5F8;
@@ -93,16 +128,6 @@
     margin: -16px -16px 0;
   }
 
-  article.post h1 {
-    font-size: 32px;
-    text-align: left;
-    letter-spacing: -.05ex;
-  }
-
-  article.post [itemprop="keywords"] {
-    justify-content: flex-start;
-  }
-
   article.post .share {
     margin-top: 32px;
     border-top: 1px solid #CCC;
@@ -114,7 +139,7 @@
     color: #353C48;
     background: url(/assets/images/updates/footprints-gray.svg) center bottom no-repeat;
     background-size: 21px 21px;
-    font-size: 24px;
+    font-size: 1.5rem;
     text-align: center;
   }
 
@@ -134,7 +159,7 @@
 
   article.post .share .fab {
     margin: 0;
-    font-size: 40px;
+    font-size: 2.5rem;
   }
 
   article.post .share .label {
@@ -187,7 +212,7 @@
     margin: 0;
     padding: 0;
     width: 280px;
-    font-size: 14px;
+    font-size: .875rem;
     list-style: none;
   }
 
@@ -213,29 +238,9 @@
     text-align: center;
   }
 
-  .taxonomy {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin: 16px 0;
-    padding: 0;
-    list-style: none;
-  }
-
-  .taxonomy .term {
-    margin: 0;
-    padding: 0;
-  }
-
   .taxonomy .term a {
-    display: inline-block;
-    margin: 4px;
-    border-radius: 4px;
-    padding: 8px;
     color: #858585;
     background-color: #DBE0EA;
-    font-size: 14px;
-    line-height: 100%;
   }
 
   .taxonomy .term a:hover,
@@ -388,5 +393,15 @@
 
   .profile dd {
     margin: 0;
+  }
+}
+
+@media print {
+  #tags {
+    display: none;
+  }
+
+  .taxonomy .term a {
+    border: 1px solid #666;
   }
 }

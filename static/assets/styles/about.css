@@ -27,7 +27,7 @@
   }
 
   .member [itemprop="name"] {
-    font-size: 24px;
+    font-size: 1.5rem;
   }
 
   .member [itemprop="jobTitle"] {
@@ -61,7 +61,7 @@
   }
 
   #leadership h3 {
-    font-size: 24px;
+    font-size: 1.5rem;
   }
 
   #leadership .member img {
@@ -127,7 +127,7 @@
     position: relative;
     padding-left: 88px;
     height: 52px;
-    font-size: 28px;
+    font-size: 1.75rem;
     letter-spacing: -.05ex;
   }
 
@@ -141,7 +141,7 @@
     margin: 0;
     width: 88px;
     height: 88px;
-    font-size: 48px;
+    font-size: 3rem;
     color: #FFF;
     opacity: 1;
   }
@@ -175,7 +175,7 @@
     color: #A51D3C;
     background-color: #F6E8EB;
     opacity: 1;
-    font-size: 20px;
+    font-size: 1.25rem;
     text-align: right;
     letter-spacing: 0;
   }
@@ -229,7 +229,7 @@
     position: relative;
     margin-bottom: 8px;
     height: 32px;
-    font-size: 24px;
+    font-size: 1.5rem;
     line-height: 32px;
   }
 
@@ -500,13 +500,13 @@
 
   #concepts h2 {
     padding-left: 60px;
-    font-size: 24px;
+    font-size: 1.5rem;
   }
 
   #concepts h2 span {
     width: 64px;
     height: 64px;
-    font-size: 40px;
+    font-size: 2.5rem;
   }
 
   #concepts p {
@@ -522,7 +522,7 @@
     width: auto;
     margin: 16px 0 0;
     padding: 0;
-    font-size: 24px;
+    font-size: 1.5rem;
   }
 
   #history dd {
@@ -553,6 +553,6 @@
   }
 
   #activity-highlights h3 .time {
-    font-size: 20px;
+    font-size: 1.25rem;
   }
 }
