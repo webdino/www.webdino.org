@@ -1,9 +1,5 @@
 <article class="post box{{ if eq .Params.layout "wide" }} wide{{ end }}" itemscope itemtype="http://schema.org/BlogPosting">
-  {{- if isset .Params "image" }}
-  <figure>
-    <img src="{{ .Params.image }}" alt="" itemprop="image">
-  </figure>
-  {{- end }}
+  <meta itemprop="mainEntityOfPage" content="{{ .Permalink }}">
   <header>
     <h1 itemprop="headline">{{ .Title }}</h1>
     <time datetime="{{ .Date.Format "2006-01-02T15:04:05-07:00" }}" itemprop="datePublished">{{ .Date.Format "2006 年 1 月 2 日" }}</time>
@@ -19,7 +15,11 @@
     <ul class="taxonomy" itemprop="keywords">{{ range .Params.tags }}{{ with (index $.Site.Data.tags .) }}<li class="term"><a href="/updates/tag/{{ .title }}/">{{ .name }}</a></li>{{ end }}{{ end }}</ul>
     {{- end }}
   </header>
-  <meta itemprop="mainEntityOfPage" content="{{ .Permalink }}">
+  {{- if isset .Params "image" }}
+  <figure class="featured">
+    <img src="{{ .Params.image }}" alt="" itemprop="image">
+  </figure>
+  {{- end }}
   <div itemprop="articleBody">
     {{- .Content }}
   </div>

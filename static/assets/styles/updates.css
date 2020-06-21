@@ -1,11 +1,28 @@
 @media screen, print {
+  article.post header {
+    overflow: hidden;
+  }
+
   article.post h1 {
-    font-size: 2rem;
+    margin: 0 0 16px;
     text-align: left;
     letter-spacing: -.05ex;
   }
 
+  article.post header [itemprop="author"] {
+    float: left;
+    margin: 8px 0 0;
+  }
+
+  article.post header [itemprop="author"] a {
+    display: flex;
+    align-items: center;
+  }
+
   article.post [itemprop="keywords"] {
+    float: right;
+    clear: right;
+    margin: 0;
     justify-content: flex-start;
   }
 
@@ -16,6 +33,10 @@
     margin: 16px 0;
     padding: 0;
     list-style: none;
+  }
+
+  .taxonomy:empty {
+    display: none;
   }
 
   .taxonomy .term {
@@ -124,8 +145,21 @@
     background-color: #FFF;
   }
 
-  article.post > figure {
-    margin: -16px -16px 0;
+  article.post header time {
+    float: right;
+  }
+
+  article.post figure.featured {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    margin: 16px -16px;
+    max-height: 720px;
+  }
+
+  article.post figure.featured img {
+    width: 100%;
   }
 
   article.post .share {
@@ -300,8 +334,8 @@
     padding: 32px;
   }
 
-  article.post > figure {
-    margin: -32px -32px 0;
+  article.post figure.featured {
+    margin: 32px -32px;
   }
 }
 
@@ -334,8 +368,8 @@
     padding: 32px;
   }
 
-  article.wide > figure {
-    margin: -32px -32px 0;
+  article.wide figure.featured {
+    margin: 32px -32px;
   }
 
   main .headlines article:not(.simple) header {
