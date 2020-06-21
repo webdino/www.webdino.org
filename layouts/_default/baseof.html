@@ -2,7 +2,7 @@
 <html lang="{{ $.Site.LanguageCode }}">
   <head>
     <meta charset="UTF-8">
-    <meta name="description" content="{{ if .Description }}{{ .Description | replaceRE "<br>" "" }}{{ else }}{{ index (split .Content "\n") 0 | plainify | chomp }}{{ end }}">
+    <meta name="description" content="{{ if .Description }}{{ .Description | replaceRE "<br>" "" }}{{ else }}{{ .Summary }}{{ end }}">
     <meta name="viewport" content="width=device-width, user-scalable=false">
     <meta name="twitter:card" content="{{ if isset .Params "image" }}summary_large_image{{ else }}summary{{ end }}">
     <meta name="twitter:site" content="@{{ range $.Site.Data.partials.social }}{{ if eq .identifier "twitter" }}{{ .account }}{{ end }}{{ end }}">
@@ -12,7 +12,7 @@
     <meta property="og:url" content="{{ .Permalink }}">
     <meta property="og:title" content="{{ block "og:title" . }}{{ .Title | replaceRE "<br>" "" }}{{ end }}">
     <meta property="og:image" content="{{ $.Site.BaseURL }}{{ if isset .Params "image" }}{{ replaceRE "^/" "" .Params.image }}{{ else }}assets/images/template/ogp.png{{ end }}">
-    <meta property="og:description" content="{{ if .Description }}{{ .Description | replaceRE "<br>" "" }}{{ else }}{{ index (split .Content "\n") 0 | plainify | chomp }}{{ end }}">
+    <meta property="og:description" content="{{ if .Description }}{{ .Description | replaceRE "<br>" "" }}{{ else }}{{ .Summary }}{{ end }}">
     <link rel="alternate" type="application/rss+xml" href="{{ $.Site.RSSLink | relURL }}">
     <link rel="canonical" hreflang="ja" href="{{ .Permalink }}">
     <link rel="stylesheet" href="/assets/styles/base.css">

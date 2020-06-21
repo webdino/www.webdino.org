@@ -54,6 +54,7 @@ collections:
       - { name: tags, label: "タグ (カンマ区切りで複数指定可)", widget: list }
       - { name: authors, label: 著者 (カンマ区切りで複数指定可), widget: list }
       - { name: image, label: カバー画像, widget: image, required: false }
+      - { name: summary, label: 要約, widget: text }
       - { name: body, label: 本文, widget: markdown }
     editor:
         preview: true
@@ -72,6 +73,7 @@ collections:
       - { name: category, label: カテゴリ, widget: hidden, default: news }
       - { name: tags, label: "タグ (カンマ区切りで複数指定可)", widget: list }
       - { name: image, label: カバー画像, widget: image, required: false }
+      - { name: summary, label: 要約, widget: text }
       - { name: body, label: 本文, widget: markdown }
     editor:
         preview: true
