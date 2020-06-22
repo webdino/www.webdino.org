@@ -5,6 +5,7 @@ title: WebDINO Japan
 copyright: WebDINO Japan
 baseURL: 'https://www.webdino.org/'
 languageCode: ja
+assetDir: static
 permalinks:
   authors: /updates/author/:slug/
   tags: /updates/tag/:slug/

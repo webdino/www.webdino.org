@@ -1,7 +1,12 @@
 <article class="blog summary box" itemscope itemtype="http://schema.org/BlogPosting">
   <a href="{{ .RelPermalink }}" itemprop="url">
-    <figure>
-      <img src="{{- if isset .Params "image" }}{{ .Params.image }}{{ else }}/assets/images/updates/placeholder.png{{- end }}" alt="" itemprop="image">
+    <figure class="featured">
+      {{- if isset .Params "image" }}
+      {{- $image := (resources.Get .Params.image).Fit "1366x768" }}
+      <img src="{{ $image.RelPermalink }}" alt="" itemprop="image">
+      {{- else }}
+      <img src="/assets/images/updates/placeholder.png" alt="" itemprop="image">
+      {{- end }}
     </figure>
     <header>
       <h3 itemprop="headline">{{ .Title }}</h3>

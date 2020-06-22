@@ -14,17 +14,17 @@
     <script>
       CMS.registerEditorComponent({
         id: 'figure',
-        label: 'キャプション付き画像',
+        label: '画像 + キャプション',
         fields: [
           { name: 'src', label: '画像', widget: 'image' },
           { name: 'caption', label: 'キャプション', widget: 'string' },
         ],
-        pattern: /<figure>\s*<img\s+src="(.+?)"\s+alt="">\s*<figcaption>(.*?)<\/figcaption>\s*<\/figure>/,
+        pattern: /{{<\ image\ src="(.*?)"\ caption="(.*?)"\ >}}/,
         fromBlock: ([, src, caption]) => ({ src, caption }),
         toBlock: ({ src, caption }) =>
-          `<figure><img src="${src}" alt=""><figcaption>${caption}</figcaption></figure>`,
+          `{{< image src="${src}" caption="${caption}" >}}`,
         toPreview: ({ src, caption }) =>
-          `<figure><img src="${src}" alt=""><figcaption>${caption}</figcaption></figure>`,
+          `<figure><img src="${src || ''}" alt=""><figcaption>${caption || ''}</figcaption></figure>`,
       });
     </script>
   </body>
