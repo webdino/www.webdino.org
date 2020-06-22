@@ -238,6 +238,10 @@
     line-height: 100%;
   }
 
+  article figure {
+    margin: 16px auto;
+  }
+
   article img {
     max-width: 100%;
     height: auto;
