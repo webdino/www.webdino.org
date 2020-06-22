@@ -16,8 +16,8 @@
         id: 'figure',
         label: 'キャプション付き画像',
         fields: [
-          { name: src, label: 画像, widget: image },
-          { name: caption, label: キャプション, widget: string },
+          { name: 'src', label: '画像', widget: 'image' },
+          { name: 'caption', label: 'キャプション', widget: 'string' },
         ],
         pattern: /<figure>\s*<img\s+src="(.+?)"\s+alt="">\s*<figcaption>(.*?)<\/figcaption>\s*<\/figure>/,
         fromBlock: ([, src, caption]) => ({ src, caption }),
