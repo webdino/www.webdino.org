@@ -11,5 +11,21 @@
     <script>
       CMS.registerPreviewStyle('/admin/preview.css');
     </script>
+    <script>
+      CMS.registerEditorComponent({
+        id: 'figure',
+        label: 'キャプション付き画像',
+        fields: [
+          { name: src, label: 画像, widget: image },
+          { name: caption, label: キャプション, widget: string },
+        ],
+        pattern: /<figure>\s*<img\s+src="(.+?)"\s+alt="">\s*<figcaption>(.*?)<\/figcaption>\s*<\/figure>/,
+        fromBlock: ([, src, caption]) => ({ src, caption }),
+        toBlock: ({ src, caption }) =>
+          `<figure><img src="${src}" alt=""><figcaption>${caption}</figcaption></figure>`,
+        toPreview: ({ src, caption }) =>
+          `<figure><img src="${src}" alt=""><figcaption>${caption}</figcaption></figure>`,
+      });
+    </script>
   </body>
 </html>
