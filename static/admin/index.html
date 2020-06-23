@@ -39,8 +39,8 @@
         toBlock: ({ id, width = 560, height = 315 }) =>
           `{{< youtube id="${id}" width="${width}" height="${height}" >}}`,
         toPreview: ({ id, width = 560, height = 315 }) => (id ? `
-        <iframe src="https://www.youtube-nocookie.com/embed/${id}" width="${width}" height="${height}"
-          allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+          <iframe src="https://www.youtube-nocookie.com/embed/${id}" width="${width}" height="${height}"
+            allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
         ` : ''),
       });
 
