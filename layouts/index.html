@@ -1,6 +1,6 @@
 {{- define "title" }}{{ .Title }} — {{ .Params.headline | replaceRE "<br>" "" }}{{ end }}
 
-{{- define "style" }}home{{ end }}
+{{- define "style" }}{{ $.Scratch.Set "style" "home" }}{{ end }}
 
 {{- define "main" }}
 <main>

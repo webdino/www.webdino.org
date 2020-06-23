@@ -1,4 +1,4 @@
-{{- define "style" }}updates{{ end }}
+{{- define "style" }}{{ $.Scratch.Set "style" "updates" }}{{ end }}
 
 {{- define "og:title" }}{{ partial "post-title-author.html" . }} | ディノの足あと{{ end }}
 
