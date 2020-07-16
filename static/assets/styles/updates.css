@@ -162,6 +162,118 @@
     width: 100%;
   }
 
+  article.post header.release {
+    overflow: visible;
+    margin: 4rem 0;
+    border-width: 4px 0;
+    border-style: solid;
+    border-style: solid;
+  }
+
+  article.post header.release::before {
+    margin: -3rem 0 3rem;
+    display: block;
+    content: "報道関係者各位";
+  }
+
+  article.post header.release h1 {
+    margin: 2rem 0;
+    text-align: center;
+  }
+
+  article.post header.release h2 {
+    margin: 2rem;
+    text-align: center;
+  }
+
+  article.post header.release .lead {
+    margin: 2rem;
+    font-size: 1.25rem;
+    text-align: center;
+  }
+
+  article.post h2,
+  article.post h3,
+  article.post h4 {
+    margin-top: 2rem;
+  }
+
+  article.post hr {
+    margin: 2rem 0;
+    border: 0;
+    height: 2px;
+    background-color: #CCC;
+  }
+
+  article.post blockquote {
+    position: relative;
+    overflow: hidden;
+    margin: 1rem;
+    border-radius: 0 2rem;
+    padding: 2rem 2rem 2rem 10rem;
+    color: #464646;
+    background-color: #f3f3f3;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.19);
+  }
+
+  article.post blockquote::before {
+    display: block;
+    position: absolute;
+    top: -1.5rem;
+    left: -1.5rem;
+    z-index: 0;
+    color: #DDD;
+    font-size: 20rem;
+    line-height: 1;
+    font-weight: bold;
+    content: '“';
+  }
+
+  article.post blockquote > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  article.post table {
+    margin: 1rem auto;
+    border: 2px solid #CCC;
+    border-collapse: collapse;
+    padding: 0;
+  }
+
+  article.post thead {
+    background-color: #EEE;
+  }
+
+  article.post th,
+  article.post td {
+    border: 1px solid #CCC;
+    padding: .2rem .8rem;
+    text-align: left;
+  }
+
+  article.post [role="note"] {
+    margin: 1rem;
+    border: 2px solid #CCC;
+    padding: 1rem;
+    font-size: .875rem;
+  }
+
+  article.post blockquote > :first-child,
+  article.post [role="note"] > :first-child {
+    margin-top: 0;
+  }
+
+  article.post blockquote > :last-child,
+  article.post [role="note"] > :last-child {
+    margin-bottom: 0;
+  }
+
+  article.post .footnotes {
+    margin-top: 2rem;
+    font-size: .875rem;
+  }
+
   article.post .share {
     margin-top: 32px;
     border-top: 1px solid #CCC;
@@ -406,6 +518,24 @@
   main footer nav li {
     margin: 16px 0;
     width: 100%;
+  }
+
+  article.post header.release h2 {
+    margin: 2rem 0;
+  }
+
+  article.post header.release .lead {
+    margin: 2rem 0;
+    font-size: 1rem;
+  }
+
+  article.post blockquote {
+    margin: 1rem 0;
+    padding: 1rem;
+  }
+
+  article.post [role="note"] {
+    margin: 1rem 0;
   }
 
   .profile {
