@@ -20,7 +20,7 @@ outputs:
     - RSS
   section:
     - HTML
-  taxonomy:
+  term:
     - HTML
 rssLimit: 50
 markup:
