@@ -17,8 +17,9 @@
   </header>
   {{- if isset .Params "image" }}
   <figure class="featured">
-    {{- $image := (resources.Get .Params.image).Fit "1366x768" }}
-    <img src="{{ $image.RelPermalink }}" alt="" itemprop="image">
+    {{- $image := (resources.Get .Params.image).Fit "1280x720" }}
+    {{- $image_2x := (resources.Get .Params.image).Fit "2560x1440" }}
+    <img src="{{ $image.RelPermalink }}" srcset="{{ $image.RelPermalink }}, {{ $image_2x.RelPermalink }} 2x" alt="" itemprop="image">
   </figure>
   {{- end }}
   <div itemprop="articleBody">

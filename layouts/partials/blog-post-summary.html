@@ -2,8 +2,9 @@
   <a href="{{ .RelPermalink }}" itemprop="url">
     <figure class="featured">
       {{- if isset .Params "image" }}
-      {{- $image := (resources.Get .Params.image).Fit "1366x768" }}
-      <img src="{{ $image.RelPermalink }}" alt="" itemprop="image">
+      {{- $image := (resources.Get .Params.image).Fit "640x360" }}
+      {{- $image_2x := (resources.Get .Params.image).Fit "1280x720" }}
+      <img src="{{ $image.RelPermalink }}" srcset="{{ $image.RelPermalink }}, {{ $image_2x.RelPermalink }} 2x" alt="" itemprop="image">
       {{- else }}
       <img src="/assets/images/updates/placeholder.png" alt="" itemprop="image">
       {{- end }}

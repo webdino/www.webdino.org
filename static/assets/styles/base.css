@@ -243,7 +243,7 @@
   }
 
   article img {
-    max-width: 100%;
+    width: 100%;
     height: auto;
   }
 }
@@ -263,6 +263,10 @@
     -webkit-overflow-scrolling: touch;
   }
 
+  body.overlay-visible {
+    overflow: hidden;
+  }
+
   header.large {
     background-color: #F3F5F8;
     background-position: bottom center;
@@ -279,6 +283,10 @@
   a:focus,
   a:active {
     color: #A51D3C;
+  }
+
+  img.can-zoom {
+    cursor: zoom-in;
   }
 
   .outer {
@@ -858,6 +866,45 @@
     border-radius: 8px;
     padding: 16px 32px;
     min-width: 240px;
+  }
+
+  .image-zoom-base {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10000;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0);
+    cursor: zoom-out;
+    transition: all .5s;
+  }
+
+  .image-zoom-base.active {
+    background: rgba(255, 255, 255, .95);
+  }
+
+  .image-zoom-base div {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all .5s;
+  }
+
+  .image-zoom-base.active div {
+    top: 5% !important;
+    left: 5% !important;
+    width: 90% !important;
+    height: 90% !important;
+  }
+
+  .image-zoom-base div img {
+    flex: auto;
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
   }
 }
 
