@@ -6,6 +6,7 @@ copyright: WebDINO Japan
 baseURL: 'https://www.webdino.org/'
 languageCode: ja
 assetDir: static
+timeout: 500000
 permalinks:
   authors: /updates/author/:slug/
   tags: /updates/tag/:slug/
