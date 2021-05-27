@@ -123,12 +123,7 @@
 
   main .tiles article {
     box-sizing: border-box;
-    width: calc(50% - 32px);
     margin: 16px;
-  }
-
-  main .tiles article:first-of-type {
-    width: 100%;
   }
 
   main .headlines article header {
@@ -438,6 +433,39 @@
 
   .profile dd {
     margin: 0 0 0 88px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  main .tiles article {
+    width: calc(200px * 2 + 32px);
+  }
+
+  main .tiles article:nth-of-type(1),
+  main .tiles article:nth-of-type(7) {
+    width: calc(200px * 4 + 32px * 3);
+  }
+}
+
+@media screen and (min-width: 1280px) and (max-width: 1439px) {
+  main .tiles article {
+    width: calc(160px * 2 + 32px);
+  }
+
+  main .tiles article:nth-of-type(1),
+  main .tiles article:nth-of-type(7) {
+    width: calc(160px * 4 + 32px * 3);
+  }
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1279px) {
+  main .tiles article {
+    width: 288px;
+  }
+
+  main .tiles article:nth-of-type(1),
+  main .tiles article:nth-of-type(7) {
+    width: 608px;
   }
 }
 

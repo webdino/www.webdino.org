@@ -14,8 +14,8 @@
   </div>
   <div id="main-content">
     <div class="inner row">
-      <div class="col s4">
-        {{- with $.Site.Data.partials.updates.blog }}
+      <div class="col">
+        {{- with $.Site.Data.partials.updates.all }}
         <section id="blog">
           <header>
             <hgroup>
@@ -25,33 +25,29 @@
             <span class="fas circle" aria-hidden="true"></span>
           </header>
           <div class="tiles">
-            {{- range first 5 (where $.Site.RegularPages "Params.category" "blog") }}
+            {{- range first 10 $.Site.RegularPages }}
 {{ partial "blog-post-summary.html" . }}
             {{- end }}
           </div>
+        </section>
+        {{- end }}
+      </div>
+    </div>
+    <div class="inner row">
+      <div class="col s3">
+        {{- with $.Site.Data.partials.updates.news }}
+        <section id="news">
           <footer>
-            <p class="cta-outer"><a href="/updates/blog/" class="cta"><span class="label">{{ .linklabel }}</span><span class="fas arrow-right" aria-hidden="true"></span></a></p>
+            <p class="cta-outer"><a href="/updates/news/" class="cta"><span class="label">{{ .linklabel }}</span><span class="fas arrow-right" aria-hidden="true"></span></a></p>
           </footer>
         </section>
         {{- end }}
       </div>
-      <div class="col s2">
-        {{- with $.Site.Data.partials.updates.news }}
+      <div class="col s3">
+        {{- with $.Site.Data.partials.updates.blog }}
         <section id="news">
-          <header>
-            <hgroup>
-              <h2>{{ partial "heading.html" .heading }}</h2>
-              <h3 aria-level="2">{{ .subheading }}</h3>
-            </hgroup>
-            <span class="fas circle" aria-hidden="true"></span>
-          </header>
-          <div class="headlines">
-            {{- range first 5 (where $.Site.RegularPages "Params.category" "news") }}
-{{ partial "news-post-headline.html" . }}
-            {{- end }}
-          </div>
           <footer>
-            <p class="cta-outer"><a href="/updates/news/" class="cta"><span class="label">{{ .linklabel }}</span><span class="fas arrow-right" aria-hidden="true"></span></a></p>
+            <p class="cta-outer"><a href="/updates/blog/" class="cta"><span class="label">{{ .linklabel }}</span><span class="fas arrow-right" aria-hidden="true"></span></a></p>
           </footer>
         </section>
         {{- end }}

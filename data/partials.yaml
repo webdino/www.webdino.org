@@ -18,6 +18,11 @@ social:
     account: WebDINOJP
     url: https://www.facebook.com/WebDINOJP
 updates:
+  all:
+    backlinklabel: お知らせトップへ戻る
+    heading: ディノの足あと
+    linklabel: もっと足あとを見る
+    subheading: DINO’s Footprints
   archive:
     heading: アーカイブ
   blog:

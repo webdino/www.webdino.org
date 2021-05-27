@@ -29,9 +29,9 @@
               </hgroup>
               <span class="fas circle" aria-hidden="true"></span>
             </header>
-            <div class="tiles">
+            <div class="headlines">
               {{- range where $.Site.RegularPages "Params.category" "blog" }}
-{{ partial "blog-post-summary.html" . }}
+{{ partial "news-post-headline-year.html" . }}
               {{- end }}
             </div>
           </section>

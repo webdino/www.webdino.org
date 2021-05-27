@@ -57,31 +57,8 @@
       </div>
     </section>
     {{- end }}
-    {{- with $.Site.Data.partials.updates.news }}
-    <section id="news" class="outer">
-      <div class="inner row">
-        <div class="col">
-          <header>
-            <hgroup>
-              <h2>{{ partial "heading.html" .heading }}</h2>
-              <h3 aria-level="2">{{ .subheading }}</h3>
-            </hgroup>
-            <span class="fas circle" aria-hidden="true"></span>
-          </header>
-          <div class="headlines">
-            {{- range first 3 (where $.Site.RegularPages "Params.category" "news") }}
-{{ partial "news-post-headline.html" . }}
-            {{- end }}
-          </div>
-          <footer>
-            <p class="cta-outer"><a href="/updates/news/" class="cta"><span class="label">{{ .linklabel }}</span><span class="fas arrow-right" aria-hidden="true"></span></a></p>
-          </footer>
-        </div>
-      </div>
-    </section>
-    {{- end }}
-    {{- with $.Site.Data.partials.updates.blog }}
-    <section id="blog" class="outer">
+    {{- with $.Site.Data.partials.updates.all }}
+    <section id="updates" class="outer">
       <div class="inner">
         <div class="row">
           <header class="col">
@@ -92,16 +69,14 @@
             <span class="fas circle" aria-hidden="true"></span>
           </header>
         </div>
-        <div class="row grid">
-          {{- range first 3 (where $.Site.RegularPages "Params.category" "blog") }}
-          <div class="col s2">
+        <div class="tiles">
+          {{- range first 6 $.Site.RegularPages }}
 {{ partial "blog-post-summary.html" . }}
-          </div>
           {{- end }}
         </div>
         <div class="row">
           <footer class="col">
-            <p class="cta-outer"><a href="/updates/blog/" class="cta"><span class="label">{{ .linklabel }}</span><span class="fas arrow-right" aria-hidden="true"></span></a></p>
+            <p class="cta-outer"><a href="/updates/" class="cta"><span class="label">{{ .linklabel }}</span><span class="fas arrow-right" aria-hidden="true"></span></a></p>
           </footer>
         </div>
       </div>
