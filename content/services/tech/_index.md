@@ -83,16 +83,16 @@ solutions:
           環境下ではネットワーク動的制御が広く導入される中、インターネットの通信の 6 割を占める動画配信サービスの通信制御は大きな課題です。
 
 
-          そこで、YouTube を始めとした動画配信サービスを実際にユーザーが利用する際の品質データを分析・公開し、ネットワーク資源の有効活用と品質向上に役立てる調査研究プロジェクト「Web VideoMark」を実施しています。
+          そこで、YouTube を始めとした動画配信サービスを実際にユーザーが利用する際の品質データを分析・公開し、ネットワーク資源の有効活用と品質向上に役立てる調査研究プロジェクト「[Web VideoMark](https://vm.webdino.org/)」を実施しています。
         image: /assets/uploads/home-promo-videomark.jpg
       - heading: 組み込み Linux <br>プラットフォームへの<br>ブラウザーエンジン<br>移植
-        description: >-
+        description: >
           HTML5 以降アプリケーションプラットフォームとして発展を続けるブラウザーエンジンは、PC
           やスマートフォン・タブレットあるいはテレビなどの家電・ゲーム機・VR/AR/MR
           デバイスなどに留まらず、ビルの集中管理パネル、工場の機器制御画面など、組み込み製品向けの HMI 環境としての利用が広がっています。
 
 
-          組み込み環境で HTML5 を利用したいという需要に応えられるよう、弊社では Gecko Embedded プロジェクト にて Firefox のブラウザーエンジン Gecko をルネサスエレクトロニクスの産業用プロセッサー「RZ/G」シリーズに移植しています。
+          組み込み環境で HTML5 を利用したいという需要に応えられるよう、弊社では「[Gecko Embedded](https://github.com/webdino/gecko-embedded/wiki)」プロジェクトにて Firefox のブラウザーエンジン Gecko をルネサスエレクトロニクスの産業用プロセッサー「RZ/G」シリーズに移植しています。
         image: /assets/uploads/home-promo-gecko.jpg
 contactdesc: 技術開発やコンサルティングに関するご依頼・ご相談は、以下リンク先のお問い合わせフォームよりお願いします。
 ---
