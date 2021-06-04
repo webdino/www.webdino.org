@@ -298,65 +298,24 @@
     background-size: 64px auto;
   }
 
-  #tech-solutions .case {
-    margin: 32px 0 0;
-    border: 2px solid #353C48;
-    border-radius: 8px;
-    padding: 32px;
-  }
-
-  #tech-solutions .case h3 {
-    text-align: center;
-  }
-
-  #tech-solutions .case h3 .prefix {
-    border-radius: 4px;
-    padding: 2px 8px;
-    color: #FFF;
-    background-color: #353C48;
-    font-size: .875rem;
-    font-weight: normal;
-    vertical-align: 2px;
-  }
-
-  #tech-solutions .case .content {
-    display: flex;
-    flex-direction: row-reverse;
-  }
-
-  #tech-solutions .case figure {
-    display: block;
-    flex: none;
-    margin: 16px 0 0 16px;
-  }
-
-  #tech-solutions .case img {
-    width: 320px;
-    height: auto;
-  }
-
-  #tech-solutions .case p {
-    margin-bottom: 0;
-  }
-
   #human-solutions .col {
     margin: 16px;
   }
 
-  #human-solutions section {
+  #human-solutions .tiles {
     text-align: center;
   }
 
-  #human-solutions img {
+  #human-solutions .tiles img {
     width: 100%;
     height: auto;
   }
 
-  #human-solutions h3 {
+  #human-solutions .tiles h3 {
     margin: 16px 0 8px;
   }
 
-  #human-solutions p {
+  #human-solutions .tiles p {
     margin: 0;
   }
 
@@ -378,6 +337,47 @@
     background: url(/assets/images/services/human/fullstack.svg) center no-repeat;
     background-size: contain;
     content: "";
+  }
+
+  .case {
+    margin: 32px 0 0;
+    border: 2px solid #353C48;
+    border-radius: 8px;
+    padding: 32px;
+  }
+
+  .case h3 {
+    text-align: center;
+  }
+
+  .case h3 .prefix {
+    border-radius: 4px;
+    padding: 2px 8px;
+    color: #FFF;
+    background-color: #353C48;
+    font-size: .875rem;
+    font-weight: normal;
+    vertical-align: 2px;
+  }
+
+  .case .content {
+    display: flex;
+    flex-direction: row-reverse;
+  }
+
+  .case figure {
+    display: block;
+    flex: none;
+    margin: 16px 0 0 16px;
+  }
+
+  .case img {
+    width: 320px;
+    height: auto;
+  }
+
+  .case p {
+    margin-bottom: 0;
   }
 }
 
@@ -428,11 +428,11 @@
     max-width: 600px;
   }
 
-  #tech-solutions .case .content {
+  .case .content {
     flex-direction: column;
   }
 
-  #tech-solutions .case figure {
+  .case figure {
     margin: 16px 0 0;
   }
 }
@@ -491,11 +491,11 @@
     width: 100%;
   }
 
-  #tech-solutions .case {
+  .case {
     padding: 16px;
   }
 
-  #tech-solutions .case h3 .heading {
+  .case h3 .heading {
     display: block;
     margin-top: 4px;
   }

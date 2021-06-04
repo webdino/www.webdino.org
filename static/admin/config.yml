@@ -277,13 +277,21 @@ collections:
           - { name: description, label: 説明文, widget: markdown }
           - { name: linklabel, label: リンクラベル, widget: string }
           - { name: image, label: 画像, widget: image }
-          - { name: solutions, label: 事例, widget: object, fields: [
+          - { name: solutions, label: 相談例, widget: object, fields: [
               { name: heading, label: 見出し, widget: string },
               { name: subheading, label: サブ見出し, widget: string },
-              { name: examples, label: 一覧, widget: list, fields: [
+              { name: examples, label: 例, widget: list, fields: [
                 { name: heading, label: 見出し, widget: string },
                 { name: description, label: 説明文, widget: markdown },
                 { name: image, label: 画像, widget: image },
+              ]},
+              { name: cases, label: 事例, widget: object, fields: [
+                { name: heading, label: 見出し, widget: string },
+                { name: details, label: 詳細, widget: list, fields: [
+                  { name: heading, label: 見出し, widget: string },
+                  { name: description, label: 説明文, widget: markdown },
+                  { name: image, label: 画像, widget: image },
+                ]},
               ]},
             ]}
           - { name: concepts, label: コンセプト, widget: list, fields: [

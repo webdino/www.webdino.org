@@ -13,6 +13,8 @@ description: >-
 linklabel: 詳しく
 image: /assets/uploads/zinzai_top.jpg
 solutions:
+  heading: ご相談例・事例
+  subheading: Our Solutions
   examples:
     - description: 大学や専門学校でのオープンプロジェクト演習や、ウェブ技術をテーマにした講義などを行っています。
       heading: 教育機関での講義
@@ -32,8 +34,15 @@ solutions:
     - description: オープンソースコミュニティをはじめとする各種コミュニティのオフライン・オンラインイベントのサポートや企画運営を行っています。
       heading: コミュニティイベントの<br>企画運営
       image: /assets/images/services/human/solution-6.jpg
-  heading: ご相談例
-  subheading: Our Solutions
+  cases:
+    heading: 事例
+    details:
+      - heading: Web 技術を活用した<br>人材育成の取り組み
+        description: >
+          地域 DX の推進や Society 5.0 の実現に向けて、Web アプリ開発をはじめとしたソフトウェアの知識、センサーやモーターといったハードウェア制御の知識など、従来は別レイヤーとされてきた幅広いスキルを併せ持つフルスタックなエンジニアの需要は、今後あらゆる分野でより一層高まることが予想されます。
+
+
+          こうした開発者を目指す初学者のスキルアップのための取り組みとして、弊社では、Web ブラウザーや Node.js の JavaScript でセンサーや電子パーツを制御できる 「[CHIRIMEN](https://tutorial.chirimen.org/)」というオープンソースの IoT プロトタイピング環境を使った ハンズオン形式の講習会やプロトタイピングを実践するハッカソン の企画・運営、講師派遣等を行っています。 本取り組みの実績として、総務省の若手 IoT 人材育成事業の一環で実施されたイベント「[Web×IoT メイカーズチャレンジ](https://webiotmakers.github.io/)」全般のマネジメントや地方自治体や教育機関とのコラボレーションイベント開催などがあります。
 concepts:
   - description: >-
       WebDINO Japan
@@ -47,4 +56,3 @@ concepts:
     subheading: Fostering Full-Stack Engineers
 contactdesc: 講師の派遣やイベントのプロデュースに関するご依頼・ご相談は、以下リンク先のお問い合わせフォームよりお願いします。
 ---
-

@@ -42,6 +42,27 @@
         </div>
         {{- end }}
       </div>
+      <div class="inner row">
+        <div class="col">
+          {{- with .cases }}
+          {{- $heading := .heading }}
+          {{- range .details }}
+          <section class="case">
+            <h3><span class="prefix">{{ $heading }}</span> <span class="heading">{{ partial "heading.html" .heading }}</span></h3>
+            <div class="content">
+              {{- with .image }}
+              <figure>
+                <img src="{{ . }}" alt="">
+              </figure>
+              {{- end }}
+              <div class="description">
+                {{ .description | markdownify }}
+              </div>
+            </div>
+          </section>
+          {{- end }}{{ end }}
+        </div>
+      </div>
     </section>
     {{- end }}
     {{- range .Params.concepts }}
