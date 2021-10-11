@@ -57,9 +57,9 @@ promo:
   subheading: Featured Content
   links:
     - title: Web×IoT メイカーズチャレンジ
-      description: 総務省「IoT 機器等の電波利用システムの適正利用のための ICT 人材育成」事業 (2020 年度)
+      description: 総務省「Beyond 5G 新経営戦略センター」支援イベント (2021 年度)
       url: https://webiotmakers.github.io/
-      image: /assets/uploads/home-promo-webiotmakers.jpg
+      image: /assets/uploads/home-promo-webiotmakers-plus.png
     - title: Web VideoMark
       description: 動画サービス利用時の品質分析や通信量の削減に関する調査研究プロジェクト
       url: https://vm.webdino.org/
