@@ -72,6 +72,6 @@ leadership:
           title: バスタイムフィッシュ 代表<br>株式会社 神戸デジタル・ラボ<br>取締役
         - image: /assets/uploads/kakehiyasuaki.jpg
           name: 筧 康明
-          title: 東京大学大学院<br>情報学環准教授
+          title: 東京大学大学院<br>情報学環 教授
       subheading: Fellows
 ---
