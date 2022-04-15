@@ -40,9 +40,9 @@ leadership:
       subheading: Chairperson
     - heading: 理事
       members:
-        - image: /assets/uploads/ito.jpg
+        - image: /assets/uploads/joi-ito-photo-2022.jpg
           name: 伊藤 穰一
-          title: 株式会社デジタルガレージ<br>取締役 共同創業者　
+          title: 株式会社デジタルガレージ<br>取締役 共同創業者<br>Chief Architect
         - image: /assets/uploads/kita-1-.jpg
           name: 喜多 伸夫
           title: サイオス株式会社<br>代表取締役社長
@@ -69,7 +69,7 @@ leadership:
       members:
         - image: /assets/uploads/masakazumuraoka.jpg
           name: 村岡 正和
-          title: バスタイムフィッシュ 代表<br>株式会社 神戸デジタル・ラボ<br>取締役
+          title: バスタイムフィッシュ 代表<br>株式会社 神戸デジタル・ラボ<br>執行役員
         - image: /assets/uploads/kakehiyasuaki.jpg
           name: 筧 康明
           title: 東京大学大学院<br>情報学環 教授
