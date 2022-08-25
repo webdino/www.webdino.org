@@ -7,9 +7,6 @@ const config = {
       fallback: '/error/index.html',
       precompress: false,
     }),
-    prerender: {
-      default: true,
-    },
     files: {
       assets: 'public'
     },
