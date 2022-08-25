@@ -1,33 +1,3 @@
 [build]
-publish = "public"
-command = "hugo"
-
-[context.production]
-
-[context.production.environment]
-HUGO_VERSION = "0.83.1"
-HUGO_ENV = "production"
-
-[context.deploy-preview]
-command = "hugo --buildFuture"
-
-[context.deploy-preview.environment]
-HUGO_VERSION = "0.83.1"
-HUGO_ENV = "production"
-
-[context.branch-deploy]
-command = "hugo --buildFuture"
-
-[context.branch-deploy.environment]
-HUGO_VERSION = "0.83.1"
-HUGO_ENV = "production"
-
-# references:
-# Hugo - command: https://gohugo.io/commands/hugo/
-# Hugo - config: https://gohugo.io/getting-started/configuration/
-# Hugo - static files: https://gohugo.io/content-management/static-files/
-
-[[redirects]]
-  from = "/*"
-  to = "/error/"
-  status = 404
+  command = "npm run build"
+  publish = "build"
