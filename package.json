@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "vite dev",
-    "build": "hugo && vite build",
+    "build": "hugo && vite build && cp public/index.html build",
     "preview": "vite preview"
   },
   "devDependencies": {
