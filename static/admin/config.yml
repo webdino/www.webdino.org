@@ -366,7 +366,7 @@ collections:
               { name: required, label: 必須, widget: boolean },
             ]}
           - { name: submit, label: 送信, widget: object, fields: [
-              { name: privacy, label: 個人情報保護方針, widget: markdown },
+              { name: privacy, label: プライバシーポリシー, widget: markdown },
               { name: buttonlabel, label: ボタンラベル, widget: string },
             ]}
           - { name: thanks, label: 送信完了メッセージ, widget: object, fields: [
@@ -451,7 +451,7 @@ collections:
           - { name: contactlink, label: 問い合わせリンク先 (上書き), widget: string, required: false }
           - { name: contactlabel, label: 問い合わせリンクラベル (上書き), widget: string, required: false }
       - name: privacy
-        label: /privacy/ 個人情報保護方針
+        label: /privacy/ プライバシーポリシー
         file: content/privacy/_index.md
         fields:
           - { name: title, label: ページタイトル, widget: string }

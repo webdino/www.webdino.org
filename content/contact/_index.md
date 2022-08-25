@@ -37,7 +37,7 @@ fields:
     type: multiline
 submit:
   buttonlabel: 送信
-  privacy: '[個人情報保護方針](/privacy/) に同意します'
+  privacy: '[プライバシーポリシー](/privacy/) に同意します'
 thanks:
   heading: お問い合わせありがとうございます
   subheading: Thank You
@@ -47,4 +47,3 @@ error:
   subheading: We Are Sorry
   description: フォームの送信中に問題が発生しました。お手数ですが、また後でお試しください。
 ---
-
