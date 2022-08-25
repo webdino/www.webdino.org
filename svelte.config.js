@@ -8,7 +8,6 @@ const config = {
     files: {
       assets: 'public'
     },
-    outDir: 'build'
   },
 };
 
