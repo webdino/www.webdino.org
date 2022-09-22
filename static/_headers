@@ -1,7 +1,7 @@
 # https://docs.netlify.com/routing/headers/
 
 /*
-  Content-Security-Policy: default-src 'none'; style-src 'unsafe-inline' 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com/; img-src 'self' https://*.cloudfront.net/ https://www.google-analytics.com; script-src 'self' https://www.google-analytics.com; connect-src 'self' https://www.google-analytics.com; form-action 'self'; frame-src https://www.google.com https://www.slideshare.net https://www.youtube-nocookie.com;
+  Content-Security-Policy: default-src 'none'; style-src 'unsafe-inline' 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com/; img-src 'self' https://*.cloudfront.net/ https://www.google-analytics.com; script-src 'self' https://www.google-analytics.com; connect-src 'self' https://www.google-analytics.com; form-action 'self'; frame-src https://www.google.com https://www.slideshare.net https://www.youtube-nocookie.com; frame-ancestors 'none'; base-uri 'none';
   Strict-Transport-Security: max-age=63072000
   Referrer-Policy: same-origin
   X-Content-Type-Options: nosniff
@@ -9,4 +9,4 @@
   X-XSS-Protection: 1; mode=block
 
 /admin/
-  Content-Security-Policy: default-src 'none'; style-src 'unsafe-inline' 'self'; font-src 'self'; img-src 'self' blob: data: https://avatars.githubusercontent.com; script-src 'unsafe-inline' 'unsafe-eval' 'self' https://identity.netlify.com https://unpkg.com; connect-src 'self' https://api.github.com http://localhost:8081; frame-src https://www.slideshare.net https://www.youtube-nocookie.com;
+  Content-Security-Policy: default-src 'none'; style-src 'unsafe-inline' 'self'; font-src 'self'; img-src 'self' blob: data: https://avatars.githubusercontent.com; script-src 'unsafe-inline' 'unsafe-eval' 'self' https://identity.netlify.com https://unpkg.com; connect-src 'self' https://api.github.com http://localhost:8081; frame-src https://www.slideshare.net https://www.youtube-nocookie.com; frame-ancestors 'none'; base-uri 'none';
