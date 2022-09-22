@@ -3,6 +3,9 @@ backend:
   repo: webdino/www.webdino.org
   squash_merges: true
 
+# https://www.netlifycms.org/docs/beta-features/#working-with-a-local-git-repository
+local_backend: true
+
 publish_mode: editorial_workflow
 
 media_folder: static/assets/uploads

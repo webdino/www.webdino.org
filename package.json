@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "hugo serve",
-    "build": "hugo"
+    "build": "hugo",
+    "cms:proxy": "netlify-cms-proxy-server"
   }
 }
