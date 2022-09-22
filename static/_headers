@@ -9,4 +9,4 @@
   X-XSS-Protection: 1; mode=block
 
 /admin/
-  Content-Security-Policy: default-src 'none'; style-src 'unsafe-inline' 'self'; font-src 'self'; img-src 'self' blob: data:; script-src 'unsafe-inline' 'unsafe-eval' 'self' https://identity.netlify.com https://unpkg.com; connect-src 'self' https://api.github.com http://localhost:8081; frame-src https://www.slideshare.net https://www.youtube-nocookie.com;
+  Content-Security-Policy: default-src 'none'; style-src 'unsafe-inline' 'self'; font-src 'self'; img-src 'self' blob: data: https://avatars.githubusercontent.com; script-src 'unsafe-inline' 'unsafe-eval' 'self' https://identity.netlify.com https://unpkg.com; connect-src 'self' https://api.github.com http://localhost:8081; frame-src https://www.slideshare.net https://www.youtube-nocookie.com;
