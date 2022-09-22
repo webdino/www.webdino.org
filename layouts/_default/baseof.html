@@ -17,6 +17,9 @@
     <meta property="og:description" content="{{ if .Description }}{{ .Description | replaceRE "<br>" "" }}{{ else }}{{ .Summary }}{{ end }}">
     <link rel="alternate" type="application/rss+xml" href="{{ $.Site.RSSLink | relURL }}">
     <link rel="canonical" hreflang="ja" href="{{ .Permalink }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap">
     <link rel="stylesheet" href="{{ (resources.Get "/assets/styles/base.css" | minify | fingerprint).RelPermalink }}">
     <link rel="stylesheet" href="{{ (resources.Get (printf "/assets/styles/%s.css" ($.Scratch.Get "style")) | minify | fingerprint).RelPermalink }}">
     <link rel="icon" type="image/png" href="/assets/images/template/favicon.png">
@@ -30,7 +33,6 @@
 {{ block "sub" . }}{{ end }}
 {{ block "extra" . }}{{ partial "contact-callout.html" . }}{{ end }}
 {{ partial "footer.html" . }}
-    <script src="https://use.typekit.net/kms6wme.js"></script>
     <script src="{{ (resources.Get "/assets/scripts/main.js" | minify | fingerprint).RelPermalink }}"></script>
   </body>
 </html>
