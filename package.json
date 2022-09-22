@@ -1,0 +1,8 @@
+{
+  "name": "www.webdino.org",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "hugo serve",
+    "build": "hugo"
+  }
+}
