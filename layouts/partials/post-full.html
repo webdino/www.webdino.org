@@ -15,7 +15,7 @@
     <ul class="taxonomy" itemprop="keywords">{{ range .Params.tags }}{{ with (index $.Site.Data.tags .) }}<li class="term"><a href="/updates/tag/{{ .title }}/">{{ .name }}</a></li>{{ end }}{{ end }}</ul>
     {{- end }}
   </header>
-  {{- if isset .Params "image" }}
+  {{- if .Params.image }}
   <figure class="featured">
     {{- $image := (resources.Get .Params.image).Fit "1280x720" }}
     {{- $image_2x := (resources.Get .Params.image).Fit "2560x1440" }}
