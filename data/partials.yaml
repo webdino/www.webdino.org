@@ -62,7 +62,7 @@ promo:
       image: /assets/uploads/home-promo-webiotmakers-plus.png
     - title: Web VideoMark
       description: 動画サービス利用時の品質分析や通信量の削減に関する調査研究プロジェクト
-      url: https://vm.webdino.org/
+      url: https://videomark.webdino.org/
       image: /assets/uploads/home-promo-videomark.jpg
     - title: Gecko Embedded
       description: ブラウザーエンジンを組み込み製品で利用するため移植と最適化を行うプロジェクト

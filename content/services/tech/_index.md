@@ -83,7 +83,7 @@ solutions:
           環境下ではネットワーク動的制御が広く導入される中、インターネットの通信の 6 割を占める動画配信サービスの通信制御は大きな課題です。
 
 
-          そこで、YouTube を始めとした動画配信サービスを実際にユーザーが利用する際の品質データを分析・公開し、ネットワーク資源の有効活用と品質向上に役立てる調査研究プロジェクト「[Web VideoMark](https://vm.webdino.org/)」を実施しています。
+          そこで、YouTube を始めとした動画配信サービスを実際にユーザーが利用する際の品質データを分析・公開し、ネットワーク資源の有効活用と品質向上に役立てる調査研究プロジェクト「[Web VideoMark](https://videomark.webdino.org/)」を実施しています。
         image: /assets/uploads/home-promo-videomark.jpg
       - heading: 組み込み Linux <br>プラットフォームへの<br>ブラウザーエンジン<br>移植
         description: >
