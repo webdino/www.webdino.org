@@ -5,21 +5,21 @@ command = "hugo"
 [context.production]
 
 [context.production.environment]
-HUGO_VERSION = "0.83.1"
+HUGO_VERSION = "0.107.0"
 HUGO_ENV = "production"
 
 [context.deploy-preview]
 command = "hugo --buildFuture"
 
 [context.deploy-preview.environment]
-HUGO_VERSION = "0.83.1"
+HUGO_VERSION = "0.107.0"
 HUGO_ENV = "production"
 
 [context.branch-deploy]
 command = "hugo --buildFuture"
 
 [context.branch-deploy.environment]
-HUGO_VERSION = "0.83.1"
+HUGO_VERSION = "0.107.0"
 HUGO_ENV = "production"
 
 # references:
