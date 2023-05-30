@@ -8,7 +8,7 @@
   <author>
     <name>{{ $.Site.Data.partials.publisher.name }}</name>
   </author>
-  <link rel="self" href="{{ $.Site.RSSLink }}"/>
+  <link rel="self" href="{{ with .OutputFormats.Get "RSS" }}{{ .Permalink }}{{ end }}"/>
   <link rel="alternate" href="{{ $.Site.BaseURL }}"/>
   <icon>{{ $.Site.BaseURL }}assets/images/template/favicon.png</icon>
   <logo>{{ $.Site.BaseURL }}assets/images/template/ogp.png</logo>

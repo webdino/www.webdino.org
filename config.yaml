@@ -13,8 +13,6 @@ permalinks:
 taxonomies:
   author: authors
   tag: tags
-disableKinds:
-  - taxonomyTerm
 outputs:
   home:
     - HTML

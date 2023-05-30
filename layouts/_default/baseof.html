@@ -15,7 +15,7 @@
     <meta property="og:title" content="{{ block "og:title" . }}{{ .Title | replaceRE "<br>" "" }}{{ end }}">
     <meta property="og:image" content="{{ $.Site.BaseURL }}{{ if isset .Params "image" }}{{ replaceRE "^/" "" .Params.image }}{{ else }}assets/images/template/ogp.png{{ end }}">
     <meta property="og:description" content="{{ if .Description }}{{ .Description | replaceRE "<br>" "" }}{{ else }}{{ .Summary }}{{ end }}">
-    <link rel="alternate" type="application/rss+xml" href="{{ $.Site.RSSLink | relURL }}">
+    <link rel="alternate" type="application/rss+xml" href="{{ with .OutputFormats.Get "RSS" }}{{ .RelPermalink }}{{ end }}">
     <link rel="canonical" hreflang="ja" href="{{ .Permalink }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
