@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html lang="{{ $.Site.LanguageCode }}">
   <head>
+{{ partial "google-analytics.html" . }}
     <meta charset="UTF-8">
     <meta name="description" content="{{ if .Description }}{{ .Description | replaceRE "<br>" "" }}{{ else }}{{ .Summary }}{{ end }}">
     <meta name="viewport" content="width=device-width, user-scalable=false">
