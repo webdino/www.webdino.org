@@ -1,7 +1,7 @@
 # https://docs.netlify.com/routing/headers/
 
 /*
-  Content-Security-Policy: default-src 'none'; style-src 'unsafe-inline' 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com/; img-src 'self' https://*.cloudfront.net/ https://*.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com; script-src 'self' https://*.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com; connect-src 'self' https://*.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com; form-action 'self'; frame-src https://www.google.com https://www.slideshare.net https://www.youtube-nocookie.com; frame-ancestors 'none'; base-uri 'none';
+  Content-Security-Policy: default-src 'none'; style-src 'unsafe-inline' 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com/; img-src 'self' https://*.cloudfront.net/ https://*.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com; script-src 'unsafe-inline' 'self' https://*.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com; connect-src 'self' https://*.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com; form-action 'self'; frame-src https://www.google.com https://www.slideshare.net https://www.youtube-nocookie.com; frame-ancestors 'none'; base-uri 'none';
   Strict-Transport-Security: max-age=63072000
   Referrer-Policy: same-origin
   X-Content-Type-Options: nosniff
