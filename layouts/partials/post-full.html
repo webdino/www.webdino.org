@@ -1,7 +1,12 @@
-<article class="post box{{ if eq .Params.layout "wide" }} wide{{ end }}" itemscope itemtype="http://schema.org/BlogPosting">
+<article class="post box{{ if eq .Params.layout "wide" }} wide{{ end }}" itemscope itemtype="http://schema.org/Article">
   <meta itemprop="mainEntityOfPage" content="{{ .Permalink }}">
   <header>
-    <h1 itemprop="headline">{{ .Title }}</h1>
+    <hgroup>
+      <h1 itemprop="headline">{{ .Title }}</h1>
+      {{- if .Params.Subtitle }}
+        <h2 itemprop="alternativeHeadline">{{ .Params.Subtitle }}</h2>
+      {{- end }}
+    </hgroup>
     <time datetime="{{ .Date.Format "2006-01-02T15:04:05-07:00" }}" itemprop="datePublished">{{ .Date.Format "2006 年 1 月 2 日" }}</time>
     {{- if isset .Params "authors" }}{{ range first 1 .Params.authors }}{{ with (index $.Site.Data.authors .) }}
     <div itemprop="author" itemscope itemtype="http://schema.org/Person">

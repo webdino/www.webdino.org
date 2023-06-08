@@ -34,20 +34,11 @@
       </div>
     </div>
     <div class="inner row">
-      <div class="col s3">
+      <div class="col">
         {{- with $.Site.Data.partials.updates.news }}
         <section id="news">
           <footer>
             <p class="cta-outer"><a href="/updates/news/" class="cta"><span class="label">{{ .linklabel }}</span><span class="fas arrow-right" aria-hidden="true"></span></a></p>
-          </footer>
-        </section>
-        {{- end }}
-      </div>
-      <div class="col s3">
-        {{- with $.Site.Data.partials.updates.blog }}
-        <section id="news">
-          <footer>
-            <p class="cta-outer"><a href="/updates/blog/" class="cta"><span class="label">{{ .linklabel }}</span><span class="fas arrow-right" aria-hidden="true"></span></a></p>
           </footer>
         </section>
         {{- end }}

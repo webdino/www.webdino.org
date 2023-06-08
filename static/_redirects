@@ -1,3 +1,5 @@
 # netlify's redirect definition: https://www.netlify.com/docs/redirects/
 # Redirect default Netlify subdomain to primary domain
 https://webdino-org.netlify.com/*   https://www.webdino.org/:splat 301!
+# Redirect legacy blog post URLs
+/updates/blog/* /updates/news/:splat 301!

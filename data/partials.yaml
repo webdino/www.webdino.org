@@ -25,11 +25,6 @@ updates:
     subheading: DINO’s Footprints
   archive:
     heading: アーカイブ
-  blog:
-    backlinklabel: ブログトップへ戻る
-    heading: ブログ
-    linklabel: ブログ記事をすべて見る
-    subheading: Blog
   nav:
     next: 次の記事
     prev: 前の記事
@@ -49,7 +44,7 @@ updates:
         url: https://twitter.com/intent/tweet?url={url}&text={title}&via=WebDINO_jp
       - identifier: hatena-bookmark
         name: はてなブックマーク
-        url: http://b.hatena.ne.jp/append?{url}
+        url: https://b.hatena.ne.jp/append?{url}
   tags:
     heading: タグ
 promo:

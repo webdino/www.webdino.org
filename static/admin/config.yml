@@ -41,26 +41,6 @@ collections:
       - { name: description, label: 説明, widget: markdown, required: false }
     editor:
         preview: false
-  - name: blog
-    label: ブログ
-    label_singular: ブログ記事
-    create: true
-    folder: content/updates/blog
-    filter: { field: "type", value: "post" }
-    slug: "{{year}}{{month}}{{day}}{{hour}}{{minute}}"
-    fields:
-      - { name: type, label: タイプ, widget: hidden, default: post }
-      - { name: layout, label: レイアウト, widget: hidden, default: wide }
-      - { name: title, label: タイトル, widget: string }
-      - { name: date, label: 公開日, widget: datetime }
-      - { name: category, label: カテゴリ, widget: hidden, default: blog }
-      - { name: tags, label: "タグ (カンマ区切りで複数指定可)", widget: list }
-      - { name: authors, label: 著者 (カンマ区切りで複数指定可), widget: list }
-      - { name: image, label: カバー画像, widget: image, required: false }
-      - { name: summary, label: 要約, widget: text }
-      - { name: body, label: 本文, widget: markdown }
-    editor:
-        preview: true
   - name: news
     label: 新着情報
     label_singular: 新着情報記事
@@ -72,11 +52,21 @@ collections:
       - { name: type, label: タイプ, widget: hidden, default: post }
       - { name: layout, label: レイアウト, widget: hidden, default: wide }
       - { name: title, label: タイトル, widget: string }
+      - { name: subtitle, label: サブタイトル, widget: string, required: false }
       - { name: date, label: 公開日, widget: datetime }
       - { name: category, label: カテゴリ, widget: hidden, default: news }
-      - { name: tags, label: "タグ (カンマ区切りで複数指定可)", widget: list }
+      - name: tags
+        label: "タグ (カンマ区切りで複数指定可)"
+        widget: relation
+        collection: tags
+        value_field: title
+        search_fields: ['title', 'name']
+        display_fields: ['name']
+        multiple: true
+        options_length: 50
+      - { name: authors, label: 著者 (カンマ区切りで複数指定可), widget: list, required: false }
       - { name: image, label: カバー画像, widget: image, required: false }
-      - { name: summary, label: 要約, widget: text }
+      - { name: summary, label: 要約, widget: text, required: false }
       - { name: body, label: 本文, widget: markdown }
     editor:
         preview: true
@@ -399,17 +389,6 @@ collections:
           - { name: subtitle, label: サブタイトル, widget: string }
           - { name: description, label: 説明文, widget: text }
           - { name: contactdesc, label: 問い合わせ説明文 (上書き), widget: string, required: false }
-      - name: blog
-        label: /updates/blog/ ブログ
-        file: content/updates/blog/_index.md
-        fields:
-          - { name: type, label: タイプ, widget: hidden, default: updates }
-          - { name: layout, label: レイアウト, widget: hidden, default: blog }
-          - { name: title, label: ページタイトル, widget: string }
-          - { name: linktitle, label: リンクタイトル, widget: string }
-          - { name: subtitle, label: サブタイトル, widget: string }
-          - { name: description, label: 説明文, widget: text }
-          - { name: contactdesc, label: 問い合わせ説明文 (上書き), widget: string, required: false }
       - name: news
         label: /updates/news/ 新着情報
         file: content/updates/news/_index.md
@@ -508,12 +487,6 @@ collections:
               { name: url, label: URL, widget: string },
             ]}
           - { name: updates, label: ディノの足あと, widget: object, fields: [
-              { name: blog, label: ブログ, widget: object, fields: [
-                { name: heading, label: 見出し, widget: string },
-                { name: subheading, label: サブ見出し, widget: string },
-                { name: linklabel, label: リンクラベル, widget: string },
-                { name: backlinklabel, label: 戻るリンクラベル, widget: string },
-              ]},
               { name: news, label: 新着情報, widget: object, fields: [
                 { name: heading, label: 見出し, widget: string },
                 { name: subheading, label: サブ見出し, widget: string },

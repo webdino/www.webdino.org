@@ -3,9 +3,11 @@
     overflow: hidden;
   }
 
-  article.post h1 {
+  article.post header h1,
+  article.post header h2 {
     margin: 0 0 16px;
     text-align: left;
+    line-height: 1.3;
     letter-spacing: -.05ex;
   }
 
@@ -155,36 +157,6 @@
 
   article.post figure.featured img {
     width: 100%;
-  }
-
-  article.post header.release {
-    overflow: visible;
-    margin: 4rem 0;
-    border-width: 4px 0;
-    border-style: solid;
-    border-style: solid;
-  }
-
-  article.post header.release::before {
-    margin: -3rem 0 3rem;
-    display: block;
-    content: "報道関係者各位";
-  }
-
-  article.post header.release h1 {
-    margin: 2rem 0;
-    text-align: center;
-  }
-
-  article.post header.release h2 {
-    margin: 2rem;
-    text-align: center;
-  }
-
-  article.post header.release .lead {
-    margin: 2rem;
-    font-size: 1.25rem;
-    text-align: center;
   }
 
   article.post h2,
