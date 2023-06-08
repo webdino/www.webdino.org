@@ -735,6 +735,11 @@
     margin: -16px -16px 0;
   }
 
+  article.summary figure img {
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+  }
+
   article.summary time {
     display: block;
     color: #858585;
