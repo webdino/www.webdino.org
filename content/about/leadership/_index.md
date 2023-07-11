@@ -43,7 +43,7 @@ leadership:
       members:
         - image: /assets/uploads/joi-ito-photo-2022.jpg
           name: 伊藤 穰一
-          title: 千葉工業大学変革センター<br>センター長
+          title: 千葉工業大学<br>学長
         - image: /assets/uploads/kita-1-.jpg
           name: 喜多 伸夫
           title: サイオス株式会社<br>代表取締役社長
@@ -64,7 +64,7 @@ leadership:
       members:
         - image: /assets/uploads/murai-1-.jpg
           name: 村井 純
-          title: 慶應義塾大学 教授
+          title: 慶應義塾大学<br>教授
       subheading: Advisor
     - heading: フェロー
       members:
