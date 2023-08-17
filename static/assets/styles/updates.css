@@ -152,7 +152,6 @@
     justify-content: center;
     overflow: hidden;
     margin: 16px -16px;
-    max-height: 720px;
   }
 
   article.post figure.featured img {
@@ -234,6 +233,15 @@
   article.post blockquote > :last-child,
   article.post [role="note"] > :last-child {
     margin-bottom: 0;
+  }
+
+  article.post iframe[src^="https://www.youtube-nocookie.com/"] {
+    display: block;
+    margin: 1rem auto;
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+    aspect-ratio: 16 / 9;
   }
 
   article.post .footnotes {
