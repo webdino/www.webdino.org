@@ -3,7 +3,6 @@
 <!DOCTYPE html>
 <html lang="{{ $.Site.LanguageCode }}">
   <head>
-{{ partial "google-analytics.html" . }}
     <meta charset="UTF-8">
     <meta name="description" content="{{ if .Description }}{{ .Description | replaceRE "<br>" "" }}{{ else }}{{ .Summary }}{{ end }}">
     <meta name="viewport" content="width=device-width, user-scalable=false">
@@ -20,12 +19,20 @@
     <link rel="canonical" hreflang="ja" href="{{ .Permalink }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap">
-    <link rel="stylesheet" href="{{ (resources.Get "/assets/styles/base.css" | minify | fingerprint).RelPermalink }}">
-    <link rel="stylesheet" href="{{ (resources.Get (printf "/assets/styles/%s.css" ($.Scratch.Get "style")) | minify | fingerprint).RelPermalink }}">
+    {{ with (resources.Get "/assets/styles/base.css" | minify | fingerprint) }}
+      <link rel="preload" as="style" href="{{ .RelPermalink }}">
+      <link rel="stylesheet" href="{{ .RelPermalink }}">
+    {{ end }}
+    {{ with (resources.Get (printf "/assets/styles/%s.css" ($.Scratch.Get "style")) | minify | fingerprint) }}
+      <link rel="preload" as="style" href="{{ .RelPermalink }}">
+      <link rel="stylesheet" href="{{ .RelPermalink }}">
+    {{ end }}
     <link rel="icon" type="image/png" href="/assets/images/template/favicon.png">
     <link rel="apple-touch-icon" href="/assets/images/template/apple-touch-icon.png">
     <title>{{ block "title" . }}{{ .Title | replaceRE "<br>" "" }} | {{ $.Site.Title }}{{ end }}</title>
+{{ partial "google-analytics.html" . }}
   </head>
   <body data-section="{{ if eq .Section "tags" }}updates{{ else }}{{ .Params.type }}{{ end }}" data-page="{{ if eq .Section "tags" }}tags{{ else }}{{ .Params.layout }}{{ end }}">
 {{ partial "header.html" . }}

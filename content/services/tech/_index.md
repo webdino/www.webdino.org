@@ -84,7 +84,7 @@ solutions:
 
 
           そこで、YouTube を始めとした動画配信サービスを実際にユーザーが利用する際の品質データを分析・公開し、ネットワーク資源の有効活用と品質向上に役立てる調査研究プロジェクト「[Web VideoMark](https://videomark.webdino.org/)」を実施しています。
-        image: /assets/uploads/home-promo-videomark.jpg
+        image: /assets/uploads/home-promo-videomark.webp
       - heading: 組み込み Linux <br>プラットフォームへの<br>ブラウザーエンジン<br>移植
         description: >
           HTML5 以降アプリケーションプラットフォームとして発展を続けるブラウザーエンジンは、PC
@@ -93,6 +93,6 @@ solutions:
 
 
           組み込み環境で HTML5 を利用したいという需要に応えられるよう、弊社では「[Gecko Embedded](https://github.com/webdino/gecko-embedded/wiki)」プロジェクトにて Firefox のブラウザーエンジン Gecko をルネサスエレクトロニクスの産業用プロセッサー「RZ/G」シリーズに移植しています。
-        image: /assets/uploads/home-promo-gecko.jpg
+        image: /assets/uploads/home-promo-gecko.webp
 contactdesc: 技術開発やコンサルティングに関するご依頼・ご相談は、以下リンク先のお問い合わせフォームよりお願いします。
 ---

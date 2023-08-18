@@ -448,19 +448,19 @@
   }
 
   #hero-background-1 {
-    background-image: url(/assets/images/home/hero-background-1@2x.jpg);
+    background-image: url(/assets/images/home/hero-background-1@2x.webp);
   }
 
   #hero-background-2 {
-    background-image: url(/assets/images/home/hero-background-2@2x.jpg);
+    background-image: url(/assets/images/home/hero-background-2@2x.webp);
   }
 
   #hero-background-3 {
-    background-image: url(/assets/images/home/hero-background-3@2x.jpg);
+    background-image: url(/assets/images/home/hero-background-3@2x.webp);
   }
 
   #hero-background-4 {
-    background-image: url(/assets/images/home/hero-background-4@2x.jpg);
+    background-image: url(/assets/images/home/hero-background-4@2x.webp);
   }
 
   .hero-text.large {
@@ -470,19 +470,19 @@
 
 @media screen and (max-width: 1023px) {
   #hero-background-1 {
-    background-image: url(/assets/images/home/hero-background-1.jpg);
+    background-image: url(/assets/images/home/hero-background-1.webp);
   }
 
   #hero-background-2 {
-    background-image: url(/assets/images/home/hero-background-2.jpg);
+    background-image: url(/assets/images/home/hero-background-2.webp);
   }
 
   #hero-background-3 {
-    background-image: url(/assets/images/home/hero-background-3.jpg);
+    background-image: url(/assets/images/home/hero-background-3.webp);
   }
 
   #hero-background-4 {
-    background-image: url(/assets/images/home/hero-background-4.jpg);
+    background-image: url(/assets/images/home/hero-background-4.webp);
   }
 }
 
