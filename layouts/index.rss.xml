@@ -1,7 +1,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>{{ $.Site.BaseURL }}</id>
   {{- range where $.Site.Sections "Section" "updates" }}
-  <title>{{ .Title | plainify }}</title>
+  <title>{{ .Title | plainify | replaceRE "\n" "" }}</title>
   <subtitle>{{ .Description | plainify }}</subtitle>
   {{- end }}
   <updated>{{ .Date.Format "2006-01-02T15:04:05-07:00" | safeHTML }}</updated>
@@ -23,11 +23,8 @@
       <name>{{ .name }}</name>
     </author>
     {{- end }}{{ end }}{{ end }}
-    <content type="html">{{ "<![CDATA[" | safeHTML }}{{ .Content | replaceRE "\n" "" | safeHTML }}{{ "]]>" | safeHTML }}</content>
+    <content type="html">{{ "<![CDATA[" | safeHTML }}{{ .Content | replaceRE "\n" "" | replaceRE "srcset=\".+?\"" "" | safeHTML }}{{ "]]>" | safeHTML }}</content>
     <link rel="alternate" href="{{ .Permalink }}"/>
-    {{- if isset .Params "tags" }}{{ range .Params.tags }}{{ with (index $.Site.Data.tags .) }}
-    <category term="{{ .title }}" label="{{ .name }}"/>
-    {{- end }}{{ end }}{{ end }}
   </entry>
   {{- end }}
 </feed>
