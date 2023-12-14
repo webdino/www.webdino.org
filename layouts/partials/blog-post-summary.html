@@ -10,7 +10,7 @@
       {{- end }}
     </figure>
     <header>
-      <h3 itemprop="headline">{{ .Title }}</h3>
+      <h3 itemprop="headline">{{ partial "headline.html" . }}</h3>
       <time datetime="{{ .Date.Format "2006-01-02T15:04:05-07:00" }}" itemprop="datePublished">{{ .Date.Format "1 月 2 日" }}</time>
       {{- if isset .Params "authors" }}{{ range first 1 .Params.authors }}{{ with (index $.Site.Data.authors .) }}
       <div itemprop="author" itemscope itemtype="http://schema.org/Person">

@@ -2,7 +2,7 @@
   <meta itemprop="mainEntityOfPage" content="{{ .Permalink }}">
   <header>
     <hgroup>
-      <h1 itemprop="headline">{{ .Title }}</h1>
+      <h1 itemprop="headline">{{ partial "headline.html" . }}</h1>
       {{- if .Params.Subtitle }}
         <h2 itemprop="alternativeHeadline">{{ .Params.Subtitle }}</h2>
       {{- end }}

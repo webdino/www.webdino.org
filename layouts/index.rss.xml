@@ -19,7 +19,7 @@
   {{- range $.Site.RegularPages }}
   <entry>
     <id>{{ .Permalink }}</id>
-    <title>{{ .Title | plainify }}</title>
+    <title>{{ partial "headline.html" . }}</title>
     <updated>{{ .Date.Format "2006-01-02T15:04:05-07:00" | safeHTML }}</updated>
     {{- if isset .Params "authors" }}{{ range .Params.authors }}{{ with (index $.Site.Data.authors .) }}
     <author>
