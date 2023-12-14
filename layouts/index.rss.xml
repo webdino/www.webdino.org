@@ -1,4 +1,4 @@
-<feed xmlns="http://www.w3.org/2005/Atom">
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:webfeeds="http://webfeeds.org/rss/1.0">
   <id>{{ $.Site.BaseURL }}</id>
   {{- range where $.Site.Sections "Section" "updates" }}
   <title>{{ .Title | plainify | replaceRE "\n" "" }}</title>
@@ -11,7 +11,10 @@
   <link rel="self" href="{{ with .OutputFormats.Get "RSS" }}{{ .Permalink }}{{ end }}"/>
   <link rel="alternate" href="{{ $.Site.BaseURL }}"/>
   <icon>{{ $.Site.BaseURL }}assets/images/template/favicon.png</icon>
-  <logo>{{ $.Site.BaseURL }}assets/images/template/ogp.png</logo>
+  <logo>{{ $.Site.BaseURL }}assets/images/template/apple-touch-icon.png</logo>
+  <webfeeds:icon>{{ $.Site.BaseURL }}assets/images/template/apple-touch-icon.png</webfeeds:icon>
+  <webfeeds:cover image="{{ $.Site.BaseURL }}assets/images/updates/placeholder.png" />
+  <webfeeds:accentColor>A51D3C</webfeeds:accentColor>
   <rights>Copyright © {{ now.Format "2006" }} {{ $.Site.Copyright }}</rights>
   {{- range $.Site.RegularPages }}
   <entry>
@@ -23,7 +26,17 @@
       <name>{{ .name }}</name>
     </author>
     {{- end }}{{ end }}{{ end }}
-    <content type="html">{{ "<![CDATA[" | safeHTML }}{{ .Content | replaceRE "\n" "" | replaceRE "srcset=\".+?\"" "" | safeHTML }}{{ "]]>" | safeHTML }}</content>
+    <content type="html">
+      {{- "<![CDATA[" | safeHTML -}}
+      {{- if .Params.image -}}
+        {{- $image := (resources.Get .Params.image).Fit "1280x720" -}}
+        <img src="{{ $image.Permalink }}" alt="" class="webfeedsFeaturedVisual" />
+      {{- else -}}
+        <img src="{{ $.Site.BaseURL }}assets/images/updates/placeholder.png" alt="" class="webfeedsFeaturedVisual" />
+      {{- end -}}
+      {{- .Content | replaceRE "\n" "" | replaceRE "srcset=\".+?\"" "" | safeHTML -}}
+      {{- "]]>" | safeHTML -}}
+    </content>
     <link rel="alternate" href="{{ .Permalink }}"/>
   </entry>
   {{- end }}
