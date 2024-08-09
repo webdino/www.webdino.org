@@ -36,40 +36,46 @@ window.addEventListener('DOMContentLoaded', function () {
    * @see https://www.netlify.com/docs/form-handling/#ajax-form-submissions
    */
   function activate_contact_form() {
-    var $form = document.querySelector('form[name="contact"]');
+    const $form = document.querySelector('form[name="contact"]');
 
     if (!$form) {
       return;
     }
 
-    $form.addEventListener('submit', function (event) {
+    $form.querySelector('a[href="/privacy/"]')?.setAttribute('target', '_blank');
+
+    $form.addEventListener('submit', async (event) => {
       event.preventDefault();
 
-      var data = [];
-      var xhr = new XMLHttpRequest();
-      var $main = $form.querySelector('.main');
-      var $submit = $form.querySelector('.submit');
-      var $thanks = $form.querySelector('.thanks');
-      var $error = $form.querySelector('.error');
-
+      const formData = new FormData($form);
+      const $main = $form.querySelector('.main');
+      const $submit = $form.querySelector('.submit');
+      const $thanks = $form.querySelector('.thanks');
+      const $error = $form.querySelector('.error');
+      
       $submit.querySelector('button').disabled = true;
 
-      // Use an old-school way for IE
-      for (var i = 0, elements = $form.querySelectorAll('[name]'); i < elements.length; i++) {
-        if (elements[i].name === 'privacy') {
-          continue;
+      try {
+        const response = await fetch($form.action, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams(formData).toString(),
+        });
+
+        if (response.ok) {
+          $thanks.hidden = false;
+          $thanks.focus();
+        } else {
+          $error.hidden = false;
+          $error.focus();
         }
-
-        data.push([encodeURIComponent(elements[i].name), encodeURIComponent(elements[i].value)].join('='));
+      } catch {
+        $error.hidden = false;
+        $error.focus();
+      } finally {
+        $main.hidden = true;
+        $submit.hidden = true;
       }
-
-      xhr.addEventListener('load', function () { $thanks.hidden = false; $thanks.focus(); });
-      xhr.addEventListener('error', function () { $error.hidden = false; $error.focus(); });
-      xhr.addEventListener('abort', function () { $error.hidden = false; $error.focus(); });
-      xhr.addEventListener('loadend', function () { $main.hidden = $submit.hidden = true; });
-      xhr.open('POST', $form.action);
-      xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-      xhr.send(data.join('&'));
     });
   }
 

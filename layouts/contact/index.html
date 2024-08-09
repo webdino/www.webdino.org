@@ -14,7 +14,7 @@
     </div>
   </div>
   <div id="main-content">
-    <form name="contact" method="POST" action="/contact/" netlify netlify-honeypot="bot-field">
+    <form name="contact" method="POST" action="/contact/" data-netlify="true" netlify-honeypot="bot-field"　data-netlify-recaptcha="true">
       <div class="outer main">
         <div class="inner row">
           <div class="col">
@@ -40,6 +40,7 @@
       <div class="outer submit">
         <div class="inner row">
           <div class="col">
+            <div data-netlify-recaptcha="true"></div>
             {{- with .Params.submit }}
             <p><label><input type="checkbox" name="privacy" required> {{ .privacy | markdownify }}</label></p>
             <p class="field"><button type="submit"><span class="far paper-plane" aria-hidden="true"></span><strong>{{ .buttonlabel }}</strong></button></p>
