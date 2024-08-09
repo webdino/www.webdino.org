@@ -1,8 +1,9 @@
 # https://docs.netlify.com/routing/headers/
+# https://developers.google.com/recaptcha/docs/faq#im-using-content-security-policy-csp-on-my-website.-how-can-i-configure-it-to-work-with-recaptcha
 
 /*
   Cache-Control: max-age=0, must-revalidate, public
-  Content-Security-Policy: default-src 'none'; style-src 'unsafe-inline' 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com/; img-src 'self' https://*.cloudfront.net/ https://*.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com; script-src 'unsafe-inline' 'self' https://*.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com; connect-src 'self' https://*.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com; form-action 'self'; frame-src https://www.google.com https://www.slideshare.net https://www.youtube-nocookie.com; frame-ancestors 'none'; base-uri 'none';
+  Content-Security-Policy: default-src 'none'; style-src 'unsafe-inline' 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com/; img-src 'self' https://*.cloudfront.net/ https://*.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com; script-src 'unsafe-inline' 'self' https://*.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/; connect-src 'self' https://*.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com; form-action 'self'; frame-src https://www.google.com https://recaptcha.google.com/recaptcha/ https://www.slideshare.net https://www.youtube-nocookie.com; frame-ancestors 'none'; base-uri 'none';
   Strict-Transport-Security: max-age=63072000
   Referrer-Policy: same-origin
   X-Content-Type-Options: nosniff
