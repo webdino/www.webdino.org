@@ -10,9 +10,9 @@ contact:
   linklabel: お問い合わせ
 social:
   - identifier: twitter
-    name: Twitter
+    name: X (旧 Twitter)
     account: WebDINO_jp
-    url: https://twitter.com/WebDINO_jp
+    url: https://x.com/WebDINO_jp
   - identifier: facebook
     name: Facebook
     account: WebDINOJP
@@ -40,8 +40,8 @@ updates:
         name: Facebook
         url: https://www.facebook.com/sharer.php?u={url}
       - identifier: twitter
-        name: Twitter
-        url: https://twitter.com/intent/tweet?url={url}&text={title}&via=WebDINO_jp
+        name: X (旧 Twitter)
+        url: https://x.com/intent/tweet?url={url}&text={title}&via=WebDINO_jp
       - identifier: hatena-bookmark
         name: はてなブックマーク
         url: https://b.hatena.ne.jp/append?{url}

@@ -36,7 +36,7 @@
               <dl>
                 {{- if .jobTitle }}<dt>タイトル</dt><dd itemprop="jobTitle">{{ .jobTitle }}</li>{{ end }}
                 {{- if .description }}<dt>自己紹介</dt><dd itemprop="description">{{ .description }}</dd>{{ end }}
-                {{- if .twitter }}<dt>Twitter</dt><dd><a href="https://twitter.com/{{ .twitter }}" itemprop="sameAs">@{{ .twitter }}</a></dt>{{ end }}
+                {{- if .twitter }}<dt>X (旧 Twitter)</dt><dd><a href="https://x.com/{{ .twitter }}" itemprop="sameAs">@{{ .twitter }}</a></dt>{{ end }}
                 {{- if .facebook }}<dt>Facebook</dt><dd><a href="https://www.facebook.com/{{ .facebook }}" itemprop="sameAs">@{{ .facebook }}</a></dt>{{ end }}
                 {{- if .github }}<dt>GitHub</dt><dd><a href="https://github.com/{{ .github }}" itemprop="sameAs">@{{ .github }}</a></dt>{{ end }}
               </dl>

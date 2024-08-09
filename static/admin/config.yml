@@ -22,7 +22,7 @@ collections:
       - { name: title, label: ハンドルネーム (小文字英数字のみ), widget: string }
       - { name: name, label: 氏名 (日本語可), widget: string }
       - { name: jobTitle, label: 肩書, widget: string, required: false }
-      - { name: twitter, label: Twitter ID, widget: string, required: false }
+      - { name: twitter, label: X (旧 Twitter) ID, widget: string, required: false }
       - { name: facebook, label: Facebook ID, widget: string, required: false }
       - { name: github, label: GitHub ID, widget: string, required: false }
       - { name: image, label: 写真, widget: image, required: false }

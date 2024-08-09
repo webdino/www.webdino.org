@@ -300,15 +300,11 @@
   }
 
   article.post .share .facebook {
-    color: #3B55A5;
+    color: #0866FF;
   }
 
   article.post .share .twitter {
-    color: #059FF5;
-  }
-
-  article.post .share .twitter::before {
-    content: "\F081";
+    color: #000;
   }
 
   article.post .share .hatena-bookmark {
@@ -407,12 +403,12 @@
   .profile dt {
     float: left;
     clear: both;
-    width: 80px;
+    width: 120px;
     font-weight: bold;
   }
 
   .profile dd {
-    margin: 0 0 0 88px;
+    margin: 0 0 0 120px;
   }
 }
 

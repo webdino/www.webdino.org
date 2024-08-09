@@ -2,24 +2,21 @@
   font-family: FontAwesomeRegular;
   font-style: normal;
   font-weight: normal;
-  src: url("/assets/fonts/fa-regular-400.woff2?v=5.1") format("woff2"),
-       url("/assets/fonts/fa-regular-400.woff?v=5.1") format("woff");
+  src: url("/assets/fonts/fa-regular-400.woff2?v=6.6.0") format("woff2");
 }
 
 @font-face {
   font-family: FontAwesomeSolid;
   font-style: normal;
   font-weight: normal;
-  src: url("/assets/fonts/fa-solid-900.woff2?v=5.1") format("woff2"),
-       url("/assets/fonts/fa-solid-900.woff?v=5.1") format("woff");
+  src: url("/assets/fonts/fa-solid-900.woff2?v=6.6.0") format("woff2");
 }
 
 @font-face {
   font-family: FontAwesomeBrands;
   font-style: normal;
   font-weight: normal;
-  src: url("/assets/fonts/fa-brands-400.woff2?v=5.1") format("woff2"),
-       url("/assets/fonts/fa-brands-400.woff?v=5.1") format("woff");
+  src: url("/assets/fonts/fa-brands-400.woff2?v=6.6.0") format("woff2");
 }
 
 @media screen, print {
@@ -204,11 +201,11 @@
   }
 
   .fab.facebook::before {
-    content: "\F082";
+    content: "\F09A";
   }
 
   .fab.twitter::before {
-    content: "\F099";
+    content: "\E61B";
   }
 
   article.box header {
@@ -623,11 +620,11 @@
   }
 
   #footer nav.social .twitter * {
-    color: #1DA1F3 !important;
+    color: #000 !important;
   }
 
   #footer nav.social .facebook * {
-    color: #3b5998 !important;
+    color: #0866FF !important;
   }
 
   #footer nav.social .feed * {
