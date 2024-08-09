@@ -62,6 +62,11 @@
     resize: vertical;
   }
 
+  form[name="contact"] .submit .g-recaptcha {
+    margin: 0 auto;
+    width: fit-content;
+  }
+
   form[name="contact"] .submit button[type="submit"] {
     outline: 0;
     border: 0;
