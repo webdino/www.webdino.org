@@ -12,7 +12,7 @@
         </header>
         <figure>
           {{- range .Params.feature_images }}
-          <img src="{{ .src }}" alt="">
+          <img loading="lazy" src="{{ .src }}" alt="">
           {{- end }}
         </figure>
       </div>

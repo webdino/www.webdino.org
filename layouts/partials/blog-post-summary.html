@@ -4,9 +4,9 @@
       {{- if .Params.image}}
       {{- $image := (resources.Get .Params.image).Fit "640x360" }}
       {{- $image_2x := (resources.Get .Params.image).Fit "1280x720" }}
-      <img src="{{ $image.RelPermalink }}" srcset="{{ $image.RelPermalink }}, {{ $image_2x.RelPermalink }} 2x" alt="" itemprop="image">
+      <img loading="lazy" src="{{ $image.RelPermalink }}" srcset="{{ $image.RelPermalink }}, {{ $image_2x.RelPermalink }} 2x" alt="" itemprop="image">
       {{- else }}
-      <img src="/assets/images/updates/placeholder.png" alt="" itemprop="image">
+      <img loading="lazy" src="/assets/images/updates/placeholder.png" alt="" itemprop="image">
       {{- end }}
     </figure>
     <header>
@@ -14,7 +14,7 @@
       <time datetime="{{ .Date.Format "2006-01-02T15:04:05-07:00" }}" itemprop="datePublished">{{ .Date.Format "1 月 2 日" }}</time>
       {{- if isset .Params "authors" }}{{ range first 1 .Params.authors }}{{ with (index $.Site.Data.authors .) }}
       <div itemprop="author" itemscope itemtype="http://schema.org/Person">
-        {{- if isset . "image" }}<span class="avatar"><img src="{{ .image }}" alt="" itemprop="image"></span>{{ end }}
+        {{- if isset . "image" }}<span class="avatar"><img loading="lazy" src="{{ .image }}" alt="" itemprop="image"></span>{{ end }}
         <span itemprop="name">{{ .name }}</span>
       </div>
       {{- end }}{{ end }}{{ end }}

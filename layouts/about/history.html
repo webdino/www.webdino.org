@@ -52,7 +52,7 @@
               <p>{{ .description }}</p>
               {{- with .image }}
               <figure>
-                <img src="{{ . }}" width="400" height="300" alt="">
+                <img loading="lazy" src="{{ . }}" width="400" height="300" alt="">
               </figure>
               {{- end }}
             </section>

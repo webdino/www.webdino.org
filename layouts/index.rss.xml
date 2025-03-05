@@ -30,9 +30,9 @@
       {{- "<![CDATA[" | safeHTML -}}
       {{- if .Params.image -}}
         {{- $image := (resources.Get .Params.image).Fit "1280x720" -}}
-        <img src="{{ $image.Permalink }}" alt="" class="webfeedsFeaturedVisual" />
+        <img loading="lazy" src="{{ $image.Permalink }}" alt="" class="webfeedsFeaturedVisual" />
       {{- else -}}
-        <img src="{{ $.Site.BaseURL }}assets/images/updates/placeholder.png" alt="" class="webfeedsFeaturedVisual" />
+        <img loading="lazy" src="{{ $.Site.BaseURL }}assets/images/updates/placeholder.png" alt="" class="webfeedsFeaturedVisual" />
       {{- end -}}
       {{- .Content | replaceRE "\n" "" | replaceRE "srcset=\".+?\"" "" | safeHTML -}}
       {{- "]]>" | safeHTML -}}

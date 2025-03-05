@@ -11,7 +11,7 @@
     {{- if isset .Params "authors" }}{{ range first 1 .Params.authors }}{{ with (index $.Site.Data.authors .) }}
     <div itemprop="author" itemscope itemtype="http://schema.org/Person">
       <a href="/updates/author/{{ .title }}/" itemprop="url">
-        {{- if isset . "image" }}<span class="avatar"><img src="{{ .image }}" alt="" itemprop="image"></span>{{ end }}
+        {{- if isset . "image" }}<span class="avatar"><img loading="lazy" src="{{ .image }}" alt="" itemprop="image"></span>{{ end }}
         <span itemprop="name">{{ .name }}</span>
       </a>
     </div>
@@ -24,7 +24,7 @@
   <figure class="featured">
     {{- $image := (resources.Get .Params.image).Fit "1280x720" }}
     {{- $image_2x := (resources.Get .Params.image).Fit "2560x1440" }}
-    <img src="{{ $image.RelPermalink }}" srcset="{{ $image.RelPermalink }}, {{ $image_2x.RelPermalink }} 2x" alt="" itemprop="image">
+    <img loading="lazy" src="{{ $image.RelPermalink }}" srcset="{{ $image.RelPermalink }}, {{ $image_2x.RelPermalink }} 2x" alt="" itemprop="image">
   </figure>
   {{- end }}
   <div itemprop="articleBody">

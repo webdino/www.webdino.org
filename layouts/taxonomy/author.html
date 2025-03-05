@@ -30,7 +30,7 @@
             {{- with (index $.Site.Data.authors (.Title | lower)) }}
             <header class="profile" itemscope itemtype="http://schema.org/Person">
               <div class="avatar">
-                <img src="{{ .image }}" alt="" itemprop="image">
+                <img loading="lazy" src="{{ .image }}" alt="" itemprop="image">
               </div>
               <h2 itemprop="name" aria-level="3">{{ .name }}</h2>
               <dl>

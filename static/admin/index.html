@@ -22,7 +22,7 @@
         fromBlock: ([, src, caption]) => ({ src, caption }),
         toBlock: ({ src, caption }) => `{{< image src="${src}" caption="${caption}" >}}`,
         toPreview: ({ src, caption }) => (src ? `
-          <figure><img src="${src}" alt=""><figcaption>${caption || ''}</figcaption></figure>
+          <figure><img loading="lazy" src="${src}" alt=""><figcaption>${caption || ''}</figcaption></figure>
         ` : ''),
       });
 

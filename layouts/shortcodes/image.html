@@ -1,3 +1,3 @@
 {{- $image := (resources.Get (.Get "src")).Fit "800x600" }}
 {{- $image_2x := (resources.Get (.Get "src")).Fit "1600x1200" }}
-<figure><img src="{{ $image.Permalink }}" srcset="{{ $image.RelPermalink }}, {{ $image_2x.RelPermalink }} 2x" alt=""><figcaption>{{ .Get "caption" }}</figcaption></figure>
+<figure><img loading="lazy" src="{{ $image.Permalink }}" srcset="{{ $image.RelPermalink }}, {{ $image_2x.RelPermalink }} 2x" alt=""><figcaption>{{ .Get "caption" }}</figcaption></figure>

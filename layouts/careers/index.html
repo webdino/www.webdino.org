@@ -13,7 +13,7 @@
         <figure>
           {{- range .Params.images }}
           <figure>
-            <img src="{{ .src }}" alt="">
+            <img loading="lazy" src="{{ .src }}" alt="">
             <figcaption>{{ .caption }}</figcaption>
           </figure>
           {{- end }}

@@ -32,7 +32,7 @@
         <div class="col s2">
           <section>
             <figure>
-              <img src="{{ .image }}" alt="">
+              <img loading="lazy" src="{{ .image }}" alt="">
             </figure>
             <div>
               <h3>{{ partial "heading.html" .heading }}</h3>
@@ -52,7 +52,7 @@
             <div class="content">
               {{- with .image }}
               <figure>
-                <img src="{{ . }}" alt="">
+                <img loading="lazy" src="{{ . }}" alt="">
               </figure>
               {{- end }}
               <div class="description">
