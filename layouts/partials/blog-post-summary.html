@@ -20,6 +20,6 @@
       {{- end }}{{ end }}{{ end }}
     </header>
     <meta itemprop="mainEntityOfPage" content="{{ .Permalink }}">
-    <p><span itemprop="description">{{ .Summary | truncate 80 "..." }}</span> <span class="more">続きを読む &raquo;</span></p>
+    <p><span itemprop="description">{{ .Summary | plainify | truncate 80 "..." }}</span> <span class="more">続きを読む &raquo;</span></p>
   </a>
 </article>
