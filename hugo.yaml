@@ -39,3 +39,6 @@ server:
         X-Content-Type-Options: nosniff
         X-Frame-Options: DENY
         X-XSS-Protection: 1; mode=block
+    - for: /admin/
+      values:
+        Content-Security-Policy: default-src 'none'; style-src 'unsafe-inline' 'self'; font-src 'self'; img-src 'self' blob:; script-src 'unsafe-inline' 'unsafe-eval' 'self' https://identity.netlify.com/ https://unpkg.com; connect-src 'self' http://localhost:8081
