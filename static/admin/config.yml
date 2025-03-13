@@ -132,7 +132,7 @@ collections:
                 { name: subheading, label: サブ見出し, widget: string },
                 { name: members, label: メンバー, widget: list, fields: [
                   { name: name, label: 名前, widget: string },
-                  { name: title, label: 肩書き, widget: string, required: false },
+                  { name: titles, label: 肩書き, widget: list, required: false },
                   { name: image, label: 画像, widget: image },
                 ]},
               ]}

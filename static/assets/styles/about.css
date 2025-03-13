@@ -32,6 +32,7 @@
 
   .member [itemprop="jobTitle"] {
     display: block;
+    margin-top: 4px;
     color: #5E697B;
     line-height: 1.5;
     text-align: center;

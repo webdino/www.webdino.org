@@ -37,42 +37,61 @@ leadership:
       members:
         - image: /assets/uploads/takita-2-.jpg
           name: 瀧田 佐登子
-          title: WebDINO Japan<br>代表理事
+          titles: 
+            - WebDINO Japan<br>代表理事
       subheading: Chairperson
     - heading: 理事
       members:
         - image: /assets/uploads/joi-ito-photo-2022.jpg
           name: 伊藤 穰一
-          title: 千葉工業大学<br>学長
+          titles: 
+            - 千葉工業大学<br>学長
         - image: /assets/uploads/kita-1-.jpg
           name: 喜多 伸夫
-          title: サイオス株式会社<br>代表取締役社長
+          titles: 
+            - サイオス株式会社<br>代表取締役社長
         - image: /assets/uploads/sunahara.jpg
           name: 砂原 秀樹
-          title: 慶應義塾大学大学院<br>メディアデザイン研究科 教授
+          titles: 
+            - 慶應義塾大学大学院<br>メディアデザイン研究科 教授
         - image: /assets/uploads/nakamura.jpg
           name: 中村 素典
-          title: 京都大学<br>情報環境機構 教授
+          titles: 
+            - 京都大学<br>情報環境機構 教授
       subheading: Directors
     - heading: 監事
       members:
         - image: /assets/uploads/suzuki-1-.jpg
           name: 鈴木 信行
-          title: 有限会社テクニカルアーツ<br>管理部 部長
+          titles: 
+            - 有限会社テクニカルアーツ<br>管理部 部長
       subheading: Auditor
     - heading: アドバイザー
       members:
         - image: /assets/uploads/murai-1-.jpg
           name: 村井 純
-          title: 慶應義塾大学<br>教授
+          titles: 
+            - 慶應義塾大学<br>教授
       subheading: Advisor
     - heading: フェロー
       members:
-        - image: /assets/uploads/masakazumuraoka.jpg
-          name: 村岡 正和
-          title: 株式会社BathTimeFish 代表<br>株式会社 神戸デジタル・ラボ<br>執行役員
         - image: /assets/uploads/kakehiyasuaki.jpg
           name: 筧 康明
-          title: 東京大学大学院<br>情報学環 教授
+          titles: 
+            - 東京大学大学院<br>情報学環 教授
+        - image: /assets/uploads/masao-goho.webp
+          name: 五寶 匡郎
+          titles: 
+            - コニカミノルタ株式会社<br>エキスパート
+            - 八洲物産株式会社<br>取締役 CIO
+        - image: /assets/uploads/satoru-takagi.webp
+          name: 高木 悟
+          titles: 
+            - KDDI株式会社<br>コア技術統括本部<br>シニアエキスパート
+        - image: /assets/uploads/masakazumuraoka.jpg
+          name: 村岡 正和
+          titles: 
+            - 株式会社 BathTimeFish 代表
+            - 株式会社 神戸デジタル・ラボ<br>執行役員
       subheading: Fellows
 ---

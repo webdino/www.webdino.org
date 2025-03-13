@@ -2,6 +2,8 @@
   <img loading="lazy" itemprop="image" src="{{ .image }}" width="160" height="160" alt="">
   <figcaption>
     <span itemprop="name">{{ .name }}</span>
-    <span itemprop="jobTitle">{{ partial "heading.html" .title }}</span>
+    {{- range .titles }}
+    <span itemprop="jobTitle">{{ partial "heading.html" . }}</span>
+    {{- end }}
   </figcaption>
 </figure>
