@@ -80,7 +80,7 @@ leadership:
           titles: 
             - 東京大学大学院<br>情報学環 教授
         - image: /assets/uploads/masao-goho.webp
-          name: 五寶 匡郎
+          name: 五寳 匡郎
           titles: 
             - コニカミノルタ株式会社<br>エキスパート
             - 八洲物産株式会社<br>取締役 CIO
