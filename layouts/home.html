@@ -29,7 +29,7 @@
     </div>
   </div>
   <div id="main-content">
-    {{- with $.Site.Data.partials.promo }}
+    {{- with hugo.Data.partials.promo }}
     <section id="promo" class="outer">
       <div class="inner">
         <div class="row header">
@@ -57,7 +57,7 @@
       </div>
     </section>
     {{- end }}
-    {{- with $.Site.Data.partials.updates.all }}
+    {{- with hugo.Data.partials.updates.all }}
     <section id="updates" class="outer">
       <div class="inner">
         <div class="row">

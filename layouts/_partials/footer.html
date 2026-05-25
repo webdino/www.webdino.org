@@ -6,7 +6,7 @@
           <div class="col s2">
             <div class="mobile" role="button" aria-label="メニューを閉じる"><span class="fas times" aria-hidden="true"></span></div>
             <header>
-              <h1><a href="/">{{ $.Site.Data.partials.publisher.name | safeHTML }}</a></h1>
+              <h1><a href="/">{{ hugo.Data.partials.publisher.name | safeHTML }}</a></h1>
             </header>
           </div>
           <div class="col s3">
@@ -32,7 +32,7 @@
           <div class="col s1">
             <nav class="social" aria-label="ソーシャルメディア">
               <ul>
-                {{- range $.Site.Data.partials.social }}
+                {{- range hugo.Data.partials.social }}
                 <li class="{{ .identifier }}"><a href="{{ .url | safeURL }}"><span class="fab {{ .identifier }}" aria-hidden="true"></span> <span>{{ .name }}</span></a></li>
                 {{- end }}
                 <li class="feed"><a href="/index.xml"><span class="fas rss" aria-hidden="true"></span> <span>フィード</span></a></li>

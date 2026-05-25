@@ -4,7 +4,7 @@ hasCJKLanguage: true
 title: WebDINO Japan
 copyright: WebDINO Japan
 baseURL: 'https://www.webdino.org/'
-languageCode: ja
+locale: ja
 assetDir: static
 timeout: '500s'
 permalinks:

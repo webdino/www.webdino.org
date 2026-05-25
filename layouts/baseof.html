@@ -1,13 +1,13 @@
 {{- block "style" . }}{{ $.Scratch.Set "style" .Section }}{{ end -}}
 
 <!DOCTYPE html>
-<html lang="{{ $.Site.LanguageCode }}">
+<html lang="{{ $.Site.Language.Locale }}">
   <head>
     <meta charset="UTF-8">
     <meta name="description" content="{{ if .Description }}{{ .Description | replaceRE "<br>" "" }}{{ else }}{{ .Summary | plainify }}{{ end }}">
     <meta name="viewport" content="width=device-width, user-scalable=false">
     <meta name="twitter:card" content="{{ if isset .Params "image" }}summary_large_image{{ else }}summary{{ end }}">
-    <meta name="twitter:site" content="@{{ range $.Site.Data.partials.social }}{{ if eq .identifier "twitter" }}{{ .account }}{{ end }}{{ end }}">
+    <meta name="twitter:site" content="@{{ range hugo.Data.partials.social }}{{ if eq .identifier "twitter" }}{{ .account }}{{ end }}{{ end }}">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="ja_JP">
     <meta property="og:site_name" content="{{ $.Site.Title }}">

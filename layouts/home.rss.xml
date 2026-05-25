@@ -6,7 +6,7 @@
   {{- end }}
   <updated>{{ .Date.Format "2006-01-02T15:04:05-07:00" | safeHTML }}</updated>
   <author>
-    <name>{{ $.Site.Data.partials.publisher.name }}</name>
+    <name>{{ hugo.Data.partials.publisher.name }}</name>
   </author>
   <link rel="self" href="{{ with .OutputFormats.Get "RSS" }}{{ .Permalink }}{{ end }}"/>
   <link rel="alternate" href="{{ $.Site.BaseURL }}"/>
@@ -21,7 +21,7 @@
     <id>{{ .Permalink }}</id>
     <title>{{ partial "headline.html" . }}</title>
     <updated>{{ .Date.Format "2006-01-02T15:04:05-07:00" | safeHTML }}</updated>
-    {{- if isset .Params "authors" }}{{ range .Params.authors }}{{ with (index $.Site.Data.authors .) }}
+    {{- if isset .Params "authors" }}{{ range .Params.authors }}{{ with (index hugo.Data.authors .) }}
     <author>
       <name>{{ .name }}</name>
     </author>
