@@ -28,6 +28,31 @@ concepts:
       技術・権利・知識などを公開し、誰もが自由にアクセス、利用、または改変できるようにすることで、多様な人々の協力により新たなイノベーションの種が生まれます。私たちは、ウェブやソフトウェアに限らず、幅広い分野にオープンの手法を応用することで、知識や技術、そしてコミュニティの発展を促進します。
     heading: オープン
     subheading: Openness
+overview:
+  heading: 基本情報
+  subheading: Overview
+  items:
+    - label: 法人名
+      value: 一般社団法人 WebDINO Japan
+    - label: 設立
+      value: 2004 年 7 月
+    - label: 代表者
+      value: 代表理事　瀧田 佐登子
+    - label: 事業内容
+      value: >-
+        ウェブによる相互接続環境の社会実装とオープンウェブプラットフォームの領域拡大を通じて、インターネットの環境基盤に貢献することを目指す様々な活動を行っています。
+ 
+        - ブラウザーやウェブ技術の導入支援や実装、コンサルティング
+
+        - 人材開発・イベントのプロデュース
+
+        - ウェブやオープンソースに関する普及活動、研究・教育活動、コミュニティ支援
+    - label: 所在地
+      value: 〒103-0006 東京都中央区日本橋富沢町 10-13 WORK EDITION NIHONBASHI 3F
+    - label: 加盟団体
+      value: >-
+        - [World Wide Web Consortium](https://www.w3.org/) (W3C)
+
+        - [Originator Profile 技術研究組合](https://originator-profile.org/ja-JP/) (OP-CIP)
 linklabel: 詳しく
 ---
-

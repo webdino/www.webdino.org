@@ -13,20 +13,49 @@
       </div>
     </div>
   </div>
-  <div id="main-content" class="outer">
-    <div id="concepts" class="inner row">
-      <div class="col">
-        {{- range .Params.concepts }}
-        <section>
-          <header>
-            <hgroup>
-              <h2><span><strong>{{ substr .subheading 0 1 }}</strong></span>{{ substr .subheading 1 }}</h2>
-              <h3 aria-level="2">{{ .heading }}</h3>
-            </hgroup>
-          </header>
-          <p>{{ .description }}</p>
-        </section>
-        {{- end }}
+  <div id="main-content">
+    <div id="concepts" class="outer">
+      <div class="inner row">
+        <div class="col">
+          {{- range .Params.concepts }}
+          <section>
+            <header>
+              <hgroup>
+                <h2><span><strong>{{ substr .subheading 0 1 }}</strong></span>{{ substr .subheading 1 }}</h2>
+                <h3 aria-level="2">{{ .heading }}</h3>
+              </hgroup>
+            </header>
+            <p>{{ .description }}</p>
+          </section>
+          {{- end }}
+        </div>
+      </div>
+    </div>
+    <div id="overview" class="outer">
+      <div class="inner row">
+        <div class="col">
+          {{- with .Params.overview }}
+          <section>
+            <header>
+              <hgroup>
+                <h2>{{ partial "heading.html" .heading }}</h2>
+                <h3 aria-level="2">{{ .subheading }}</h3>
+              </hgroup>
+              <span class="fas circle" aria-hidden="true"></span>
+            </header>
+            <table>
+              <tbody>
+                {{- range .items }}
+                <tr>
+                  <th>{{ .label }}</th>
+                  <td>{{ .value | markdownify }}</td>
+                </tr>
+                {{- end }}
+              </tbody>
+            </table>
+          </section>
+          {{- end }}
+        </div>
       </div>
     </div>
   </div>

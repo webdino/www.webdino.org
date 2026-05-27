@@ -185,6 +185,48 @@
     margin: 32px;
   }
 
+  #overview {
+    background-color: #F3F5F8;
+  }
+
+  #overview .inner {
+    position: relative;
+    margin: 48px auto;
+  }
+
+  #overview h2 {
+    text-align: center;
+  }
+
+  #overview table {
+    margin: 32px auto 0;
+    border: 1px solid #CCC;
+    border-collapse: collapse;
+    max-width: 800px;
+    background-color: #FFF;
+  }
+
+  #overview th,
+  #overview td {
+    border: 1px solid #CCC;
+    padding: 8px 16px;
+  }
+
+  #overview th {
+    white-space: nowrap;
+  }
+
+  #overview p,
+  #overview ul,
+  #overview li {
+    margin-block: 0;
+  }
+
+  #overview p:not(:first-child),
+  #overview ul:not(:first-child) {
+    margin-top: 16px;
+  }
+
   #history dl {
     margin: 48px auto;
     max-width: 800px;
