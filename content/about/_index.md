@@ -53,6 +53,6 @@ overview:
       value: >-
         - [World Wide Web Consortium](https://www.w3.org/) (W3C)
 
-        - [Originator Profile 技術研究組合](https://originator-profile.org/ja-JP/) (OP-CIP)
+        - [Originator Profile 技術研究組合](https://originator-profile.org/ja-JP/)
 linklabel: 詳しく
 ---
