@@ -103,6 +103,14 @@ collections:
               { name: subheading, label: サブ見出し, widget: string },
               { name: description, label: 説明文, widget: text },
             ]}
+          - { name: overview, label: 基本情報, widget: object, fields: [
+              { name: heading, label: 見出し, widget: string },
+              { name: subheading, label: サブ見出し, widget: string },
+              { name: items, label: 項目, widget: list, fields: [
+                { name: label, label: ラベル, widget: string },
+                { name: value, label: 値, widget: markdown },
+              ]}
+            ]}
           - { name: linklabel, label: リンクラベル, widget: string }
           - { name: contactdesc, label: 問い合わせ説明文 (上書き), widget: string, required: false }
       - name: leadership

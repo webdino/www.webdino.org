@@ -53,7 +53,7 @@ leadership:
         - image: /assets/uploads/sunahara.jpg
           name: 砂原 秀樹
           titles: 
-            - 慶應義塾大学大学院<br>メディアデザイン研究科 教授
+            - 麗澤大学<br>工学部 教授
         - image: /assets/uploads/nakamura.jpg
           name: 中村 素典
           titles: 
