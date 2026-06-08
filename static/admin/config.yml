@@ -302,6 +302,79 @@ collections:
               { name: id, label: ID, widget: string },
             ]}
           - { name: contactdesc, label: 問い合わせ説明文 (上書き), widget: string, required: false }
+      - name: fullstack
+        label: /services/human/fullstack/ フルスタック研修プログラム
+        file: content/services/human/fullstack/_index.md
+        fields:
+          - { name: type, label: タイプ, widget: hidden, default: services }
+          - { name: layout, label: レイアウト, widget: hidden, default: fullstack }
+          - { name: title, label: ページタイトル, widget: string }
+          - { name: linktitle, label: リンクタイトル, widget: string }
+          - { name: subtitle, label: サブタイトル, widget: string }
+          - { name: description, label: 説明文, widget: text }
+          - { name: heroImage, label: ヒーロー画像, widget: image }
+          - { name: features, label: 特徴, widget: object, fields: [
+              { name: heading, label: 見出し, widget: string },
+              { name: subheading, label: サブ見出し, widget: string },
+              { name: items, label: 項目, widget: list, fields: [
+                { name: icon, label: アイコン, widget: string },
+                { name: description, label: 説明文, widget: text },
+              ]},
+            ]}
+          - { name: outcomes, label: 期待される効果, widget: object, fields: [
+              { name: heading, label: 見出し, widget: string },
+              { name: subheading, label: サブ見出し, widget: string },
+              { name: items, label: 項目, widget: list, fields: [
+                { name: icon, label: アイコン, widget: string },
+                { name: description, label: 説明文, widget: text },
+              ]},
+            ]}
+          - { name: support, label: サポート体制, widget: object, fields: [
+              { name: heading, label: 見出し, widget: string },
+              { name: subheading, label: サブ見出し, widget: string },
+              { name: items, label: 項目, widget: list, fields: [
+                { name: icon, label: アイコン, widget: string },
+                { name: description, label: 説明文, widget: text },
+              ]},
+            ]}
+          - { name: curriculum, label: カリキュラム, widget: object, fields: [
+              { name: heading, label: 見出し, widget: string },
+              { name: subheading, label: サブ見出し, widget: string },
+              { name: description, label: 説明文, widget: text },
+              { name: items, label: 日程, widget: list, fields: [
+                { name: day, label: 日, widget: string },
+                { name: title, label: タイトル, widget: string },
+                { name: description, label: 説明文, widget: text },
+              ]},
+            ]}
+          - { name: instructors, label: 講師陣, widget: object, fields: [
+              { name: heading, label: 見出し, widget: string },
+              { name: subheading, label: サブ見出し, widget: string },
+              { name: description, label: 説明文, widget: text },
+              { name: internal, label: 専任講師, widget: object, fields: [
+                { name: heading, label: 見出し, widget: string },
+                { name: people, label: 講師, widget: list, fields: [
+                  { name: name, label: 名前, widget: string },
+                  { name: title, label: 肩書, widget: string },
+                  { name: image, label: 画像, widget: image },
+                ]},
+              ]},
+              { name: external, label: 外部講師, widget: object, fields: [
+                { name: heading, label: 見出し, widget: string },
+                { name: people, label: 講師, widget: list, fields: [
+                  { name: name, label: 名前, widget: string },
+                  { name: title, label: 肩書, widget: string },
+                ]},
+              ]},
+              { name: guests, label: 過去の特別講師, widget: object, fields: [
+                { name: heading, label: 見出し, widget: string },
+                { name: people, label: 講師, widget: list, fields: [
+                  { name: name, label: 名前, widget: string },
+                  { name: title, label: 肩書, widget: string },
+                ]},
+              ]},
+            ]}
+          - { name: contactdesc, label: 問い合わせ説明文, widget: text }
       - name: community
         label: /community/ コミュニティ支援
         file: content/community/_index.md

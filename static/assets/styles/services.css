@@ -379,12 +379,88 @@
   .case p {
     margin-bottom: 0;
   }
+
+  #fullstack-hero {
+    img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+    }
+  }
+
+  #fullstack-row-1 {
+    ul {
+      margin: 24px 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    li {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin: 8px 0;
+      border-radius: 8px;
+      padding: 16px;
+      background-color: #f3f5f8;
+
+      .fas {
+        flex: none;
+        margin: 0;
+        width: 40px;
+        height: 40px;
+        color: #fff;
+        font-size: 40px;
+        text-align: center;
+      }
+    }
+  }
+
+  #fullstack-row-2 {
+    background-color: #f4f0f7;
+
+    ul {
+      margin: 16px 0;
+      padding: 0;
+      line-height: 1.5;
+      list-style: none;
+    }
+
+    li {
+      margin: 12px 0;
+    }
+  }
+
+  #fullstack-instructors {
+    li,
+    div.inline {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .name {
+      flex: none;
+      font-weight: bold;
+    }
+
+    img {
+      border-radius: 50%;
+      width: 56px;
+      height: 56px;
+      object-fit: cover;
+    }
+  }
 }
 
 @media screen and (min-width: 1280px) {
   #fields .field .inner::before {
     right: auto;
     width: 352px;
+  }
+
+  #fullstack-hero img {
+    height: 320px;
   }
 }
 
@@ -465,6 +541,11 @@
   #fields .field h3 {
     font-size: 2rem;
   }
+
+  #fullstack-row-1 section[id],
+  #fullstack-row-2 section[id] {
+    margin: 48px 0;
+  }
 }
 
 @media screen and (max-width: 767px) {
@@ -498,5 +579,10 @@
   .case h3 .heading {
     display: block;
     margin-top: 4px;
+  }
+
+  #fullstack-row-1 section[id],
+  #fullstack-row-2 section[id] {
+    margin: 32px 0;
   }
 }

@@ -1,0 +1,172 @@
+{{- define "main" }}
+<main>
+  <div id="main-feature" class="outer">
+    <div class="inner row">
+      <div class="col">
+        <header>
+          <hgroup>
+            <h1>{{ partial "heading.html" .Title }}</h1>
+            <h2 aria-level="1">{{ .Params.subtitle }}</h2>
+          </hgroup>
+          <p>{{ .Description }}</p>
+        </header>
+      </div>
+    </div>
+  </div>
+  <div id="fullstack-hero">
+    <img src="{{ .Params.heroImage }}" alt="" loading="lazy">
+  </div>
+  <div id="main-content">
+    <div id="fullstack-row-1" class="outer">
+      <div class="inner row">
+        <div class="col s2">
+          {{- with .Params.features }}
+          <section id="fullstack-features">
+            <header>
+              <hgroup>
+                <h2>{{ partial "heading.html" .heading }}</h2>
+                <h3 aria-level="2">{{ .subheading }}</h3>
+              </hgroup>
+              <span class="fas circle" aria-hidden="true"></span>
+            </header>
+            <ul>
+              {{- range .items }}
+              <li>
+                <span class="fas" aria-hidden="true">&#x{{ .icon }};</span>
+                {{ .description }}
+              </li>
+              {{- end }}
+            </ul>
+          </section>
+          {{- end }}
+        </div>
+        <div class="col s2">
+          {{- with .Params.outcomes }}
+          <section id="fullstack-outcomes">
+            <header>
+              <hgroup>
+                <h2>{{ partial "heading.html" .heading }}</h2>
+                <h3 aria-level="2">{{ .subheading }}</h3>
+              </hgroup>
+              <span class="fas circle" aria-hidden="true"></span>
+            </header>
+            <ul>
+              {{- range .items }}
+              <li>
+                <span class="fas" aria-hidden="true">&#x{{ .icon }};</span>
+                {{ .description }}
+              </li>
+              {{- end }}
+            </ul>
+          </section>
+          {{- end }}
+        </div>
+        <div class="col s2">
+          {{- with .Params.support }}
+          <section id="fullstack-support">
+            <header>
+              <hgroup>
+                <h2>{{ partial "heading.html" .heading }}</h2>
+                <h3 aria-level="2">{{ .subheading }}</h3>
+              </hgroup>
+              <span class="fas circle" aria-hidden="true"></span>
+            </header>
+            <ul>
+              {{- range .items }}
+              <li>
+                <span class="fas" aria-hidden="true">&#x{{ .icon }};</span>
+                {{ .description }}
+              </li>
+              {{- end }}
+            </ul>
+          </section>
+          {{- end }}
+        </div>
+      </div>
+    </div>
+    <div id="fullstack-row-2" class="outer">
+      <div class="inner row">
+        <div class="col s3">
+          {{- with .Params.curriculum }}
+          <section id="fullstack-curriculum">
+            <header>
+              <hgroup>
+                <h2>{{ partial "heading.html" .heading }}</h2>
+                <h3 aria-level="2">{{ .subheading }}</h3>
+              </hgroup>
+              <span class="fas circle" aria-hidden="true"></span>
+            </header>
+            <p>{{ .description }}</p>
+            <ul>
+              {{- range .items }}
+              <li><strong class="day">{{ .day }}: {{ .title}}</strong><br>{{ .description }}</li>
+              {{- end }}
+            </ul>
+          </section>
+          {{- end }}
+        </div>
+        <div class="col s3">
+          {{- with .Params.instructors }}
+          <section id="fullstack-instructors">
+            <header>
+              <hgroup>
+                <h2>{{ partial "heading.html" .heading }}</h2>
+                <h3 aria-level="2">{{ .subheading }}</h3>
+              </hgroup>
+              <span class="fas circle" aria-hidden="true"></span>
+            </header>
+            <p>{{ .description }}</p>
+            {{- with .internal }}
+            <section>
+              <h3>{{ partial "heading.html" .heading }}</h3>
+              <ul>
+                {{- range .people }}
+                <li>
+                  <img src="{{ .image }}" alt="" loading="lazy">
+                  <div>
+                    <div class="name">{{ .name }}</div>
+                    <div class="title">{{ .title }}</div>
+                  </div>
+                </li>
+                {{- end }}
+              </ul>
+            </section>
+            {{- end }}
+            {{- with .external }}
+            <section>
+              <h3>{{ partial "heading.html" .heading }}</h3>
+              <ul>
+                {{- range .people }}
+                <li>
+                  <div class="inline">
+                    <div class="name">{{ .name }}</div>
+                    <div class="title">{{ .title }}</div>
+                  </div>
+                </li>
+                {{- end }}
+              </ul>
+            </section>
+            {{- end }}
+            {{- with .guests }}
+            <section>
+              <h3>{{ partial "heading.html" .heading }}</h3>
+              <ul>
+                {{- range .people }}
+                <li>
+                  <div class="inline">
+                    <div class="name">{{ .name }}</div>
+                    <div class="title">{{ .title }}</div>
+                  </div>
+                </li>
+                {{- end }}
+              </ul>
+            </section>
+            {{- end }}
+          </section>
+          {{- end }}
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+{{- end }}
