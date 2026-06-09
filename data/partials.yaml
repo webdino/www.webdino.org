@@ -55,10 +55,10 @@ promo:
       description: Web 標準技術や OSS 活用についての理解を深めながら、IoT システム開発を実践的に学ぶイベント「Web×IoT メイカーズチャレンジ PLUS」 の中央協議会事務局を担当
       url: https://webiotmakers.github.io/
       image: /assets/uploads/home-promo-webiotmakers-plus.webp
-    - title: Web VideoMark
-      description: 動画サービス利用時の品質分析や通信量の削減に関する調査研究プロジェクト
-      url: https://videomark.webdino.org/
-      image: /assets/uploads/home-promo-videomark.webp
+    - title: Web 標準で学ぶモダンフルスタック開発実践
+      description: Web 標準技術へ深い理解と実践形式でのフルスタック統合を通じて長期的に通用する開発力を高める、企業向け人材育成研修プログラムの提供
+      url: /services/human/fullstack/
+      image: /assets/uploads/home-promo-fullstack.webp
     - title: Originator Profile
       description: インターネット上のニュース記事や広告などの情報コンテンツに発信者情報のラベルを付与する技術を研究開発する「Originator Profile 技術研究組合」への参画、および技術面での貢献
       url: https://originator-profile.org/ja-JP/
