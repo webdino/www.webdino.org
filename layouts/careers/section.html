@@ -8,16 +8,12 @@
             <h1>{{ partial "heading.html" .Title }}</h1>
             <h2 aria-level="1">{{ .Params.subtitle }}</h2>
           </hgroup>
-          <p>{{ .Description | markdownify }}</p>
-        </header>
-        <figure>
-          {{- range .Params.images }}
-          <figure>
-            <img loading="lazy" src="{{ .src }}" alt="">
-            <figcaption>{{ .caption }}</figcaption>
-          </figure>
+          {{- if eq (len .Params.positions) 0 }}
+            <p>{{ .Params.positionsUnavailable | markdownify }}</p>
+          {{- else }}
+            <p>{{ .Params.positionsAvailable | markdownify }}</p>
           {{- end }}
-        </figure>
+        </header>
       </div>
     </div>
   </div>
@@ -33,22 +29,77 @@
       </header>
       <div class="inner row">
         <div class="col">
-          <section>
-            <h3>{{ $.Params.requirements.experience }}</h3>
-            <div itemprop="experienceRequirements">
-              {{ .experienceRequirements | markdownify }}
-            </div>
-          </section>
-          <section>
-            <h3>{{ $.Params.requirements.skills }}</h3>
-            <div itemprop="skills">
-              {{ .skills | markdownify }}
-            </div>
-          </section>
+          <table>
+            <tbody>
+              <tr>
+                <th>{{ $.Params.labels.description }}</th>
+                <td itemprop="description">{{ .description | markdownify }}</td>
+              </tr>
+              <tr>
+                <th>{{ $.Params.labels.responsibilities }}</th>
+                <td itemprop="responsibilities">{{ .responsibilities | markdownify }}</td>
+              </tr>
+              <tr>
+                <th>{{ $.Params.labels.totalJobOpenings }}</th>
+                <!-- `totalJobOpenings` prop in Schema.org is integer -->
+                <td>{{ .totalJobOpenings | markdownify }}</td>
+              </tr>
+              <tr>
+                <th>{{ $.Params.labels.workHours }}</th>
+                <td itemprop="workHours">{{ .workHours | markdownify }}</td>
+              </tr>
+              <tr>
+                <th>{{ $.Params.labels.holidays }}</th>
+                <!-- No `holidays` prop in Schema.org -->
+                <td>{{ .holidays | markdownify }}</td>
+              </tr>
+              <tr>
+                <th>{{ $.Params.labels.salary }}</th>
+                <!-- `estimatedSalary` prop in Schema.org is number -->
+                <td>{{ .salary | markdownify }}</td>
+              </tr>
+              <tr>
+                <th>{{ $.Params.labels.experienceRequirements }}</th>
+                <td itemprop="experienceRequirements">{{ .experienceRequirements | markdownify }}</td>
+              </tr>
+              <tr>
+                <th>{{ $.Params.labels.skills }}</th>
+                <td itemprop="skills">{{ .skills | markdownify }}</td>
+              </tr>
+              <tr>
+                <th>{{ $.Params.labels.jobBenefits }}</th>
+                <td itemprop="jobBenefits">{{ .jobBenefits | markdownify }}</td>
+              </tr>
+              <tr>
+                <th>{{ $.Params.labels.otherConditions }}</th>
+                <!-- No `otherConditions` prop in Schema.org -->
+                <td>{{ .otherConditions | markdownify }}</td>
+              </tr>
+              <tr>
+                <th>{{ $.Params.labels.jobLocation }}</th>
+                <td itemprop="jobLocation">{{ .jobLocation | markdownify }}</td>
+              </tr>
+              <tr>
+                <th>{{ $.Params.labels.hiringOrganization }}</th>
+                <td itemprop="hiringOrganization" itemscope itemtype="https://schema.org/Organization">
+                  <div itemprop="name">{{ hugo.Data.partials.publisher.name }}</div>
+                  <div itemprop="address">{{ hugo.Data.partials.publisher.address }}</div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </section>
     {{- end }}
+    <aside id="pictures">
+      {{- range .Params.images }}
+      <figure>
+        <img loading="lazy" src="{{ .src }}" alt="">
+        <figcaption>{{ .caption }}</figcaption>
+      </figure>
+      {{- end }}
+    </aside>
   </div>
 </main>
 {{- end }}

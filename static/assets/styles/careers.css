@@ -3,25 +3,6 @@
     background-image: url(/assets/images/careers/main-bg@2x.png);
   }
 
-  #main-feature .inner {
-    margin: 0 auto 64px;
-  }
-
-  #main-feature header ~ figure {
-    display: flex;
-    justify-content: center;
-  }
-
-  #main-feature header ~ figure figure {
-    margin: 0 16px;
-  }
-
-  #main-feature header ~ figure img {
-    width: 400px;
-    max-width: 100%;
-    height: auto;
-  }
-
   [itemtype$="JobPosting"] section {
     display: flex;
     margin: 16px auto;
@@ -48,23 +29,59 @@
     color: #858585;
   }
 
-  [itemtype$="JobPosting"] ul {
+  [itemtype$="JobPosting"] table :is(ul, ol, li, p) {
     margin: 0;
-    flex: auto;
+  }
+
+  [itemtype$="JobPosting"] table {
+    border-collapse: collapse;
+    margin: 32px 0;
+    width: 100%;
+  }
+
+  [itemtype$="JobPosting"] :is(th, td) {
+    padding: 8px;
+    border-top: 1px solid #CCC;
+  }
+
+  [itemtype$="JobPosting"] tr:last-child :is(th, td) {
+    border-bottom: 1px solid #CCC;
+  }
+
+  [itemtype$="JobPosting"] th {
+    color: #858585;
+    font-weight: normal;
+    text-align: left;
+    vertical-align: top;
+    white-space: nowrap;
+  }
+
+  #pictures {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    padding: 32px;
+    background-color: #f3f5f8;
+  }
+
+  #pictures figure {
+    margin: 0;
+  }
+
+  #pictures img {
+    width: 400px;
+    max-width: 100%;
+    height: auto;
   }
 }
 
 @media screen and (max-width: 767px) {
-  #main-feature .inner {
-    margin: 0 auto 32px;
+  [itemtype$="JobPosting"] th {
+    min-width: 5em;
+    white-space: normal;
   }
 
-  #main-feature header ~ figure,
-  [itemtype$="JobPosting"] section {
+  #pictures {
     flex-direction: column;
-  }
-
-  #main-feature header ~ figure figure:not(:last-of-type) {
-    margin-bottom: 16px;
   }
 }
