@@ -86,6 +86,11 @@
                   <div itemprop="address">{{ hugo.Data.partials.publisher.address }}</div>
                 </td>
               </tr>
+              <tr>
+                <th>{{ $.Params.labels.apply }}</th>
+                <!-- No `apply` prop in Schema.org -->
+                <td>{{ .apply | markdownify }}</td>
+              </tr>
             </tbody>
           </table>
         </div>

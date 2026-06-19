@@ -28,6 +28,7 @@ labels:
   holidays: 休日・休暇
   description: 募集概要
   workHours: 勤務時間
+  apply: 応募方法
 positions:
   - skills: |-
       - GitHub 上でのオープンな開発コミュニケーションおよび相互コードレビューの経験 (自律的チーム開発をリードできる方)
@@ -69,6 +70,15 @@ positions:
       所定労働時間： 8 時間 00 分 (休憩 60 分)<br>
       時短勤務も相談可<br>
       (※ 週 3 日または 1 日 4 時間以上継続的に稼働できる方)
+    apply: |-
+      ご興味をお持ちいただけましたら、以下の内容を記載の上、[メールにてご応募ください](mailto:careers@webdino.org)。
+
+      - お名前
+      - ご連絡先 (メールアドレス)
+      - 履歴書 (PDF ファイルを添付してください)
+      - 職務経歴書 (自由形式で構いません。PDF ファイルを添付してください)
+
+      書類選考の結果については、応募から 2 週間程度でご連絡いたします。
 contactdesc: 採用に関するお問い合わせはこちらからお願いします。
 contactlink: mailto:careers@webdino.org
 contactlabel: お問い合わせ・応募

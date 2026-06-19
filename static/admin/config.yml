@@ -516,6 +516,7 @@ collections:
               { name: jobBenefits, label: 待遇, widget: string },
               { name: otherConditions, label: その他要件, widget: string },
               { name: jobLocation, label: 勤務地, widget: string },
+              { name: apply, label: 応募方法, widget: string },
               { name: hiringOrganization, label: 採用組織, widget: string },
             ]}
           - { name: positions, label: ポジション, widget: list, fields: [
@@ -531,6 +532,7 @@ collections:
               { name: jobBenefits, label: 待遇, widget: markdown, minimal: true },
               { name: otherConditions, label: その他要件, widget: markdown, minimal: true },
               { name: jobLocation, label: 勤務地, widget: markdown, minimal: true },
+              { name: apply, label: 応募方法, widget: markdown, minimal: true },
             ]}
           - { name: contactdesc, label: 問い合わせ説明文 (上書き), widget: string, required: false }
           - { name: contactlink, label: 問い合わせリンク先 (上書き), widget: string, required: false }

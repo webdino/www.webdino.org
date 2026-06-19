@@ -19,7 +19,7 @@
 
   [itemtype$="JobPosting"] .row {
     margin: 16px auto;
-    max-width: 800px;
+    max-width: 928px;
   }
 
   [itemtype$="JobPosting"] h3 {
