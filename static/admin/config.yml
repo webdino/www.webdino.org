@@ -496,19 +496,41 @@ collections:
           - { name: title, label: ページタイトル, widget: string }
           - { name: linktitle, label: リンクタイトル, widget: string }
           - { name: subtitle, label: サブタイトル, widget: string }
-          - { name: description, label: 説明文, widget: markdown }
+          - { name: description, label: 説明文, widget: markdown, minimal: true }
+          - { name: positionsAvailable, label: 採用情報ありメッセージ, widget: markdown, minimal: true }
+          - { name: positionsUnavailable, label: 採用情報なしメッセージ, widget: markdown, minimal: true }
           - { name: images, label: 画像, widget: list, fields: [
               { name: src, label: ソース, widget: image },
               { name: caption, label: キャプション, widget: string },
             ]}
-          - { name: requirements, label: 要件, widget: object, fields: [
-              { name: experience, label: 必須要件, widget: string },
+          - { name: labels, label: ラベル, widget: object, fields: [
+              { name: title, label: 募集職種, widget: string },
+              { name: description, label: 募集概要, widget: string },
+              { name: responsibilities, label: 業務内容, widget: string },
+              { name: totalJobOpenings, label: 募集人数, widget: string },
+              { name: workHours, label: 勤務時間, widget: string },
+              { name: holidays, label: 休日・休暇, widget: string },
+              { name: salary, label: 給与, widget: string },
+              { name: experienceRequirements, label: 必須要件, widget: string },
               { name: skills, label: 歓迎条件, widget: string },
+              { name: jobBenefits, label: 待遇, widget: string },
+              { name: otherConditions, label: その他要件, widget: string },
+              { name: jobLocation, label: 勤務地, widget: string },
+              { name: hiringOrganization, label: 採用組織, widget: string },
             ]}
           - { name: positions, label: ポジション, widget: list, fields: [
               { name: title, label: タイトル, widget: string },
-              { name: experienceRequirements, label: 必須要件, widget: markdown },
-              { name: skills, label: 歓迎条件, widget: markdown },
+              { name: description, label: 説明文, widget: markdown, minimal: true },
+              { name: responsibilities, label: 業務内容, widget: markdown, minimal: true },
+              { name: totalJobOpenings, label: 募集人数, widget: string },
+              { name: workHours, label: 勤務時間, widget: markdown, minimal: true },
+              { name: holidays, label: 休日・休暇, widget: markdown, minimal: true },
+              { name: salary, label: 給与, widget: markdown, minimal: true },
+              { name: experienceRequirements, label: 必須要件, widget: markdown, minimal: true },
+              { name: skills, label: 歓迎条件, widget: markdown, minimal: true },
+              { name: jobBenefits, label: 待遇, widget: markdown, minimal: true },
+              { name: otherConditions, label: その他要件, widget: markdown, minimal: true },
+              { name: jobLocation, label: 勤務地, widget: markdown, minimal: true },
             ]}
           - { name: contactdesc, label: 問い合わせ説明文 (上書き), widget: string, required: false }
           - { name: contactlink, label: 問い合わせリンク先 (上書き), widget: string, required: false }
