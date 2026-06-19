@@ -2,9 +2,9 @@
 type: careers
 layout: index
 menu:
-  secondary:
+  primary:
     identifier: careers
-weight: 1
+weight: 5
 title: 採用情報
 linktitle: 採用情報
 subtitle: Careers

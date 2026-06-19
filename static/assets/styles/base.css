@@ -345,7 +345,7 @@
     display: flex;
     align-items: center;
     position: relative;
-    padding: 0 16px;
+    padding: 0 4px;
   }
 
   #header nav.primary li a {
