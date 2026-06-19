@@ -72,4 +72,40 @@ positions:
 contactdesc: 採用に関するお問い合わせはこちらからお願いします。
 contactlink: mailto:careers@webdino.org
 contactlabel: お問い合わせ・応募
+form:
+  name: careers
+  title: 応募フォーム
+  fields:
+    - label: お名前
+      name: name
+      placeholder: '例: 台野 太郎'
+      required: true
+      type: text
+    - label: メールアドレス
+      name: email
+      placeholder: '例: taro@webdino.org'
+      required: true
+      type: email
+    - label: 志望動機
+      name: message
+      placeholder: (このポジションに応募される理由や、これまでのご経験などをご記入ください)
+      required: true
+      type: multiline
+    - label: 履歴書
+      placeholder: 自由形式で構いません。PDF ファイルを添付してください。
+      name: resume
+      required: true
+      type: file
+      accept: application/pdf
+  submit:
+    buttonlabel: 送信
+    privacy: '[プライバシーポリシー](/privacy/) に同意します'
+  thanks:
+    heading: ご応募ありがとうございました
+    subheading: Thank You
+    description: 選考結果については、応募から 2 週間程度でご連絡いたします。
+  error:
+    heading: 申し訳ありません
+    subheading: We Are Sorry
+    description: フォームの送信中に問題が発生しました。お手数ですが、また後でお試しください。
 ---

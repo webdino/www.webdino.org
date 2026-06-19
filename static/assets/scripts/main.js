@@ -36,7 +36,7 @@ window.addEventListener('DOMContentLoaded', function () {
    * @see https://www.netlify.com/docs/form-handling/#ajax-form-submissions
    */
   function activate_contact_form() {
-    const $form = document.querySelector('form[name="contact"]');
+    const $form = document.querySelector('form.contact');
 
     if (!$form) {
       return;
@@ -47,7 +47,6 @@ window.addEventListener('DOMContentLoaded', function () {
     $form.addEventListener('submit', async (event) => {
       event.preventDefault();
 
-      const formData = new FormData($form);
       const $main = $form.querySelector('.main');
       const $submit = $form.querySelector('.submit');
       const $thanks = $form.querySelector('.thanks');
@@ -58,8 +57,7 @@ window.addEventListener('DOMContentLoaded', function () {
       try {
         const response = await fetch($form.action, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body: new URLSearchParams(formData).toString(),
+          body: new FormData($form),
         });
 
         if (response.ok) {

@@ -432,26 +432,30 @@ collections:
           - { name: linktitle, label: リンクタイトル, widget: string }
           - { name: subtitle, label: サブタイトル, widget: string }
           - { name: description, label: 説明文, widget: text }
-          - { name: fields, label: フィールド, widget: list, fields: [
-              { name: name, label: 名称, widget: string },
-              { name: label, label: ラベル, widget: string },
-              { name: placeholder, label: プレースホルダー, widget: string },
-              { name: type, label: タイプ, widget: string },
-              { name: required, label: 必須, widget: boolean },
-            ]}
-          - { name: submit, label: 送信, widget: object, fields: [
-              { name: privacy, label: プライバシーポリシー, widget: markdown },
-              { name: buttonlabel, label: ボタンラベル, widget: string },
-            ]}
-          - { name: thanks, label: 送信完了メッセージ, widget: object, fields: [
-              { name: heading, label: 見出し, widget: string },
-              { name: subheading, label: サブ見出し, widget: string },
-              { name: description, label: 説明文, widget: markdown },
-            ]}
-          - { name: error, label: 送信エラーメッセージ, widget: object, fields: [
-              { name: heading, label: 見出し, widget: string },
-              { name: subheading, label: サブ見出し, widget: string },
-              { name: description, label: 説明文, widget: markdown },
+          - { name: form, label: フォーム, widget: object, fields: [
+              { name: name, label: 名称, widget: hidden },
+              { name: fields, label: フィールド, widget: list, fields: [
+                { name: name, label: 名称, widget: string },
+                { name: label, label: ラベル, widget: string },
+                { name: placeholder, label: プレースホルダー, widget: string },
+                { name: type, label: タイプ, widget: string },
+                { name: accept, label: ファイル形式, widget: string, required: false },
+                { name: required, label: 必須, widget: boolean },
+              ]},
+              { name: submit, label: 送信, widget: object, fields: [
+                { name: privacy, label: プライバシーポリシー, widget: markdown, minimal: true },
+                { name: buttonlabel, label: ボタンラベル, widget: string },
+              ]},
+              { name: thanks, label: 送信完了メッセージ, widget: object, fields: [
+                { name: heading, label: 見出し, widget: string },
+                { name: subheading, label: サブ見出し, widget: string },
+                { name: description, label: 説明文, widget: markdown, minimal: true },
+              ]},
+              { name: error, label: 送信エラーメッセージ, widget: object, fields: [
+                { name: heading, label: 見出し, widget: string },
+                { name: subheading, label: サブ見出し, widget: string },
+                { name: description, label: 説明文, widget: markdown, minimal: true },
+              ]}
             ]}
       - name: updates
         label: /updates/ ディノの足あと
@@ -535,6 +539,32 @@ collections:
           - { name: contactdesc, label: 問い合わせ説明文 (上書き), widget: string, required: false }
           - { name: contactlink, label: 問い合わせリンク先 (上書き), widget: string, required: false }
           - { name: contactlabel, label: 問い合わせリンクラベル (上書き), widget: string, required: false }
+          - { name: form, label: フォーム, widget: object, fields: [
+              { name: name, label: 名称, widget: hidden },
+              { name: title, label: タイトル, widget: string },
+              { name: fields, label: フィールド, widget: list, fields: [
+                { name: name, label: 名称, widget: string },
+                { name: label, label: ラベル, widget: string },
+                { name: placeholder, label: プレースホルダー, widget: string },
+                { name: type, label: タイプ, widget: string },
+                { name: accept, label: ファイル形式, widget: string, required: false },
+                { name: required, label: 必須, widget: boolean },
+              ]},
+              { name: submit, label: 送信, widget: object, fields: [
+                { name: privacy, label: プライバシーポリシー, widget: markdown, minimal: true },
+                { name: buttonlabel, label: ボタンラベル, widget: string },
+              ]},
+              { name: thanks, label: 送信完了メッセージ, widget: object, fields: [
+                { name: heading, label: 見出し, widget: string },
+                { name: subheading, label: サブ見出し, widget: string },
+                { name: description, label: 説明文, widget: markdown, minimal: true },
+              ]},
+              { name: error, label: 送信エラーメッセージ, widget: object, fields: [
+                { name: heading, label: 見出し, widget: string },
+                { name: subheading, label: サブ見出し, widget: string },
+                { name: description, label: 説明文, widget: markdown, minimal: true },
+              ]}
+            ]}
       - name: privacy
         label: /privacy/ プライバシーポリシー
         file: content/privacy/_index.md
