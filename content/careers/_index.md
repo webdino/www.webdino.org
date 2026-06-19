@@ -70,6 +70,6 @@ positions:
       時短勤務も相談可<br>
       (※ 週 3 日または 1 日 4 時間以上継続的に稼働できる方)
 contactdesc: 採用に関するお問い合わせはこちらからお願いします。
-contactlink: mailto:recruit@webdino.org
+contactlink: mailto:careers@webdino.org
 contactlabel: お問い合わせ・応募
 ---
