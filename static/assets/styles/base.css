@@ -1122,6 +1122,10 @@
 }
 
 @media screen and (max-width: 767px) {
+  html {
+    scroll-padding-top: 80px; /* for fixed header */
+  }
+
   body {
     position: relative;
     padding-top: 60px;
