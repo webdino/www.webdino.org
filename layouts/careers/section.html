@@ -13,13 +13,20 @@
           {{- else }}
             <p>{{ .Params.positionsAvailable | markdownify }}</p>
           {{- end }}
+          <nav>
+            <ul>
+              {{- range .Params.positions }}
+                <li><a href="#{{ .title | md5 }}">{{ .title }}</a></li>
+              {{- end }}
+            </ul>
+          </nav>
         </header>
       </div>
     </div>
   </div>
   <div id="main-content">
     {{- range .Params.positions }}
-    <section class="outer" itemscope itemtype="http://schema.org/JobPosting">
+    <section class="outer" itemscope itemtype="http://schema.org/JobPosting" id="{{ .title | md5 }}">
       <header class="large">
         <div class="inner row">
           <div class="col">
