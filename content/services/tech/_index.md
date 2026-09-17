@@ -92,7 +92,7 @@ solutions:
           デバイスなどに留まらず、ビルの集中管理パネル、工場の機器制御画面など、組み込み製品向けの HMI 環境としての利用が広がっています。
 
 
-          組み込み環境で HTML5 を利用したいという需要に応えられるよう、弊社では「[Gecko Embedded](https://github.com/webdino/gecko-embedded/wiki)」プロジェクトにて Firefox のブラウザーエンジン Gecko をルネサスエレクトロニクスの産業用プロセッサー「RZ/G」シリーズに移植してきました。
+          組み込み環境で HTML5 を利用したいという需要に応えられるよう、弊社では「[Gecko Embedded](https://gecko-embedded.org/)」プロジェクトにて Firefox のブラウザーエンジン Gecko をルネサスエレクトロニクスの産業用プロセッサー「RZ/G」シリーズに移植してきました。
         image: /assets/uploads/home-promo-gecko.webp
 contactdesc: 技術開発やコンサルティングに関するご依頼・ご相談は、以下リンク先のお問い合わせフォームよりお願いします。
 ---
