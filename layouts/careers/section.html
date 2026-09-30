@@ -12,14 +12,14 @@
             <p>{{ .Params.positionsUnavailable | markdownify }}</p>
           {{- else }}
             <p>{{ .Params.positionsAvailable | markdownify }}</p>
+            <nav>
+              <ul>
+                {{- range .Params.positions }}
+                  <li><a href="#{{ .title | md5 }}">{{ .title }}</a></li>
+                {{- end }}
+              </ul>
+            </nav>
           {{- end }}
-          <nav>
-            <ul>
-              {{- range .Params.positions }}
-                <li><a href="#{{ .title | md5 }}">{{ .title }}</a></li>
-              {{- end }}
-            </ul>
-          </nav>
         </header>
       </div>
     </div>
