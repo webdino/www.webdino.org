@@ -44,8 +44,8 @@ activities:
     - time: 2006 年 〜 2015 年
       title: Firefox Developer Conference
       description: >-
-        ウェブ開発者、アドオン作者や熱心な Mozilla 製品ユーザーを対象として、Mozilla
-        とウェブ標準の最新技術情報を共有するカンファレンスを 2006 年から 2015 年までの 10 年間実施。
+        Web 開発者、アドオン作者や熱心な Mozilla 製品ユーザーを対象として、Mozilla
+        と Web 標準の最新技術情報を共有するカンファレンスを 2006 年から 2015 年までの 10 年間実施。
       id: devcon
       image: /assets/images/about/history/devcon.jpg
     - time: 2007 年
@@ -75,7 +75,7 @@ activities:
       title: Mozilla Vision 2012
       description: >-
         「オープンって何？」をテーマにした 2
-        日間の大型イベント。ウェブ技術からモノづくり、教育をテーマにオープンを考えるカンファレンスの他、世界ひとつしかない自分だけのブラウザー作りやプログラミングを学ぶワークショップなど、子供から大人までオープンを体験する様々な参加型プログラムを実施。
+        日間の大型イベント。Web 技術からモノづくり、教育をテーマにオープンを考えるカンファレンスの他、世界ひとつしかない自分だけのブラウザー作りやプログラミングを学ぶワークショップなど、子供から大人までオープンを体験する様々な参加型プログラムを実施。
       id: vision
       image: /assets/images/about/history/vision.jpg
     - time: 2012 年 ～
@@ -88,13 +88,13 @@ activities:
     - time: 2013 年 〜
       title: スマートフォンやスマートテレビの開発支援
       description: >-
-        各メーカーが発売を計画するスマートフォンやスマートテレビのウェブプラットフォーム化に際し、ウェブ技術やブラウザーエンジンに関するコンサルティングと実装支援。
+        各メーカーが発売を計画するスマートフォンやスマートテレビの Web プラットフォーム化に際し、Web 技術やブラウザーエンジンに関するコンサルティングと実装支援。
       id: iot
     - time: 2014 年
       title: Mozilla Open Web Day in Tokyo
       description: >-
         Mozilla
-        やオープンなウェブ技術に関係する東西さまざまなコミュニティや研究プロジェクトが集結し、その成果の展示・発表を行う収穫祭的なイベントを開催。
+        やオープンな Web 技術に関係する東西さまざまなコミュニティや研究プロジェクトが集結し、その成果の展示・発表を行う収穫祭的なイベントを開催。
       id: openwebday
       image: /assets/images/about/history/openwebday.jpg
 ---

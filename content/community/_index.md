@@ -15,8 +15,8 @@ feature_images:
   - src: /assets/images/community/feature-3.jpg
 concept:
   description: >-
-    WebDINO Japan の組織の根底には、常に「コミュニティ・マインド」が流れています。ウェブや OSS
-    関連コミュニティの発展とともに歩んできた私たちは、これまでにもウェブやデザイン、テクノロジーなど、多岐にわたるコミュニティとのコラボレーションを行ってきました。
+    WebDINO Japan の組織の根底には、常に「コミュニティ・マインド」が流れています。Web や OSS
+    関連コミュニティの発展とともに歩んできた私たちは、これまでにも Web やデザイン、テクノロジーなど、多岐にわたるコミュニティとのコラボレーションを行ってきました。
 
 
     また、私たちは、こうしたコミュニティと産官学の多様な組織をつなぐ「ハブ」としての役割も果たしています。 WebDINO Japan
@@ -26,7 +26,7 @@ concept:
   subheading: 'With Communities, As Communities'
 friends:
   description: >-
-    ウェブテクノロジーの普及やオープンイノベーションの拡大を目指すコミュニティとの連携により、コラボレーションプロジェクトの実施や、ミーティングスペースの提供など各種コミュニティ支援を行っています。
+    Web テクノロジーの普及やオープンイノベーションの拡大を目指すコミュニティとの連携により、コラボレーションプロジェクトの実施や、ミーティングスペースの提供など各種コミュニティ支援を行っています。
   groups:
     - description: >-
         Firefox や Thunderbird 等、[Mozilla](https://www.mozilla.org/ja/)
@@ -34,18 +34,18 @@ friends:
       name: Mozilla 関連コミュニティ
       url: 'https://www.mozilla.jp/'
     - description: >-
-        オープンウェブの開発者向けドキュメントが集まる [MDN Web
+        オープン Web の開発者向けドキュメントが集まる [MDN Web
         Docs](https://developer.mozilla.org/ja/)
         の情報がより多くの人に役に立つよう、日本語に翻訳する有志のコミュニティ
       name: MDN 翻訳コミュニティ
       url: 'https://groups.google.com/forum/#!forum/mozilla-translations-ja'
     - description: >-
         IoT (Internet of Things) を
-        ウェブブラウザー技術のみで実現するボードコンピューターとその上で動作するソフトウェアを含む開発環境「CHIRIMEN」の開発に取り組むオープンソースコミュニティ
+        Web ブラウザー技術のみで実現するボードコンピューターとその上で動作するソフトウェアを含む開発環境「CHIRIMEN」の開発に取り組むオープンソースコミュニティ
       name: CHIRIMEN Open Hardware
       url: 'https://chirimen.org/'
     - description: >-
-        「いつでも・どこでも・どんなときでもウェブを届ける」をテーマにカスタマイズしたキャンピングカー「WEB
+        「いつでも・どこでも・どんなときでも Web を届ける」をテーマにカスタマイズしたキャンピングカー「WEB
         SHIP」でワークショップやデモなどを行う有志によるプロジェクト
       name: WEB SHIP Project
       url: 'https://www.webship.ws/'

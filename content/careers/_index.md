@@ -48,7 +48,7 @@ positions:
       - 400 万円 ～ 700 万円 年俸制
 
       ※給与には固定残業代 (30 時間分) を含む
-    responsibilities: ブラウザ/拡張機能/サーバーサイド等の関連コンポーネントの設計・開発
+    responsibilities: ブラウザー/拡張機能/サーバーサイド等の関連コンポーネントの設計・開発
     jobLocation: 東京都
     totalJobOpenings: 1 ～ 2 名
     title: ソフトウェアエンジニア
@@ -65,7 +65,7 @@ positions:
     holidays: |-
       土日祝、慶弔休暇、夏季休暇、年末年始 (12 月 28 日 ～ 1 月 4 日)<br>
       有給休暇 (法定通り)
-    description: WebDINO Japan は、オープンウェブを牽引する先端テクノロジーの研究開発および社会実装を進めています。今回は Web
+    description: WebDINO Japan は、オープン Web を牽引する先端テクノロジーの研究開発および社会実装を進めています。今回は Web
       標準化を技術面からリードするソフトウェアエンジニアを募集します。
     workHours: |-
       所定労働時間： 8 時間 00 分 (休憩 60 分)<br>
