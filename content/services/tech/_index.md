@@ -74,7 +74,7 @@ solutions:
           企業との共同研究を通じて、プライバシー保護とパーソナライズ AI の両立を支えるデータ基盤「Puda」の研究開発に取り組みました。Puda は、AI エージェントに渡す個人データの粒度を、場面や渡す相手に応じて利用者自身が選べるようにする仕組みです。旅行プランの提案タスクで評価したところ、詳細な閲覧履歴の代わりに抽象化した情報のみを渡した場合でも、97.2% のパーソナライズ性能を維持できることを実証しました。論文: [10.48550/arXiv.2602.08268](https://doi.org/10.48550/arXiv.2602.08268)
 
 
-          また、WebDINO Japan では、プライバシーを守りながら閲覧履歴を AI に活用するためのブラウザ拡張機能「[puda-palafito](https://github.com/webdino/puda-palafito)」をオープンソースで開発しています。閲覧したページを自動で記録し、MCP (Model Context Protocol) を通じて AI エージェントから参照できるようにするもので、要約や分析に用いる AI はブラウザ内蔵 AI (Summarizer API) とクラウド AI から利用者が選択できます。
+          また、WebDINO Japan では、プライバシーを守りながら閲覧履歴を AI に活用するためのブラウザー拡張機能「[puda-palafito](https://github.com/webdino/puda-palafito)」をオープンソースで開発しています。閲覧したページを自動で記録し、MCP (Model Context Protocol) を通じて AI エージェントから参照できるようにするもので、要約や分析に用いる AI はブラウザー内蔵 AI (Summarizer API) とクラウド AI から利用者が選択できます。
         image: /assets/images/services/tech/puda.webp
       - heading: 大学教育基盤への発展を支えた動画教材管理システム「CHiBi-CHiLO」開発協力
         description: >-

@@ -48,7 +48,7 @@ positions:
       - 400 万円 ～ 700 万円 年俸制
 
       ※給与には固定残業代 (30 時間分) を含む
-    responsibilities: ブラウザ/拡張機能/サーバーサイド等の関連コンポーネントの設計・開発
+    responsibilities: ブラウザー/拡張機能/サーバーサイド等の関連コンポーネントの設計・開発
     jobLocation: 東京都
     totalJobOpenings: 1 ～ 2 名
     title: ソフトウェアエンジニア
