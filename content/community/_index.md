@@ -45,7 +45,7 @@ friends:
       name: CHIRIMEN Open Hardware
       url: 'https://chirimen.org/'
     - description: >-
-        ユーザーがブラウザー上で独立したレイヤーを自由に組み合わせることができる、クライアント中心の分散型ウェブマッピングを開発するオープンソースプロジェクト
+        ユーザーがブラウザー上で独立したレイヤーを自由に組み合わせることができる、クライアント中心の分散型 Web マッピングを開発するオープンソースプロジェクト
       name: Hyper Layering
       url: 'https://hyperlayering.org/ja/'
   heading: 連携コミュニティ
