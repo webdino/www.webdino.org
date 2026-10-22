@@ -5,10 +5,23 @@ backend:
   repo: webdino/www.webdino.org
   squash_merges: true
 
-publish_mode: editorial_workflow
+publish_mode:
+  type: preview
+  direct_publish: true
 
 media_folder: static/assets/uploads
 public_folder: /assets/uploads
+
+media_libraries:
+  all:
+    transformations:
+      raster_image:
+        format: webp
+        quality: 8
+        width: 1600
+        height: 1600
+      svg:
+        optimize: true
 
 collections:
   - name: authors
