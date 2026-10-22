@@ -8,6 +8,8 @@
   <body>
     <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js"></script>
     <script>
+      CMS.registerPreviewStyle('/admin/preview.css');
+
       CMS.registerEditorComponent({
         id: 'figure',
         label: '画像 + キャプション',
