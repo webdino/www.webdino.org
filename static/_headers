@@ -11,4 +11,4 @@
   X-XSS-Protection: 1; mode=block
 
 /admin/
-  Content-Security-Policy: default-src 'none'; style-src 'unsafe-inline' 'self'; font-src 'self'; img-src 'self' blob: data: https://avatars.githubusercontent.com; script-src 'unsafe-inline' 'unsafe-eval' 'self' https://identity.netlify.com https://unpkg.com; connect-src 'self' blob: data: https://www.githubstatus.com https://api.github.com http://localhost:8081; frame-src https://www.slideshare.net https://www.youtube-nocookie.com; frame-ancestors 'none'; base-uri 'none';
+  Content-Security-Policy: default-src 'none'; style-src 'self' 'unsafe-inline'; font-src 'self' https://cdn.jsdelivr.net; img-src 'self' blob: data: https://*.githubusercontent.com; media-src blob:; frame-src blob: https://www.youtube-nocookie.com https://www.slideshare.net; frame-ancestors 'none'; script-src 'unsafe-inline' 'self' https://unpkg.com; connect-src 'self' blob: data: https://unpkg.com https://api.github.com https://www.githubstatus.com; manifest-src blob:; base-uri 'self';

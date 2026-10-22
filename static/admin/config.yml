@@ -1,10 +1,9 @@
+# yaml-language-server: $schema=https://unpkg.com/@sveltia/cms/schema/sveltia-cms.json
+
 backend:
   name: github
   repo: webdino/www.webdino.org
   squash_merges: true
-
-# https://www.netlifycms.org/docs/beta-features/#working-with-a-local-git-repository
-local_backend: true
 
 publish_mode: editorial_workflow
 
@@ -19,8 +18,8 @@ collections:
     format: yaml
     extension: yaml
     fields:
-      - { name: title, label: ハンドルネーム (小文字英数字のみ), widget: string }
-      - { name: name, label: 氏名 (日本語可), widget: string }
+      - { name: title, label: ハンドルネーム, hint: 小文字英数字のみ, widget: string }
+      - { name: name, label: 氏名, hint: 日本語可, widget: string }
       - { name: jobTitle, label: 肩書, widget: string, required: false }
       - { name: twitter, label: X (旧 Twitter) ID, widget: string, required: false }
       - { name: facebook, label: Facebook ID, widget: string, required: false }
@@ -36,8 +35,8 @@ collections:
     format: yaml
     extension: yaml
     fields:
-      - { name: title, label: スラッグ (小文字英数字のみ), widget: string }
-      - { name: name, label: 名前 (日本語可), widget: string }
+      - { name: title, label: スラッグ, hint: 小文字英数字のみ, widget: string }
+      - { name: name, label: 名前, hint: 日本語可, widget: string }
       - { name: description, label: 説明, widget: markdown, required: false }
     editor:
         preview: false
@@ -48,23 +47,35 @@ collections:
     folder: content/updates/news
     filter: { field: "type", value: "post" }
     slug: "{{year}}{{month}}{{day}}{{hour}}{{minute}}"
+    preview_path: /updates/news/{{slug}}/
+    sortable_fields:
+      fields: [title, date]
+      default:
+        field: date
+        direction: descending
     fields:
       - { name: type, label: タイプ, widget: hidden, default: post }
       - { name: layout, label: レイアウト, widget: hidden, default: wide }
       - { name: title, label: タイトル, widget: string }
       - { name: subtitle, label: サブタイトル, widget: string, required: false }
-      - { name: date, label: 公開日, widget: datetime }
+      - { name: date, label: 公開日, widget: datetime, input_timezone: 'Asia/Tokyo' }
       - { name: category, label: カテゴリ, widget: hidden, default: news }
       - name: tags
-        label: "タグ (カンマ区切りで複数指定可)"
+        label: "タグ"
         widget: relation
         collection: tags
         value_field: title
         search_fields: ['title', 'name']
         display_fields: ['name']
         multiple: true
-        options_length: 50
-      - { name: authors, label: 著者 (カンマ区切りで複数指定可), widget: list, required: false }
+      - name: authors
+        label: 著者
+        widget: relation
+        collection: authors
+        value_field: title
+        display_fields: [name]
+        required: false
+        multiple: true
       - { name: image, label: カバー画像, widget: image, required: false }
       - { name: summary, label: 要約, widget: text, required: false }
       - { name: body, label: 本文, widget: markdown }
@@ -75,6 +86,7 @@ collections:
     files:
       - name: home
         label: / ホーム
+        preview_path: /
         file: content/_index.md
         fields:
           - { name: title, label: ページタイトル, widget: string }
@@ -84,6 +96,7 @@ collections:
           - { name: contactdesc, label: 問い合わせ説明文 (上書き), widget: string, required: false }
       - name: about
         label: /about/ 組織概要
+        preview_path: /about/
         file: content/about/_index.md
         fields:
           - { name: type, label: タイプ, widget: hidden, default: about }
@@ -115,6 +128,7 @@ collections:
           - { name: contactdesc, label: 問い合わせ説明文 (上書き), widget: string, required: false }
       - name: leadership
         label: /about/leadership/ 役員
+        preview_path: /about/leadership/
         file: content/about/leadership/_index.md
         fields:
           - { name: type, label: タイプ, widget: hidden, default: about }
@@ -148,6 +162,7 @@ collections:
           - { name: contactdesc, label: 問い合わせ説明文 (上書き), widget: string, required: false }
       - name: history
         label: /about/history/ 沿革
+        preview_path: /about/history/
         file: content/about/history/_index.md
         fields:
           - { name: type, label: タイプ, widget: hidden, default: about }
@@ -182,6 +197,7 @@ collections:
           - { name: contactdesc, label: 問い合わせ説明文 (上書き), widget: string, required: false }
       - name: location
         label: /about/location/ アクセス
+        preview_path: /about/location/
         file: content/about/location/_index.md
         fields:
           - { name: type, label: タイプ, widget: hidden, default: about }
@@ -200,6 +216,7 @@ collections:
           - { name: contactdesc, label: 問い合わせ説明文 (上書き), widget: string, required: false }
       - name: services
         label: /services/ 事業概要
+        preview_path: /services/
         file: content/services/_index.md
         fields:
           - { name: type, label: タイプ, widget: hidden, default: services }
@@ -217,6 +234,7 @@ collections:
           - { name: contactdesc, label: 問い合わせ説明文 (上書き), widget: string, required: false }
       - name: tech
         label: /services/tech/ 技術開発・コンサルティング
+        preview_path: /services/tech/
         file: content/services/tech/_index.md
         fields:
           - { name: type, label: タイプ, widget: hidden, default: services }
@@ -262,6 +280,7 @@ collections:
           - { name: contactdesc, label: 問い合わせ説明文 (上書き), widget: string, required: false }
       - name: human
         label: /services/human/ 人材育成・イベントのプロデュース
+        preview_path: /services/human/
         file: content/services/human/_index.md
         fields:
           - { name: type, label: タイプ, widget: hidden, default: services }
@@ -304,6 +323,7 @@ collections:
           - { name: contactdesc, label: 問い合わせ説明文 (上書き), widget: string, required: false }
       - name: fullstack
         label: /services/human/fullstack/ フルスタック研修プログラム
+        preview_path: /services/human/fullstack/
         file: content/services/human/fullstack/_index.md
         fields:
           - { name: type, label: タイプ, widget: hidden, default: services }
@@ -377,6 +397,7 @@ collections:
           - { name: contactdesc, label: 問い合わせ説明文, widget: text }
       - name: community
         label: /community/ コミュニティ支援
+        preview_path: /community/
         file: content/community/_index.md
         fields:
           - { name: type, label: タイプ, widget: hidden, default: community }
@@ -418,6 +439,7 @@ collections:
           - { name: contactdesc, label: 問い合わせ説明文 (上書き), widget: string, required: false }
       - name: contact
         label: /contact/ お問い合わせ
+        preview_path: /contact/
         file: content/contact/_index.md
         fields:
           - { name: type, label: タイプ, widget: hidden, default: contact }
@@ -455,6 +477,7 @@ collections:
             ]}
       - name: updates
         label: /updates/ ディノの足あと
+        preview_path: /updates/
         file: content/updates/_index.md
         fields:
           - { name: type, label: タイプ, widget: hidden, default: updates }
@@ -472,6 +495,7 @@ collections:
           - { name: contactdesc, label: 問い合わせ説明文 (上書き), widget: string, required: false }
       - name: news
         label: /updates/news/ 新着情報
+        preview_path: /updates/news/
         file: content/updates/news/_index.md
         fields:
           - { name: type, label: タイプ, widget: hidden, default: updates }
@@ -483,6 +507,7 @@ collections:
           - { name: contactdesc, label: 問い合わせ説明文 (上書き), widget: string, required: false }
       - name: careers
         label: /careers/ 採用情報
+        preview_path: /careers/
         file: content/careers/_index.md
         fields:
           - { name: type, label: タイプ, widget: hidden, default: careers }
@@ -539,14 +564,15 @@ collections:
           - { name: contactlabel, label: 問い合わせリンクラベル (上書き), widget: string, required: false }
       - name: privacy
         label: /privacy/ プライバシーポリシー
+        preview_path: /privacy/
         file: content/privacy/_index.md
         fields:
           - { name: title, label: ページタイトル, widget: string }
           - { name: linktitle, label: リンクタイトル, widget: string }
           - { name: subtitle, label: サブタイトル, widget: string }
           - { name: description, label: 説明文, widget: markdown }
-          - { name: date, label: 公開日, widget: date }
-          - { name: lastmod, label: 更新日, widget: date, required: false }
+          - { name: date, label: 公開日, widget: datetime, type: date, input_timezone: 'Asia/Tokyo' }
+          - { name: lastmod, label: 更新日, widget: datetime, type: date, input_timezone: 'Asia/Tokyo', required: false }
           - { name: publisher, label: 発行者, widget: object, fields: [
               { name: name, label: 名前, widget: string },
               { name: person, label: 担当者, widget: object, fields: [
@@ -562,6 +588,7 @@ collections:
           - { name: contactdesc, label: 問い合わせ説明文 (上書き), widget: string, required: false }
       - name: error
         label: /error/ Page Not Found
+        preview_path: /error/
         file: content/error/_index.md
         fields:
           - { name: title, label: ページタイトル, widget: string }
