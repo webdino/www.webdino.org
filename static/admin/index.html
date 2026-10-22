@@ -6,8 +6,7 @@
     <title>Content Manager</title>
   </head>
   <body>
-    <script src="https://identity.netlify.com/v1/netlify-identity.js"></script>
-    <script src="https://unpkg.com/netlify-cms/dist/netlify-cms.js"></script>
+    <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js"></script>
     <script>
       CMS.registerPreviewStyle('/admin/preview.css');
 
@@ -21,9 +20,11 @@
         pattern: /{{<\ image\ src="(.*?)"\ caption="(.*?)"\ >}}/,
         fromBlock: ([, src, caption]) => ({ src, caption }),
         toBlock: ({ src, caption }) => `{{< image src="${src}" caption="${caption}" >}}`,
-        toPreview: ({ src, caption }) => (src ? `
-          <figure><img loading="lazy" src="${src}" alt=""><figcaption>${caption || ''}</figcaption></figure>
-        ` : ''),
+        toPreview: ({ src, caption }) =>
+          src
+            ? `<figure><img loading="lazy" src="${src}" alt="">` +
+              `<figcaption>${caption || ''}</figcaption></figure>`
+            : '',
       });
 
       CMS.registerEditorComponent({
@@ -31,17 +32,19 @@
         label: 'YouTube',
         fields: [
           { name: 'id', label: 'ID', widget: 'string' },
-          { name: 'width', label: '幅', widget: 'number', valueType: 'int', default: 560 },
-          { name: 'height', label: '高さ', widget: 'number', valueType: 'int', default: 315 },
+          { name: 'width', label: '幅', widget: 'number', value_type: 'int', default: 560 },
+          { name: 'height', label: '高さ', widget: 'number', value_type: 'int', default: 315 },
         ],
         pattern: /{{<\ youtube\ id="(.*?)"(?:\ width="(.*?)"\ height="(.*?)")?\ >}}/,
         fromBlock: ([, id, width, height]) => ({ id, width, height }),
         toBlock: ({ id, width = 560, height = 315 }) =>
           `{{< youtube id="${id}" width="${width}" height="${height}" >}}`,
-        toPreview: ({ id, width = 560, height = 315 }) => (id ? `
-          <iframe src="https://www.youtube-nocookie.com/embed/${id}" width="${width}" height="${height}"
-            allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
-        ` : ''),
+        toPreview: ({ id, width = 560, height = 315 }) =>
+          id
+            ? `<iframe src="https://www.youtube-nocookie.com/embed/${id}" width="${width}" ` +
+              `height="${height}" allow="autoplay; encrypted-media; picture-in-picture" ` +
+              `allowfullscreen></iframe>`
+            : '',
       });
 
       CMS.registerEditorComponent({
@@ -49,17 +52,18 @@
         label: 'SlideShare',
         fields: [
           { name: 'id', label: 'ID', widget: 'string' },
-          { name: 'width', label: '幅', widget: 'number', valueType: 'int', default: 595 },
-          { name: 'height', label: '高さ', widget: 'number', valueType: 'int', default: 485 },
+          { name: 'width', label: '幅', widget: 'number', value_type: 'int', default: 595 },
+          { name: 'height', label: '高さ', widget: 'number', value_type: 'int', default: 485 },
         ],
         pattern: /{{<\ slideshare\ id="(.*?)"(?:\ width="(.*?)"\ height="(.*?)")?\ >}}/,
         fromBlock: ([, id, width, height]) => ({ id, width, height }),
         toBlock: ({ id, width = 595, height = 485 }) =>
           `{{< slideshare id="${id}" width="${width}" height="${height}" >}}`,
-        toPreview: ({ id, width = 595, height = 485 }) => (id ? `
-          <iframe src="https://www.slideshare.net/slideshow/embed_code/${id}" width="${width}" height="${height}"
-            allowfullscreen></iframe>
-        ` : ''),
+        toPreview: ({ id, width = 595, height = 485 }) =>
+          id
+            ? `<iframe src="https://www.slideshare.net/slideshow/embed_code/${id}" ` +
+              `width="${width}" height="${height}" allowfullscreen></iframe>`
+            : '',
       });
     </script>
   </body>
