@@ -10,34 +10,34 @@ linktitle: お問い合わせ
 subtitle: Contact Us
 description: WebDINO Japan の各種事業等に関するお問い合わせ・ご相談は、以下フォームよりお願いいたします。
 fields:
-  - label: お名前
-    name: name
+  - name: name
+    label: お名前
     placeholder: '例: 台野 太郎'
-    required: true
     type: text
-  - label: 会社名
-    name: company
+    required: true
+  - name: company
+    label: 会社名
     placeholder: '例: 株式会社 台野'
+    type: text
     required: false
-    type: text
-  - label: メールアドレス
-    name: email
+  - name: email
+    label: メールアドレス
     placeholder: '例: taro@webdino.org'
-    required: true
     type: email
-  - label: 件名
-    name: subject
+    required: true
+  - name: subject
+    label: 件名
     placeholder: '例: ブラウザーの導入について'
-    required: true
     type: text
-  - label: 内容
-    name: message
-    placeholder: (お問い合わせ内容を教えてください)
     required: true
+  - name: message
+    label: 内容
+    placeholder: (お問い合わせ内容を教えてください)
     type: multiline
+    required: true
 submit:
-  buttonlabel: 送信
   privacy: '[プライバシーポリシー](/privacy/) に同意します'
+  buttonlabel: 送信
 thanks:
   heading: お問い合わせありがとうございます
   subheading: Thank You

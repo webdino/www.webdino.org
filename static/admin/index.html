@@ -15,7 +15,7 @@
         label: '画像 + キャプション',
         fields: [
           { name: 'src', label: '画像', widget: 'image' },
-          { name: 'caption', label: 'キャプション', widget: 'string' },
+          { name: 'caption', label: 'キャプション', widget: 'string', required: false },
         ],
         pattern: /{{<\ image\ src="(.*?)"\ caption="(.*?)"\ >}}/,
         fromBlock: ([, src, caption]) => ({ src, caption }),

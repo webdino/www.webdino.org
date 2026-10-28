@@ -11,86 +11,76 @@ subtitle: Leadership
 description: 代表理事よりごあいさつと、役員のご紹介
 message:
   heading: 代表理事より<br>ごあいさつ
-  text: >-
-    弊社は、2004
-    年に非営利法人として活動をスタートさせて以来、一貫して「インターネットはオープンで、すべての人がアクセス可能な公共の資産であるべき」という
-    Mozilla プロジェクトの掲げるミッションを礎に、オープンソースの普及、Web 標準技術の推進、OSS コミュニティの支援に努めてまいりました。
-
-
-
+  text: |-
+    弊社は、2004 年に非営利法人として活動をスタートさせて以来、一貫して「インターネットはオープンで、すべての人がアクセス可能な公共の資産であるべき」という Mozilla プロジェクトの掲げるミッションを礎に、オープンソースの普及、Web 標準技術の推進、OSS コミュニティの支援に努めてまいりました。
 
     Web アプリケーションの高度化や IoT の実用化に伴い、デジタル社会の共通基盤として Web が注目を浴びる中、2017 年 7 月には社名を WebDINO Japan と改め、Web 技術を中心とした研究開発やコンサルティング、人材育成など、新たなステージで活動の幅を広げています。
 
-
-
-
     インターネット、そして Web を取り巻く環境は、活用領域の拡大とともに飛躍的な変化を遂げてきましたが、コロナ禍という予期せぬ出来事をきっかけとして、ビジネス・個人利用を問わず、Web に触れる機会は急速に増加しました。一方で、ユーザーはもとより、開発者を含むサービス提供者側の意識と知識も多様性を極めており、私たちの活動をさらにチャレンジングなものとしています。
-
-
-
 
     WebDINO Japan という組織名には、Web の「多様性 = Diversity」「国際化 = Internationalization」「中立性 = Neutrality」「公開性 = Openness」という意味を込めています。設立当初から変わらないこの想いを大切に、産官学そしてコミュニティをつなぐハブとして、これまで以上により広い視野で Web 技術の応用やオープンイノベーションの拡大をリードしてまいります。
 leadership:
   heading: 理事・<br>監事・<br>アドバイザー・<br>フェロー
   roles:
     - heading: 代表理事
+      subheading: Chairperson
       members:
-        - image: /assets/uploads/takita-2-.jpg
-          name: 瀧田 佐登子
+        - name: 瀧田 佐登子
           titles:
             - WebDINO Japan<br>代表理事
-      subheading: Chairperson
+          image: /assets/images/people/takita-2-.jpg
     - heading: 理事
+      subheading: Directors
       members:
-        - image: /assets/uploads/joi-ito-photo-2022.jpg
-          name: 伊藤 穰一
+        - name: 伊藤 穰一
           titles:
             - 千葉工業大学<br>学長
-        - image: /assets/uploads/kita-1-.jpg
-          name: 喜多 伸夫
+          image: /assets/images/people/joi-ito-photo-2022.jpg
+        - name: 喜多 伸夫
           titles:
             - サイオス株式会社<br>代表取締役社長
-        - image: /assets/uploads/sunahara.jpg
-          name: 砂原 秀樹
+          image: /assets/images/people/kita-1-.jpg
+        - name: 砂原 秀樹
           titles:
             - 麗澤大学<br>工学部 教授
-        - image: /assets/uploads/nakamura.jpg
-          name: 中村 素典
+          image: /assets/images/people/sunahara.jpg
+        - name: 中村 素典
           titles:
             - 京都大学<br>情報環境機構 教授
-      subheading: Directors
+          image: /assets/images/people/nakamura.jpg
     - heading: 監事
+      subheading: Auditor
       members:
-        - image: /assets/uploads/suzuki-1-.jpg
-          name: 鈴木 信行
+        - name: 鈴木 信行
           titles:
             - 有限会社テクニカルアーツ<br>管理部 部長
-      subheading: Auditor
+          image: /assets/images/people/suzuki-1-.jpg
     - heading: アドバイザー
+      subheading: Advisor
       members:
-        - image: /assets/uploads/murai-1-.jpg
-          name: 村井 純
+        - name: 村井 純
           titles:
             - 慶應義塾大学<br>教授
-      subheading: Advisor
+          image: /assets/images/people/murai-1-.jpg
     - heading: フェロー
+      subheading: Fellows
       members:
-        - image: /assets/uploads/kakehiyasuaki.jpg
-          name: 筧 康明
+        - name: 筧 康明
           titles:
             - 東京大学大学院<br>情報学環 教授
-        - image: /assets/uploads/masao-goho.webp
-          name: 五寳 匡郎
+          image: /assets/images/people/kakehiyasuaki.jpg
+        - name: 五寳 匡郎
           titles:
             - コニカミノルタ株式会社<br>エキスパート
             - 八洲物産株式会社<br>取締役 CIO
-        - image: /assets/uploads/satoru-takagi.webp
-          name: 高木 悟
+          image: /assets/images/people/masao-goho.webp
+        - name: 高木 悟
           titles:
             - KDDI株式会社<br>コア技術統括本部<br>シニアエキスパート
-        - image: /assets/uploads/masakazumuraoka.jpg
-          name: 村岡 正和
+          image: /assets/images/people/satoru-takagi.webp
+        - name: 村岡 正和
           titles:
             - 株式会社 BathTimeFish <br>代表
-      subheading: Fellows
+          image: /assets/images/people/masakazumuraoka.jpg
+contactdesc: ''
 ---

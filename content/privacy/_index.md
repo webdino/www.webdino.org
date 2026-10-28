@@ -8,14 +8,16 @@ description: 一般社団法人 WebDINO Japan は、高度情報通信社会に�
 date: 2017-06-30T00:00:00.000Z
 lastmod: 2022-06-24T00:00:00.000Z
 publisher:
-  contact:
-    email: privacy@webdino.org
-    title: 個人情報に関するお問い合わせ窓口
   name: 一般社団法人 WebDINO Japan
   person:
-    name: 瀧田 佐登子
     role: 代表理事
+    name: 瀧田 佐登子
+  contact:
+    title: 個人情報に関するお問い合わせ窓口
+    email: privacy@webdino.org
+contactdesc: ''
 ---
+
 一般社団法人 WebDINO Japan (以下「当法人」といいます。) は、高度情報通信社会における個人情報保護の重要性を認識し、以下の方針に基づき個人情報の保護に努めます。
 
 当法人は、個人情報の取扱いにあたっては、個人情報の保護に関する法律 (平成 15 年法律第 57 号) (以下「個人情報保護法」といいます。) その他の法令、個人情報保護委員会のガイドライン等関連ガイドラインを遵守します。この方針において用いる用語の意義は、特段の定めがない限り、個人情報保護法の定義に従います。
