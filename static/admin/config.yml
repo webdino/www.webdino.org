@@ -9,8 +9,20 @@ publish_mode:
   type: preview
   direct_publish: true
 
-media_folder: static/assets/uploads
+media_folder: /static/assets/uploads
 public_folder: /assets/uploads
+
+asset_collections:
+  - name: people
+    label: 人物写真
+    icon: people
+    media_folder: /static/assets/images/people
+    public_folder: /assets/images/people
+  - name: banners
+    label: バナー
+    icon: campaign
+    media_folder: /static/assets/images/banners
+    public_folder: /assets/images/banners
 
 media_libraries:
   all:
@@ -177,6 +189,8 @@ collections:
         label: /about/history/ 沿革
         preview_path: /about/history/
         file: content/about/history/_index.md
+        media_folder: /static/assets/images/about/history
+        public_folder: /assets/images/about/history
         fields:
           - { name: type, label: タイプ, widget: hidden, default: about }
           - { name: layout, label: レイアウト, widget: hidden, default: history }
@@ -203,7 +217,7 @@ collections:
                 { name: time, label: 時期, widget: string },
                 { name: title, label: タイトル, widget: string },
                 { name: description, label: 説明文, widget: text },
-                { name: image, label: 画像, widget: image },
+                { name: image, label: 画像, widget: image, required: false },
                 { name: id, label: ID, widget: string },
               ]},
             ]}
@@ -249,6 +263,8 @@ collections:
         label: /services/tech/ 技術開発・コンサルティング
         preview_path: /services/tech/
         file: content/services/tech/_index.md
+        media_folder: /static/assets/images/services/tech
+        public_folder: /assets/images/services/tech
         fields:
           - { name: type, label: タイプ, widget: hidden, default: services }
           - { name: layout, label: レイアウト, widget: hidden, default: tech }
@@ -295,6 +311,8 @@ collections:
         label: /services/human/ 人材育成・イベントのプロデュース
         preview_path: /services/human/
         file: content/services/human/_index.md
+        media_folder: /static/assets/images/services/human
+        public_folder: /assets/images/services/human
         fields:
           - { name: type, label: タイプ, widget: hidden, default: services }
           - { name: layout, label: レイアウト, widget: hidden, default: human }
@@ -323,7 +341,7 @@ collections:
                 { name: details, label: 詳細, widget: list, fields: [
                   { name: heading, label: 見出し, widget: string },
                   { name: description, label: 説明文, widget: markdown },
-                  { name: image, label: 画像, widget: image },
+                  { name: image, label: 画像, widget: image, required: false },
                 ]},
               ]},
             ]}
@@ -338,6 +356,8 @@ collections:
         label: /services/human/fullstack/ フルスタック研修プログラム
         preview_path: /services/human/fullstack/
         file: content/services/human/fullstack/_index.md
+        media_folder: /static/assets/images/services/fullstack
+        public_folder: /assets/images/services/fullstack
         fields:
           - { name: type, label: タイプ, widget: hidden, default: services }
           - { name: layout, label: レイアウト, widget: hidden, default: fullstack }
@@ -412,6 +432,8 @@ collections:
         label: /community/ コミュニティ支援
         preview_path: /community/
         file: content/community/_index.md
+        media_folder: /static/assets/images/community
+        public_folder: /assets/images/community
         fields:
           - { name: type, label: タイプ, widget: hidden, default: community }
           - { name: layout, label: レイアウト, widget: hidden, default: index }
@@ -424,7 +446,7 @@ collections:
           - { name: title, label: ページタイトル, widget: string }
           - { name: linktitle, label: リンクタイトル, widget: string }
           - { name: subtitle, label: サブタイトル, widget: string }
-          - { name: description, label: 説明文, widget: text }
+          - { name: description, label: 説明文, widget: text, required: false }
           - { name: feature_images, label: 主要画像, widget: list, fields: [
               { name: src, label: ソース, widget: image },
             ]}
@@ -442,12 +464,6 @@ collections:
                 { name: url, label: URL, widget: string, required: false },
                 { name: description, label: 説明文, widget: markdown },
               ]}
-            ]}
-          - { name: space, label: コミュニティスペース, widget: object, fields: [
-              { name: heading, label: 見出し, widget: string },
-              { name: subheading, label: サブ見出し, widget: string },
-              { name: description, label: 説明文, widget: markdown },
-              { name: image, label: 画像, widget: image },
             ]}
           - { name: contactdesc, label: 問い合わせ説明文 (上書き), widget: string, required: false }
       - name: contact
@@ -516,12 +532,14 @@ collections:
           - { name: title, label: ページタイトル, widget: string }
           - { name: linktitle, label: リンクタイトル, widget: string }
           - { name: subtitle, label: サブタイトル, widget: string }
-          - { name: description, label: 説明文, widget: text }
+          - { name: description, label: 説明文, widget: text, required: false }
           - { name: contactdesc, label: 問い合わせ説明文 (上書き), widget: string, required: false }
       - name: careers
         label: /careers/ 採用情報
         preview_path: /careers/
         file: content/careers/_index.md
+        media_folder: /static/assets/images/careers
+        public_folder: /assets/images/careers
         fields:
           - { name: type, label: タイプ, widget: hidden, default: careers }
           - { name: layout, label: レイアウト, widget: hidden, default: index }
@@ -580,6 +598,8 @@ collections:
         preview_path: /privacy/
         file: content/privacy/_index.md
         fields:
+          - { name: type, label: タイプ, widget: hidden, default: privacy }
+          - { name: layout, label: レイアウト, widget: hidden, default: index }
           - { name: title, label: ページタイトル, widget: string }
           - { name: linktitle, label: リンクタイトル, widget: string }
           - { name: subtitle, label: サブタイトル, widget: string }
@@ -604,6 +624,8 @@ collections:
         preview_path: /error/
         file: content/error/_index.md
         fields:
+          - { name: type, label: タイプ, widget: hidden, default: error }
+          - { name: layout, label: レイアウト, widget: hidden, default: index }
           - { name: title, label: ページタイトル, widget: string }
           - { name: subtitle, label: サブタイトル, widget: string }
           - { name: description, label: 説明文, widget: markdown }

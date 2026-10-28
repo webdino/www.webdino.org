@@ -1,52 +1,52 @@
 publisher:
+  name: 一般社団法人 WebDINO Japan
   address: 〒103-0006 東京都中央区日本橋富沢町 10-13 WORK EDITION NIHONBASHI 3F
   map:
-    api_key: AIzaSyBFnZMBbbYq0_kIjLp5m4Sds8e1UqW3Q4w
     place_id: ChIJcex0elKJGGAR_RKOSIb45l4
-  name: 一般社団法人 WebDINO Japan
+    api_key: AIzaSyBFnZMBbbYq0_kIjLp5m4Sds8e1UqW3Q4w
 contact:
-  description: 事業等に関するお問い合わせ・ご相談は以下リンク先のフォームよりお願いします。
   heading: お問い合わせ
+  description: 事業等に関するお問い合わせ・ご相談は以下リンク先のフォームよりお願いします。
   linklabel: お問い合わせ
 social:
-  - identifier: twitter
-    name: X (旧 Twitter)
+  - name: X (旧 Twitter)
+    identifier: twitter
     account: WebDINO_jp
     url: https://x.com/WebDINO_jp
-  - identifier: facebook
-    name: Facebook
+  - name: Facebook
+    identifier: facebook
     account: WebDINOJP
     url: https://www.facebook.com/WebDINOJP
 updates:
+  news:
+    heading: 新着情報
+    subheading: What’s New
+    linklabel: 新着情報をすべて見る
+    backlinklabel: 新着情報トップへ戻る
+  tags:
+    heading: タグ
+  archive:
+    heading: アーカイブ
+  share:
+    heading: この記事を共有
+    media:
+      - name: Facebook
+        identifier: facebook
+        url: https://www.facebook.com/sharer.php?u={url}
+      - name: X (旧 Twitter)
+        identifier: twitter
+        url: https://x.com/intent/tweet?url={url}&text={title}&via=WebDINO_jp
+      - name: はてなブックマーク
+        identifier: hatena-bookmark
+        url: https://b.hatena.ne.jp/append?{url}
+  nav:
+    prev: 前の記事
+    next: 次の記事
   all:
     backlinklabel: お知らせトップへ戻る
     heading: ディノの足あと
     linklabel: もっと足あとを見る
     subheading: DINO’s Footprints
-  archive:
-    heading: アーカイブ
-  nav:
-    next: 次の記事
-    prev: 前の記事
-  news:
-    backlinklabel: 新着情報トップへ戻る
-    heading: 新着情報
-    linklabel: 新着情報をすべて見る
-    subheading: What’s New
-  share:
-    heading: この記事を共有
-    media:
-      - identifier: facebook
-        name: Facebook
-        url: https://www.facebook.com/sharer.php?u={url}
-      - identifier: twitter
-        name: X (旧 Twitter)
-        url: https://x.com/intent/tweet?url={url}&text={title}&via=WebDINO_jp
-      - identifier: hatena-bookmark
-        name: はてなブックマーク
-        url: https://b.hatena.ne.jp/append?{url}
-  tags:
-    heading: タグ
 promo:
   heading: おすすめコンテンツ
   subheading: Featured Content
@@ -54,12 +54,12 @@ promo:
     - title: Web×IoT メイカーズチャレンジ PLUS
       description: Web 標準技術や OSS 活用についての理解を深めながら、IoT システム開発を実践的に学ぶイベント「Web×IoT メイカーズチャレンジ PLUS」 の中央協議会事務局を担当
       url: https://webiotmakers.github.io/
-      image: /assets/uploads/home-promo-webiotmakers-plus.webp
+      image: /assets/images/banners/home-promo-webiotmakers-plus.webp
     - title: Web 標準で学ぶモダンフルスタック開発実践
       description: Web 標準技術へ深い理解と実践形式でのフルスタック統合を通じて長期的に通用する開発力を高める、企業向け人材育成研修プログラムの提供
       url: /services/human/fullstack/
-      image: /assets/uploads/home-promo-fullstack.webp
+      image: /assets/images/banners/home-promo-fullstack.webp
     - title: Originator Profile
       description: インターネット上のニュース記事や広告などの情報コンテンツに発信者情報のラベルを付与する技術を研究開発する「Originator Profile 技術研究組合」への参画、および技術面での貢献
       url: https://originator-profile.org/ja-JP/
-      image: /assets/uploads/home-promo-op.webp
+      image: /assets/images/banners/home-promo-op.webp

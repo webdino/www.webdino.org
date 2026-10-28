@@ -4,8 +4,7 @@ layout: fullstack
 title: Web 標準で学ぶ<br>モダンフルスタック<br>開発実践
 linktitle: Web 標準で学ぶモダンフルスタック開発実践
 subtitle: Full-Stack Web Development Course
-description: >-
-  Web 標準技術への深い理解と実践形式でのフルスタック開発を通じて、長期的に通用する開発力を習得する、企業向け人材育成研修プログラムです。
+description: Web 標準技術への深い理解と実践形式でのフルスタック開発を通じて、長期的に通用する開発力を習得する、企業向け人材育成研修プログラムです。
 heroImage: /assets/images/services/fullstack/hero.webp
 features:
   heading: 特徴
@@ -14,9 +13,9 @@ features:
     - icon: f0eb
       description: 流行のフレームワークやライブラリの使い方だけに留まらず、設計思想やそれを支える仕組み、Web 標準技術への理解を深めます
     - icon: f6de
-      description: "実践型研修: ハンズオンや実際のシステム開発を通して、現場で使える設計・実装・開発力を身につけます"
+      description: '実践型研修: ハンズオンや実際のシステム開発を通して、現場で使える設計・実装・開発力を身につけます'
     - icon: f12e
-      description: "専用カリキュラム: 組織の目的に合わせて最適なカリキュラムをご提案します"
+      description: '専用カリキュラム: 組織の目的に合わせて最適なカリキュラムをご提案します'
 outcomes:
   heading: 期待される効果
   subheading: Expected Outcomes
@@ -40,8 +39,7 @@ support:
 curriculum:
   heading: カリキュラム
   subheading: Curriculum
-  description: >-
-    過去研修で実際に使用したカリキュラムの例です。ご提供にあたっては貴社のご要望と目的に応じて内容を再構成し、講義、ハンズオン、プロジェクトベース開発などの配分を調整します。
+  description: 過去研修で実際に使用したカリキュラムの例です。ご提供にあたっては貴社のご要望と目的に応じて内容を再構成し、講義、ハンズオン、プロジェクトベース開発などの配分を調整します。
   items:
     - day: DAY 1
       title: 基盤構築
@@ -61,8 +59,7 @@ curriculum:
 instructors:
   heading: 講師陣
   subheading: Instructors
-  description: >-
-    本研修は、WebDINO Japan のシニアエンジニアを中心とした講師陣が担当します。さらに、第一線で活躍するゲスト講師を招いた特別講義の機会を設けることも可能です。
+  description: 本研修は、WebDINO Japan のシニアエンジニアを中心とした講師陣が担当します。さらに、第一線で活躍するゲスト講師を招いた特別講義の機会を設けることも可能です。
   internal:
     heading: 専任講師
     people:
@@ -74,7 +71,7 @@ instructors:
         image: /assets/images/services/fullstack/instructor-watanabe.webp
   external:
     heading: 外部講師
-    people: 
+    people:
       - name: 秋葉 秀樹 氏
         title: 株式会社ツクロア 代表取締役兼デザイナー
       - name: 久野 公瑛 氏
