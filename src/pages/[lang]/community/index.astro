@@ -1,0 +1,57 @@
+---
+import FeatureHeader from '@components/FeatureHeader.astro';
+import SectionHeader from '@components/SectionHeader.astro';
+import { getLocale, getLocaleParams } from '@i18n/utils';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import '@styles/community.css';
+import { getPage } from '@lib/content';
+import { markdownify } from '@lib/markdown';
+import { getPageProps } from '@lib/navigation';
+
+export const getStaticPaths = () => getLocaleParams().map((params) => ({ params }));
+
+const locale = getLocale(Astro.currentLocale);
+const { data } = await getPage(locale, 'community');
+const { feature_images: featureImages, concept, friends } = data;
+---
+
+<BaseLayout {...await getPageProps(locale, 'community')}>
+  <main>
+    <FeatureHeader title={data.title} subtitle={data.subtitle} description={data.description}>
+      <figure slot="after">
+        {featureImages.map((image) => (
+          <img loading="lazy" src={image.src} alt="" />
+        ))}
+      </figure>
+    </FeatureHeader>
+    <div id="main-content">
+      <section id="concept" class="outer highlight">
+        <div class="background" style={`background-image:url('${concept.src ?? ''}')`}></div>
+        <div class="inner row">
+          <div class="col">
+            <SectionHeader heading={concept.heading} subheading={concept.subheading} />
+            <Fragment set:html={markdownify(concept.description)} />
+          </div>
+        </div>
+      </section>
+      <section id="friends" class="outer highlight">
+        <div class="inner">
+          <div class="row header">
+            <div class="col">
+              <SectionHeader heading={friends.heading} subheading={friends.subheading} />
+              <Fragment set:html={markdownify(friends.description)} />
+            </div>
+          </div>
+          <div class="row groups">
+            {friends.groups.map((group) => (
+              <section class="col s3">
+                <h3>{group.url ? <a href={group.url}>{group.name}</a> : group.name}</h3>
+                <Fragment set:html={markdownify(group.description)} />
+              </section>
+            ))}
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+</BaseLayout>

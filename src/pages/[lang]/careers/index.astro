@@ -1,0 +1,116 @@
+---
+import { createHash } from 'node:crypto';
+import FeatureHeader from '@components/FeatureHeader.astro';
+import Heading from '@components/Heading.astro';
+import { getLocale, getLocaleParams } from '@i18n/utils';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import '@styles/careers.css';
+import { getPage, getSettings } from '@lib/content';
+import { markdownify } from '@lib/markdown';
+import { getPageProps } from '@lib/navigation';
+
+export const getStaticPaths = () => getLocaleParams().map((params) => ({ params }));
+
+const locale = getLocale(Astro.currentLocale);
+const { data } = await getPage(locale, 'careers');
+const { publisher } = await getSettings(locale);
+const { labels, positions, images } = data;
+
+/** Get the anchor ID of a position. */
+const getId = (title: string) => createHash('md5').update(title).digest('hex');
+
+/** Table rows: field name and the Schema.org property name, if any. */
+const rows = [
+  ['description', 'description'],
+  ['responsibilities', 'responsibilities'],
+  ['totalJobOpenings'], // `totalJobOpenings` in Schema.org is an integer
+  ['workHours', 'workHours'],
+  ['holidays'], // No `holidays` in Schema.org
+  ['salary'], // `estimatedSalary` in Schema.org is a number
+  ['experienceRequirements', 'experienceRequirements'],
+  ['skills', 'skills'],
+  ['jobBenefits', 'jobBenefits'],
+  ['otherConditions'], // No `otherConditions` in Schema.org
+  ['jobLocation', 'jobLocation'],
+] as const;
+---
+
+<BaseLayout {...await getPageProps(locale, 'careers')}>
+  <main>
+    <FeatureHeader title={data.title} subtitle={data.subtitle}>
+      {positions.length === 0 ? (
+        <p set:html={markdownify(data.positionsUnavailable)} />
+      ) : (
+        <>
+          <p set:html={markdownify(data.positionsAvailable)} />
+          <nav>
+            <ul>
+              {positions.map((position) => (
+                <li>
+                  <a href={`#${getId(position.title)}`}>{position.title}</a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </>
+      )}
+    </FeatureHeader>
+    <div id="main-content">
+      {positions.map((position) => (
+        <section
+          class="outer"
+          itemscope
+          itemtype="http://schema.org/JobPosting"
+          id={getId(position.title)}
+        >
+          <header class="large">
+            <div class="inner row">
+              <div class="col">
+                <h2 itemprop="title">
+                  <Heading text={position.title} />
+                </h2>
+              </div>
+            </div>
+          </header>
+          <div class="inner row">
+            <div class="col">
+              <table>
+                <tbody>
+                  {rows.map(([field, itemprop]) => (
+                    <tr>
+                      <th>{labels[field]}</th>
+                      <td itemprop={itemprop} set:html={markdownify(position[field])} />
+                    </tr>
+                  ))}
+                  <tr>
+                    <th>{labels.hiringOrganization}</th>
+                    <td
+                      itemprop="hiringOrganization"
+                      itemscope
+                      itemtype="https://schema.org/Organization"
+                    >
+                      <div itemprop="name">{publisher.name}</div>
+                      <div itemprop="address">{publisher.address}</div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>{labels.apply}</th>
+                    <td set:html={markdownify(position.apply)} />
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+      ))}
+      <aside id="pictures">
+        {images.map((image) => (
+          <figure>
+            <img loading="lazy" src={image.src} alt="" />
+            <figcaption>{image.caption}</figcaption>
+          </figure>
+        ))}
+      </aside>
+    </div>
+  </main>
+</BaseLayout>

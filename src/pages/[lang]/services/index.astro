@@ -1,0 +1,57 @@
+---
+import FeatureHeader from '@components/FeatureHeader.astro';
+import FullstackPromo from '@components/FullstackPromo.astro';
+import Heading from '@components/Heading.astro';
+import { getLocale, getLocaleParams } from '@i18n/utils';
+import ServicesLayout from '@layouts/ServicesLayout.astro';
+import { getPage } from '@lib/content';
+import { getChildPages, getPageProps } from '@lib/navigation';
+
+export const getStaticPaths = () => getLocaleParams().map((params) => ({ params }));
+
+const locale = getLocale(Astro.currentLocale);
+const { data } = await getPage(locale, 'services');
+
+const services = await getChildPages(locale, 'services');
+---
+
+<ServicesLayout {...await getPageProps(locale, 'services')}>
+  <main>
+    <FeatureHeader title={data.title} subtitle={data.subtitle} description={data.description} />
+    <div id="main-content">
+      <div id="service-highlights">
+        {services.map((service) => (
+          <section id={`service-${service.name}`} class="service highlight outer">
+            <div class="inner row">
+              <div class="col s4">
+                <header>
+                  <hgroup>
+                    <h2>
+                      <Heading text={service.title} />
+                    </h2>
+                    {service.subtitle && <p class="subtitle">{service.subtitle}</p>}
+                  </hgroup>
+                </header>
+                <p>{service.description}</p>
+                <footer>
+                  <p class="cta-outer">
+                    <a href={service.href} class="cta">
+                      <span class="label">{service.linkLabel}</span>
+                      <span class="fas arrow-right" aria-hidden="true"></span>
+                    </a>
+                  </p>
+                </footer>
+              </div>
+              <div class="col s2 images">
+                <figure>
+                  <img loading="lazy" src={service.image} width="400" height="300" alt="" />
+                </figure>
+              </div>
+            </div>
+          </section>
+        ))}
+      </div>
+    </div>
+    <FullstackPromo locale={locale} />
+  </main>
+</ServicesLayout>

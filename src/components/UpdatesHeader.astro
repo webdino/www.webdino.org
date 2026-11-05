@@ -1,0 +1,30 @@
+---
+import type { Locale } from '@i18n/ui';
+import { getPage } from '@lib/content';
+import { getPagePath } from '@lib/navigation';
+import Heading from './Heading.astro';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const { data } = await getPage(locale, 'updates');
+---
+
+<div id="main-feature" class="outer">
+  <div class="inner row">
+    <div class="col">
+      <header>
+        <hgroup>
+          <a href={getPagePath(locale, 'updates')}>
+            <h1>
+              <Heading text={data.title} />
+            </h1>
+            {data.subtitle && <p class="subtitle">{data.subtitle}</p>}
+          </a>
+        </hgroup>
+      </header>
+    </div>
+  </div>
+</div>

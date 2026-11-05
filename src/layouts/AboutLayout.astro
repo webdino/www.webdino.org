@@ -1,0 +1,13 @@
+---
+import type { ComponentProps } from 'astro/types';
+import AboutNav from '@components/AboutNav.astro';
+import BaseLayout from './BaseLayout.astro';
+import '@styles/about.css';
+
+type Props = ComponentProps<typeof BaseLayout>;
+---
+
+<BaseLayout {...Astro.props}>
+  <slot />
+  <AboutNav locale={Astro.props.locale} />
+</BaseLayout>

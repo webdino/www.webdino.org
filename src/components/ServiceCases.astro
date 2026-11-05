@@ -1,0 +1,30 @@
+---
+import { markdownify } from '@lib/markdown';
+import Heading from './Heading.astro';
+
+interface Props {
+  heading: string;
+  details: { heading: string; description: string; image?: string }[];
+}
+
+const { heading, details } = Astro.props;
+---
+
+{details.map((detail) => (
+  <section class="case">
+    <h3>
+      <span class="prefix">{heading}</span>{' '}
+      <span class="heading">
+        <Heading text={detail.heading} />
+      </span>
+    </h3>
+    <div class="content">
+      {detail.image && (
+        <figure>
+          <img loading="lazy" src={detail.image} alt="" />
+        </figure>
+      )}
+      <div class="description" set:html={markdownify(detail.description)} />
+    </div>
+  </section>
+))}

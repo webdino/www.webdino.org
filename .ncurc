@@ -1,0 +1,3 @@
+reject:
+  # astro check doesn’t support TypeScript 7 yet
+  - typescript

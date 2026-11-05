@@ -1,0 +1,95 @@
+@media screen {
+  body {
+    background-image: url(/images/careers/main-bg@2x.png);
+  }
+
+  header nav ul {
+    list-style-position: inside;
+  }
+
+  [itemtype$='JobPosting'] {
+    section {
+      display: flex;
+      margin: 16px auto;
+
+      &:not(:last-child) {
+        border-bottom: 1px solid #858585;
+        padding-bottom: 16px;
+      }
+    }
+
+    header.large {
+      background-image: url(/images/careers/header-bg@2x.png);
+    }
+
+    .row {
+      margin: 16px auto;
+      max-width: 928px;
+    }
+
+    h3 {
+      flex: none;
+      margin: 8px 0;
+      width: 160px;
+      color: #858585;
+    }
+
+    table {
+      :is(ul, ol, li, p) {
+        margin: 0;
+      }
+
+      & {
+        border-collapse: collapse;
+        margin: 32px 0;
+        width: 100%;
+      }
+    }
+
+    :is(th, td) {
+      padding: 8px;
+      border-top: 1px solid #ccc;
+    }
+
+    tr:last-child :is(th, td) {
+      border-bottom: 1px solid #ccc;
+    }
+
+    th {
+      color: #858585;
+      font-weight: normal;
+      text-align: left;
+      vertical-align: top;
+      white-space: nowrap;
+    }
+  }
+
+  #pictures {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    padding: 32px;
+    background-color: #f3f5f8;
+
+    figure {
+      margin: 0;
+    }
+
+    img {
+      width: 400px;
+      max-width: 100%;
+      height: auto;
+    }
+  }
+}
+
+@media screen and (max-width: 767px) {
+  [itemtype$='JobPosting'] th {
+    min-width: 5em;
+    white-space: normal;
+  }
+
+  #pictures {
+    flex-direction: column;
+  }
+}

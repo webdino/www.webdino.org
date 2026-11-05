@@ -1,0 +1,21 @@
+---
+import BoardMember, { type Props as Member } from './BoardMember.astro';
+import SectionHeader from './SectionHeader.astro';
+
+interface Props {
+  heading: string;
+  subheading?: string;
+  members: Member[];
+}
+
+const { heading, subheading, members } = Astro.props;
+---
+
+<section>
+  <SectionHeader heading={heading} subheading={subheading} level={3} />
+  <div class="members">
+    {members.map((member) => (
+      <BoardMember {...member} />
+    ))}
+  </div>
+</section>

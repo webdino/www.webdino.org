@@ -1,0 +1,30 @@
+---
+import type { Locale } from '@i18n/ui';
+import { formatDate } from '@i18n/utils';
+import { getHeadline, type Post } from '@lib/content';
+import { getPostPath } from '@lib/navigation';
+import { toISOString } from '@lib/text';
+
+interface Props {
+  locale: Locale;
+  post: Post;
+}
+
+const { locale, post } = Astro.props;
+const href = getPostPath(locale, post);
+const { date } = post.data;
+---
+
+<article class="news headline" itemscope itemtype="http://schema.org/Article">
+  <header>
+    <h3 itemprop="headline">
+      <a href={href} itemprop="url">
+        {getHeadline(locale, post)}
+      </a>
+    </h3>
+    <time datetime={toISOString(date)} itemprop="datePublished">
+      {formatDate(locale, date)}
+    </time>
+  </header>
+  <meta itemprop="mainEntityOfPage" content={new URL(href, Astro.site).href} />
+</article>

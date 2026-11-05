@@ -1,0 +1,11 @@
+---
+import type { ComponentProps } from 'astro/types';
+import BaseLayout from './BaseLayout.astro';
+import '@styles/services.css';
+
+type Props = ComponentProps<typeof BaseLayout>;
+---
+
+<BaseLayout {...Astro.props}>
+  <slot />
+</BaseLayout>

@@ -1,0 +1,91 @@
+---
+import FeatureHeader from '@components/FeatureHeader.astro';
+import Heading from '@components/Heading.astro';
+import SectionHeader from '@components/SectionHeader.astro';
+import ServiceCases from '@components/ServiceCases.astro';
+import { getLocale, getLocaleParams } from '@i18n/utils';
+import ServicesLayout from '@layouts/ServicesLayout.astro';
+import { getPage } from '@lib/content';
+import { markdownify } from '@lib/markdown';
+import { getPageProps } from '@lib/navigation';
+
+export const getStaticPaths = () => getLocaleParams().map((params) => ({ params }));
+
+const locale = getLocale(Astro.currentLocale);
+const { data } = await getPage(locale, 'tech');
+const { fields, solutions } = data;
+
+/**
+ * Convert a heading to an anchor ID, like Hugo’s `urlize` function.
+ * @param text Heading.
+ */
+const urlize = (text: string) => encodeURIComponent(text.trim().toLowerCase().replace(/\s+/g, '-'));
+---
+
+<ServicesLayout {...await getPageProps(locale, 'tech')}>
+  <main>
+    <FeatureHeader title={data.title} subtitle={data.subtitle} description={data.description}>
+      <nav role="directory">
+        <ul id="field-anchors">
+          {fields.details.map((field) => (
+            <li>
+              <a href={`#${urlize(field.subheading)}`}>
+                {field.title} <strong>{field.heading}</strong> <span>{field.subheading}</span>
+                <span class="fas angle-down" aria-hidden="true"></span>
+              </a>
+            </li>
+          ))}
+        </ul>
+        <footer>
+          <p class="cta-outer">
+            <a href="#tech-solutions" class="cta">
+              <span class="label">{solutions.linkLabel}</span>
+              <span class="fas arrow-down" aria-hidden="true"></span>
+            </a>
+          </p>
+        </footer>
+      </nav>
+    </FeatureHeader>
+    <div id="main-content">
+      <section id="fields">
+        <header>
+          <hgroup>
+            <h2>
+              <Heading text={fields.heading} />
+            </h2>
+            <p class="subtitle">{fields.subheading}</p>
+          </hgroup>
+        </header>
+        {fields.details.map((field) => (
+          <section id={urlize(field.subheading)} class="outer field">
+            <div class="inner row">
+              <div class="col s2">
+                <SectionHeader heading={field.heading} subheading={field.subheading} level={3}>
+                  <p class="summary">{field.summary}</p>
+                </SectionHeader>
+              </div>
+              <div class="col s4">
+                <div class="description" set:html={markdownify(field.description)} />
+              </div>
+            </div>
+          </section>
+        ))}
+      </section>
+      <section id="tech-solutions">
+        <div class="inner row">
+          <div class="col">
+            <SectionHeader heading={solutions.heading} subheading={solutions.subheading}>
+              <p>{solutions.description}</p>
+            </SectionHeader>
+            <ul class="examples">
+              {solutions.examples.map((example) => (
+                <li style={`background-image:url('${example.icon}')`}>{example.label}</li>
+              ))}
+            </ul>
+            <ServiceCases {...solutions.cases} />
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+</ServicesLayout>

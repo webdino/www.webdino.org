@@ -1,0 +1,50 @@
+---
+import FeatureHeader from '@components/FeatureHeader.astro';
+import PostSummary from '@components/PostSummary.astro';
+import SectionHeader from '@components/SectionHeader.astro';
+import { getLocale, getLocaleParams } from '@i18n/utils';
+import UpdatesLayout from '@layouts/UpdatesLayout.astro';
+import { getPage, getPosts, getSettings } from '@lib/content';
+import { getPagePath, getPageProps } from '@lib/navigation';
+
+export const getStaticPaths = () => getLocaleParams().map((params) => ({ params }));
+
+const locale = getLocale(Astro.currentLocale);
+const { data } = await getPage(locale, 'updates');
+const { updates } = await getSettings(locale);
+const posts = (await getPosts(locale)).slice(0, 10);
+---
+
+<UpdatesLayout {...await getPageProps(locale, 'updates')}>
+  <main>
+    <FeatureHeader title={data.title} subtitle={data.subtitle} />
+    <div id="main-content">
+      <div class="inner row">
+        <div class="col">
+          <section id="blog">
+            <SectionHeader heading={updates.all.heading} subheading={updates.all.subheading} />
+            <div class="tiles">
+              {posts.map((post) => (
+                <PostSummary locale={locale} post={post} />
+              ))}
+            </div>
+          </section>
+        </div>
+      </div>
+      <div class="inner row">
+        <div class="col">
+          <section id="news">
+            <footer>
+              <p class="cta-outer">
+                <a href={getPagePath(locale, 'news')} class="cta">
+                  <span class="label">{updates.news.linkLabel}</span>
+                  <span class="fas arrow-right" aria-hidden="true"></span>
+                </a>
+              </p>
+            </footer>
+          </section>
+        </div>
+      </div>
+    </div>
+  </main>
+</UpdatesLayout>

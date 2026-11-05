@@ -1,0 +1,63 @@
+---
+import PostHeadline from '@components/PostHeadline.astro';
+import TagsAside from '@components/TagsAside.astro';
+import UpdatesHeader from '@components/UpdatesHeader.astro';
+import type { Locale } from '@i18n/ui';
+import { useTranslations } from '@i18n/utils';
+import { getPage, type Post } from '@lib/content';
+import { getCrumbs } from '@lib/navigation';
+import { removeLineBreaks } from '@lib/text';
+import UpdatesLayout from './UpdatesLayout.astro';
+
+interface Props {
+  locale: Locale;
+  /** Archive title. */
+  title: string;
+  /** Archive URL path. */
+  href: string;
+  posts: Post[];
+  /** `data-section` attribute of `<body>`, used in styles. */
+  section?: string;
+  /** `data-page` attribute of `<body>`, used in styles. */
+  page?: string;
+}
+
+const { locale, title, href, posts, section, page } = Astro.props;
+const t = useTranslations(locale);
+const { data: updates } = await getPage(locale, 'updates');
+const sectionTitle = removeLineBreaks(updates.title);
+---
+
+<UpdatesLayout
+  locale={locale}
+  title={title}
+  documentTitle={`${title} | ${sectionTitle} | ${t('site.title')}`}
+  ogTitle={`${title} | ${sectionTitle}`}
+  description={updates.description}
+  section={section}
+  page={page}
+  crumbs={[...(await getCrumbs(locale, 'updates')), { label: title, href }]}
+>
+  <main>
+    <UpdatesHeader locale={locale} />
+    <div id="main-content">
+      <div class="outer">
+        <div class="inner row">
+          <div class="col s4">
+            <section id="news">
+              <slot />
+              <div class="headlines">
+                {posts.map((post) => (
+                  <PostHeadline locale={locale} post={post} />
+                ))}
+              </div>
+            </section>
+          </div>
+          <div class="col s2">
+            <TagsAside locale={locale} />
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</UpdatesLayout>

@@ -1,0 +1,51 @@
+---
+import type { Locale } from '@i18n/ui';
+import { useTranslations } from '@i18n/utils';
+import { getPage } from '@lib/content';
+import { getChildPages, getLinkTitle } from '@lib/navigation';
+import { removeLineBreaks } from '@lib/text';
+import SectionHeader from './SectionHeader.astro';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+const { data: about } = await getPage(locale, 'about');
+
+const sections = await getChildPages(locale, 'about');
+---
+
+<nav
+  id="about-nav"
+  class="outer"
+  aria-label={t('nav.section.label', { title: removeLineBreaks(about.title) })}
+>
+  <div class="inner row">
+    <SectionHeader class="col" heading={about.title} subheading={about.subtitle} />
+  </div>
+  <div class="inner row">
+    <div class="col sections">
+      {sections.map((section) => (
+        <section>
+          <header>
+            <hgroup>
+              <h3>{getLinkTitle(section)}</h3>
+              {section.subtitle && <p class="subtitle small">{section.subtitle}</p>}
+            </hgroup>
+          </header>
+          <p>{section.description}</p>
+          <footer>
+            <p class="cta-outer">
+              <a href={section.href} class="cta">
+                <span class="label">{about.linkLabel}</span>
+                <span class="fas arrow-right" aria-hidden="true"></span>
+              </a>
+            </p>
+          </footer>
+        </section>
+      ))}
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,115 @@
+---
+import Heading from '@components/Heading.astro';
+import PostSummary from '@components/PostSummary.astro';
+import SectionHeader from '@components/SectionHeader.astro';
+import { getLocale, getLocaleParams } from '@i18n/utils';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import '@styles/home.css';
+import { getPage, getPosts, getSettings } from '@lib/content';
+import { getPagePath } from '@lib/navigation';
+import { removeLineBreaks } from '@lib/text';
+
+export const getStaticPaths = () => getLocaleParams().map((params) => ({ params }));
+
+const locale = getLocale(Astro.currentLocale);
+const { data } = await getPage(locale, 'home');
+const { promo, updates } = await getSettings(locale);
+const posts = (await getPosts(locale)).slice(0, 3);
+
+// The hero animation shows the organization’s concepts described on the About page. The styles
+// only support 4 slides.
+const { data: about } = await getPage(locale, 'about');
+const heroTexts = about.concepts
+  .slice(0, 4)
+  .map(({ heading, subheading }) => [subheading, heading]);
+---
+
+<BaseLayout
+  locale={locale}
+  title={data.title}
+  documentTitle={`${data.title} — ${removeLineBreaks(data.headline)}`}
+  description={data.description}
+  contact={{ description: data.contactDesc }}
+>
+  <main>
+    <div id="main-feature" class="outer">
+      <div id="hero-background-wrapper">
+        {heroTexts.map((_, index) => (
+          <div id={`hero-background-${index + 1}`} class="hero-background"></div>
+        ))}
+      </div>
+      <div id="hero-text-wrapper" class="inner row">
+        {heroTexts.map(([large, small], index) => (
+          <>
+            <div id={`hero-text-${index + 1}-large`} class="hero-text large">
+              {[...large].map((char) => (
+                <span>{char}</span>
+              ))}
+            </div>
+            <div id={`hero-text-${index + 1}-small`} class="hero-text small">
+              <span>{small}</span>
+            </div>
+          </>
+        ))}
+        <div id="hero-text-last" class="col">
+          <header>
+            <h1>
+              <Heading text={data.headline} />
+            </h1>
+            <p>
+              <Heading text={data.description} />
+            </p>
+          </header>
+        </div>
+      </div>
+    </div>
+    <div id="main-content">
+      <section id="promo" class="outer">
+        <div class="inner">
+          <div class="row header">
+            <SectionHeader class="col" heading={promo.heading} subheading={promo.subheading} />
+          </div>
+          <div class="row grid">
+            {promo.links.map((link) => (
+              <div class="col s2">
+                <section>
+                  <a href={link.url}>
+                    <h3>{link.title}</h3>
+                    <img loading="lazy" src={link.image} alt="" />
+                  </a>
+                  <p>{link.description}</p>
+                </section>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+      <section id="updates" class="outer">
+        <div class="inner">
+          <div class="row">
+            <SectionHeader
+              class="col"
+              heading={updates.all.heading}
+              subheading={updates.all.subheading}
+            />
+          </div>
+          <div class="tiles">
+            {posts.map((post) => (
+              <PostSummary locale={locale} post={post} />
+            ))}
+          </div>
+          <div class="row">
+            <footer class="col">
+              <p class="cta-outer">
+                <a href={getPagePath(locale, 'updates')} class="cta">
+                  <span class="label">{updates.all.linkLabel}</span>
+                  <span class="fas arrow-right" aria-hidden="true"></span>
+                </a>
+              </p>
+            </footer>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+</BaseLayout>

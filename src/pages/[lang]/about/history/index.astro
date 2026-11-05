@@ -1,0 +1,77 @@
+---
+import FeatureHeader from '@components/FeatureHeader.astro';
+import Heading from '@components/Heading.astro';
+import { getLocale, getLocaleParams } from '@i18n/utils';
+import AboutLayout from '@layouts/AboutLayout.astro';
+import { getPage } from '@lib/content';
+import { getPageProps } from '@lib/navigation';
+
+export const getStaticPaths = () => getLocaleParams().map((params) => ({ params }));
+
+const locale = getLocale(Astro.currentLocale);
+const { data } = await getPage(locale, 'history');
+const { history, activities } = data;
+---
+
+<AboutLayout {...await getPageProps(locale, 'history')}>
+  <main>
+    <FeatureHeader title={data.title} subtitle={data.subtitle} description={data.description} />
+    <div id="main-content">
+      <section id="history" class="outer">
+        <header class="large">
+          <div class="inner row">
+            <div class="col">
+              <h2>
+                <Heading text={history.heading} />
+              </h2>
+            </div>
+          </div>
+        </header>
+        <div class="inner row">
+          <div class="col">
+            <dl>
+              {history.events.map((event) => (
+                <>
+                  <dt>{event.time}</dt>
+                  <dd>{event.text}</dd>
+                </>
+              ))}
+            </dl>
+          </div>
+        </div>
+      </section>
+      <section id="activities" class="outer">
+        <header class="large">
+          <div class="inner row">
+            <div class="col">
+              <h2>
+                <Heading text={activities.heading} />
+              </h2>
+            </div>
+          </div>
+        </header>
+        <div class="inner row">
+          <div id="activity-highlights" class="col">
+            {activities.timeline.map((activity) => (
+              <section id={`act-${activity.id}`}>
+                <h3>
+                  <span class="time">
+                    <span class="label">{activity.time}</span>
+                    <span class="spacer"></span>
+                  </span>{' '}
+                  {activity.title}
+                </h3>
+                <p>{activity.description}</p>
+                {activity.image && (
+                  <figure>
+                    <img loading="lazy" src={activity.image} width="400" height="300" alt="" />
+                  </figure>
+                )}
+              </section>
+            ))}
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+</AboutLayout>
