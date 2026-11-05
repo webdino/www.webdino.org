@@ -1,0 +1,65 @@
+---
+import type { Locale } from '@i18n/ui';
+import { localizePath, useTranslations } from '@i18n/utils';
+import type { NavItem } from '@lib/navigation';
+
+interface Props {
+  locale: Locale;
+  /** Top-level section of the current page. */
+  section: string;
+  primary: NavItem[];
+  secondary: NavItem[];
+}
+
+const { locale, section, primary, secondary } = Astro.props;
+const t = useTranslations(locale);
+---
+
+<header id="header" role="banner">
+  <div class="outer">
+    <div class="inner row">
+      <div class="col">
+        <div class="mobile" role="button" aria-label={t('nav.menu.open')}>
+          <span class="fas bars" aria-hidden="true"></span>
+        </div>
+        <h1>
+          <a href={localizePath(locale)}>{t('site.title')}</a>
+        </h1>
+        <nav class="primary" aria-label={t('nav.primary.label')}>
+          <ul>
+            {primary.map((item) => (
+              <li
+                data-section={item.id}
+                class:list={{ current: item.id === section, parent: item.children.length > 0 }}
+              >
+                <a href={item.href}>{item.label}</a>
+                {item.children.length > 0 && (
+                  <ul>
+                    {item.children.map((child) => (
+                      <li>
+                        <a href={child.href}>{child.label}</a>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </li>
+            ))}
+          </ul>
+        </nav>
+        <nav class="secondary" aria-label={t('nav.secondary.label')}>
+          <ul>
+            {secondary
+              .filter((item) => item.id === 'contact')
+              .map((item) => (
+                <li data-section={item.id} class:list={{ current: item.id === section }}>
+                  <a href={item.href} class="cta">
+                    {item.label}
+                  </a>
+                </li>
+              ))}
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>

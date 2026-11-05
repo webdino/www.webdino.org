@@ -1,0 +1,30 @@
+---
+import Heading from './Heading.astro';
+
+interface Props {
+  title: string;
+  subtitle?: string;
+  /** Description paragraph; omitted if `undefined`. */
+  description?: string;
+}
+
+const { title, subtitle, description } = Astro.props;
+---
+
+<div id="main-feature" class="outer">
+  <div class="inner row">
+    <div class="col">
+      <header>
+        <hgroup>
+          <h1>
+            <Heading text={title} />
+          </h1>
+          <h2 aria-level="1">{subtitle}</h2>
+        </hgroup>
+        {description !== undefined && <p>{description}</p>}
+        <slot />
+      </header>
+      <slot name="after" />
+    </div>
+  </div>
+</div>

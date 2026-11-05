@@ -1,0 +1,127 @@
+---
+// Keep this first: the build orders stylesheets by import, and section styles must come after
+import '@styles/base.css';
+import { ClientRouter } from 'astro:transitions';
+import Breadcrumbs from '@components/Breadcrumbs.astro';
+import ContactCallout from '@components/ContactCallout.astro';
+import Footer from '@components/Footer.astro';
+import Header from '@components/Header.astro';
+import type { Locale } from '@i18n/ui';
+import { localizePath, useTranslations } from '@i18n/utils';
+import { getPage, getSettings } from '@lib/content';
+import { type Crumb, getLinkTitle, getNavigation } from '@lib/navigation';
+import { removeLineBreaks } from '@lib/text';
+
+interface Props {
+  locale: Locale;
+  /** Page title, without the site title. May contain `<br>`. */
+  title: string;
+  /** Full document title, if different from `{title} | {site title}`. */
+  documentTitle?: string;
+  /** Title for social media, if different from `title`. */
+  ogTitle?: string;
+  description?: string;
+  /** Image for social media. */
+  image?: string;
+  /** `data-section` attribute of `<body>`, used in styles. */
+  section?: string;
+  /** `data-page` attribute of `<body>`, used in styles. */
+  page?: string;
+  /** Breadcrumbs, excluding the home page. Omit on the home page. */
+  crumbs?: Crumb[];
+  /** Contact callout overrides, or `false` to hide the callout. */
+  contact?: { description?: string; link?: string; label?: string } | false;
+  /** Whether to keep the page out of search engines. */
+  noindex?: boolean;
+}
+
+const {
+  locale,
+  title,
+  documentTitle,
+  ogTitle,
+  description = '',
+  noindex = false,
+  image,
+  section = '',
+  page = '',
+  crumbs,
+  contact = {},
+} = Astro.props;
+
+const t = useTranslations(locale);
+const settings = await getSettings(locale);
+const { primary, secondary } = await getNavigation(locale);
+const homeHref = localizePath(locale);
+const { data: home } = await getPage(locale, 'home');
+const siteTitle = t('site.title');
+const plainTitle = removeLineBreaks(title);
+const plainDescription = removeLineBreaks(description);
+const url = new URL(Astro.url.pathname, Astro.site);
+const ogImage = new URL(image || '/images/template/ogp.png', Astro.site);
+const twitter = settings.social.find(({ identifier }) => identifier === 'twitter');
+
+// Top-level section of the current page, e.g. `about` for `/about/history/`
+const [currentSection = ''] = Astro.url.pathname
+  .replace(new RegExp(`^${homeHref}`), '')
+  .split('/')
+  .filter(Boolean);
+---
+
+<!doctype html>
+<html lang={locale}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={plainDescription} />
+    {noindex && <meta name="robots" content="noindex" />}
+    <meta name="viewport" content="width=device-width, user-scalable=false" />
+    <meta name="twitter:card" content={image ? 'summary_large_image' : 'summary'} />
+    {twitter && <meta name="twitter:site" content={`@${twitter.account}`} />}
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content={t('site.og-locale')} />
+    <meta property="og:site_name" content={siteTitle} />
+    <meta property="og:url" content={url.href} />
+    <meta property="og:title" content={ogTitle ?? plainTitle} />
+    <meta property="og:image" content={ogImage.href} />
+    <meta property="og:description" content={plainDescription} />
+    <link rel="alternate" type="application/atom+xml" href={localizePath(locale, '/index.xml')} />
+    <link rel="canonical" hreflang={locale} href={url.href} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"
+    />
+    <link rel="icon" type="image/png" href="/images/template/favicon.png" />
+    <link rel="apple-touch-icon" href="/images/template/apple-touch-icon.png" />
+    <ClientRouter />
+    <title>{documentTitle ?? `${plainTitle} | ${siteTitle}`}</title>
+    <!-- Google tag (gtag.js) -->
+    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-G4E31TXVDG"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', 'G-G4E31TXVDG');
+    </script>
+  </head>
+  <body data-section={section} data-page={page}>
+    <Header locale={locale} section={currentSection} primary={primary} secondary={secondary} />
+    {crumbs && (
+      <Breadcrumbs
+        locale={locale}
+        crumbs={[{ label: getLinkTitle(home), href: homeHref }, ...crumbs]}
+      />
+    )}
+    <slot />
+    {contact && <ContactCallout locale={locale} settings={settings} {...contact} />}
+    <Footer locale={locale} settings={settings} primary={primary} secondary={secondary} />
+  </body>
+</html>

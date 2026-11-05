@@ -1,0 +1,41 @@
+---
+import PostHeadline from '@components/PostHeadline.astro';
+import SectionHeader from '@components/SectionHeader.astro';
+import TagsAside from '@components/TagsAside.astro';
+import UpdatesHeader from '@components/UpdatesHeader.astro';
+import { getLocale, getLocaleParams } from '@i18n/utils';
+import UpdatesLayout from '@layouts/UpdatesLayout.astro';
+import { getPosts, getSettings } from '@lib/content';
+import { getPageProps } from '@lib/navigation';
+
+export const getStaticPaths = () => getLocaleParams().map((params) => ({ params }));
+
+const locale = getLocale(Astro.currentLocale);
+const { updates } = await getSettings(locale);
+const posts = await getPosts(locale);
+---
+
+<UpdatesLayout {...await getPageProps(locale, 'news')}>
+  <main>
+    <UpdatesHeader locale={locale} />
+    <div id="main-content">
+      <div class="outer">
+        <div class="inner row">
+          <div class="col s4">
+            <section id="news">
+              <SectionHeader heading={updates.news.heading} subheading={updates.news.subheading} />
+              <div class="headlines">
+                {posts.map((post) => (
+                  <PostHeadline locale={locale} post={post} />
+                ))}
+              </div>
+            </section>
+          </div>
+          <div class="col s2">
+            <TagsAside locale={locale} />
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</UpdatesLayout>

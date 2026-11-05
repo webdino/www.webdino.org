@@ -1,0 +1,18 @@
+# https://developers.cloudflare.com/pages/configuration/headers/
+
+/*
+  Cache-Control: max-age=0, must-revalidate, public
+  Strict-Transport-Security: max-age=63072000
+  Referrer-Policy: same-origin
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  X-XSS-Protection: 1; mode=block
+
+# Add a copy of this rule for each new language. It can't go under `/*`, because Cloudflare Pages
+# would combine it with the `/admin/*` policy. This file is also deployed to Netlify, so avoid the
+# Cloudflare-only `! Header` syntax for detaching a header.
+/ja/*
+  Content-Security-Policy: default-src 'none'; style-src 'unsafe-inline' 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com/; img-src 'self' https://*.cloudfront.net/ https://*.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com; script-src 'unsafe-inline' 'self' https://*.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com; connect-src 'self' https://www-webdino-org.netlify.app https://*.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com; form-action 'self' https://www-webdino-org.netlify.app; frame-src https://www.google.com https://www.slideshare.net https://www.youtube-nocookie.com; frame-ancestors 'none'; base-uri 'none';
+
+/admin/*
+  Content-Security-Policy: default-src 'none'; style-src 'self' 'unsafe-inline'; font-src 'self' https://cdn.jsdelivr.net; img-src 'self' blob: data: https://*.githubusercontent.com; media-src blob:; frame-src blob: https://www.youtube-nocookie.com https://www.slideshare.net; frame-ancestors 'none'; script-src 'unsafe-inline' 'self' https://unpkg.com; connect-src 'self' blob: data: https://unpkg.com https://api.github.com https://www.githubstatus.com; manifest-src blob:; base-uri 'self';

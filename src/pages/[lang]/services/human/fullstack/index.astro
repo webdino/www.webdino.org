@@ -1,0 +1,106 @@
+---
+import FeatureHeader from '@components/FeatureHeader.astro';
+import Heading from '@components/Heading.astro';
+import SectionHeader from '@components/SectionHeader.astro';
+import { getLocale, getLocaleParams } from '@i18n/utils';
+import ServicesLayout from '@layouts/ServicesLayout.astro';
+import { getPage } from '@lib/content';
+import { getPageProps } from '@lib/navigation';
+
+export const getStaticPaths = () => getLocaleParams().map((params) => ({ params }));
+
+/**
+ * Get a Font Awesome icon character from its hexadecimal code point, e.g. `f0eb`.
+ * @param code Code point.
+ */
+const getIcon = (code: string) => {
+  const codePoint = Number.parseInt(code, 16);
+
+  return codePoint >= 0 && codePoint <= 0x10ffff ? String.fromCodePoint(codePoint) : '';
+};
+
+const locale = getLocale(Astro.currentLocale);
+const { data } = await getPage(locale, 'fullstack');
+const lists = (['features', 'outcomes', 'support'] as const).map((id) => ({ id, ...data[id] }));
+const { curriculum, instructors } = data;
+---
+
+<ServicesLayout {...await getPageProps(locale, 'fullstack')}>
+  <main>
+    <FeatureHeader title={data.title} subtitle={data.subtitle} description={data.description} />
+    <div id="fullstack-hero">
+      <img src={data.heroImage} alt="" loading="lazy" />
+    </div>
+    <div id="main-content">
+      <div id="fullstack-row-1" class="outer">
+        <div class="inner row">
+          {lists.map((list) => (
+            <div class="col s2">
+              <section id={`fullstack-${list.id}`}>
+                <SectionHeader heading={list.heading} subheading={list.subheading} />
+                <ul>
+                  {list.items.map((item) => (
+                    <li>
+                      <span class="fas" aria-hidden="true">
+                        {getIcon(item.icon)}
+                      </span>
+                      {item.description}
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div id="fullstack-row-2" class="outer">
+        <div class="inner row">
+          <div class="col s3">
+            <section id="fullstack-curriculum">
+              <SectionHeader heading={curriculum.heading} subheading={curriculum.subheading} />
+              <p>{curriculum.description}</p>
+              <ul>
+                {curriculum.items.map((item) => (
+                  <li>
+                    <strong class="day">
+                      {item.day}: {item.title}
+                    </strong>
+                    <br />
+                    {item.description}
+                  </li>
+                ))}
+              </ul>
+            </section>
+          </div>
+          <div class="col s3">
+            <section id="fullstack-instructors">
+              <SectionHeader heading={instructors.heading} subheading={instructors.subheading} />
+              <p>{instructors.description}</p>
+              {[instructors.internal, instructors.external, instructors.guests].map(
+                (group) =>
+                  group && (
+                    <section>
+                      <h3>
+                        <Heading text={group.heading} />
+                      </h3>
+                      <ul>
+                        {group.people.map((person) => (
+                          <li>
+                            {person.image && <img src={person.image} alt="" loading="lazy" />}
+                            <div class:list={{ inline: !person.image }}>
+                              <div class="name">{person.name}</div>
+                              <div class="title">{person.title}</div>
+                            </div>
+                          </li>
+                        ))}
+                      </ul>
+                    </section>
+                  ),
+              )}
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</ServicesLayout>

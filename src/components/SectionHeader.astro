@@ -1,0 +1,26 @@
+---
+import Heading from './Heading.astro';
+
+interface Props {
+  heading: string;
+  subheading?: string;
+  /** Heading level of the main heading. */
+  level?: 2 | 3;
+  class?: string;
+}
+
+const { heading, subheading, level = 2, class: className } = Astro.props;
+const Main = `h${level}`;
+const Sub = `h${level + 1}`;
+---
+
+<header class={className}>
+  <hgroup>
+    <Main>
+      <Heading text={heading} />
+    </Main>
+    <Sub aria-level={String(level)}>{subheading}</Sub>
+  </hgroup>
+  <span class="fas circle" aria-hidden="true"></span>
+  <slot />
+</header>

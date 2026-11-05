@@ -1,0 +1,129 @@
+@media screen {
+  form[name='contact'] {
+    .main,
+    .thanks,
+    .error {
+      outline: 0;
+      background-color: #f3f5f8;
+    }
+
+    .inner {
+      margin: 48px auto;
+      max-width: 960px;
+    }
+
+    p {
+      text-align: center;
+    }
+
+    .main {
+      .field {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      label {
+        width: 8em;
+        font-weight: bold;
+        text-align: right;
+      }
+
+      .req {
+        width: 5em;
+        color: #a51d3c;
+        font-size: 0.75rem;
+        text-align: center;
+      }
+
+      .input {
+        flex: auto;
+      }
+
+      input,
+      textarea {
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        padding: 8px;
+        width: 100%;
+        font-size: 1rem;
+        font-family: inherit;
+        -webkit-appearance: none;
+        transition: all 0.3s;
+      }
+
+      input:focus,
+      textarea:focus {
+        border-color: #a51d3c;
+        box-shadow: none;
+      }
+
+      textarea {
+        height: 10em;
+        resize: vertical;
+      }
+    }
+
+    .submit {
+      button[type='submit'] {
+        outline: 0;
+        border: 0;
+        border-radius: 8px;
+        padding: 16px 32px;
+        min-width: 240px;
+        color: #fff;
+        background-color: #353c48;
+        font-family: inherit;
+        font-size: inherit;
+        letter-spacing: 1ex;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+
+      button::-moz-focus-inner {
+        border: 0;
+      }
+
+      button[type='submit']:hover,
+      button[type='submit']:focus,
+      button[type='submit']:active {
+        background-color: #a51d3c;
+      }
+
+      button[type='submit']:disabled {
+        background-color: #ccc;
+        pointer-events: none;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 767px) {
+  form[name='contact'] {
+    .inner {
+      margin: 32px auto;
+    }
+
+    .main {
+      .field {
+        flex-wrap: wrap;
+      }
+
+      label,
+      .req {
+        box-sizing: border-box;
+        padding: 0 8px;
+        width: 50%;
+      }
+
+      label {
+        text-align: left;
+      }
+
+      .req {
+        text-align: right;
+      }
+    }
+  }
+}

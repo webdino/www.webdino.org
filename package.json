@@ -1,8 +1,35 @@
 {
   "name": "www.webdino.org",
   "version": "1.0.0",
+  "private": true,
+  "type": "module",
   "scripts": {
-    "dev": "hugo serve",
-    "build": "hugo"
-  }
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "test": "node --test 'src/**/*.test.js'",
+    "check": "pnpm run --no-bail '/^check:\\w+$/'",
+    "check:audit": "pnpm audit",
+    "check:astro": "astro check",
+    "check:oxlint": "oxlint",
+    "check:oxlint:fix": "oxlint --fix",
+    "check:oxfmt": "oxfmt --check",
+    "check:oxfmt:fix": "oxfmt"
+  },
+  "dependencies": {
+    "@astrojs/markdown-satteri": "^0.4.6",
+    "@astrojs/sitemap": "^3.7.4",
+    "astro": "^7.4.5",
+    "satteri": "^0.11.6",
+    "sharp": "^0.35.5"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.12",
+    "@astrojs/compiler-rs": "^0.5.2",
+    "oxfmt": "^0.76.0",
+    "oxlint": "^1.91.0",
+    "typescript": "^6.0.3",
+    "wrangler": "^4.157.0"
+  },
+  "packageManager": "pnpm@12.16.1"
 }

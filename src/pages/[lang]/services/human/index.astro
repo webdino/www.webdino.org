@@ -1,0 +1,75 @@
+---
+import FeatureHeader from '@components/FeatureHeader.astro';
+import FullstackPromo from '@components/FullstackPromo.astro';
+import Heading from '@components/Heading.astro';
+import SectionHeader from '@components/SectionHeader.astro';
+import ServiceCases from '@components/ServiceCases.astro';
+import { getLocale, getLocaleParams } from '@i18n/utils';
+import ServicesLayout from '@layouts/ServicesLayout.astro';
+import { getPage } from '@lib/content';
+import { markdownify } from '@lib/markdown';
+import { getPageProps } from '@lib/navigation';
+
+export const getStaticPaths = () => getLocaleParams().map((params) => ({ params }));
+
+const locale = getLocale(Astro.currentLocale);
+const { data } = await getPage(locale, 'human');
+const { solutions, concepts } = data;
+---
+
+<ServicesLayout {...await getPageProps(locale, 'human')}>
+  <main>
+    <FeatureHeader title={data.title} subtitle={data.subtitle} description={data.description} />
+    <div id="main-content">
+      <section id="human-solutions" class="outer">
+        <div class="inner row">
+          <div class="col">
+            <SectionHeader heading={solutions.heading} subheading={solutions.subheading} />
+          </div>
+        </div>
+        <div class="inner row tiles">
+          {solutions.examples.map((example) => (
+            <div class="col s2">
+              <section>
+                <figure>
+                  <img loading="lazy" src={example.image} alt="" />
+                </figure>
+                <div>
+                  <h3>
+                    <Heading text={example.heading} />
+                  </h3>
+                  <p set:html={markdownify(example.description)} />
+                </div>
+              </section>
+            </div>
+          ))}
+        </div>
+        <div class="inner row">
+          <div class="col">
+            <ServiceCases {...solutions.cases} />
+          </div>
+        </div>
+      </section>
+      <FullstackPromo locale={locale} />
+      {concepts.map((concept) => (
+        <section id={concept.id} class="outer highlight">
+          <div class="inner row">
+            <div class="col s2">
+              <header>
+                <hgroup>
+                  <h2>
+                    <Heading text={concept.heading} />
+                  </h2>
+                  <h3 aria-level="2">{concept.subheading}</h3>
+                </hgroup>
+              </header>
+            </div>
+            <div class="col s4">
+              <div class="description" set:html={markdownify(concept.description)} />
+            </div>
+          </div>
+        </section>
+      ))}
+    </div>
+  </main>
+</ServicesLayout>

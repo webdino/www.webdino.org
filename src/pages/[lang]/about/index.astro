@@ -1,0 +1,64 @@
+---
+import FeatureHeader from '@components/FeatureHeader.astro';
+import SectionHeader from '@components/SectionHeader.astro';
+import { getLocale, getLocaleParams } from '@i18n/utils';
+import AboutLayout from '@layouts/AboutLayout.astro';
+import { getPage } from '@lib/content';
+import { markdownify } from '@lib/markdown';
+import { getPageProps } from '@lib/navigation';
+
+export const getStaticPaths = () => getLocaleParams().map((params) => ({ params }));
+
+const locale = getLocale(Astro.currentLocale);
+const { data } = await getPage(locale, 'about');
+const { concepts, overview } = data;
+---
+
+<AboutLayout {...await getPageProps(locale, 'about')}>
+  <main>
+    <FeatureHeader title={data.title} subtitle={data.subtitle} description={data.description} />
+    <div id="main-content">
+      <div id="concepts" class="outer">
+        <div class="inner row">
+          <div class="col">
+            {concepts.map((concept) => (
+              <section>
+                <header>
+                  <hgroup>
+                    <h2>
+                      <span>
+                        <strong>{concept.subheading.slice(0, 1)}</strong>
+                      </span>
+                      {concept.subheading.slice(1)}
+                    </h2>
+                    <h3 aria-level="2">{concept.heading}</h3>
+                  </hgroup>
+                </header>
+                <p>{concept.description}</p>
+              </section>
+            ))}
+          </div>
+        </div>
+      </div>
+      <div id="overview" class="outer">
+        <div class="inner row">
+          <div class="col">
+            <section>
+              <SectionHeader heading={overview.heading} subheading={overview.subheading} />
+              <table>
+                <tbody>
+                  {overview.items.map((item) => (
+                    <tr>
+                      <th>{item.label}</th>
+                      <td set:html={markdownify(item.value)} />
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</AboutLayout>

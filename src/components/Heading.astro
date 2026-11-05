@@ -1,0 +1,12 @@
+---
+/**
+ * Heading text where each `<br>`-separated line is wrapped with `<em>`.
+ */
+interface Props {
+  text?: string;
+}
+
+const { text = '' } = Astro.props;
+---
+
+<em set:html={text.replace(/<br>/g, '</em><em>')} />

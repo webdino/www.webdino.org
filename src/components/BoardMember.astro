@@ -1,0 +1,23 @@
+---
+import Heading from './Heading.astro';
+
+export interface Props {
+  name: string;
+  titles?: string[];
+  image: string;
+}
+
+const { name, titles, image } = Astro.props;
+---
+
+<figure class="member" itemscope itemtype="https://schema.org/Person">
+  <img loading="lazy" itemprop="image" src={image} width="160" height="160" alt="" />
+  <figcaption>
+    <span itemprop="name">{name}</span>
+    {titles?.map((title) => (
+      <span itemprop="jobTitle">
+        <Heading text={title} />
+      </span>
+    ))}
+  </figcaption>
+</figure>

@@ -1,0 +1,136 @@
+---
+import type { Locale } from '@i18n/ui';
+import { localizePath, useTranslations } from '@i18n/utils';
+import type { Settings } from '@lib/content';
+import { getPagePath, type NavItem } from '@lib/navigation';
+
+interface Props {
+  locale: Locale;
+  settings: Settings;
+  primary: NavItem[];
+  secondary: NavItem[];
+}
+
+const { locale, settings, primary, secondary } = Astro.props;
+const t = useTranslations(locale);
+---
+
+<footer id="footer" role="contentinfo">
+  <div id="drawer" class="outer">
+    <div class="inner">
+      <section>
+        <div class="row">
+          <div class="col s2">
+            <div class="mobile" role="button" aria-label={t('nav.menu.close')}>
+              <span class="fas times" aria-hidden="true"></span>
+            </div>
+            <header>
+              <h1>
+                <a href={localizePath(locale)} set:html={settings.publisher.name} />
+              </h1>
+            </header>
+          </div>
+          <div class="col s3">
+            <nav class="primary" aria-label={t('nav.primary.label')}>
+              <ul>
+                {primary.map((item) => (
+                  <li class:list={{ parent: item.children.length > 0 }}>
+                    <a href={item.href}>{item.label}</a>
+                    {item.children.length > 0 && (
+                      <ul>
+                        {item.children.map((child) => (
+                          <li>
+                            <a href={child.href}>{child.label}</a>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </li>
+                ))}
+                {secondary.map((item) => (
+                  <li>
+                    <a href={item.href}>{item.label}</a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          </div>
+          <div class="col s1">
+            <nav class="social" aria-label={t('nav.social.label')}>
+              <ul>
+                {settings.social.map((item) => (
+                  <li class={item.identifier}>
+                    <a href={item.url}>
+                      <span class={`fab ${item.identifier}`} aria-hidden="true"></span>{' '}
+                      <span>{item.name}</span>
+                    </a>
+                  </li>
+                ))}
+                <li class="feed">
+                  <a href={localizePath(locale, '/index.xml')} data-astro-reload>
+                    <span class="fas rss" aria-hidden="true"></span> <span>{t('nav.feed')}</span>
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+  <div id="copyright" class="outer">
+    <div class="inner row">
+      <div class="col">
+        <p>
+          <Fragment
+            set:html={t('footer.copyright', {
+              year: new Date().getFullYear(),
+              copyright: t('site.copyright'),
+            })}
+          />{' '}
+          <a href={getPagePath(locale, 'privacy')}>{t('footer.privacy')}</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  /**
+   * Activate the mobile navigation drawer, which is opened from the button in the header. It’s
+   * called on the initial page load and after every client-side navigation by the view transition
+   * router, which swaps the page content without reloading this script.
+   */
+  document.addEventListener('astro:page-load', () => {
+    const $body = document.body;
+    const $drawer = document.querySelector('#drawer');
+
+    if (!$drawer) {
+      return;
+    }
+
+    const open = () => {
+      $body.classList.add('menu-expanded');
+      $drawer.setAttribute('aria-expanded', 'true');
+    };
+
+    const close = () => {
+      $body.classList.remove('menu-expanded');
+      $drawer.setAttribute('aria-expanded', 'false');
+    };
+
+    document.querySelector('#header .mobile[role="button"]')?.addEventListener('mousedown', open);
+    $drawer.querySelector('.mobile[role="button"]')?.addEventListener('mousedown', close);
+
+    $drawer.addEventListener('mousedown', (event) => {
+      if ($drawer.getAttribute('aria-expanded') === 'true') {
+        close();
+        event.stopPropagation();
+      }
+    });
+
+    $drawer.querySelector('.inner')?.addEventListener('mousedown', (event) => {
+      event.stopPropagation();
+    });
+  });
+</script>

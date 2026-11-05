@@ -1,0 +1,38 @@
+---
+import type { Locale } from '@i18n/ui';
+import { getPosts, getSettings, getTaxonomy, getTermCounts } from '@lib/content';
+import { getTagPath } from '@lib/navigation';
+import Heading from './Heading.astro';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const { updates } = await getSettings(locale);
+const tags = await getTaxonomy('tags', locale);
+const counts = getTermCounts(await getPosts(locale), 'tags');
+---
+
+<aside id="tags">
+  <header>
+    <h2>
+      <Heading text={updates.tags.heading} />
+    </h2>
+  </header>
+  <ul class="taxonomy">
+    {counts.map(([slug, count]) => {
+      const tag = tags.get(slug);
+
+      return (
+        tag && (
+          <li class="term">
+            <a href={getTagPath(locale, tag.title)}>
+              {tag.name} ({count})
+            </a>
+          </li>
+        )
+      );
+    })}
+  </ul>
+</aside>

@@ -1,0 +1,229 @@
+---
+import { render } from 'astro:content';
+import Heading from '@components/Heading.astro';
+import TagsAside from '@components/TagsAside.astro';
+import type { Locale } from '@i18n/ui';
+import { formatDate, getLocaleRoutes } from '@i18n/utils';
+import UpdatesLayout from '@layouts/UpdatesLayout.astro';
+import { getHeadline, getPosts, getSettings, getSlug, getTaxonomy, type Post } from '@lib/content';
+import { FEATURED_IMAGE_SIZES, getResponsiveImage } from '@lib/images';
+import { getAuthorPath, getCrumbs, getPagePath, getPostPath, getTagPath } from '@lib/navigation';
+import { getSummary, toISOString } from '@lib/text';
+
+export const getStaticPaths = async () =>
+  (
+    await Promise.all(
+      getLocaleRoutes().map(async ({ locale, params: { lang } }) => {
+        const posts = await getPosts(locale);
+
+        // Posts are sorted newest first, so the previous (older) post comes next in the list
+        return posts.map((post, i) => ({
+          params: { lang, slug: getSlug(post) },
+          props: { locale, post, prev: posts[i + 1], next: posts[i - 1] },
+        }));
+      }),
+    )
+  ).flat();
+
+interface Props {
+  locale: Locale;
+  post: Post;
+  prev?: Post;
+  next?: Post;
+}
+
+const { locale, post, prev, next } = Astro.props;
+const { Content } = await render(post);
+const { title, subtitle, date, image } = post.data;
+const { updates } = await getSettings(locale);
+const authors = await getTaxonomy('authors', locale);
+const tags = await getTaxonomy('tags', locale);
+const author = post.data.authors.map((slug) => authors.get(slug)).find(Boolean);
+const postTags = post.data.tags.map((slug) => tags.get(slug)).filter((tag) => !!tag);
+const href = getPostPath(locale, post);
+const url = new URL(href, Astro.site).href;
+const featured = image ? getResponsiveImage(image, FEATURED_IMAGE_SIZES) : undefined;
+
+const share = updates.share.media.map((media) => ({
+  ...media,
+  url: media.url.replaceAll('{url}', url).replaceAll('{title}', encodeURIComponent(title)),
+}));
+---
+
+<UpdatesLayout
+  locale={locale}
+  title={title}
+  description={getSummary(post)}
+  image={image}
+  section="post"
+  page="wide"
+  crumbs={[...(await getCrumbs(locale, 'news')), { label: title, href }]}
+>
+  <main>
+    <div id="main-content">
+      <div class="outer">
+        <div class="inner row">
+          <div class="col s6">
+            <article class="post box wide" itemscope itemtype="http://schema.org/Article">
+              <meta itemprop="mainEntityOfPage" content={url} />
+              <header>
+                <hgroup>
+                  <h1 itemprop="headline">{getHeadline(locale, post)}</h1>
+                  {subtitle && <h2 itemprop="alternativeHeadline">{subtitle}</h2>}
+                </hgroup>
+                <time datetime={toISOString(date)} itemprop="datePublished">
+                  {formatDate(locale, date)}
+                </time>
+                {author && (
+                  <div itemprop="author" itemscope itemtype="http://schema.org/Person">
+                    <a href={getAuthorPath(locale, author.title)} itemprop="url">
+                      {author.image && (
+                        <span class="avatar">
+                          <img loading="lazy" src={author.image} alt="" itemprop="image" />
+                        </span>
+                      )}
+                      <span itemprop="name">{author.name}</span>
+                    </a>
+                  </div>
+                )}
+                {postTags.length > 0 && (
+                  <ul class="taxonomy" itemprop="keywords">
+                    {postTags.map((tag) => (
+                      <li class="term">
+                        <a href={getTagPath(locale, tag.title)}>{tag.name}</a>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </header>
+              {featured && (
+                <figure class="featured">
+                  <img
+                    loading="lazy"
+                    src={featured.src}
+                    srcset={featured.srcset}
+                    alt=""
+                    itemprop="image"
+                  />
+                </figure>
+              )}
+              <div itemprop="articleBody">
+                <Content />
+              </div>
+              <footer>
+                <aside class="share">
+                  <h3>
+                    <Heading text={updates.share.heading} />
+                  </h3>
+                  <ul>
+                    {share.map((media) => (
+                      <li>
+                        <a href={media.url}>
+                          <span class={`fab ${media.identifier}`} aria-hidden="true"></span>
+                          <span class="label">{media.name}</span>
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </aside>
+              </footer>
+            </article>
+            <footer>
+              <nav>
+                <ul>
+                  <li class="prev">
+                    {prev && (
+                      <>
+                        <span class="fas angle-left" aria-hidden="true"></span>
+                        <span>{updates.nav.prev}</span>
+                        <a href={getPostPath(locale, prev)}>{prev.data.title}</a>
+                      </>
+                    )}
+                  </li>
+                  <li class="next">
+                    {next && (
+                      <>
+                        <span class="fas angle-right" aria-hidden="true"></span>
+                        <span>{updates.nav.next}</span>
+                        <a href={getPostPath(locale, next)}>{next.data.title}</a>
+                      </>
+                    )}
+                  </li>
+                </ul>
+                <p class="cta-outer">
+                  <a href={getPagePath(locale, 'news')} class="cta">
+                    <span class="label">{updates.news.backlinkLabel}</span>
+                  </a>
+                </p>
+              </nav>
+            </footer>
+          </div>
+        </div>
+        <div class="inner row">
+          <div class="col s6">
+            <TagsAside locale={locale} />
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</UpdatesLayout>
+
+<script>
+  /**
+   * Activate the image zoom functionality. This script stays loaded after navigating away from a
+   * post, where no images match.
+   */
+  document.addEventListener('astro:page-load', () => {
+    document.querySelectorAll('article.post figure img').forEach(($img) => {
+      $img.classList.add('can-zoom');
+
+      $img.addEventListener('click', () => {
+        const rect = $img.getBoundingClientRect();
+        const $base = document.createElement('div');
+        const $container = $base.appendChild(document.createElement('div'));
+        const controller = new AbortController();
+        const { signal } = controller;
+
+        $container.appendChild($img.cloneNode(true));
+        $base.classList.add('image-zoom-base');
+
+        Object.assign($container.style, {
+          top: `${rect.top}px`,
+          left: `${rect.left}px`,
+          width: `${rect.width}px`,
+          height: `${rect.height}px`,
+        });
+
+        const close = () => {
+          controller.abort();
+          $base.classList.remove('active');
+
+          window.setTimeout(() => {
+            $base.remove();
+            document.body.classList.remove('overlay-visible');
+          }, 600);
+        };
+
+        document.addEventListener(
+          'keydown',
+          (event) => {
+            if (event.key === 'Escape') {
+              close();
+            }
+          },
+          { signal },
+        );
+
+        $base.addEventListener('click', close, { signal });
+
+        document.body.appendChild($base);
+        document.body.classList.add('overlay-visible');
+
+        window.setTimeout(() => {
+          $base.classList.add('active');
+        }, 100);
+      });
+    });
+  });
+</script>
