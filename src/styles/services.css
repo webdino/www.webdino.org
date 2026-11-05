@@ -38,7 +38,7 @@
   }
 
   #main-content h2,
-  #main-content h2 + h3 {
+  #main-content h2 + .subtitle {
     color: #a51d3c;
   }
 

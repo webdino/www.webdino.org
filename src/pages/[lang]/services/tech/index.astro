@@ -53,7 +53,7 @@ const urlize = (text: string) => encodeURIComponent(text.trim().toLowerCase().re
             <h2>
               <Heading text={fields.heading} />
             </h2>
-            <h3 aria-level="2">{fields.subheading}</h3>
+            <p class="subtitle">{fields.subheading}</p>
           </hgroup>
         </header>
         {fields.details.map((field) => (

@@ -19,9 +19,15 @@ const t = useTranslations(locale);
   <div class="outer">
     <div class="inner row">
       <div class="col">
-        <div class="mobile" role="button" aria-label={t('nav.menu.open')}>
+        <button
+          type="button"
+          class="mobile"
+          aria-label={t('nav.menu.open')}
+          aria-controls="drawer"
+          aria-expanded="false"
+        >
           <span class="fas bars" aria-hidden="true"></span>
-        </div>
+        </button>
         <h1>
           <a href={localizePath(locale)}>{t('site.title')}</a>
         </h1>

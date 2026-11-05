@@ -111,7 +111,7 @@
         flex: none;
       }
 
-      p {
+      p:not(.subtitle) {
         flex: auto;
         margin: 0;
         text-align: center;
@@ -175,7 +175,7 @@
       }
     }
 
-    h3 {
+    .subtitle {
       display: flex;
       align-items: center;
       justify-content: flex-end;
@@ -231,7 +231,7 @@
       margin-block: 0;
     }
 
-    p:not(:first-child),
+    p:not(:first-child, .subtitle),
     ul:not(:first-child) {
       margin-top: 16px;
     }

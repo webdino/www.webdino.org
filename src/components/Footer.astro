@@ -21,9 +21,9 @@ const t = useTranslations(locale);
       <section>
         <div class="row">
           <div class="col s2">
-            <div class="mobile" role="button" aria-label={t('nav.menu.close')}>
+            <button type="button" class="mobile" aria-label={t('nav.menu.close')}>
               <span class="fas times" aria-hidden="true"></span>
-            </div>
+            </button>
             <header>
               <h1>
                 <a href={localizePath(locale)} set:html={settings.publisher.name} />
@@ -96,41 +96,62 @@ const t = useTranslations(locale);
 </footer>
 
 <script>
+  let closeDrawer = () => {};
+
+  // Don’t leave the page inert if the viewport grows past the breakpoint in `base.css`, e.g. when
+  // rotating a device, as the drawer is then the regular page footer
+  window.matchMedia('(max-width: 767px)').addEventListener('change', () => closeDrawer());
+
   /**
    * Activate the mobile navigation drawer, which is opened from the button in the header. It’s
    * called on the initial page load and after every client-side navigation by the view transition
    * router, which swaps the page content without reloading this script.
    */
   document.addEventListener('astro:page-load', () => {
-    const $body = document.body;
+    const { body } = document;
     const $drawer = document.querySelector('#drawer');
+    const $openButton = document.querySelector('#header')?.querySelector('button');
+    const $closeButton = $drawer?.querySelector('button');
 
-    if (!$drawer) {
+    if (!$drawer || !$openButton || !$closeButton) {
       return;
     }
 
-    const open = () => {
-      $body.classList.add('menu-expanded');
-      $drawer.setAttribute('aria-expanded', 'true');
+    const setOpen = (open = true) => {
+      body.classList.toggle('menu-expanded', open);
+      $drawer.toggleAttribute('data-expanded', open);
+      $openButton.setAttribute('aria-expanded', String(open));
+
+      // Keep the keyboard focus in the drawer while the rest of the page is behind its backdrop
+      [...document.querySelectorAll('body > *, #copyright')]
+        .filter(($element) => !$element.contains($drawer))
+        .forEach(($element) => $element.toggleAttribute('inert', open));
+
+      (open ? $closeButton : $openButton).focus();
     };
 
-    const close = () => {
-      $body.classList.remove('menu-expanded');
-      $drawer.setAttribute('aria-expanded', 'false');
+    closeDrawer = () => {
+      if ($drawer.hasAttribute('data-expanded')) {
+        setOpen(false);
+      }
     };
 
-    document.querySelector('#header .mobile[role="button"]')?.addEventListener('mousedown', open);
-    $drawer.querySelector('.mobile[role="button"]')?.addEventListener('mousedown', close);
+    $openButton.addEventListener('click', () => setOpen());
+    $closeButton.addEventListener('click', () => setOpen(false));
 
-    $drawer.addEventListener('mousedown', (event) => {
-      if ($drawer.getAttribute('aria-expanded') === 'true') {
-        close();
-        event.stopPropagation();
+    // Close the drawer by clicking on the backdrop
+    $drawer.addEventListener('click', (event) => {
+      if (event.target === $drawer) {
+        closeDrawer();
       }
     });
 
-    $drawer.querySelector('.inner')?.addEventListener('mousedown', (event) => {
-      event.stopPropagation();
+    // Close the drawer with the Escape key. The router replaces `<body>`, so this listener doesn’t
+    // pile up over navigations.
+    body.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        closeDrawer();
+      }
     });
   });
 </script>

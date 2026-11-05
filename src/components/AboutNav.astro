@@ -2,7 +2,7 @@
 import type { Locale } from '@i18n/ui';
 import { useTranslations } from '@i18n/utils';
 import { getPage } from '@lib/content';
-import { getChildPages } from '@lib/navigation';
+import { getChildPages, getLinkTitle } from '@lib/navigation';
 import { removeLineBreaks } from '@lib/text';
 import SectionHeader from './SectionHeader.astro';
 
@@ -31,8 +31,8 @@ const sections = await getChildPages(locale, 'about');
         <section>
           <header>
             <hgroup>
-              <h3>{section.linkTitle}</h3>
-              <h4 aria-level="3">{section.subtitle}</h4>
+              <h3>{getLinkTitle(section)}</h3>
+              {section.subtitle && <p class="subtitle small">{section.subtitle}</p>}
             </hgroup>
           </header>
           <p>{section.description}</p>

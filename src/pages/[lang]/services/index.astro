@@ -29,7 +29,7 @@ const services = await getChildPages(locale, 'services');
                     <h2>
                       <Heading text={service.title} />
                     </h2>
-                    <h3 aria-level="2">{service.subtitle}</h3>
+                    {service.subtitle && <p class="subtitle">{service.subtitle}</p>}
                   </hgroup>
                 </header>
                 <p>{service.description}</p>
