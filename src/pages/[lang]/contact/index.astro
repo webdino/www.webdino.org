@@ -11,8 +11,10 @@ import { getPagePath, getPageProps } from '@lib/navigation';
 export const getStaticPaths = () => getLocaleParams().map((params) => ({ params }));
 
 /**
- * Netlify site that receives the form submissions with Netlify Forms. It’s deployed from this
- * repository only to register the form; the site itself is served by Cloudflare Pages.
+ * Netlify site that receives the form submissions with Netlify Forms. Keep deploying this
+ * repository there (`netlify.toml`): each deploy registers the form with its current fields and
+ * options, e.g. the old Hugo deploy required reCAPTCHA, and serves the page shown to visitors without
+ * JavaScript after submitting. The site itself is served by Cloudflare Pages.
  */
 const NETLIFY_FORMS_SITE = 'https://www-webdino-org.netlify.app';
 

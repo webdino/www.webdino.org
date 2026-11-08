@@ -61,6 +61,43 @@ const url = new URL(Astro.url.pathname, Astro.site);
 const ogImage = new URL(image || '/images/template/ogp.png', Astro.site);
 const twitter = settings.social.find(({ identifier }) => identifier === 'twitter');
 
+/** Content Security Policy. `frame-ancestors` can't be set here; see `_headers`. */
+const csp = Object.entries({
+  'default-src': ["'none'"],
+  'style-src': ["'unsafe-inline'", "'self'", 'https://fonts.googleapis.com'],
+  'font-src': ["'self'", 'https://fonts.gstatic.com/'],
+  'img-src': [
+    "'self'",
+    'https://*.cloudfront.net/',
+    'https://*.googletagmanager.com',
+    'https://*.google-analytics.com',
+    'https://*.analytics.google.com',
+  ],
+  'script-src': [
+    "'unsafe-inline'",
+    "'self'",
+    'https://*.googletagmanager.com',
+    'https://*.google-analytics.com',
+    'https://*.analytics.google.com',
+  ],
+  'connect-src': [
+    "'self'",
+    'https://www-webdino-org.netlify.app',
+    'https://*.googletagmanager.com',
+    'https://*.google-analytics.com',
+    'https://*.analytics.google.com',
+  ],
+  'form-action': ["'self'", 'https://www-webdino-org.netlify.app'],
+  'frame-src': [
+    'https://www.google.com',
+    'https://www.slideshare.net',
+    'https://www.youtube-nocookie.com',
+  ],
+  'base-uri': ["'none'"],
+})
+  .map(([directive, sources]) => `${directive} ${sources.join(' ')};`)
+  .join(' ');
+
 // Top-level section of the current page, e.g. `about` for `/about/history/`
 const [currentSection = ''] = Astro.url.pathname
   .replace(new RegExp(`^${homeHref}`), '')
@@ -72,6 +109,8 @@ const [currentSection = ''] = Astro.url.pathname
 <html lang={locale}>
   <head>
     <meta charset="UTF-8" />
+    <!-- Keep it before any resource -->
+    <meta http-equiv="Content-Security-Policy" content={csp} />
     <meta name="description" content={plainDescription} />
     {noindex && <meta name="robots" content="noindex" />}
     <meta name="viewport" content="width=device-width, user-scalable=false" />

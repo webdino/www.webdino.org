@@ -83,20 +83,6 @@
       text-align: left;
     }
   }
-
-  #space {
-    background-color: #f3f5f8;
-
-    .image {
-      background-position: center;
-      background-size: cover;
-    }
-
-    .text {
-      box-sizing: border-box;
-      padding: 16px;
-    }
-  }
 }
 
 @media screen and (min-width: 1024px) {
@@ -134,17 +120,6 @@
   #concept .inner {
     margin: 48px auto;
   }
-
-  #space {
-    .image {
-      min-height: 320px;
-    }
-
-    .text {
-      margin-top: 48px;
-      padding: 0;
-    }
-  }
 }
 
 @media screen and (min-width: 768px) and (max-width: 1023px) {
@@ -179,17 +154,6 @@
       &:nth-child(3) {
         margin: -32px 0 0 -32px;
       }
-    }
-  }
-
-  #space {
-    .inner {
-      margin-top: 0;
-    }
-
-    .image {
-      margin: 0;
-      width: 100%;
     }
   }
 }

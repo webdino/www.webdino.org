@@ -107,7 +107,8 @@ export default defineConfig({
   vite: {
     build: {
       // Serve scripts as files. When navigating to a page with a new inline module script, the view
-      // transition router waits for it with a `data:` script, which the CSP in `_headers` blocks
+      // transition router waits for it with a `data:` script, which the CSP in `BaseLayout.astro`
+      // blocks
       assetsInlineLimit: 0,
     },
   },
