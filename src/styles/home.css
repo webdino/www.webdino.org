@@ -1,0 +1,699 @@
+@keyframes slide-right-left {
+  0% {
+    opacity: 0;
+    transform: translateX(0);
+  }
+
+  5%,
+  95% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateX(-80px);
+  }
+}
+
+@keyframes slide-bottom-top {
+  0% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+
+  5%,
+  95% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(-80px);
+    opacity: 0;
+  }
+}
+
+@keyframes move-in-left-right-char-bounce {
+  0% {
+    opacity: 0;
+    transform: translateX(-2000px);
+    letter-spacing: 10ex;
+  }
+
+  5% {
+    opacity: 1;
+  }
+
+  90% {
+    transform: translateX(8px);
+    letter-spacing: -0.1ex;
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes move-out-right-left-char-bounce {
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  10% {
+    transform: translateX(8px);
+    letter-spacing: -0.1ex;
+  }
+
+  95% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateX(-2000px);
+    letter-spacing: 10ex;
+  }
+}
+
+@keyframes move-in-right-left-char-bounce {
+  0% {
+    opacity: 0;
+    transform: translateX(2000px);
+    letter-spacing: 10ex;
+  }
+
+  5% {
+    opacity: 1;
+  }
+
+  90% {
+    transform: translateX(-8px);
+    letter-spacing: -0.1ex;
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes move-out-left-right-char-bounce {
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  10% {
+    transform: translateX(-8px);
+    letter-spacing: -0.1ex;
+  }
+
+  95% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateX(2000px);
+    letter-spacing: 10ex;
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes flex-hide {
+  0% {
+    width: 100%;
+    height: 100%;
+  }
+
+  100% {
+    width: 0;
+    height: 0;
+  }
+}
+
+@keyframes flex-show {
+  0% {
+    width: 0;
+    min-width: 0;
+    height: 0;
+    min-height: 0;
+  }
+
+  100% {
+    width: 25%;
+    min-width: 25%; /* for IE */
+    height: 100%;
+    min-height: 100%; /* for IE */
+    transform: translateX(0) translateY(0);
+  }
+}
+
+@media screen {
+  #main-feature {
+    background-image: none !important;
+    overflow: hidden;
+
+    &::before {
+      display: none !important;
+    }
+
+    &,
+    * {
+      pointer-events: none !important;
+    }
+
+    .inner {
+      position: relative;
+    }
+
+    header em {
+      font-style: normal;
+    }
+  }
+
+  #hero-background-wrapper {
+    display: flex;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+
+  .hero-background {
+    flex: none;
+    top: 0;
+    left: 0;
+    width: calc(100% + 80px);
+    height: calc(100% + 80px);
+    background-size: cover;
+    background-position: center;
+    animation-duration: 5s, 0s, 4s, 0s;
+    animation-timing-function: linear;
+    animation-fill-mode: both, forwards, forwards, forwards;
+  }
+
+  #hero-background-1 {
+    animation-name: slide-right-left, flex-hide, fade-in, flex-show;
+    animation-delay: 0s, 5s, 20s, 20s;
+    animation-direction: normal, normal, normal, normal;
+  }
+
+  #hero-background-2 {
+    animation-name: slide-bottom-top, flex-hide, fade-in, flex-show;
+    animation-delay: 5s, 10s, 20s, 20s;
+    animation-direction: normal, normal, normal, normal;
+  }
+
+  #hero-background-3 {
+    animation-name: slide-right-left, flex-hide, fade-in, flex-show;
+    animation-delay: 10s, 15s, 20s, 20s;
+    animation-direction: reverse, normal, normal, normal;
+  }
+
+  #hero-background-4 {
+    animation-name: slide-bottom-top, flex-hide, fade-in, flex-show;
+    animation-delay: 15s, 20s, 20s, 20s;
+    animation-direction: reverse, normal, normal, normal;
+  }
+
+  #hero-text-wrapper {
+    display: flex;
+  }
+
+  .hero-text {
+    position: absolute;
+    color: #fff;
+    line-height: 1;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+    letter-spacing: -0.1ex;
+    white-space: nowrap;
+
+    &.large {
+      font-weight: bold;
+
+      span {
+        display: inline-block;
+        animation-duration: 1.5s;
+        animation-timing-function: ease-out;
+        animation-fill-mode: backwards, forwards;
+        animation-direction: normal, normal;
+      }
+    }
+  }
+
+  #hero-text-1-large,
+  #hero-text-3-large {
+    top: 80px;
+    right: 40px;
+  }
+
+  #hero-text-1-large span,
+  #hero-text-3-large span {
+    animation-name: move-in-left-right-char-bounce, move-out-right-left-char-bounce;
+  }
+
+  #hero-text-2-large,
+  #hero-text-4-large {
+    top: 80px;
+    left: 40px;
+  }
+
+  #hero-text-2-large span,
+  #hero-text-4-large span {
+    animation-name: move-in-right-left-char-bounce, move-out-left-right-char-bounce;
+  }
+
+  #hero-text-1-large {
+    :nth-child(1) {
+      animation-delay: 0.4s, 3s;
+    }
+
+    :nth-child(2) {
+      animation-delay: 0.35s, 3.05s;
+    }
+
+    :nth-child(3) {
+      animation-delay: 0.3s, 3.1s;
+    }
+
+    :nth-child(4) {
+      animation-delay: 0.25s, 3.15s;
+    }
+
+    :nth-child(5) {
+      animation-delay: 0.2s, 3.2s;
+    }
+
+    :nth-child(6) {
+      animation-delay: 0.15s, 3.25s;
+    }
+
+    :nth-child(7) {
+      animation-delay: 0.1s, 3.3s;
+    }
+
+    :nth-child(8) {
+      animation-delay: 0.05s, 3.35s;
+    }
+
+    :nth-child(9) {
+      animation-delay: 0s, 3.4s;
+    }
+  }
+
+  #hero-text-2-large {
+    animation-delay: 5s;
+
+    :nth-child(1) {
+      animation-delay: 5s, 8.38s;
+    }
+
+    :nth-child(2) {
+      animation-delay: 5.02s, 8.36s;
+    }
+
+    :nth-child(3) {
+      animation-delay: 5.04s, 8.34s;
+    }
+
+    :nth-child(4) {
+      animation-delay: 5.06s, 8.32s;
+    }
+
+    :nth-child(5) {
+      animation-delay: 5.08s, 8.3s;
+    }
+
+    :nth-child(6) {
+      animation-delay: 5.1s, 8.28s;
+    }
+
+    :nth-child(7) {
+      animation-delay: 5.12s, 8.26s;
+    }
+
+    :nth-child(8) {
+      animation-delay: 5.14s, 8.24s;
+    }
+
+    :nth-child(9) {
+      animation-delay: 5.16s, 8.22s;
+    }
+
+    :nth-child(10) {
+      animation-delay: 5.18s, 8.2s;
+    }
+
+    :nth-child(11) {
+      animation-delay: 5.2s, 8.18s;
+    }
+
+    :nth-child(12) {
+      animation-delay: 5.22s, 8.16s;
+    }
+
+    :nth-child(13) {
+      animation-delay: 5.24s, 8.14s;
+    }
+
+    :nth-child(14) {
+      animation-delay: 5.26s, 8.12s;
+    }
+
+    :nth-child(15) {
+      animation-delay: 5.28s, 8.1s;
+    }
+
+    :nth-child(16) {
+      animation-delay: 5.3s, 8.08s;
+    }
+
+    :nth-child(17) {
+      animation-delay: 5.32s, 8.06s;
+    }
+
+    :nth-child(18) {
+      animation-delay: 5.34s, 8.04s;
+    }
+
+    :nth-child(19) {
+      animation-delay: 5.36s, 8.02s;
+    }
+
+    :nth-child(20) {
+      animation-delay: 5.38s, 8s;
+    }
+  }
+
+  #hero-text-3-large {
+    animation-delay: 10s;
+
+    :nth-child(1) {
+      animation-delay: 10.45s, 13s;
+    }
+
+    :nth-child(2) {
+      animation-delay: 10.4s, 13.05s;
+    }
+
+    :nth-child(3) {
+      animation-delay: 10.35s, 13.1s;
+    }
+
+    :nth-child(4) {
+      animation-delay: 10.3s, 13.15s;
+    }
+
+    :nth-child(5) {
+      animation-delay: 10.25s, 13.2s;
+    }
+
+    :nth-child(6) {
+      animation-delay: 10.2s, 13.25s;
+    }
+
+    :nth-child(7) {
+      animation-delay: 10.15s, 13.3s;
+    }
+
+    :nth-child(8) {
+      animation-delay: 10.1s, 13.35s;
+    }
+
+    :nth-child(9) {
+      animation-delay: 10.05s, 13.4s;
+    }
+
+    :nth-child(10) {
+      animation-delay: 10s, 13.45s;
+    }
+  }
+
+  #hero-text-4-large {
+    animation-delay: 15s;
+
+    :nth-child(1) {
+      animation-delay: 15s, 18.35s;
+    }
+
+    :nth-child(2) {
+      animation-delay: 15.05s, 18.3s;
+    }
+
+    :nth-child(3) {
+      animation-delay: 15.1s, 18.25s;
+    }
+
+    :nth-child(4) {
+      animation-delay: 15.15s, 18.2s;
+    }
+
+    :nth-child(5) {
+      animation-delay: 15.2s, 18.15s;
+    }
+
+    :nth-child(6) {
+      animation-delay: 15.25s, 18.1s;
+    }
+
+    :nth-child(7) {
+      animation-delay: 15.3s, 18.05s;
+    }
+
+    :nth-child(8) {
+      animation-delay: 15.35s, 18s;
+    }
+  }
+
+  .hero-text.small {
+    animation-name: fade-in, fade-out;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+    animation-fill-mode: backwards, forwards;
+    animation-direction: normal, normal;
+  }
+
+  #hero-text-1-small,
+  #hero-text-3-small {
+    bottom: 80px;
+    left: 40px;
+  }
+
+  #hero-text-2-small,
+  #hero-text-4-small {
+    bottom: 80px;
+    right: 40px;
+  }
+
+  #hero-text-1-small {
+    animation-delay: 1s, 4s;
+  }
+
+  #hero-text-2-small {
+    animation-delay: 6s, 9s;
+  }
+
+  #hero-text-3-small {
+    animation-delay: 11s, 14s;
+  }
+
+  #hero-text-4-small {
+    animation-delay: 16s, 19s;
+  }
+
+  .hero-text.small span {
+    opacity: 0.6;
+  }
+
+  #hero-text-last {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.8);
+    animation-name: fade-in;
+    animation-duration: 4s;
+    animation-timing-function: ease-out;
+    animation-fill-mode: both;
+    animation-delay: 20s;
+  }
+
+  #updates {
+    position: relative;
+
+    .tiles {
+      display: flex;
+      flex-wrap: wrap;
+
+      article {
+        box-sizing: border-box;
+        margin: 16px;
+      }
+    }
+
+    &::after {
+      display: block;
+      margin: 32px 16px 64px;
+      height: 48px;
+      background: url(/images/template/spacer.svg) center no-repeat;
+      content: '';
+    }
+  }
+
+  article.news.headline header {
+    display: flex;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  #updates .tiles article {
+    width: calc(200px * 2 + 32px);
+  }
+}
+
+@media screen and (min-width: 1280px) and (max-width: 1439px) {
+  #updates .tiles article {
+    width: calc(160px * 2 + 32px);
+  }
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1279px) {
+  #updates .tiles article {
+    width: 288px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  #main-feature .inner {
+    height: 440px;
+  }
+
+  #hero-background-1 {
+    background-image: url(/images/home/hero-background-1@2x.webp);
+  }
+
+  #hero-background-2 {
+    background-image: url(/images/home/hero-background-2@2x.webp);
+  }
+
+  #hero-background-3 {
+    background-image: url(/images/home/hero-background-3@2x.webp);
+  }
+
+  #hero-background-4 {
+    background-image: url(/images/home/hero-background-4@2x.webp);
+  }
+
+  .hero-text.large {
+    font-size: 6rem;
+  }
+}
+
+@media screen and (max-width: 1023px) {
+  #hero-background-1 {
+    background-image: url(/images/home/hero-background-1.webp);
+  }
+
+  #hero-background-2 {
+    background-image: url(/images/home/hero-background-2.webp);
+  }
+
+  #hero-background-3 {
+    background-image: url(/images/home/hero-background-3.webp);
+  }
+
+  #hero-background-4 {
+    background-image: url(/images/home/hero-background-4.webp);
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  #main-feature {
+    .inner {
+      height: 400px;
+    }
+
+    header {
+      margin: 40px;
+    }
+  }
+
+  .hero-text.large {
+    font-size: 4.5rem;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  #main-feature header p em {
+    font-size: 1.25rem;
+    display: inline-block;
+  }
+
+  .hero-text.small {
+    font-size: 3rem;
+  }
+
+  #main-content {
+    min-height: 160px;
+  }
+
+  #updates .inner {
+    margin: 48px auto;
+  }
+
+  article.news.headline {
+    header {
+      flex-direction: row-reverse;
+    }
+
+    time {
+      width: 80px;
+    }
+  }
+}
+
+@media screen and (max-width: 767px) {
+  #main-feature {
+    text-align: center;
+
+    .inner {
+      height: 400px;
+    }
+  }
+
+  .hero-text.large {
+    font-size: 2rem;
+  }
+
+  .hero-text.small {
+    font-size: 1.5rem;
+  }
+
+  #updates .inner {
+    margin: 32px auto;
+  }
+
+  article.news.headline header {
+    flex-direction: column-reverse;
+  }
+}

@@ -1,0 +1,40 @@
+---
+import type { Locale } from '@i18n/ui';
+import { useTranslations } from '@i18n/utils';
+import type { Crumb } from '@lib/navigation';
+
+interface Props {
+  locale: Locale;
+  /** Home page link followed by the ancestors and the current page. */
+  crumbs: Crumb[];
+}
+
+const { locale, crumbs } = Astro.props;
+const t = useTranslations(locale);
+const [home, ...items] = crumbs;
+---
+
+<nav
+  id="breadcrumbs"
+  class="outer"
+  itemscope
+  itemtype="http://schema.org/BreadcrumbList"
+  aria-label={t('nav.breadcrumbs.label')}
+>
+  <div class="inner row">
+    <p class="col">
+      <a href={home.href}>{home.label}</a>
+      {items.map(({ label, href }, index) => (
+        <>
+          &rsaquo;{' '}
+          <span itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a itemprop="item" href={href}>
+              <span itemprop="name">{label}</span>
+            </a>
+            <meta itemprop="position" content={String(index + 1)} />
+          </span>
+        </>
+      ))}
+    </p>
+  </div>
+</nav>

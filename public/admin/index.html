@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'none'; style-src 'self' 'unsafe-inline'; font-src 'self' https://cdn.jsdelivr.net; img-src 'self' blob: data: https://*.githubusercontent.com; media-src blob:; frame-src blob: https://www.youtube-nocookie.com https://www.slideshare.net; script-src 'unsafe-inline' 'self' https://unpkg.com; connect-src 'self' blob: data: https://unpkg.com https://api.github.com https://www.githubstatus.com; manifest-src blob:; base-uri 'self';"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Content Manager</title>
+  </head>
+  <body>
+    <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js"></script>
+    <script>
+      CMS.registerPreviewStyle('/admin/preview.css');
+
+      CMS.registerEditorComponent({
+        id: 'figure',
+        label: '画像 + キャプション',
+        fields: [
+          { name: 'src', label: '画像', widget: 'image' },
+          { name: 'caption', label: 'キャプション', widget: 'string', required: false },
+        ],
+        pattern: /^<figure><img src="(.*?)" alt=""><figcaption>(.*?)<\/figcaption><\/figure>$/m,
+        fromBlock: ([, src, caption]) => ({ src, caption }),
+        toBlock: ({ src, caption }) =>
+          `<figure><img src="${src}" alt=""><figcaption>${caption || ''}</figcaption></figure>`,
+        toPreview: ({ src, caption }) =>
+          src
+            ? `<figure><img loading="lazy" src="${src}" alt="">` +
+              `<figcaption>${caption || ''}</figcaption></figure>`
+            : '',
+      });
+
+      CMS.registerEditorComponent({
+        id: 'youtube',
+        label: 'YouTube',
+        fields: [
+          { name: 'id', label: 'ID', widget: 'string' },
+          { name: 'width', label: '幅', widget: 'number', value_type: 'int', default: 560 },
+          { name: 'height', label: '高さ', widget: 'number', value_type: 'int', default: 315 },
+        ],
+        pattern:
+          /^<iframe src="https:\/\/www\.youtube-nocookie\.com\/embed\/(.*?)" width="(.*?)" height="(.*?)" allow=".*?" allowfullscreen><\/iframe>$/m,
+        fromBlock: ([, id, width, height]) => ({ id, width, height }),
+        toBlock: ({ id, width = 560, height = 315 }) =>
+          `<iframe src="https://www.youtube-nocookie.com/embed/${id}" width="${width}" ` +
+          `height="${height}" allow="autoplay; encrypted-media; picture-in-picture" ` +
+          `allowfullscreen></iframe>`,
+        toPreview: ({ id, width = 560, height = 315 }) =>
+          id
+            ? `<iframe src="https://www.youtube-nocookie.com/embed/${id}" width="${width}" ` +
+              `height="${height}" allow="autoplay; encrypted-media; picture-in-picture" ` +
+              `allowfullscreen></iframe>`
+            : '',
+      });
+
+      CMS.registerEditorComponent({
+        id: 'slideshare',
+        label: 'SlideShare',
+        fields: [
+          { name: 'id', label: 'ID', widget: 'string' },
+          { name: 'width', label: '幅', widget: 'number', value_type: 'int', default: 595 },
+          { name: 'height', label: '高さ', widget: 'number', value_type: 'int', default: 485 },
+        ],
+        pattern:
+          /^<iframe src="https:\/\/www\.slideshare\.net\/slideshow\/embed_code\/(.*?)" width="(.*?)" height="(.*?)" allowfullscreen><\/iframe>$/m,
+        fromBlock: ([, id, width, height]) => ({ id, width, height }),
+        toBlock: ({ id, width = 595, height = 485 }) =>
+          `<iframe src="https://www.slideshare.net/slideshow/embed_code/${id}" ` +
+          `width="${width}" height="${height}" allowfullscreen></iframe>`,
+        toPreview: ({ id, width = 595, height = 485 }) =>
+          id
+            ? `<iframe src="https://www.slideshare.net/slideshow/embed_code/${id}" ` +
+              `width="${width}" height="${height}" allowfullscreen></iframe>`
+            : '',
+      });
+    </script>
+  </body>
+</html>

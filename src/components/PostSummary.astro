@@ -1,0 +1,53 @@
+---
+import type { Locale } from '@i18n/ui';
+import { formatDate, useTranslations } from '@i18n/utils';
+import { getHeadline, getTaxonomy, type Post } from '@lib/content';
+import { getResponsiveImage, SUMMARY_IMAGE_SIZES } from '@lib/images';
+import { getPostPath } from '@lib/navigation';
+import { getSummary, toISOString, truncate } from '@lib/text';
+
+interface Props {
+  locale: Locale;
+  post: Post;
+}
+
+const { locale, post } = Astro.props;
+const t = useTranslations(locale);
+const href = getPostPath(locale, post);
+const { date, image, authors } = post.data;
+const author = authors.length ? (await getTaxonomy('authors', locale)).get(authors[0]) : undefined;
+const featured = image
+  ? getResponsiveImage(image, SUMMARY_IMAGE_SIZES)
+  : { src: '/images/updates/placeholder.png', srcset: undefined };
+---
+
+<article class="blog summary box" itemscope itemtype="http://schema.org/Article">
+  <a href={href} itemprop="url">
+    <figure class="featured">
+      <img loading="lazy" src={featured.src} srcset={featured.srcset} alt="" itemprop="image" />
+    </figure>
+    <header>
+      <h3 itemprop="headline">{getHeadline(locale, post)}</h3>
+      <time datetime={toISOString(date)} itemprop="datePublished">
+        {formatDate(locale, date, 'short')}
+      </time>
+      {author && (
+        <div itemprop="author" itemscope itemtype="http://schema.org/Person">
+          {author.image && (
+            <span class="avatar">
+              <img loading="lazy" src={author.image} alt="" itemprop="image" />
+            </span>
+          )}
+          <span itemprop="name">{author.name}</span>
+        </div>
+      )}
+    </header>
+    <meta itemprop="mainEntityOfPage" content={new URL(href, Astro.site).href} />
+    <p>
+      <span itemprop="description">
+        {truncate(getSummary(post), 80, (text) => t('post.truncated', { text }))}
+      </span>{' '}
+      <span class="more" set:html={t('post.read-more')} />
+    </p>
+  </a>
+</article>

@@ -1,0 +1,18 @@
+---
+import FeatureHeader from '@components/FeatureHeader.astro';
+import { getLocale, getLocaleParams } from '@i18n/utils';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { getPage } from '@lib/content';
+import { getPageProps } from '@lib/navigation';
+
+export const getStaticPaths = () => getLocaleParams().map((params) => ({ params }));
+
+const locale = getLocale(Astro.currentLocale);
+const { data } = await getPage(locale, 'error');
+---
+
+<BaseLayout {...await getPageProps(locale, 'error')} contact={false} noindex>
+  <main>
+    <FeatureHeader title={data.title} subtitle={data.subtitle} description={data.description} />
+  </main>
+</BaseLayout>

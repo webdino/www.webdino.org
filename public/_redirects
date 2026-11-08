@@ -1,0 +1,33 @@
+# Cloudflare Pages redirects: https://developers.cloudflare.com/pages/configuration/redirects/
+# Rules apply even when a file exists at the path, so only list paths that no longer exist.
+# Not-found pages are served from the nearest `404.html` (`/ja/404.html`, `/404.html`).
+
+# Language root. Temporary, so it can point to a language picker or another default later
+/  /ja/  302
+
+# Legacy blog post URLs
+/updates/blog/*     /ja/updates/news/:splat  301
+/ja/updates/blog/*  /ja/updates/news/:splat  301
+
+# Sitemap moved to `sitemap-index.xml` with Astro
+/sitemap.xml  /sitemap-index.xml  301
+
+# Pages moved under the language prefix, e.g. `/about/` → `/ja/about/`
+/index.xml     /ja/index.xml          301
+/about         /ja/about/             301
+/about/*       /ja/about/:splat       301
+/careers       /ja/careers/           301
+/careers/*     /ja/careers/:splat     301
+/community     /ja/community/         301
+/community/*   /ja/community/:splat   301
+/contact       /ja/contact/           301
+/contact/*     /ja/contact/:splat     301
+/privacy       /ja/privacy/           301
+/privacy/*     /ja/privacy/:splat     301
+/services      /ja/services/          301
+/services/*    /ja/services/:splat    301
+/updates       /ja/updates/           301
+/updates/*     /ja/updates/:splat     301
+
+# Images and fonts moved from `/assets/` to the root, e.g. `/assets/uploads/` → `/uploads/`
+/assets/*  /:splat  301

@@ -1,0 +1,7 @@
+// Cloudflare Pages configuration: https://developers.cloudflare.com/pages/functions/wrangler-configuration/
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "www-webdino-org",
+  "pages_build_output_dir": "./dist",
+  "compatibility_date": "2026-10-27",
+}

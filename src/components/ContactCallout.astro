@@ -1,0 +1,36 @@
+---
+import type { Locale } from '@i18n/ui';
+import type { Settings } from '@lib/content';
+import { markdownify } from '@lib/markdown';
+import { getPagePath } from '@lib/navigation';
+import Heading from './Heading.astro';
+
+interface Props {
+  locale: Locale;
+  settings: Settings;
+  /** Page-specific description; an empty string hides the default one. */
+  description?: string;
+  link?: string;
+  label?: string;
+}
+
+const { locale, settings, description, link, label } = Astro.props;
+const { contact } = settings;
+---
+
+<aside id="contact-callout" class="outer">
+  <div class="inner row">
+    <div class="col">
+      <h2>
+        <Heading text={contact.heading} />
+      </h2>
+      <p set:html={markdownify(description ?? contact.description)} />
+      <p>
+        <a href={link ?? getPagePath(locale, 'contact')} class="cta large">
+          <span class="far envelope" aria-hidden="true"></span>
+          <strong>{label ?? contact.linkLabel}</strong>
+        </a>
+      </p>
+    </div>
+  </div>
+</aside>

@@ -1,0 +1,1730 @@
+# yaml-language-server: $schema=https://unpkg.com/@sveltia/cms/schema/sveltia-cms.json
+
+backend:
+  name: github
+  repo: webdino/www.webdino.org
+  squash_merges: true
+
+publish_mode:
+  type: preview
+  direct_publish: true
+
+i18n:
+  structure: multiple_folders
+  locales:
+    - ja
+
+media_folder: /public/uploads
+public_folder: /uploads
+
+asset_collections:
+  - name: people
+    label: 人物写真
+    icon: people
+    media_folder: /public/images/people
+    public_folder: /images/people
+  - name: banners
+    label: バナー
+    icon: campaign
+    media_folder: /public/images/banners
+    public_folder: /images/banners
+
+media_libraries:
+  all:
+    transformations:
+      raster_image:
+        format: webp
+        quality: 8
+        width: 1600
+        height: 1600
+      svg:
+        optimize: true
+
+collections:
+  - name: authors
+    label: 著者
+    create: true
+    folder: src/content/authors
+    i18n: true
+    format: yaml
+    extension: yaml
+    fields:
+      - name: title
+        label: ハンドルネーム
+        hint: 小文字英数字のみ
+        widget: string
+        i18n: duplicate
+      - name: name
+        label: 氏名
+        hint: 日本語可
+        widget: string
+        i18n: true
+      - name: jobTitle
+        label: 肩書
+        widget: string
+        i18n: true
+        required: false
+      - name: twitter
+        label: X (旧 Twitter) ID
+        widget: string
+        i18n: true
+        required: false
+      - name: facebook
+        label: Facebook ID
+        widget: string
+        i18n: true
+        required: false
+      - name: github
+        label: GitHub ID
+        widget: string
+        i18n: true
+        required: false
+      - name: image
+        label: 写真
+        widget: image
+        i18n: duplicate_if_empty
+        required: false
+      - name: description
+        label: 自己紹介
+        widget: markdown
+        i18n: true
+        required: false
+    editor:
+      preview: false
+  - name: tags
+    label: タグ
+    create: true
+    folder: src/content/tags
+    i18n: true
+    format: yaml
+    extension: yaml
+    fields:
+      - name: title
+        label: スラッグ
+        hint: 小文字英数字のみ
+        widget: string
+        i18n: duplicate
+      - name: name
+        label: 名前
+        hint: 日本語可
+        widget: string
+        i18n: true
+      - name: description
+        label: 説明
+        widget: markdown
+        i18n: true
+        required: false
+    editor:
+      preview: false
+  - name: news
+    label: 新着情報
+    label_singular: 新着情報記事
+    create: true
+    folder: src/content/news
+    i18n: true
+    slug: '{{year}}{{month}}{{day}}{{hour}}{{minute}}'
+    preview_path: /{{locale}}/updates/news/{{slug}}/
+    sortable_fields:
+      fields:
+        - title
+        - date
+      default:
+        field: date
+        direction: descending
+    fields:
+      - name: title
+        label: タイトル
+        widget: string
+        i18n: true
+      - name: subtitle
+        label: サブタイトル
+        widget: string
+        i18n: true
+        required: false
+      - name: date
+        label: 公開日
+        widget: datetime
+        i18n: duplicate
+        input_timezone: Asia/Tokyo
+      - name: tags
+        label: タグ
+        widget: relation
+        i18n: duplicate
+        collection: tags
+        value_field: title
+        search_fields:
+          - title
+          - name
+        display_fields:
+          - name
+        multiple: true
+      - name: authors
+        label: 著者
+        widget: relation
+        i18n: duplicate
+        collection: authors
+        value_field: title
+        display_fields:
+          - name
+        required: false
+        multiple: true
+      - name: image
+        label: カバー画像
+        widget: image
+        i18n: duplicate_if_empty
+        required: false
+      - name: summary
+        label: 要約
+        widget: text
+        i18n: true
+        required: false
+      - name: body
+        label: 本文
+        widget: markdown
+        i18n: true
+    editor:
+      preview: true
+  - name: pages
+    label: 固定ページ
+    i18n: true
+    files:
+      - name: home
+        label: / ホーム
+        preview_path: /{{locale}}/
+        file: src/content/pages/{{locale}}/home.md
+        i18n: true
+        fields:
+          - name: title
+            label: ページタイトル
+            widget: string
+            i18n: true
+          - name: linkTitle
+            label: リンクタイトル
+            widget: string
+            i18n: true
+          - name: subtitle
+            label: サブタイトル
+            widget: string
+            i18n: true
+          - name: description
+            label: 説明文
+            widget: text
+            i18n: true
+          - name: headline
+            label: 見出し
+            widget: text
+            i18n: true
+          - name: contactDesc
+            label: 問い合わせ説明文 (上書き)
+            widget: string
+            i18n: true
+            required: false
+      - name: about
+        label: /about/ 組織概要
+        preview_path: /{{locale}}/about/
+        file: src/content/pages/{{locale}}/about.md
+        i18n: true
+        fields:
+          - name: title
+            label: ページタイトル
+            widget: string
+            i18n: true
+          - name: linkTitle
+            label: リンクタイトル
+            widget: string
+            i18n: true
+          - name: subtitle
+            label: サブタイトル
+            widget: string
+            i18n: true
+          - name: description
+            label: 説明文
+            widget: text
+            i18n: true
+          - name: concepts
+            label: コンセプト
+            widget: list
+            i18n: true
+            fields:
+              - name: heading
+                label: 見出し
+                widget: string
+                i18n: true
+              - name: subheading
+                label: サブ見出し
+                widget: string
+                i18n: true
+              - name: description
+                label: 説明文
+                widget: text
+                i18n: true
+          - name: overview
+            label: 基本情報
+            widget: object
+            i18n: true
+            fields:
+              - name: heading
+                label: 見出し
+                widget: string
+                i18n: true
+              - name: subheading
+                label: サブ見出し
+                widget: string
+                i18n: true
+              - name: items
+                label: 項目
+                widget: list
+                i18n: true
+                fields:
+                  - name: label
+                    label: ラベル
+                    widget: string
+                    i18n: true
+                  - name: value
+                    label: 値
+                    widget: markdown
+                    i18n: true
+          - name: linkLabel
+            label: リンクラベル
+            widget: string
+            i18n: true
+          - name: contactDesc
+            label: 問い合わせ説明文 (上書き)
+            widget: string
+            i18n: true
+            required: false
+      - name: leadership
+        label: /about/leadership/ 役員
+        preview_path: /{{locale}}/about/leadership/
+        file: src/content/pages/{{locale}}/leadership.md
+        i18n: true
+        fields:
+          - name: title
+            label: ページタイトル
+            widget: string
+            i18n: true
+          - name: linkTitle
+            label: リンクタイトル
+            widget: string
+            i18n: true
+          - name: subtitle
+            label: サブタイトル
+            widget: string
+            i18n: true
+          - name: description
+            label: 説明文
+            widget: text
+            i18n: true
+          - name: message
+            label: メッセージ
+            widget: object
+            i18n: true
+            fields:
+              - name: heading
+                label: 見出し
+                widget: string
+                i18n: true
+              - name: text
+                label: テキスト
+                widget: markdown
+                i18n: true
+          - name: leadership
+            label: 役員
+            widget: object
+            i18n: true
+            fields:
+              - name: heading
+                label: 見出し
+                widget: string
+                i18n: true
+              - name: roles
+                label: 役職
+                widget: list
+                i18n: true
+                fields:
+                  - name: heading
+                    label: 見出し
+                    widget: string
+                    i18n: true
+                  - name: subheading
+                    label: サブ見出し
+                    widget: string
+                    i18n: true
+                  - name: members
+                    label: メンバー
+                    widget: list
+                    i18n: true
+                    fields:
+                      - name: name
+                        label: 名前
+                        widget: string
+                        i18n: true
+                      - name: titles
+                        label: 肩書き
+                        widget: list
+                        i18n: true
+                        required: false
+                      - name: image
+                        label: 画像
+                        widget: image
+                        i18n: duplicate_if_empty
+          - name: contactDesc
+            label: 問い合わせ説明文 (上書き)
+            widget: string
+            i18n: true
+            required: false
+      - name: history
+        label: /about/history/ 沿革
+        preview_path: /{{locale}}/about/history/
+        file: src/content/pages/{{locale}}/history.md
+        i18n: true
+        media_folder: /public/images/about/history
+        public_folder: /images/about/history
+        fields:
+          - name: title
+            label: ページタイトル
+            widget: string
+            i18n: true
+          - name: linkTitle
+            label: リンクタイトル
+            widget: string
+            i18n: true
+          - name: subtitle
+            label: サブタイトル
+            widget: string
+            i18n: true
+          - name: description
+            label: 説明文
+            widget: text
+            i18n: true
+          - name: history
+            label: 沿革
+            widget: object
+            i18n: true
+            fields:
+              - name: heading
+                label: 見出し
+                widget: string
+                i18n: true
+              - name: events
+                label: できごと
+                widget: list
+                i18n: true
+                fields:
+                  - name: time
+                    label: 時期
+                    widget: string
+                    i18n: true
+                  - name: text
+                    label: 内容
+                    widget: text
+                    i18n: true
+          - name: activities
+            label: 活動
+            widget: object
+            i18n: true
+            fields:
+              - name: heading
+                label: 見出し
+                widget: string
+                i18n: true
+              - name: timeline
+                label: タイムライン
+                widget: list
+                i18n: true
+                fields:
+                  - name: time
+                    label: 時期
+                    widget: string
+                    i18n: true
+                  - name: title
+                    label: タイトル
+                    widget: string
+                    i18n: true
+                  - name: description
+                    label: 説明文
+                    widget: text
+                    i18n: true
+                  - name: image
+                    label: 画像
+                    widget: image
+                    i18n: duplicate_if_empty
+                    required: false
+                  - name: id
+                    label: ID
+                    widget: string
+                    i18n: true
+          - name: contactDesc
+            label: 問い合わせ説明文 (上書き)
+            widget: string
+            i18n: true
+            required: false
+      - name: location
+        label: /about/location/ アクセス
+        preview_path: /{{locale}}/about/location/
+        file: src/content/pages/{{locale}}/location.md
+        i18n: true
+        fields:
+          - name: title
+            label: ページタイトル
+            widget: string
+            i18n: true
+          - name: linkTitle
+            label: リンクタイトル
+            widget: string
+            i18n: true
+          - name: subtitle
+            label: サブタイトル
+            widget: string
+            i18n: true
+          - name: description
+            label: 説明文
+            widget: text
+            i18n: true
+          - name: nearby
+            label: 最寄り駅
+            widget: markdown
+            i18n: true
+          - name: contactDesc
+            label: 問い合わせ説明文 (上書き)
+            widget: string
+            i18n: true
+            required: false
+      - name: services
+        label: /services/ 事業概要
+        preview_path: /{{locale}}/services/
+        file: src/content/pages/{{locale}}/services.md
+        i18n: true
+        fields:
+          - name: title
+            label: ページタイトル
+            widget: string
+            i18n: true
+          - name: linkTitle
+            label: リンクタイトル
+            widget: string
+            i18n: true
+          - name: subtitle
+            label: サブタイトル
+            widget: string
+            i18n: true
+          - name: description
+            label: 説明文
+            widget: text
+            i18n: true
+          - name: contactDesc
+            label: 問い合わせ説明文 (上書き)
+            widget: string
+            i18n: true
+            required: false
+      - name: tech
+        label: /services/tech/ 技術開発・コンサルティング
+        preview_path: /{{locale}}/services/tech/
+        file: src/content/pages/{{locale}}/tech.md
+        i18n: true
+        media_folder: /public/images/services/tech
+        public_folder: /images/services/tech
+        fields:
+          - name: title
+            label: ページタイトル
+            widget: string
+            i18n: true
+          - name: linkTitle
+            label: リンクタイトル
+            widget: string
+            i18n: true
+          - name: subtitle
+            label: サブタイトル
+            widget: string
+            i18n: true
+          - name: description
+            label: 説明文
+            widget: text
+            i18n: true
+          - name: linkLabel
+            label: リンクラベル
+            widget: string
+            i18n: true
+          - name: image
+            label: 画像
+            widget: image
+            i18n: duplicate_if_empty
+          - name: fields
+            label: 専門分野
+            widget: object
+            i18n: true
+            fields:
+              - name: heading
+                label: 見出し
+                widget: string
+                i18n: true
+              - name: subheading
+                label: サブ見出し
+                widget: string
+                i18n: true
+              - name: details
+                label: 詳細
+                widget: list
+                i18n: true
+                fields:
+                  - name: heading
+                    label: 見出し
+                    widget: string
+                    i18n: true
+                  - name: subheading
+                    label: サブ見出し
+                    widget: string
+                    i18n: true
+                  - name: summary
+                    label: 要約
+                    widget: text
+                    i18n: true
+                  - name: description
+                    label: 説明文
+                    widget: markdown
+                    i18n: true
+          - name: solutions
+            label: 相談例
+            widget: object
+            i18n: true
+            fields:
+              - name: heading
+                label: 見出し
+                widget: string
+                i18n: true
+              - name: subheading
+                label: サブ見出し
+                widget: string
+                i18n: true
+              - name: description
+                label: 説明文
+                widget: text
+                i18n: true
+                required: false
+              - name: linkLabel
+                label: リンクラベル
+                widget: string
+                i18n: true
+                required: false
+              - name: examples
+                label: 例
+                widget: list
+                i18n: true
+                fields:
+                  - name: label
+                    label: 見出し
+                    widget: string
+                    i18n: true
+                  - name: icon
+                    label: アイコン
+                    widget: image
+                    i18n: duplicate_if_empty
+              - name: cases
+                label: 事例
+                widget: object
+                i18n: true
+                fields:
+                  - name: heading
+                    label: 見出し
+                    widget: string
+                    i18n: true
+                  - name: details
+                    label: 詳細
+                    widget: list
+                    i18n: true
+                    fields:
+                      - name: heading
+                        label: 見出し
+                        widget: string
+                        i18n: true
+                      - name: description
+                        label: 説明文
+                        widget: markdown
+                        i18n: true
+                      - name: image
+                        label: 画像
+                        widget: image
+                        i18n: duplicate_if_empty
+          - name: contactDesc
+            label: 問い合わせ説明文 (上書き)
+            widget: string
+            i18n: true
+            required: false
+      - name: human
+        label: /services/human/ 人材育成・イベントのプロデュース
+        preview_path: /{{locale}}/services/human/
+        file: src/content/pages/{{locale}}/human.md
+        i18n: true
+        media_folder: /public/images/services/human
+        public_folder: /images/services/human
+        fields:
+          - name: title
+            label: ページタイトル
+            widget: string
+            i18n: true
+          - name: linkTitle
+            label: リンクタイトル
+            widget: string
+            i18n: true
+          - name: subtitle
+            label: サブタイトル
+            widget: string
+            i18n: true
+          - name: description
+            label: 説明文
+            widget: markdown
+            i18n: true
+          - name: linkLabel
+            label: リンクラベル
+            widget: string
+            i18n: true
+          - name: image
+            label: 画像
+            widget: image
+            i18n: duplicate_if_empty
+          - name: solutions
+            label: 相談例
+            widget: object
+            i18n: true
+            fields:
+              - name: heading
+                label: 見出し
+                widget: string
+                i18n: true
+              - name: subheading
+                label: サブ見出し
+                widget: string
+                i18n: true
+              - name: examples
+                label: 例
+                widget: list
+                i18n: true
+                fields:
+                  - name: heading
+                    label: 見出し
+                    widget: string
+                    i18n: true
+                  - name: description
+                    label: 説明文
+                    widget: markdown
+                    i18n: true
+                  - name: image
+                    label: 画像
+                    widget: image
+                    i18n: duplicate_if_empty
+              - name: cases
+                label: 事例
+                widget: object
+                i18n: true
+                fields:
+                  - name: heading
+                    label: 見出し
+                    widget: string
+                    i18n: true
+                  - name: details
+                    label: 詳細
+                    widget: list
+                    i18n: true
+                    fields:
+                      - name: heading
+                        label: 見出し
+                        widget: string
+                        i18n: true
+                      - name: description
+                        label: 説明文
+                        widget: markdown
+                        i18n: true
+                      - name: image
+                        label: 画像
+                        widget: image
+                        i18n: duplicate_if_empty
+                        required: false
+          - name: concepts
+            label: コンセプト
+            widget: list
+            i18n: true
+            fields:
+              - name: heading
+                label: 見出し
+                widget: string
+                i18n: true
+              - name: subheading
+                label: サブ見出し
+                widget: string
+                i18n: true
+              - name: description
+                label: 説明文
+                widget: markdown
+                i18n: true
+              - name: id
+                label: ID
+                widget: string
+                i18n: true
+          - name: contactDesc
+            label: 問い合わせ説明文 (上書き)
+            widget: string
+            i18n: true
+            required: false
+      - name: fullstack
+        label: /services/human/fullstack/ フルスタック研修プログラム
+        preview_path: /{{locale}}/services/human/fullstack/
+        file: src/content/pages/{{locale}}/fullstack.md
+        i18n: true
+        media_folder: /public/images/services/fullstack
+        public_folder: /images/services/fullstack
+        fields:
+          - name: title
+            label: ページタイトル
+            widget: string
+            i18n: true
+          - name: linkTitle
+            label: リンクタイトル
+            widget: string
+            i18n: true
+          - name: subtitle
+            label: サブタイトル
+            widget: string
+            i18n: true
+          - name: description
+            label: 説明文
+            widget: text
+            i18n: true
+          - name: heroImage
+            label: ヒーロー画像
+            widget: image
+            i18n: duplicate_if_empty
+          - name: features
+            label: 特徴
+            widget: object
+            i18n: true
+            fields:
+              - name: heading
+                label: 見出し
+                widget: string
+                i18n: true
+              - name: subheading
+                label: サブ見出し
+                widget: string
+                i18n: true
+              - name: items
+                label: 項目
+                widget: list
+                i18n: true
+                fields:
+                  - name: icon
+                    label: アイコン
+                    widget: string
+                    i18n: true
+                  - name: description
+                    label: 説明文
+                    widget: text
+                    i18n: true
+          - name: outcomes
+            label: 期待される効果
+            widget: object
+            i18n: true
+            fields:
+              - name: heading
+                label: 見出し
+                widget: string
+                i18n: true
+              - name: subheading
+                label: サブ見出し
+                widget: string
+                i18n: true
+              - name: items
+                label: 項目
+                widget: list
+                i18n: true
+                fields:
+                  - name: icon
+                    label: アイコン
+                    widget: string
+                    i18n: true
+                  - name: description
+                    label: 説明文
+                    widget: text
+                    i18n: true
+          - name: support
+            label: サポート体制
+            widget: object
+            i18n: true
+            fields:
+              - name: heading
+                label: 見出し
+                widget: string
+                i18n: true
+              - name: subheading
+                label: サブ見出し
+                widget: string
+                i18n: true
+              - name: items
+                label: 項目
+                widget: list
+                i18n: true
+                fields:
+                  - name: icon
+                    label: アイコン
+                    widget: string
+                    i18n: true
+                  - name: description
+                    label: 説明文
+                    widget: text
+                    i18n: true
+          - name: curriculum
+            label: カリキュラム
+            widget: object
+            i18n: true
+            fields:
+              - name: heading
+                label: 見出し
+                widget: string
+                i18n: true
+              - name: subheading
+                label: サブ見出し
+                widget: string
+                i18n: true
+              - name: description
+                label: 説明文
+                widget: text
+                i18n: true
+              - name: items
+                label: 日程
+                widget: list
+                i18n: true
+                fields:
+                  - name: day
+                    label: 日
+                    widget: string
+                    i18n: true
+                  - name: title
+                    label: タイトル
+                    widget: string
+                    i18n: true
+                  - name: description
+                    label: 説明文
+                    widget: text
+                    i18n: true
+          - name: instructors
+            label: 講師陣
+            widget: object
+            i18n: true
+            fields:
+              - name: heading
+                label: 見出し
+                widget: string
+                i18n: true
+              - name: subheading
+                label: サブ見出し
+                widget: string
+                i18n: true
+              - name: description
+                label: 説明文
+                widget: text
+                i18n: true
+              - name: internal
+                label: 専任講師
+                widget: object
+                i18n: true
+                fields:
+                  - name: heading
+                    label: 見出し
+                    widget: string
+                    i18n: true
+                  - name: people
+                    label: 講師
+                    widget: list
+                    i18n: true
+                    fields:
+                      - name: name
+                        label: 名前
+                        widget: string
+                        i18n: true
+                      - name: title
+                        label: 肩書
+                        widget: string
+                        i18n: true
+                      - name: image
+                        label: 画像
+                        widget: image
+                        i18n: duplicate_if_empty
+              - name: external
+                label: 外部講師
+                widget: object
+                i18n: true
+                fields:
+                  - name: heading
+                    label: 見出し
+                    widget: string
+                    i18n: true
+                  - name: people
+                    label: 講師
+                    widget: list
+                    i18n: true
+                    fields:
+                      - name: name
+                        label: 名前
+                        widget: string
+                        i18n: true
+                      - name: title
+                        label: 肩書
+                        widget: string
+                        i18n: true
+              - name: guests
+                label: 過去の特別講師
+                widget: object
+                i18n: true
+                fields:
+                  - name: heading
+                    label: 見出し
+                    widget: string
+                    i18n: true
+                  - name: people
+                    label: 講師
+                    widget: list
+                    i18n: true
+                    fields:
+                      - name: name
+                        label: 名前
+                        widget: string
+                        i18n: true
+                      - name: title
+                        label: 肩書
+                        widget: string
+                        i18n: true
+          - name: contactDesc
+            label: 問い合わせ説明文
+            widget: text
+            i18n: true
+      - name: community
+        label: /community/ コミュニティ支援
+        preview_path: /{{locale}}/community/
+        file: src/content/pages/{{locale}}/community.md
+        i18n: true
+        media_folder: /public/images/community
+        public_folder: /images/community
+        fields:
+          - name: title
+            label: ページタイトル
+            widget: string
+            i18n: true
+          - name: linkTitle
+            label: リンクタイトル
+            widget: string
+            i18n: true
+          - name: subtitle
+            label: サブタイトル
+            widget: string
+            i18n: true
+          - name: description
+            label: 説明文
+            widget: text
+            i18n: true
+            required: false
+          - name: feature_images
+            label: 主要画像
+            widget: list
+            i18n: true
+            fields:
+              - name: src
+                label: ソース
+                widget: image
+                i18n: duplicate_if_empty
+          - name: concept
+            label: コンセプト
+            widget: object
+            i18n: true
+            fields:
+              - name: heading
+                label: 見出し
+                widget: string
+                i18n: true
+              - name: subheading
+                label: サブ見出し
+                widget: string
+                i18n: true
+              - name: description
+                label: 説明文
+                widget: markdown
+                i18n: true
+          - name: friends
+            label: 連携コミュニティ
+            widget: object
+            i18n: true
+            fields:
+              - name: heading
+                label: 見出し
+                widget: string
+                i18n: true
+              - name: subheading
+                label: サブ見出し
+                widget: string
+                i18n: true
+              - name: description
+                label: 説明文
+                widget: text
+                i18n: true
+              - name: groups
+                label: グループ
+                widget: list
+                i18n: true
+                fields:
+                  - name: name
+                    label: 名称
+                    widget: string
+                    i18n: true
+                  - name: url
+                    label: URL
+                    widget: string
+                    i18n: true
+                    required: false
+                  - name: description
+                    label: 説明文
+                    widget: markdown
+                    i18n: true
+          - name: contactDesc
+            label: 問い合わせ説明文 (上書き)
+            widget: string
+            i18n: true
+            required: false
+      - name: contact
+        label: /contact/ お問い合わせ
+        preview_path: /{{locale}}/contact/
+        file: src/content/pages/{{locale}}/contact.md
+        i18n: true
+        fields:
+          - name: title
+            label: ページタイトル
+            widget: string
+            i18n: true
+          - name: linkTitle
+            label: リンクタイトル
+            widget: string
+            i18n: true
+          - name: subtitle
+            label: サブタイトル
+            widget: string
+            i18n: true
+          - name: description
+            label: 説明文
+            widget: text
+            i18n: true
+          - name: fields
+            label: フィールド
+            widget: list
+            i18n: true
+            fields:
+              - name: name
+                label: 名称
+                widget: string
+                i18n: true
+              - name: label
+                label: ラベル
+                widget: string
+                i18n: true
+              - name: placeholder
+                label: プレースホルダー
+                widget: string
+                i18n: true
+              - name: type
+                label: タイプ
+                widget: select
+                i18n: true
+                options:
+                  - text
+                  - email
+                  - tel
+                  - url
+                  - multiline
+              - name: required
+                label: 必須
+                widget: boolean
+                i18n: true
+          - name: submit
+            label: 送信
+            widget: object
+            i18n: true
+            fields:
+              - name: privacy
+                label: プライバシーポリシー
+                widget: markdown
+                i18n: true
+              - name: buttonLabel
+                label: ボタンラベル
+                widget: string
+                i18n: true
+          - name: thanks
+            label: 送信完了メッセージ
+            widget: object
+            i18n: true
+            fields:
+              - name: heading
+                label: 見出し
+                widget: string
+                i18n: true
+              - name: subheading
+                label: サブ見出し
+                widget: string
+                i18n: true
+              - name: description
+                label: 説明文
+                widget: markdown
+                i18n: true
+          - name: error
+            label: 送信エラーメッセージ
+            widget: object
+            i18n: true
+            fields:
+              - name: heading
+                label: 見出し
+                widget: string
+                i18n: true
+              - name: subheading
+                label: サブ見出し
+                widget: string
+                i18n: true
+              - name: description
+                label: 説明文
+                widget: markdown
+                i18n: true
+      - name: updates
+        label: /updates/ ディノの足あと
+        preview_path: /{{locale}}/updates/
+        file: src/content/pages/{{locale}}/updates.md
+        i18n: true
+        fields:
+          - name: title
+            label: ページタイトル
+            widget: string
+            i18n: true
+          - name: linkTitle
+            label: リンクタイトル
+            widget: string
+            i18n: true
+          - name: subtitle
+            label: サブタイトル
+            widget: string
+            i18n: true
+          - name: description
+            label: 説明文
+            widget: text
+            i18n: true
+          - name: contactDesc
+            label: 問い合わせ説明文 (上書き)
+            widget: string
+            i18n: true
+            required: false
+      - name: news
+        label: /updates/news/ 新着情報
+        preview_path: /{{locale}}/updates/news/
+        file: src/content/pages/{{locale}}/news.md
+        i18n: true
+        fields:
+          - name: title
+            label: ページタイトル
+            widget: string
+            i18n: true
+          - name: linkTitle
+            label: リンクタイトル
+            widget: string
+            i18n: true
+          - name: subtitle
+            label: サブタイトル
+            widget: string
+            i18n: true
+          - name: description
+            label: 説明文
+            widget: text
+            i18n: true
+            required: false
+          - name: contactDesc
+            label: 問い合わせ説明文 (上書き)
+            widget: string
+            i18n: true
+            required: false
+      - name: careers
+        label: /careers/ 採用情報
+        preview_path: /{{locale}}/careers/
+        file: src/content/pages/{{locale}}/careers.md
+        i18n: true
+        media_folder: /public/images/careers
+        public_folder: /images/careers
+        fields:
+          - name: title
+            label: ページタイトル
+            widget: string
+            i18n: true
+          - name: linkTitle
+            label: リンクタイトル
+            widget: string
+            i18n: true
+          - name: subtitle
+            label: サブタイトル
+            widget: string
+            i18n: true
+          - name: description
+            label: 説明文
+            widget: markdown
+            i18n: true
+            minimal: true
+          - name: positionsAvailable
+            label: 採用情報ありメッセージ
+            widget: markdown
+            i18n: true
+            minimal: true
+          - name: positionsUnavailable
+            label: 採用情報なしメッセージ
+            widget: markdown
+            i18n: true
+            minimal: true
+          - name: images
+            label: 画像
+            widget: list
+            i18n: true
+            fields:
+              - name: src
+                label: ソース
+                widget: image
+                i18n: duplicate_if_empty
+              - name: caption
+                label: キャプション
+                widget: string
+                i18n: true
+          - name: labels
+            label: ラベル
+            widget: object
+            i18n: true
+            fields:
+              - name: title
+                label: 募集職種
+                widget: string
+                i18n: true
+              - name: description
+                label: 募集概要
+                widget: string
+                i18n: true
+              - name: responsibilities
+                label: 業務内容
+                widget: string
+                i18n: true
+              - name: totalJobOpenings
+                label: 募集人数
+                widget: string
+                i18n: true
+              - name: workHours
+                label: 勤務時間
+                widget: string
+                i18n: true
+              - name: holidays
+                label: 休日・休暇
+                widget: string
+                i18n: true
+              - name: salary
+                label: 給与
+                widget: string
+                i18n: true
+              - name: experienceRequirements
+                label: 必須要件
+                widget: string
+                i18n: true
+              - name: skills
+                label: 歓迎条件
+                widget: string
+                i18n: true
+              - name: jobBenefits
+                label: 待遇
+                widget: string
+                i18n: true
+              - name: otherConditions
+                label: その他要件
+                widget: string
+                i18n: true
+              - name: jobLocation
+                label: 勤務地
+                widget: string
+                i18n: true
+              - name: apply
+                label: 応募方法
+                widget: string
+                i18n: true
+              - name: hiringOrganization
+                label: 採用組織
+                widget: string
+                i18n: true
+          - name: positions
+            label: ポジション
+            widget: list
+            i18n: true
+            fields:
+              - name: title
+                label: タイトル
+                widget: string
+                i18n: true
+              - name: description
+                label: 説明文
+                widget: markdown
+                i18n: true
+                minimal: true
+              - name: responsibilities
+                label: 業務内容
+                widget: markdown
+                i18n: true
+                minimal: true
+              - name: totalJobOpenings
+                label: 募集人数
+                widget: string
+                i18n: true
+              - name: workHours
+                label: 勤務時間
+                widget: markdown
+                i18n: true
+                minimal: true
+              - name: holidays
+                label: 休日・休暇
+                widget: markdown
+                i18n: true
+                minimal: true
+              - name: salary
+                label: 給与
+                widget: markdown
+                i18n: true
+                minimal: true
+              - name: experienceRequirements
+                label: 必須要件
+                widget: markdown
+                i18n: true
+                minimal: true
+              - name: skills
+                label: 歓迎条件
+                widget: markdown
+                i18n: true
+                minimal: true
+              - name: jobBenefits
+                label: 待遇
+                widget: markdown
+                i18n: true
+                minimal: true
+              - name: otherConditions
+                label: その他要件
+                widget: markdown
+                i18n: true
+                minimal: true
+              - name: jobLocation
+                label: 勤務地
+                widget: markdown
+                i18n: true
+                minimal: true
+              - name: apply
+                label: 応募方法
+                widget: markdown
+                i18n: true
+                minimal: true
+          - name: contactDesc
+            label: 問い合わせ説明文 (上書き)
+            widget: string
+            i18n: true
+            required: false
+          - name: contactLink
+            label: 問い合わせリンク先 (上書き)
+            widget: string
+            i18n: true
+            required: false
+          - name: contactLabel
+            label: 問い合わせリンクラベル (上書き)
+            widget: string
+            i18n: true
+            required: false
+      - name: privacy
+        label: /privacy/ プライバシーポリシー
+        preview_path: /{{locale}}/privacy/
+        file: src/content/pages/{{locale}}/privacy.md
+        i18n: true
+        fields:
+          - name: title
+            label: ページタイトル
+            widget: string
+            i18n: true
+          - name: linkTitle
+            label: リンクタイトル
+            widget: string
+            i18n: true
+          - name: subtitle
+            label: サブタイトル
+            widget: string
+            i18n: true
+          - name: description
+            label: 説明文
+            widget: markdown
+            i18n: true
+          - name: date
+            label: 公開日
+            widget: datetime
+            i18n: duplicate
+            type: date
+            input_timezone: Asia/Tokyo
+          - name: lastModified
+            label: 更新日
+            widget: datetime
+            i18n: duplicate
+            type: date
+            input_timezone: Asia/Tokyo
+            required: false
+          - name: publisher
+            label: 発行者
+            widget: object
+            i18n: true
+            fields:
+              - name: name
+                label: 名前
+                widget: string
+                i18n: true
+              - name: person
+                label: 担当者
+                widget: object
+                i18n: true
+                fields:
+                  - name: role
+                    label: 役職
+                    widget: string
+                    i18n: true
+                  - name: name
+                    label: 名前
+                    widget: string
+                    i18n: true
+              - name: contact
+                label: 問い合わせ先
+                widget: object
+                i18n: true
+                fields:
+                  - name: title
+                    label: タイトル
+                    widget: string
+                    i18n: true
+                  - name: email
+                    label: メールアドレス
+                    widget: string
+                    i18n: true
+          - name: body
+            label: 本文
+            widget: markdown
+            i18n: true
+          - name: contactDesc
+            label: 問い合わせ説明文 (上書き)
+            widget: string
+            i18n: true
+            required: false
+      - name: error
+        label: /error/ Page Not Found
+        preview_path: /{{locale}}/error/
+        file: src/content/pages/{{locale}}/error.md
+        i18n: true
+        fields:
+          - name: title
+            label: ページタイトル
+            widget: string
+            i18n: true
+          - name: subtitle
+            label: サブタイトル
+            widget: string
+            i18n: true
+          - name: description
+            label: 説明文
+            widget: markdown
+            i18n: true
+      - name: partials
+        label: その他複数箇所で使用するコンテンツ
+        file: src/content/settings/{{locale}}/partials.yaml
+        i18n: true
+        format: yaml
+        fields:
+          - name: publisher
+            label: 公開者
+            widget: object
+            i18n: true
+            fields:
+              - name: name
+                label: 名前
+                widget: string
+                i18n: true
+              - name: address
+                label: 住所
+                widget: string
+                i18n: true
+              - name: map
+                label: Google マップ
+                widget: object
+                i18n: true
+                fields:
+                  - name: place_id
+                    label: ロケーション ID
+                    widget: string
+                    i18n: true
+                  - name: api_key
+                    label: API キー
+                    widget: string
+                    i18n: true
+          - name: contact
+            label: お問い合わせ
+            widget: object
+            i18n: true
+            fields:
+              - name: heading
+                label: 見出し
+                widget: string
+                i18n: true
+              - name: description
+                label: 説明文
+                widget: text
+                i18n: true
+              - name: linkLabel
+                label: リンクラベル
+                widget: string
+                i18n: true
+          - name: social
+            label: ソーシャルメディア
+            widget: list
+            i18n: true
+            fields:
+              - name: name
+                label: ラベル
+                widget: string
+                i18n: true
+              - name: identifier
+                label: ID
+                widget: string
+                i18n: true
+              - name: account
+                label: アカウント名
+                widget: string
+                i18n: true
+              - name: url
+                label: URL
+                widget: string
+                i18n: true
+          - name: updates
+            label: ディノの足あと
+            widget: object
+            i18n: true
+            fields:
+              - name: news
+                label: 新着情報
+                widget: object
+                i18n: true
+                fields:
+                  - name: heading
+                    label: 見出し
+                    widget: string
+                    i18n: true
+                  - name: subheading
+                    label: サブ見出し
+                    widget: string
+                    i18n: true
+                  - name: linkLabel
+                    label: リンクラベル
+                    widget: string
+                    i18n: true
+                  - name: backlinkLabel
+                    label: 戻るリンクラベル
+                    widget: string
+                    i18n: true
+              - name: tags
+                label: タグ
+                widget: object
+                i18n: true
+                fields:
+                  - name: heading
+                    label: 見出し
+                    widget: string
+                    i18n: true
+              - name: share
+                label: ソーシャル共有
+                widget: object
+                i18n: true
+                fields:
+                  - name: heading
+                    label: 見出し
+                    widget: string
+                    i18n: true
+                  - name: media
+                    label: メディア
+                    widget: list
+                    i18n: true
+                    fields:
+                      - name: name
+                        label: ラベル
+                        widget: string
+                        i18n: true
+                      - name: identifier
+                        label: ID
+                        widget: string
+                        i18n: true
+                      - name: url
+                        label: URL
+                        widget: string
+                        i18n: true
+              - name: nav
+                label: ナビゲーション
+                widget: object
+                i18n: true
+                fields:
+                  - name: prev
+                    label: 前
+                    widget: string
+                    i18n: true
+                  - name: next
+                    label: 後
+                    widget: string
+                    i18n: true
+              - name: all
+                label: ディノの足あと一覧
+                widget: object
+                i18n: true
+                fields:
+                  - name: heading
+                    label: 見出し
+                    widget: string
+                    i18n: true
+                  - name: subheading
+                    label: サブ見出し
+                    widget: string
+                    i18n: true
+                  - name: linkLabel
+                    label: リンクラベル
+                    widget: string
+                    i18n: true
+          - name: promo
+            label: おすすめコンテンツ
+            widget: object
+            i18n: true
+            fields:
+              - name: heading
+                label: 見出し
+                widget: string
+                i18n: true
+              - name: subheading
+                label: サブ見出し
+                widget: string
+                i18n: true
+              - name: links
+                label: リンク
+                widget: list
+                i18n: true
+                fields:
+                  - name: title
+                    label: ラベル
+                    widget: string
+                    i18n: true
+                  - name: description
+                    label: 説明
+                    widget: string
+                    i18n: true
+                  - name: url
+                    label: URL
+                    widget: string
+                    i18n: true
+                  - name: image
+                    label: 画像
+                    widget: image
+                    i18n: duplicate_if_empty
+    editor:
+      preview: true

@@ -1,0 +1,157 @@
+---
+import type { Locale } from '@i18n/ui';
+import { localizePath, useTranslations } from '@i18n/utils';
+import type { Settings } from '@lib/content';
+import { getPagePath, type NavItem } from '@lib/navigation';
+
+interface Props {
+  locale: Locale;
+  settings: Settings;
+  primary: NavItem[];
+  secondary: NavItem[];
+}
+
+const { locale, settings, primary, secondary } = Astro.props;
+const t = useTranslations(locale);
+---
+
+<footer id="footer" role="contentinfo">
+  <div id="drawer" class="outer">
+    <div class="inner">
+      <section>
+        <div class="row">
+          <div class="col s2">
+            <button type="button" class="mobile" aria-label={t('nav.menu.close')}>
+              <span class="fas times" aria-hidden="true"></span>
+            </button>
+            <header>
+              <h1>
+                <a href={localizePath(locale)} set:html={settings.publisher.name} />
+              </h1>
+            </header>
+          </div>
+          <div class="col s3">
+            <nav class="primary" aria-label={t('nav.primary.label')}>
+              <ul>
+                {primary.map((item) => (
+                  <li class:list={{ parent: item.children.length > 0 }}>
+                    <a href={item.href}>{item.label}</a>
+                    {item.children.length > 0 && (
+                      <ul>
+                        {item.children.map((child) => (
+                          <li>
+                            <a href={child.href}>{child.label}</a>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </li>
+                ))}
+                {secondary.map((item) => (
+                  <li>
+                    <a href={item.href}>{item.label}</a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          </div>
+          <div class="col s1">
+            <nav class="social" aria-label={t('nav.social.label')}>
+              <ul>
+                {settings.social.map((item) => (
+                  <li class={item.identifier}>
+                    <a href={item.url}>
+                      <span class={`fab ${item.identifier}`} aria-hidden="true"></span>{' '}
+                      <span>{item.name}</span>
+                    </a>
+                  </li>
+                ))}
+                <li class="feed">
+                  <a href={localizePath(locale, '/index.xml')} data-astro-reload>
+                    <span class="fas rss" aria-hidden="true"></span> <span>{t('nav.feed')}</span>
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+  <div id="copyright" class="outer">
+    <div class="inner row">
+      <div class="col">
+        <p>
+          <Fragment
+            set:html={t('footer.copyright', {
+              year: new Date().getFullYear(),
+              copyright: t('site.copyright'),
+            })}
+          />{' '}
+          <a href={getPagePath(locale, 'privacy')}>{t('footer.privacy')}</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  let closeDrawer = () => {};
+
+  // Don’t leave the page inert if the viewport grows past the breakpoint in `base.css`, e.g. when
+  // rotating a device, as the drawer is then the regular page footer
+  window.matchMedia('(max-width: 767px)').addEventListener('change', () => closeDrawer());
+
+  /**
+   * Activate the mobile navigation drawer, which is opened from the button in the header. It’s
+   * called on the initial page load and after every client-side navigation by the view transition
+   * router, which swaps the page content without reloading this script.
+   */
+  document.addEventListener('astro:page-load', () => {
+    const { body } = document;
+    const $drawer = document.querySelector('#drawer');
+    const $openButton = document.querySelector('#header')?.querySelector('button');
+    const $closeButton = $drawer?.querySelector('button');
+
+    if (!$drawer || !$openButton || !$closeButton) {
+      return;
+    }
+
+    const setOpen = (open = true) => {
+      body.classList.toggle('menu-expanded', open);
+      $drawer.toggleAttribute('data-expanded', open);
+      $openButton.setAttribute('aria-expanded', String(open));
+
+      // Keep the keyboard focus in the drawer while the rest of the page is behind its backdrop
+      [...document.querySelectorAll('body > *, #copyright')]
+        .filter(($element) => !$element.contains($drawer))
+        .forEach(($element) => $element.toggleAttribute('inert', open));
+
+      (open ? $closeButton : $openButton).focus();
+    };
+
+    closeDrawer = () => {
+      if ($drawer.hasAttribute('data-expanded')) {
+        setOpen(false);
+      }
+    };
+
+    $openButton.addEventListener('click', () => setOpen());
+    $closeButton.addEventListener('click', () => setOpen(false));
+
+    // Close the drawer by clicking on the backdrop
+    $drawer.addEventListener('click', (event) => {
+      if (event.target === $drawer) {
+        closeDrawer();
+      }
+    });
+
+    // Close the drawer with the Escape key. The router replaces `<body>`, so this listener doesn’t
+    // pile up over navigations.
+    body.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        closeDrawer();
+      }
+    });
+  });
+</script>

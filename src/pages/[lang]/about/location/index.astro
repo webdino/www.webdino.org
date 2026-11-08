@@ -1,0 +1,40 @@
+---
+import FeatureHeader from '@components/FeatureHeader.astro';
+import { getLocale, getLocaleParams } from '@i18n/utils';
+import AboutLayout from '@layouts/AboutLayout.astro';
+import { getPage, getSettings } from '@lib/content';
+import { markdownify } from '@lib/markdown';
+import { getPageProps } from '@lib/navigation';
+
+export const getStaticPaths = () => getLocaleParams().map((params) => ({ params }));
+
+const locale = getLocale(Astro.currentLocale);
+const { data } = await getPage(locale, 'location');
+const { publisher } = await getSettings(locale);
+const mapURL = new URL('https://www.google.com/maps/embed/v1/place');
+
+mapURL.search = new URLSearchParams({
+  q: `place_id:${publisher.map.place_id}`,
+  key: publisher.map.api_key,
+}).toString();
+---
+
+<AboutLayout {...await getPageProps(locale, 'location')}>
+  <main>
+    <FeatureHeader title={data.title} subtitle={data.subtitle} description={data.description} />
+    <div id="main-content">
+      <section id="location" class="outer">
+        <figure>
+          <iframe src={mapURL.href} referrerpolicy="strict-origin-when-cross-origin"></iframe>
+        </figure>
+        <div class="inner row">
+          <div class="col">
+            <h2 set:html={publisher.name} />
+            <address>{publisher.address}</address>
+            <Fragment set:html={markdownify(data.nearby)} />
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+</AboutLayout>

@@ -1,0 +1,174 @@
+---
+import FeatureHeader from '@components/FeatureHeader.astro';
+import SectionHeader from '@components/SectionHeader.astro';
+import { getLocale, getLocaleParams, useTranslations } from '@i18n/utils';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import '@styles/contact.css';
+import { getPage } from '@lib/content';
+import { markdownify } from '@lib/markdown';
+import { getPagePath, getPageProps } from '@lib/navigation';
+
+export const getStaticPaths = () => getLocaleParams().map((params) => ({ params }));
+
+/**
+ * Netlify site that receives the form submissions with Netlify Forms. Keep deploying this
+ * repository there (`netlify.toml`): each deploy registers the form with its current fields and
+ * options, e.g. the old Hugo deploy required reCAPTCHA, and serves the page shown to visitors without
+ * JavaScript after submitting. The site itself is served by Cloudflare Pages.
+ */
+const NETLIFY_FORMS_SITE = 'https://www-webdino-org.netlify.app';
+
+const locale = getLocale(Astro.currentLocale);
+const t = useTranslations(locale);
+const { data } = await getPage(locale, 'contact');
+const { fields, submit, thanks, error } = data;
+const formPath = getPagePath(locale, 'contact');
+const messages = [
+  { id: 'thanks', ...thanks },
+  { id: 'error', ...error },
+];
+---
+
+<BaseLayout {...await getPageProps(locale, 'contact')} contact={false}>
+  <main>
+    <FeatureHeader title={data.title} subtitle={data.subtitle} description={data.description} />
+    <div id="main-content">
+      <form
+        name="contact"
+        method="POST"
+        action={formPath}
+        data-netlify="true"
+        data-astro-reload
+        netlify-honeypot="bot-field"
+      >
+        <input type="hidden" name="form-name" value="contact" />
+        <div class="outer main">
+          <div class="inner row">
+            <div class="col">
+              {fields.map((field) => (
+                <p class="field">
+                  <label for={`input-${field.name}`}>{field.label}</label>
+                  <span class="req">{field.required && t('contact.required')}</span>
+                  <span class="input">
+                    {field.type === 'multiline' ? (
+                      <textarea
+                        id={`input-${field.name}`}
+                        name={field.name}
+                        required={field.required}
+                        placeholder={field.placeholder}
+                      ></textarea>
+                    ) : (
+                      <input
+                        id={`input-${field.name}`}
+                        type={field.type}
+                        name={field.name}
+                        required={field.required}
+                        placeholder={field.placeholder}
+                      />
+                    )}
+                  </span>
+                </p>
+              ))}
+              <p hidden>
+                <label>
+                  {t('contact.honeypot')} <input name="bot-field" />
+                </label>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="outer submit">
+          <div class="inner row">
+            <div class="col">
+              <p>
+                <label>
+                  <input type="checkbox" name="privacy" required />{' '}
+                  <Fragment set:html={markdownify(submit.privacy)} />
+                </label>
+              </p>
+              <p class="field">
+                <button type="submit" formaction={new URL(formPath, NETLIFY_FORMS_SITE).href}>
+                  <span class="far paper-plane" aria-hidden="true"></span>
+                  <strong>{submit.buttonLabel}</strong>
+                </button>
+              </p>
+            </div>
+          </div>
+        </div>
+        {messages.map((message) => (
+          <div class={`outer ${message.id}`} hidden tabindex="-1">
+            <div class="inner row">
+              <div class="col">
+                <SectionHeader heading={message.heading} subheading={message.subheading} />
+                <p set:html={markdownify(message.description)} />
+              </div>
+            </div>
+          </div>
+        ))}
+      </form>
+    </div>
+  </main>
+</BaseLayout>
+
+<script>
+  /**
+   * Submit the form with Ajax. It’s sent to the Netlify site given in the button’s `formaction`,
+   * which also covers visitors without JavaScript. Netlify doesn’t allow reading the cross-origin
+   * response, so the submission is considered successful unless the request fails.
+   * @see https://docs.netlify.com/manage/forms/setup/#submit-javascript-rendered-forms-with-ajax
+   */
+  document.addEventListener('astro:page-load', () => {
+    const $form = document.querySelector('form[name="contact"]');
+
+    // This script stays loaded after navigating away from the contact page
+    if (!($form instanceof HTMLFormElement)) {
+      return;
+    }
+
+    const $main = $form.querySelector('.main');
+    const $submit = $form.querySelector('.submit');
+    const $thanks = $form.querySelector('.thanks');
+    const $error = $form.querySelector('.error');
+    const $button = $submit?.querySelector('button');
+
+    if (
+      !(
+        $button &&
+        $main instanceof HTMLElement &&
+        $submit instanceof HTMLElement &&
+        $thanks instanceof HTMLElement &&
+        $error instanceof HTMLElement
+      )
+    ) {
+      return;
+    }
+
+    $form.querySelector('a[href$="/privacy/"]')?.setAttribute('target', '_blank');
+
+    $form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+
+      const fields = [...new FormData($form)].map(([name, value]) => [name, String(value)]);
+
+      $button.disabled = true;
+
+      try {
+        await fetch($button.formAction, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams(fields).toString(),
+        });
+
+        $thanks.hidden = false;
+        $thanks.focus();
+      } catch {
+        $error.hidden = false;
+        $error.focus();
+      } finally {
+        $main.hidden = true;
+        $submit.hidden = true;
+      }
+    });
+  });
+</script>

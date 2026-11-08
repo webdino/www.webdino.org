@@ -1,0 +1,65 @@
+---
+import { render } from 'astro:content';
+import FeatureHeader from '@components/FeatureHeader.astro';
+import { formatDate, getLocale, getLocaleParams, useTranslations } from '@i18n/utils';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import '@styles/privacy.css';
+import { getPage } from '@lib/content';
+import { getPageProps } from '@lib/navigation';
+import { toISOString } from '@lib/text';
+
+export const getStaticPaths = () => getLocaleParams().map((params) => ({ params }));
+
+const locale = getLocale(Astro.currentLocale);
+const t = useTranslations(locale);
+const page = await getPage(locale, 'privacy');
+const { data } = page;
+const { Content } = await render(page);
+const { date, lastModified, publisher } = data;
+---
+
+<BaseLayout {...await getPageProps(locale, 'privacy')}>
+  <main>
+    <FeatureHeader title={data.title} subtitle={data.subtitle} />
+    <div id="main-content">
+      <div class="inner row">
+        <div class="col">
+          <div class="body">
+            <Content />
+          </div>
+          <footer>
+            <p>
+              <Fragment
+                set:html={t('privacy.established', {
+                  date: `<time datetime="${toISOString(date)}">${formatDate(locale, date)}</time>`,
+                })}
+              />
+              {lastModified && lastModified.getTime() !== date.getTime() && (
+                <>
+                  <br />
+                  <Fragment
+                    set:html={t('privacy.updated', {
+                      date: `<time datetime="${toISOString(lastModified)}">${formatDate(locale, lastModified)}</time>`,
+                    })}
+                  />
+                </>
+              )}
+            </p>
+            <div>
+              <p>
+                {publisher.name}
+                <br />
+                {publisher.person.role} {publisher.person.name}
+              </p>
+              <address>
+                {publisher.contact.title}
+                <br />
+                E-mail: <a href={`mailto:${publisher.contact.email}`}>{publisher.contact.email}</a>
+              </address>
+            </div>
+          </footer>
+        </div>
+      </div>
+    </div>
+  </main>
+</BaseLayout>

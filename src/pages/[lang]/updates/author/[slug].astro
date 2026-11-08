@@ -1,0 +1,69 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import type { Locale } from '@i18n/ui';
+import { useTranslations } from '@i18n/utils';
+import ArchiveLayout from '@layouts/ArchiveLayout.astro';
+import { getTermRoutes, type Post } from '@lib/content';
+import { markdownify } from '@lib/markdown';
+import { getAuthorPath } from '@lib/navigation';
+
+export const getStaticPaths = () => getTermRoutes('authors');
+
+interface Props {
+  locale: Locale;
+  term: CollectionEntry<'authors'>['data'];
+  posts: Post[];
+}
+
+const { locale, term: author, posts } = Astro.props;
+const t = useTranslations(locale);
+
+const profiles = [
+  { key: 'twitter', label: t('author.twitter'), url: 'https://x.com/' },
+  { key: 'facebook', label: t('author.facebook'), url: 'https://www.facebook.com/' },
+  { key: 'github', label: t('author.github'), url: 'https://github.com/' },
+] as const;
+---
+
+<ArchiveLayout
+  locale={locale}
+  title={t('updates.author.title', { name: author.name })}
+  href={getAuthorPath(locale, author.title)}
+  posts={posts}
+>
+  <header class="profile" itemscope itemtype="http://schema.org/Person">
+    {author.image && (
+      <div class="avatar">
+        <img loading="lazy" src={author.image} alt="" itemprop="image" />
+      </div>
+    )}
+    <h2 itemprop="name">{author.name}</h2>
+    <dl>
+      {author.jobTitle && (
+        <>
+          <dt>{t('author.job-title')}</dt>
+          <dd itemprop="jobTitle">{author.jobTitle}</dd>
+        </>
+      )}
+      {author.description && (
+        <>
+          <dt>{t('author.description')}</dt>
+          <dd itemprop="description" set:html={markdownify(author.description)} />
+        </>
+      )}
+      {profiles.map(
+        ({ key, label, url }) =>
+          author[key] && (
+            <>
+              <dt>{label}</dt>
+              <dd>
+                <a href={`${url}${author[key]}`} itemprop="sameAs">
+                  @{author[key]}
+                </a>
+              </dd>
+            </>
+          ),
+      )}
+    </dl>
+  </header>
+</ArchiveLayout>

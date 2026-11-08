@@ -1,0 +1,23 @@
+---
+import type { Locale } from '@i18n/ui';
+import { getPage } from '@lib/content';
+import { getPagePath } from '@lib/navigation';
+import { removeLineBreaks } from '@lib/text';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const { data } = await getPage(locale, 'fullstack');
+---
+
+<div id="fullstack-promo">
+  <a href={getPagePath(locale, 'fullstack')}>
+    <img
+      src="/images/banners/home-promo-fullstack.webp"
+      alt={removeLineBreaks(data.title)}
+      loading="lazy"
+    />
+  </a>
+</div>

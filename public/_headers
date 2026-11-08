@@ -1,0 +1,11 @@
+# https://developers.cloudflare.com/pages/configuration/headers/
+# Content Security Policy is set with `<meta>` in `BaseLayout.astro` and `admin/index.html`, so it
+# applies to every locale, the not-found pages and the dev server. `frame-ancestors` doesn't work
+# there, so `X-Frame-Options` covers it.
+
+/*
+  Cache-Control: max-age=0, must-revalidate, public
+  Strict-Transport-Security: max-age=63072000
+  Referrer-Policy: same-origin
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
