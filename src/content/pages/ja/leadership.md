@@ -54,7 +54,7 @@ leadership:
       members:
         - name: 村井 純
           titles:
-            - 慶應義塾大学<br>教授
+            - 慶應義塾大学<br>名誉教授
           image: /images/people/murai-1-.jpg
     - heading: フェロー
       subheading: Fellows
