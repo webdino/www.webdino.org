@@ -16,7 +16,18 @@ export const getStaticPaths = () => getLocaleParams().map((params) => ({ params 
  * options, e.g. the old Hugo deploy required reCAPTCHA, and serves the page shown to visitors without
  * JavaScript after submitting. The site itself is served by Cloudflare Pages.
  */
-const NETLIFY_FORMS_SITE = 'https://www-webdino-org.netlify.app';
+const NETLIFY_FORMS_SITE =
+  process.env.CONTEXT !== 'production' && process.env.DEPLOY_PRIME_URL
+    ? process.env.DEPLOY_PRIME_URL
+    : 'https://www-webdino-org.netlify.app';
+
+/**
+ * Cloudflare Turnstile site key. Submissions without a valid token are rejected by the Netlify edge
+ * function (`netlify/edge-functions/turnstile.js`) before they reach Netlify Forms. Without the
+ * variable, e.g. in local development, use the test key that always passes.
+ * @see https://developers.cloudflare.com/turnstile/troubleshooting/testing/
+ */
+const TURNSTILE_SITE_KEY = process.env.TURNSTILE_SITE_KEY || '1x00000000000000000000AA';
 
 const locale = getLocale(Astro.currentLocale);
 const t = useTranslations(locale);
@@ -80,6 +91,12 @@ const messages = [
         <div class="outer submit">
           <div class="inner row">
             <div class="col">
+              <div
+                class="cf-turnstile"
+                data-sitekey={TURNSTILE_SITE_KEY}
+                data-language={locale}
+                data-theme="light"
+              ></div>
               <p>
                 <label>
                   <input type="checkbox" name="privacy" required />{' '}
@@ -117,6 +134,32 @@ const messages = [
    * response, so the submission is considered successful unless the request fails.
    * @see https://docs.netlify.com/manage/forms/setup/#submit-javascript-rendered-forms-with-ajax
    */
+
+  /** @type {Promise<void> | undefined} */
+  let turnstileLoader;
+
+  /**
+   * Load the Cloudflare Turnstile script once. It’s added on demand rather than with a `<script>`
+   * element, because the view transition router doesn’t run it again after navigating to the
+   * contact page.
+   * @see https://developers.cloudflare.com/turnstile/get-started/client-side-rendering/
+   * @returns {Promise<void>} Promise resolved once `window.turnstile` is available.
+   */
+  const loadTurnstile = () => {
+    turnstileLoader ??= new Promise((resolve, reject) => {
+      const $script = document.createElement('script');
+
+      $script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
+      $script.addEventListener('load', () =>
+        window.turnstile ? resolve(undefined) : reject(new Error('Turnstile not loaded')),
+      );
+      $script.addEventListener('error', reject);
+      document.head.append($script);
+    });
+
+    return turnstileLoader;
+  };
+
   document.addEventListener('astro:page-load', () => {
     const $form = document.querySelector('form[name="contact"]');
 
@@ -130,6 +173,7 @@ const messages = [
     const $thanks = $form.querySelector('.thanks');
     const $error = $form.querySelector('.error');
     const $button = $submit?.querySelector('button');
+    const $turnstile = $form.querySelector('.cf-turnstile');
 
     if (
       !(
@@ -137,11 +181,24 @@ const messages = [
         $main instanceof HTMLElement &&
         $submit instanceof HTMLElement &&
         $thanks instanceof HTMLElement &&
-        $error instanceof HTMLElement
+        $error instanceof HTMLElement &&
+        $turnstile instanceof HTMLElement
       )
     ) {
       return;
     }
+
+    loadTurnstile()
+      .then(() => {
+        if (!window.turnstile?.render($turnstile)) {
+          throw new Error('Turnstile not rendered');
+        }
+      })
+      .catch(() => {
+        $main.hidden = true;
+        $submit.hidden = true;
+        $error.hidden = false;
+      });
 
     $form.querySelector('a[href$="/privacy/"]')?.setAttribute('target', '_blank');
 
@@ -149,6 +206,13 @@ const messages = [
       event.preventDefault();
 
       const fields = [...new FormData($form)].map(([name, value]) => [name, String(value)]);
+
+      // The challenge isn’t solved yet; the widget shows its status
+      if (!fields.some(([name, value]) => name === 'cf-turnstile-response' && value)) {
+        $turnstile.scrollIntoView({ block: 'center', behavior: 'smooth' });
+
+        return;
+      }
 
       $button.disabled = true;
 

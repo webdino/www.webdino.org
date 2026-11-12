@@ -79,6 +79,8 @@ const csp = Object.entries({
     'https://*.googletagmanager.com',
     'https://*.google-analytics.com',
     'https://*.analytics.google.com',
+    // Cloudflare Turnstile on the contact page
+    'https://challenges.cloudflare.com',
   ],
   'connect-src': [
     "'self'",
@@ -89,6 +91,7 @@ const csp = Object.entries({
   ],
   'form-action': ["'self'", 'https://www-webdino-org.netlify.app'],
   'frame-src': [
+    'https://challenges.cloudflare.com',
     'https://www.google.com',
     'https://www.slideshare.net',
     'https://www.youtube-nocookie.com',
