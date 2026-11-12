@@ -16,7 +16,10 @@ export const getStaticPaths = () => getLocaleParams().map((params) => ({ params 
  * options, e.g. the old Hugo deploy required reCAPTCHA, and serves the page shown to visitors without
  * JavaScript after submitting. The site itself is served by Cloudflare Pages.
  */
-const NETLIFY_FORMS_SITE = 'https://www-webdino-org.netlify.app';
+const NETLIFY_FORMS_SITE =
+  process.env.CONTEXT !== 'production' && process.env.DEPLOY_PRIME_URL
+    ? process.env.DEPLOY_PRIME_URL
+    : 'https://www-webdino-org.netlify.app';
 
 const locale = getLocale(Astro.currentLocale);
 const t = useTranslations(locale);
@@ -40,6 +43,7 @@ const messages = [
         data-netlify="true"
         data-astro-reload
         netlify-honeypot="bot-field"
+        data-netlify-recaptcha="true"
       >
         <input type="hidden" name="form-name" value="contact" />
         <div class="outer main">
@@ -80,6 +84,7 @@ const messages = [
         <div class="outer submit">
           <div class="inner row">
             <div class="col">
+              <div data-netlify-recaptcha="true"></div>
               <p>
                 <label>
                   <input type="checkbox" name="privacy" required />{' '}
@@ -149,6 +154,15 @@ const messages = [
       event.preventDefault();
 
       const fields = [...new FormData($form)].map(([name, value]) => [name, String(value)]);
+
+      // reCAPTCHA isn’t solved yet; Netlify Forms would reject the submission
+      if (!fields.some(([name, value]) => name === 'g-recaptcha-response' && value)) {
+        $form
+          .querySelector('.g-recaptcha')
+          ?.scrollIntoView({ block: 'center', behavior: 'smooth' });
+
+        return;
+      }
 
       $button.disabled = true;
 
