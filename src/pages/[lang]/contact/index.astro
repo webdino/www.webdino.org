@@ -16,7 +16,10 @@ export const getStaticPaths = () => getLocaleParams().map((params) => ({ params 
  * options, e.g. the old Hugo deploy required reCAPTCHA, and serves the page shown to visitors without
  * JavaScript after submitting. The site itself is served by Cloudflare Pages.
  */
-const NETLIFY_FORMS_SITE = 'https://www-webdino-org.netlify.app';
+const NETLIFY_FORMS_SITE =
+  process.env.NETLIFY && process.env.CONTEXT !== 'production' && process.env.DEPLOY_PRIME_URL
+    ? process.env.DEPLOY_PRIME_URL
+    : 'https://www-webdino-org.netlify.app';
 
 const locale = getLocale(Astro.currentLocale);
 const t = useTranslations(locale);
