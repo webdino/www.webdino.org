@@ -40,6 +40,7 @@ const messages = [
         data-netlify="true"
         data-astro-reload
         netlify-honeypot="bot-field"
+        data-netlify-recaptcha="true"
       >
         <input type="hidden" name="form-name" value="contact" />
         <div class="outer main">
@@ -80,6 +81,7 @@ const messages = [
         <div class="outer submit">
           <div class="inner row">
             <div class="col">
+              <div data-netlify-recaptcha="true"></div>
               <p>
                 <label>
                   <input type="checkbox" name="privacy" required />{' '}
