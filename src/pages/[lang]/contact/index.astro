@@ -189,7 +189,11 @@ const messages = [
     }
 
     loadTurnstile()
-      .then(() => window.turnstile?.render($turnstile))
+      .then(() => {
+        if (!window.turnstile?.render($turnstile)) {
+          throw new Error('Turnstile not rendered');
+        }
+      })
       .catch(() => {
         $main.hidden = true;
         $submit.hidden = true;
