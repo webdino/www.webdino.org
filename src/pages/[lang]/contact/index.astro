@@ -17,7 +17,7 @@ export const getStaticPaths = () => getLocaleParams().map((params) => ({ params 
  * JavaScript after submitting. The site itself is served by Cloudflare Pages.
  */
 const NETLIFY_FORMS_SITE =
-  process.env.NETLIFY && process.env.CONTEXT !== 'production' && process.env.DEPLOY_PRIME_URL
+  process.env.CONTEXT !== 'production' && process.env.DEPLOY_PRIME_URL
     ? process.env.DEPLOY_PRIME_URL
     : 'https://www-webdino-org.netlify.app';
 
