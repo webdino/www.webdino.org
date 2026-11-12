@@ -79,6 +79,9 @@ const csp = Object.entries({
     'https://*.googletagmanager.com',
     'https://*.google-analytics.com',
     'https://*.analytics.google.com',
+    // reCAPTCHA added by Netlify Forms on the contact page
+    'https://www.google.com/recaptcha/',
+    'https://www.gstatic.com/recaptcha/',
   ],
   'connect-src': [
     "'self'",
@@ -90,6 +93,7 @@ const csp = Object.entries({
   'form-action': ["'self'", 'https://www-webdino-org.netlify.app'],
   'frame-src': [
     'https://www.google.com',
+    'https://recaptcha.google.com/recaptcha/',
     'https://www.slideshare.net',
     'https://www.youtube-nocookie.com',
   ],

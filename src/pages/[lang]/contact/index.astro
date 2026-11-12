@@ -155,6 +155,15 @@ const messages = [
 
       const fields = [...new FormData($form)].map(([name, value]) => [name, String(value)]);
 
+      // reCAPTCHA isn’t solved yet; Netlify Forms would reject the submission
+      if (!fields.some(([name, value]) => name === 'g-recaptcha-response' && value)) {
+        $form
+          .querySelector('.g-recaptcha')
+          ?.scrollIntoView({ block: 'center', behavior: 'smooth' });
+
+        return;
+      }
+
       $button.disabled = true;
 
       try {

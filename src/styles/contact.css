@@ -66,6 +66,11 @@
     }
 
     .submit {
+      .g-recaptcha {
+        margin: 0 auto;
+        width: fit-content;
+      }
+
       button[type='submit'] {
         outline: 0;
         border: 0;
