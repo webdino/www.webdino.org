@@ -7,6 +7,13 @@
  */
 const NETLIFY_FORMS_SITE = 'https://www-webdino-org.netlify.app';
 
+/**
+ * Page on the Netlify site to post the submissions to. Netlify Forms accepts a POST request to a
+ * page path, but redirect rules in `_redirects` run first, e.g. a POST to `/` gets the `302` to
+ * `/ja/` and never reaches Netlify Forms.
+ */
+const NETLIFY_FORMS_PATH = '/ja/contact/';
+
 /** Form name registered with Netlify Forms. */
 const FORM_NAME = 'contact';
 
@@ -90,9 +97,9 @@ export const onRequestPost = async ({ request, env }) => {
   const fields = [...formData].map(([name, value]) => [name, String(value)]);
 
   try {
-    // Netlify Forms accepts a POST request to any path of the site. It replies with a redirect to
-    // the success page, which doesn't need to be followed.
-    const response = await fetch(new URL('/', NETLIFY_FORMS_SITE), {
+    // Netlify Forms answers with its success page or a redirect to it, which doesn't need to be
+    // followed
+    const response = await fetch(new URL(NETLIFY_FORMS_PATH, NETLIFY_FORMS_SITE), {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: new URLSearchParams(fields).toString(),
