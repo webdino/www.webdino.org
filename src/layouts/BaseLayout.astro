@@ -79,16 +79,22 @@ const csp = Object.entries({
     'https://*.googletagmanager.com',
     'https://*.google-analytics.com',
     'https://*.analytics.google.com',
+    // Cloudflare Turnstile on the contact page
+    'https://challenges.cloudflare.com',
+    // Cloudflare Web Analytics
+    'https://static.cloudflareinsights.com',
   ],
   'connect-src': [
     "'self'",
-    'https://www-webdino-org.netlify.app',
     'https://*.googletagmanager.com',
     'https://*.google-analytics.com',
     'https://*.analytics.google.com',
+    // Cloudflare Web Analytics
+    'https://cloudflareinsights.com',
   ],
-  'form-action': ["'self'", 'https://www-webdino-org.netlify.app'],
+  'form-action': ["'self'"],
   'frame-src': [
+    'https://challenges.cloudflare.com',
     'https://www.google.com',
     'https://www.slideshare.net',
     'https://www.youtube-nocookie.com',
@@ -150,6 +156,14 @@ const [currentSection = ''] = Astro.url.pathname
       gtag('js', new Date());
       gtag('config', 'G-G4E31TXVDG');
     </script>
+    <!-- Cloudflare Web Analytics -->
+    <script
+      is:inline
+      type="module"
+      src="https://static.cloudflareinsights.com/beacon.min.js"
+      data-cf-beacon='{"token": "88b90c47f5b04daab561d6b2e9d1cdbc"}'
+    ></script>
+    <!-- End Cloudflare Web Analytics -->
   </head>
   <body data-section={section} data-page={page}>
     <Header locale={locale} section={currentSection} primary={primary} secondary={secondary} />

@@ -66,6 +66,11 @@
     }
 
     .submit {
+      .cf-turnstile {
+        display: flex;
+        justify-content: center;
+      }
+
       button[type='submit'] {
         outline: 0;
         border: 0;
