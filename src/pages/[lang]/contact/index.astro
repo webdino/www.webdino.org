@@ -17,11 +17,16 @@ export const getStaticPaths = () => getLocaleParams().map((params) => ({ params 
 const FORM_ENDPOINT = '/api/contact';
 
 /**
- * Cloudflare Turnstile site key, set as a build environment variable on the Cloudflare Pages
- * project. Without the variable, e.g. in local development, use the test key that always passes.
+ * Cloudflare Turnstile site key. It’s public, so it’s written here rather than in a build variable,
+ * which the Pages dashboard doesn’t allow while `wrangler.jsonc` manages the project’s variables.
+ * Builds outside Cloudflare Pages, e.g. in local development, use the test key that always passes,
+ * because the real key only works on the hostnames registered for the widget.
+ * @see https://developers.cloudflare.com/pages/configuration/build-configuration/#environment-variables
  * @see https://developers.cloudflare.com/turnstile/troubleshooting/testing/
  */
-const TURNSTILE_SITE_KEY = process.env.TURNSTILE_SITE_KEY || '1x00000000000000000000AA';
+const TURNSTILE_SITE_KEY = process.env.CF_PAGES
+  ? '0x4AAAAAAF9iu-bddmXagWkw'
+  : '1x00000000000000000000AA';
 
 const locale = getLocale(Astro.currentLocale);
 const t = useTranslations(locale);

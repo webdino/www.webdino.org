@@ -1,6 +1,6 @@
 // Cloudflare Pages configuration: https://developers.cloudflare.com/pages/functions/wrangler-configuration/
-// Build with `pnpm build`. Set the `TURNSTILE_SITE_KEY` build variable and the
-// `TURNSTILE_SECRET_KEY` secret on the project for the contact form (`functions/api/contact.js`).
+// Build with `pnpm build`. Set the `TURNSTILE_SECRET_KEY` secret on the project, in both the
+// production and preview environments, for the contact form (`functions/api/contact.js`).
 {
   "$schema": "./node_modules/wrangler/config-schema.json",
   "name": "www-webdino-org",
