@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview",
+    "preview": "wrangler pages dev",
     "test": "node --test 'src/**/*.test.js'",
     "check": "pnpm run --no-bail '/^check:\\w+$/'",
     "check:audit": "pnpm audit",

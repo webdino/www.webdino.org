@@ -1,7 +1,0 @@
-# The site is served by Cloudflare Pages (`wrangler.jsonc`). This Netlify deploy only exists so
-# Netlify Forms registers the contact form and accepts its submissions; see the contact page.
-# https://docs.netlify.com/manage/forms/setup/
-
-[build]
-publish = "dist"
-command = "pnpm build"

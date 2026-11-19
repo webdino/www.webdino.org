@@ -79,16 +79,18 @@ const csp = Object.entries({
     'https://*.googletagmanager.com',
     'https://*.google-analytics.com',
     'https://*.analytics.google.com',
+    // Cloudflare Turnstile on the contact page
+    'https://challenges.cloudflare.com',
   ],
   'connect-src': [
     "'self'",
-    'https://www-webdino-org.netlify.app',
     'https://*.googletagmanager.com',
     'https://*.google-analytics.com',
     'https://*.analytics.google.com',
   ],
-  'form-action': ["'self'", 'https://www-webdino-org.netlify.app'],
+  'form-action': ["'self'"],
   'frame-src': [
+    'https://challenges.cloudflare.com',
     'https://www.google.com',
     'https://www.slideshare.net',
     'https://www.youtube-nocookie.com',
