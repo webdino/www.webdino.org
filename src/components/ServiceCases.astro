@@ -4,19 +4,19 @@ import Heading from './Heading.astro';
 
 interface Props {
   heading: string;
-  details: { heading: string; description: string; image?: string }[];
+  details: { heading: string; slug: string; description: string; image?: string }[];
 }
 
 const { heading, details } = Astro.props;
 ---
 
 {details.map((detail) => (
-  <section class="case">
+  <section class="case" id={`case-${detail.slug}`}>
     <h3>
       <span class="prefix">{heading}</span>{' '}
-      <span class="heading">
+      <a class="heading" href={`#case-${detail.slug}`}>
         <Heading text={detail.heading} />
-      </span>
+      </a>
     </h3>
     <div class="content">
       {detail.image && (

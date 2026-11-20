@@ -33,6 +33,8 @@ fields:
 solutions:
   heading: ご相談例・事例
   subheading: Our Solutions
+  description: WebDINO Japan では Web／ブラウザー／オープンの適用領域拡大に関わる業務を広くお受けしています。
+  linkLabel: 事例をみる
   examples:
     - label: スマートデバイスや組み込み Linux 端末向けカスタムブラウザー開発
       icon: /images/services/tech/browser.svg
@@ -54,36 +56,39 @@ solutions:
     heading: 事例
     details:
       - heading: プライバシー保護とパーソナライズ AI の両立を支えるデータ基盤「Puda」の研究開発
+        slug: puda
         description: |-
           企業との共同研究を通じて、プライバシー保護とパーソナライズ AI の両立を支えるデータ基盤「Puda」の研究開発に取り組みました。Puda は、AI エージェントに渡す個人データの粒度を、場面や渡す相手に応じて利用者自身が選べるようにする仕組みです。旅行プランの提案タスクで評価したところ、詳細な閲覧履歴の代わりに抽象化した情報のみを渡した場合でも、97.2% のパーソナライズ性能を維持できることを実証しました。論文: [10.48550/arXiv.2602.08268](https://doi.org/10.48550/arXiv.2602.08268)
 
           また、WebDINO Japan では、プライバシーを守りながら閲覧履歴を AI に活用するためのブラウザー拡張機能「[puda-palafito](https://github.com/webdino/puda-palafito)」をオープンソースで開発しています。閲覧したページを自動で記録し、MCP (Model Context Protocol) を通じて AI エージェントから参照できるようにするもので、要約や分析に用いる AI はブラウザー内蔵 AI (Summarizer API) とクラウド AI から利用者が選択できます。
         image: /images/services/tech/puda.webp
       - heading: 大学教育基盤への発展を支えた動画教材管理システム「CHiBi-CHiLO」開発協力
+        slug: chibi-chilo
         description: |-
           NPO 法人コンソーシアム TIES、国立情報学研究所、大阪大学、熊本大学、大阪教育大学が参画するオープンソースプロジェクトとして開発が進められている動画教材管理システム「[CHiBi-CHiLO](https://npocccties.github.io/chibichilo/)」の開発を担当しました。国立情報学研究所がオープンソースソフトウェア「PtM」として開発し、NPO 法人コンソーシアム TIES が「CHiLO-Speech」の名称で提供する音声合成教材作成ツールとの連携部分のほか、LMS (Learning Management System) との連携を担うLTI (Learning Tools Interoperability) の実装など、オープンソースプロジェクトとしての技術基盤を継続的に支えてきました。
 
           CHiBi-CHiLO は、大阪大学や熊本大学のオンライン講義をはじめ複数の大学で採用されているほか、国立情報学研究所が運用する学認 LMS での教材配信にも用いられています。大阪教育大学と愛知教育大学が共同運営する教員向けオープンエデュケーションプラットフォーム「[OZONE-EDU](https://o3edu.osaka-kyoiku.ac.jp/)」でも、マイクロクレデンシャル (デジタル学修証明) の発行を支える構成要素として活用されています。2025 年 3 月には、大阪教育大学と札幌大学の教職課程連携が「授業科目の自ら開設の原則」(大学設置基準第 19 条第 1 項) の特例として全国で初めて文部科学大臣の認定を受けました。OZONE-EDU はこの取り組みを支えており、同年 11 月には一般社団法人日本 1EdTech 協会「第 10 回 1EdTech Japan 賞」の最優秀賞を受賞しています。
-        image: /images/services/tech/chibi-chiro.webp
+        image: /images/services/tech/chibi-chilo.webp
       - heading: Web ベースの<br>遠隔在宅医療<br>システム構築
+        slug: telehealth
         description: |-
           高齢化社会に対応する遠隔在宅医療の社会実装を目指す産官学連携プロジェクトにおいて、病院の医師と在宅の患者を繋ぎ、患者の状態をリアルタイムに把握可能な超高解像度カメラやセンサーなどの遠隔制御とデータ収集を行う実証実験システムを、ブラウザーや Web 技術を中心として実装しました。
 
           このように、新たな社会の課題を解決するシステムの社会実装において、Web 技術を利用することで、Web の適用領域を拡大しつつインターネットの価値を社会に還元する取り組みを行っています。
         image: /images/services/tech/case-1.jpg
       - heading: 動画配信サービス<br>利用時の品質データの<br>調査・研究
+        slug: videomark
         description: |-
           AI や IoT を背景として、インターネット通信へのニーズは自動運転車の遠隔運転のように低遅延を求めるもの、災害時通信など高信頼性を求めるものなど、用途に応じた制御が求められています。特に、5G 環境下ではネットワーク動的制御が広く導入される中、インターネットの通信の 6 割を占める動画配信サービスの通信制御は大きな課題です。
 
           そこで、YouTube を始めとした動画配信サービスを実際にユーザーが利用する際の品質データを分析・公開し、ネットワーク資源の有効活用と品質向上に役立てる調査研究プロジェクト「[Web VideoMark](https://videomark.webdino.org/)」を実施してきました。
         image: /images/banners/home-promo-videomark.webp
       - heading: 組み込み Linux <br>プラットフォームへの<br>ブラウザーエンジン<br>移植
+        slug: gecko-embedded
         description: |-
           HTML5 以降アプリケーションプラットフォームとして発展を続けるブラウザーエンジンは、PC やスマートフォン・タブレットあるいはテレビなどの家電・ゲーム機・VR/AR/MR デバイスなどに留まらず、ビルの集中管理パネル、工場の機器制御画面など、組み込み製品向けの HMI 環境としての利用が広がっています。
 
           組み込み環境で HTML5 を利用したいという需要に応えられるよう、弊社では「[Gecko Embedded](https://gecko-embedded.org/)」プロジェクトにて Firefox のブラウザーエンジン Gecko をルネサスエレクトロニクスの産業用プロセッサー「RZ/G」シリーズに移植してきました。
         image: /images/banners/home-promo-gecko.webp
-  description: WebDINO Japan では Web／ブラウザー／オープンの適用領域拡大に関わる業務を広くお受けしています。
-  linkLabel: 事例をみる
 contactDesc: 技術開発やコンサルティングに関するご依頼・ご相談は、以下リンク先のお問い合わせフォームよりお願いします。
 ---
