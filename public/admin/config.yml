@@ -637,6 +637,14 @@ collections:
                         label: 見出し
                         widget: string
                         i18n: true
+                      - name: slug
+                        label: スラッグ
+                        widget: string
+                        i18n: duplicate
+                        hint: ページ内アンカーとして使われます。
+                        pattern:
+                          - /^[a-z0-9-]+$/
+                          - 半角小文字英数字とハイフンのみ使用できます。
                       - name: description
                         label: 説明文
                         widget: markdown
@@ -730,6 +738,14 @@ collections:
                         label: 見出し
                         widget: string
                         i18n: true
+                      - name: slug
+                        label: スラッグ
+                        widget: string
+                        i18n: duplicate
+                        hint: ページ内アンカーとして使われます。
+                        pattern:
+                          - /^[a-z0-9-]+$/
+                          - 半角小文字英数字とハイフンのみ使用できます。
                       - name: description
                         label: 説明文
                         widget: markdown

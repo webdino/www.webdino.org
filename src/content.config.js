@@ -39,7 +39,12 @@ const definePage = (name, fields) =>
 const serviceCases = z.object({
   heading: z.string(),
   details: z.array(
-    z.object({ heading: z.string(), description: z.string(), image: z.string().optional() }),
+    z.object({
+      heading: z.string(),
+      slug: z.string(),
+      description: z.string(),
+      image: z.string().optional(),
+    }),
   ),
 });
 

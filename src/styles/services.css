@@ -372,6 +372,16 @@
         font-weight: normal;
         vertical-align: 2px;
       }
+
+      .heading {
+        color: inherit;
+
+        &:hover em,
+        &:focus em,
+        &:active em {
+          text-decoration: underline;
+        }
+      }
     }
 
     .content {
